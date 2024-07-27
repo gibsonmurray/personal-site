@@ -1,7 +1,9 @@
+import InfiniteViewport from "./components/InfiniteViewport"
+
 export default function Home() {
     return (
-        <div className="flex h-screen w-screen items-center justify-center">
-            Coming soon...
-        </div>
-    );
+        <InfiniteViewport>
+            <div className="h-52 w-52 bg-black">asdasdas</div>
+        </InfiniteViewport>
+    )
 }
