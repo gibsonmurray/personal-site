@@ -1,6 +1,7 @@
 "use client"
 
 import { ReactNode, useEffect, useRef, useState } from "react"
+import { motion } from "framer-motion"
 
 export default function InfiniteViewport(props: { children: ReactNode }) {
     const containerRef = useRef<HTMLDivElement>(null)
@@ -11,13 +12,14 @@ export default function InfiniteViewport(props: { children: ReactNode }) {
     const lastMousePosition = useRef({ x: 0, y: 0 })
     const [zoom, setZoom] = useState(1)
     const isDragging = useRef(false)
+    const bgRef = useRef<HTMLDivElement>(null)
 
     const handleMouseDown = (event: MouseEvent) => {
         isDragging.current = true
         lastMousePosition.current = { x: event.clientX, y: event.clientY }
     }
 
-    const handleMouseMove = (event: MouseEvent) => {
+    const handleDrag = (event: MouseEvent) => {
         if (!isDragging.current) return
         const dx = event.clientX - lastMousePosition.current.x
         const dy = event.clientY - lastMousePosition.current.y
@@ -38,20 +40,9 @@ export default function InfiniteViewport(props: { children: ReactNode }) {
         const scrollSensitivity = 1
 
         if (event.ctrlKey || event.metaKey) {
-            // Handle zooming
-            const rect = containerRef.current!.getBoundingClientRect()
-            const mouseX = event.clientX - rect.left
-            const mouseY = event.clientY - rect.top
-
             const newZoom =
                 event.deltaY > 0 ? zoom / zoomFactor : zoom * zoomFactor
-            const scaleDiff = newZoom - zoom
-
             setZoom(newZoom)
-            setPosition((prev) => ({
-                x: prev.x - ((mouseX - prev.x) * scaleDiff) / zoom,
-                y: prev.y - ((mouseY - prev.y) * scaleDiff) / zoom,
-            }))
         } else {
             // Handle scrolling
             const deltaX = event.deltaX * scrollSensitivity
@@ -70,9 +61,9 @@ export default function InfiniteViewport(props: { children: ReactNode }) {
         canvas.height = window.innerHeight
 
         ctx.clearRect(0, 0, canvas.width, canvas.height)
-        ctx.save()
         ctx.translate(position.x, position.y)
         ctx.scale(zoom, zoom)
+        ctx.save()
 
         ctx.restore()
     }, [position, zoom])
@@ -85,27 +76,39 @@ export default function InfiniteViewport(props: { children: ReactNode }) {
 
     useEffect(() => {
         const container = containerRef.current!
-        container.addEventListener("mousedown", handleMouseDown)
-        container.addEventListener("mousemove", handleMouseMove)
-        container.addEventListener("mouseup", handleMouseUp)
+        const bg = bgRef.current!
+
+        bg.addEventListener("mousedown", handleMouseDown)
+        bg.addEventListener("mousemove", handleDrag)
+        bg.addEventListener("mouseup", handleMouseUp)
         container.addEventListener("wheel", handleWheel)
 
         return () => {
+            bg.removeEventListener("mousedown", handleMouseDown)
+            bg.removeEventListener("mousemove", handleDrag)
+            bg.removeEventListener("mouseup", handleMouseUp)
             container.removeEventListener("wheel", handleWheel)
-            container.removeEventListener("mousemove", handleMouseMove)
-            container.removeEventListener("mouseup", handleMouseUp)
-            container.removeEventListener("mousedown", handleMouseDown)
         }
     }, [position, zoom])
 
     return (
-        <div ref={containerRef} className="relative h-screen w-screen">
+        <div
+            ref={containerRef}
+            className="relative h-screen w-screen bg-zinc-200"
+        >
             <canvas ref={canvasRef} className="absolute h-full w-full" />
+
             <div
                 ref={domContainerRef}
                 className="absolute grid h-full w-full place-items-center"
             >
-                {props.children}
+                <div
+                    ref={bgRef}
+                    className="absolute h-full w-full cursor-grab active:cursor-grabbing"
+                ></div>
+                <div className="z-10 grid place-items-center *:absolute">
+                    {props.children}
+                </div>
             </div>
         </div>
     )

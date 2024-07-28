@@ -1,9 +1,11 @@
+import Block from "./components/Block"
 import InfiniteViewport from "./components/InfiniteViewport"
 
 export default function Home() {
     return (
         <InfiniteViewport>
-            <div className="h-52 w-52 bg-black">asdasdas</div>
+            <Block />
+            <Block />
         </InfiniteViewport>
     )
 }
