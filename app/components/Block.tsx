@@ -4,7 +4,11 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import { useState, useRef } from "react"
 
-export default function Block() {
+type BlockProps = {
+    dataGrid: { i: string; x: number; y: number; w: number; h: number }
+}
+
+export default function Block({ dataGrid }: BlockProps) {
     const [hoverDirection, setHoverDirection] = useState<
         "left" | "right" | null
     >(null)
@@ -22,26 +26,16 @@ export default function Block() {
     return (
         <motion.div
             ref={blockRef}
+            data-grid={dataGrid}
+            layout
             className="grid h-48 w-48 cursor-pointer place-items-center overflow-hidden rounded-3xl bg-zinc-50 shadow-lg shadow-black/5 active:cursor-grabbing"
             initial={{ scale: 0 }}
             animate={{ scale: 1, y: 0 }}
             whileHover={{ rotate: hoverDirection === "left" ? 5 : -5 }}
-            drag
-            whileDrag={{
-                scale: 1.05,
-                rotate: 0,
-                boxShadow: "0 10px 20px -3px rgba(0, 0, 0, 0.05)",
-            }}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={() => setHoverDirection(null)}
         >
-            <Image
-                src="/images/prof-pic.png"
-                alt="Professional Headshot"
-                width={200}
-                height={200}
-                className="pointer-events-none"
-            />
+            {dataGrid.i}
         </motion.div>
     )
 }
