@@ -106,7 +106,7 @@ export default function InfiniteViewport(props: { children: ReactNode }) {
                     ref={bgRef}
                     className="absolute h-full w-full cursor-grab active:cursor-grabbing"
                 ></div>
-                <div className="z-10 grid place-items-center *:absolute">
+                <div className="z-10 grid place-items-center">
                     {props.children}
                 </div>
             </div>
