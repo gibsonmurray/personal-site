@@ -6,8 +6,6 @@ import { motion } from "framer-motion"
 import Image, { StaticImageData } from "next/image"
 import { useState, useRef, useEffect } from "react"
 
-const BEAM_DURATION = 500
-
 type BlockProps = {
     highlightColor?: string
     size?: "1x1" | "1x2" | "2x1" | "2x2"
@@ -16,6 +14,7 @@ type BlockProps = {
     thumbnail: string | StaticImageData
     playBeamAnimation?: boolean
     className?: string
+    beamDuration?: number
 }
 
 export default function Block({
@@ -26,15 +25,32 @@ export default function Block({
     thumbnail,
     playBeamAnimation = false,
     className,
+    beamDuration = 500,
 }: BlockProps) {
     const sizeMap = {
-        "1x1": { height: "h-48", width: "w-48" },
-        "1x2": { height: "h-[432px]", width: "w-48" },
-        "2x1": { height: "h-48", width: "w-[432px]" },
-        "2x2": { height: "h-[432px]", width: "w-[432px]" },
+        "1x1": {
+            height: "h-48",
+            width: "w-48",
+            gridSize: "col-span-1 row-span-1",
+        },
+        "1x2": {
+            height: "h-[424px]",
+            width: "w-48",
+            gridSize: "col-span-1 row-span-2",
+        },
+        "2x1": {
+            height: "h-48",
+            width: "w-[424px]",
+            gridSize: "col-span-2 row-span-1",
+        },
+        "2x2": {
+            height: "h-[424px]",
+            width: "w-[424px]",
+            gridSize: "col-span-2 row-span-2",
+        },
     }
 
-    const { height, width } = sizeMap[size]
+    const { height, width, gridSize } = sizeMap[size]
 
     const [hoverDirection, setHoverDirection] = useState<
         "left" | "right" | null
@@ -67,7 +83,7 @@ export default function Block({
         clearInterval(repeatInterval!)
     }
 
-    const animateBeam = (duration: number = BEAM_DURATION) => {
+    const animateBeam = (duration: number = beamDuration) => {
         const beams = blockRef.current?.querySelectorAll(".beam")
         beams?.forEach((el) => el.classList.remove("hidden"))
         setTimeout(() => {
@@ -85,11 +101,11 @@ export default function Block({
         if (playBeamAnimation) {
             animateBeam()
         }
-    }, [playBeamAnimation])
+    }, [playBeamAnimation,])
 
     return (
         <motion.div
-            className={cn("absolute grid place-items-center", className)}
+            className={cn("relative grid place-items-center", gridSize, className)}
             layout
             initial={{ scale: 0 }}
             animate={{ scale: 1, y: 0 }}
@@ -105,17 +121,17 @@ export default function Block({
         >
             <motion.div
                 ref={blockRef}
-                className={`relative grid cursor-pointer place-items-center overflow-hidden rounded-3xl  bg-zinc-50 shadow-lg shadow-black/5 hover:shadow-xl ${height} ${width}`}
+                className={`relative grid cursor-pointer place-items-center overflow-hidden rounded-3xl bg-zinc-50 shadow-lg shadow-black/5 hover:shadow-xl ${height} ${width}`}
             >
                 <Image
                     src={thumbnail}
                     fill
                     alt="image"
-                    className="cursor-events-none object-cover p-[3px] rounded-3xl"
+                    className="cursor-events-none rounded-3xl object-cover p-[3px]"
                 />
                 <BorderBeam
                     size={size === "1x1" ? 200 : 300}
-                    duration={BEAM_DURATION / 1000}
+                    duration={beamDuration / 1000}
                     borderWidth={2}
                     className="beam hidden"
                     color={highlightColor}

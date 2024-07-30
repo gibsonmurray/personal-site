@@ -1,7 +1,6 @@
 "use client"
 
 import { ReactNode, useEffect, useRef, useState } from "react"
-import { motion } from "framer-motion"
 
 export default function InfiniteViewport(props: { children: ReactNode }) {
     const containerRef = useRef<HTMLDivElement>(null)
@@ -14,20 +13,32 @@ export default function InfiniteViewport(props: { children: ReactNode }) {
     const isDragging = useRef(false)
     const bgRef = useRef<HTMLDivElement>(null)
 
-    const handleMouseDown = (event: MouseEvent) => {
+    const handleMouseDown = (event: MouseEvent | TouchEvent) => {
         isDragging.current = true
-        lastMousePosition.current = { x: event.clientX, y: event.clientY }
+        if (event instanceof MouseEvent) {
+            lastMousePosition.current = { x: event.clientX, y: event.clientY }
+        } else {
+            lastMousePosition.current = { x: event.touches[0].clientX, y: event.touches[0].clientY }
+        }
     }
 
-    const handleDrag = (event: MouseEvent) => {
+    const handleDrag = (event: MouseEvent | TouchEvent) => {
         if (!isDragging.current) return
-        const dx = event.clientX - lastMousePosition.current.x
-        const dy = event.clientY - lastMousePosition.current.y
+        let clientX: number, clientY: number
+        if (event instanceof MouseEvent) {
+            clientX = event.clientX
+            clientY = event.clientY
+        } else {
+            clientX = event.touches[0].clientX
+            clientY = event.touches[0].clientY
+        }
+        const dx = clientX - lastMousePosition.current.x
+        const dy = clientY - lastMousePosition.current.y
         setPosition((prev) => ({
             x: prev.x + dx,
             y: prev.y + dy,
         }))
-        lastMousePosition.current = { x: event.clientX, y: event.clientY }
+        lastMousePosition.current = { x: clientX, y: clientY }
     }
 
     const handleMouseUp = () => {
@@ -78,15 +89,21 @@ export default function InfiniteViewport(props: { children: ReactNode }) {
         const container = containerRef.current!
         const bg = bgRef.current!
 
-        bg.addEventListener("mousedown", handleMouseDown)
-        bg.addEventListener("mousemove", handleDrag)
-        bg.addEventListener("mouseup", handleMouseUp)
+        container.addEventListener("mousedown", handleMouseDown)
+        container.addEventListener("touchstart", handleMouseDown)
+        container.addEventListener("mousemove", handleDrag)
+        container.addEventListener("touchmove", handleDrag)
+        container.addEventListener("mouseup", handleMouseUp)
+        container.addEventListener("touchend", handleMouseUp)
         container.addEventListener("wheel", handleWheel)
 
         return () => {
-            bg.removeEventListener("mousedown", handleMouseDown)
-            bg.removeEventListener("mousemove", handleDrag)
-            bg.removeEventListener("mouseup", handleMouseUp)
+            container.removeEventListener("mousedown", handleMouseDown)
+            container.removeEventListener("touchstart", handleMouseDown)
+            container.removeEventListener("mousemove", handleDrag)
+            container.removeEventListener("touchmove", handleDrag)
+            container.removeEventListener("mouseup", handleMouseUp)
+            container.removeEventListener("touchend", handleMouseUp)
             container.removeEventListener("wheel", handleWheel)
         }
     }, [position, zoom])
@@ -94,7 +111,7 @@ export default function InfiniteViewport(props: { children: ReactNode }) {
     return (
         <div
             ref={containerRef}
-            className="relative h-screen w-screen bg-zinc-200"
+            className="relative h-screen w-screen bg-zinc-200 cursor-grab active:cursor-grabbing"
         >
             <canvas ref={canvasRef} className="absolute h-full w-full" />
 
