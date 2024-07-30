@@ -1,8 +1,9 @@
 "use client"
 
 import { BorderBeam } from "@/components/magicui/border-beam"
+import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
-import Image from "next/image"
+import Image, { StaticImageData } from "next/image"
 import { useState, useRef, useEffect } from "react"
 
 const BEAM_DURATION = 500
@@ -12,6 +13,9 @@ type BlockProps = {
     size?: "1x1" | "1x2" | "2x1" | "2x2"
     title?: string
     titlePosition?: "top" | "bottom"
+    thumbnail: string | StaticImageData
+    playBeamAnimation?: boolean
+    className?: string
 }
 
 export default function Block({
@@ -19,12 +23,15 @@ export default function Block({
     size = "1x1",
     title,
     titlePosition,
+    thumbnail,
+    playBeamAnimation = false,
+    className,
 }: BlockProps) {
     const sizeMap = {
         "1x1": { height: "h-48", width: "w-48" },
-        "1x2": { height: "h-48", width: "w-[404px]" },
-        "2x1": { height: "h-48", width: "w-[404px]" },
-        "2x2": { height: "h-[404px]", width: "w-[404px]" },
+        "1x2": { height: "h-[432px]", width: "w-48" },
+        "2x1": { height: "h-48", width: "w-[432px]" },
+        "2x2": { height: "h-[432px]", width: "w-[432px]" },
     }
 
     const { height, width } = sizeMap[size]
@@ -35,6 +42,9 @@ export default function Block({
     const blockRef = useRef<HTMLDivElement>(null)
     const titleRef = useRef<HTMLDivElement>(null)
     const [titleHeight, setTitleHeight] = useState(0)
+    const [repeatInterval, setRepeatInterval] = useState<NodeJS.Timeout | null>(
+        null,
+    )
 
     const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
         if (blockRef.current) {
@@ -44,15 +54,25 @@ export default function Block({
             setHoverDirection(isFromLeft ? "left" : "right")
         }
 
+        const interval = setInterval(() => {
+            animateBeam(1000)
+        }, 5000)
+        setRepeatInterval(interval)
+
         animateBeam()
     }
 
-    const animateBeam = () => {
+    const handleMouseLeave = () => {
+        setHoverDirection(null)
+        clearInterval(repeatInterval!)
+    }
+
+    const animateBeam = (duration: number = BEAM_DURATION) => {
         const beams = blockRef.current?.querySelectorAll(".beam")
         beams?.forEach((el) => el.classList.remove("hidden"))
         setTimeout(() => {
             beams?.forEach((el) => el.classList.add("hidden"))
-        }, BEAM_DURATION)
+        }, duration)
     }
 
     useEffect(() => {
@@ -61,9 +81,15 @@ export default function Block({
         }
     }, [])
 
+    useEffect(() => {
+        if (playBeamAnimation) {
+            animateBeam()
+        }
+    }, [playBeamAnimation])
+
     return (
         <motion.div
-            className="relative grid place-items-center"
+            className={cn("absolute grid place-items-center", className)}
             layout
             initial={{ scale: 0 }}
             animate={{ scale: 1, y: 0 }}
@@ -75,12 +101,18 @@ export default function Block({
                 },
             }}
             onMouseEnter={handleMouseEnter}
-            onMouseLeave={() => setHoverDirection(null)}
+            onMouseLeave={handleMouseLeave}
         >
             <motion.div
                 ref={blockRef}
-                className={`relative grid cursor-pointer place-items-center overflow-hidden rounded-3xl border-2 border-zinc-200 bg-zinc-50 shadow-lg shadow-black/5 ${height} ${width}`}
+                className={`relative grid cursor-pointer place-items-center overflow-hidden rounded-3xl  bg-zinc-50 shadow-lg shadow-black/5 hover:shadow-xl ${height} ${width}`}
             >
+                <Image
+                    src={thumbnail}
+                    fill
+                    alt="image"
+                    className="cursor-events-none object-cover p-[3px] rounded-3xl"
+                />
                 <BorderBeam
                     size={size === "1x1" ? 200 : 300}
                     duration={BEAM_DURATION / 1000}
@@ -88,17 +120,10 @@ export default function Block({
                     className="beam hidden"
                     color={highlightColor}
                 />
-                <Image
-                    src="/images/prof-pic.png"
-                    width={200}
-                    height={200}
-                    alt="image"
-                    className="cursor-events-none"
-                />
             </motion.div>
             <motion.span
                 ref={titleRef}
-                className="absolute -z-10 text-center text-xl font-bold text-zinc-800"
+                className="absolute -z-10 text-center text-xl font-bold text-zinc-600"
                 style={{
                     [titlePosition === "top" ? "top" : "bottom"]: 0,
                 }}
