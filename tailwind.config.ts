@@ -77,7 +77,7 @@ const config = {
                 "accordion-down": "accordion-down 0.2s ease-in-out",
                 "accordion-up": "accordion-up 0.2s ease-in-out",
                 "border-beam":
-                    "border-beam calc(var(--duration)*1s) infinite ease-out",
+                    "border-beam calc(var(--duration)*1s) infinite ease-in-out",
             },
         },
     },

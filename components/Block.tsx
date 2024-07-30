@@ -112,22 +112,21 @@ export default function Block({
                 className,
             )}
             layout
-            initial={{ scale: 0 }}
-            animate={{ scale: 1, y: 0 }}
-            whileHover={{
-                rotate: hoverDirection === "left" ? 2.5 : -2.5,
-                y: [0, -10, 0],
-                transition: {
-                    y: { repeat: Infinity, duration: 1.5 },
-                },
-            }}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
             {...motionProps}
         >
             <motion.div
                 ref={blockRef}
-                className={`relative grid cursor-pointer place-items-center overflow-hidden rounded-3xl bg-zinc-300 shadow-lg shadow-black/5 hover:shadow-xl ${height} ${width}`}
+                className={`relative grid cursor-pointer place-items-center overflow-hidden rounded-3xl bg-zinc-300 shadow-lg shadow-black/5 ${height} ${width}`}
+                animate={{ y: 0 }}
+                whileHover={{
+                    rotate: hoverDirection === "left" ? 1.5 : -1.5,
+                    y: [0, -10, 0],
+                    transition: {
+                        y: { repeat: Infinity, duration: 1.5 },
+                    },
+                }}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
             >
                 <Image
                     src={thumbnail}
@@ -145,7 +144,7 @@ export default function Block({
             </motion.div>
             <motion.span
                 ref={titleRef}
-                className="absolute -z-10 text-center text-xl font-bold text-zinc-600"
+                className="absolute -z-10 text-center text-lg font-bold text-zinc-500"
                 style={{
                     [titlePosition === "top" ? "top" : "bottom"]: 0,
                 }}
@@ -156,8 +155,8 @@ export default function Block({
                               opacity: 1,
                               y:
                                   titlePosition === "top"
-                                      ? -titleHeight - 5
-                                      : titleHeight + 5,
+                                      ? -titleHeight - 15
+                                      : titleHeight + 1,
                           }
                         : { opacity: 0, y: 0 }
                 }

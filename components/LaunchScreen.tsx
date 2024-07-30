@@ -4,6 +4,7 @@ import { motion, useAnimation } from "framer-motion"
 
 export default function LaunchScreen(props: {
     setLaunching: (value: boolean) => void
+    setDoneLaunch: (value: boolean) => void
 }) {
     const controls = useAnimation()
     const [animateBeam, setAnimateBeam] = useState(false)
@@ -29,7 +30,7 @@ export default function LaunchScreen(props: {
                 },
             },
             {
-                scale: 1.3,
+                scale: 1.5,
                 rotateY: -360,
                 rotate: 0,
                 transition: {
@@ -41,8 +42,8 @@ export default function LaunchScreen(props: {
                 scale: 1,
                 transition: {
                     type: "spring",
-                    stiffness: 1200,
-                    damping: 30,
+                    stiffness: 1000,
+                    damping: 20,
                     duration: animationTiming[2].duration,
                     delay: animationTiming[2].delay,
                 },
@@ -53,7 +54,8 @@ export default function LaunchScreen(props: {
             for (const step of animationSequence) {
                 await controls.start(step)
                 setAnimateBeam(true)
-                setTimeout(() => props.setLaunching(false), totalDuration)
+                setTimeout(() => props.setLaunching(false), totalDuration - 400)
+                setTimeout(() => props.setDoneLaunch(true), totalDuration + 200)
             }
         }
 
@@ -61,7 +63,7 @@ export default function LaunchScreen(props: {
     }, [controls])
 
     return (
-        <motion.div className="fixed z-10 grid h-screen w-screen place-items-center bg-zinc-200 perspective-500">
+        <motion.div className="fixed grid h-screen w-screen place-items-center perspective-500">
             <motion.div
                 initial={{
                     scale: 0.5,
@@ -76,6 +78,8 @@ export default function LaunchScreen(props: {
                     thumbnail="/images/prof-pic.png"
                     playBeamAnimation={animateBeam}
                     beamDuration={animationTiming[1].duration * 1000}
+                    className="z-10 pointer-events-none"
+                    whileHover={undefined}
                 />
             </motion.div>
         </motion.div>
