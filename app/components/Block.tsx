@@ -2,7 +2,7 @@
 
 import { BorderBeam } from "@/components/magicui/border-beam"
 import { cn } from "@/lib/utils"
-import { motion } from "framer-motion"
+import { motion, MotionProps } from "framer-motion"
 import Image, { StaticImageData } from "next/image"
 import { useState, useRef, useEffect } from "react"
 
@@ -15,7 +15,7 @@ type BlockProps = {
     playBeamAnimation?: boolean
     className?: string
     beamDuration?: number
-}
+} & MotionProps
 
 export default function Block({
     highlightColor,
@@ -26,6 +26,7 @@ export default function Block({
     playBeamAnimation = false,
     className,
     beamDuration = 500,
+    ...motionProps
 }: BlockProps) {
     const sizeMap = {
         "1x1": {
@@ -101,11 +102,15 @@ export default function Block({
         if (playBeamAnimation) {
             animateBeam()
         }
-    }, [playBeamAnimation,])
+    }, [playBeamAnimation])
 
     return (
         <motion.div
-            className={cn("relative grid place-items-center", gridSize, className)}
+            className={cn(
+                "relative grid place-items-center",
+                gridSize,
+                className,
+            )}
             layout
             initial={{ scale: 0 }}
             animate={{ scale: 1, y: 0 }}
@@ -118,10 +123,11 @@ export default function Block({
             }}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            {...motionProps}
         >
             <motion.div
                 ref={blockRef}
-                className={`relative grid cursor-pointer place-items-center overflow-hidden rounded-3xl bg-zinc-50 shadow-lg shadow-black/5 hover:shadow-xl ${height} ${width}`}
+                className={`relative grid cursor-pointer place-items-center overflow-hidden rounded-3xl bg-zinc-300 shadow-lg shadow-black/5 hover:shadow-xl ${height} ${width}`}
             >
                 <Image
                     src={thumbnail}

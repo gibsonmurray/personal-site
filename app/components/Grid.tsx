@@ -1,10 +1,11 @@
 "use client"
 
 import Block from "./Block"
+import { motion } from "framer-motion"
 
 export default function Grid() {
     return (
-        <div className="grid place-items-center grid-cols-3 grid-rows-3 gap-10">
+        <motion.div className="grid grid-cols-3 grid-rows-3 place-items-center gap-10">
             <Block
                 size="1x2"
                 title="Wordle+"
@@ -30,6 +31,6 @@ export default function Grid() {
                 thumbnail="https://creatorspace.imgix.net/users/cln54h71q00zbo901sy1cmbot/SMKHjHWv1mX2YYQA-dyBXxLG.custom.jpg?w=750&h=750"
                 className="col-start-2 row-start-3"
             />
-        </div>
+        </motion.div>
     )
 }

@@ -2,10 +2,11 @@ import { useEffect, useState } from "react"
 import Block from "./Block"
 import { motion, useAnimation } from "framer-motion"
 
-export default function LaunchScreen() {
+export default function LaunchScreen(props: {
+    setLaunching: (value: boolean) => void
+}) {
     const controls = useAnimation()
     const [animateBeam, setAnimateBeam] = useState(false)
-    const [hidden, setHidden] = useState(false)
 
     const animationTiming = [
         { duration: 0.3, delay: 0.3 },
@@ -14,8 +15,6 @@ export default function LaunchScreen() {
     ]
 
     useEffect(() => {
-        
-
         const totalDuration =
             animationTiming.reduce((acc, curr) => acc + curr.duration, 0) * 1000
 
@@ -54,7 +53,7 @@ export default function LaunchScreen() {
             for (const step of animationSequence) {
                 await controls.start(step)
                 setAnimateBeam(true)
-                setTimeout(() => setHidden(true), totalDuration)
+                setTimeout(() => props.setLaunching(false), totalDuration)
             }
         }
 
@@ -62,10 +61,7 @@ export default function LaunchScreen() {
     }, [controls])
 
     return (
-        <motion.div
-            style={{ display: hidden ? "none" : "fixed" }}
-            className="fixed z-10 grid h-screen w-screen place-items-center bg-zinc-200 perspective-500"
-        >
+        <motion.div className="fixed z-10 grid h-screen w-screen place-items-center bg-zinc-200 perspective-500">
             <motion.div
                 initial={{
                     scale: 0.5,
