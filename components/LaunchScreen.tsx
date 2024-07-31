@@ -12,12 +12,16 @@ export default function LaunchScreen(props: {
     const animationTiming = [
         { duration: 0.3, delay: 0.3 },
         { duration: 0.5, delay: 0 },
+        { duration: 0.7, delay: 0 },
         { duration: 0.1, delay: 0 },
     ]
 
     useEffect(() => {
         const totalDuration =
-            animationTiming.reduce((acc, curr) => acc + curr.duration, 0) * 1000
+            animationTiming.reduce(
+                (acc, curr) => acc + curr.duration + curr.delay,
+                0,
+            ) * 1000
 
         const animationSequence = [
             {
@@ -30,7 +34,7 @@ export default function LaunchScreen(props: {
                 },
             },
             {
-                scale: 1.5,
+                scale: 1.35,
                 rotateY: -360,
                 rotate: 0,
                 transition: {
@@ -39,13 +43,20 @@ export default function LaunchScreen(props: {
                 },
             },
             {
+                scale: 1.4,
+                transition: {
+                    duration: animationTiming[2].duration,
+                    delay: animationTiming[2].delay,
+                },
+            },
+            {
                 scale: 1,
                 transition: {
                     type: "spring",
                     stiffness: 1000,
                     damping: 20,
-                    duration: animationTiming[2].duration,
-                    delay: animationTiming[2].delay,
+                    duration: animationTiming[3].duration,
+                    delay: animationTiming[3].delay,
                 },
             },
         ]
@@ -53,7 +64,7 @@ export default function LaunchScreen(props: {
         const runAnimation = async () => {
             for (const step of animationSequence) {
                 await controls.start(step)
-                setAnimateBeam(true)
+                setTimeout(() => setAnimateBeam(true), 600)
                 setTimeout(() => props.setLaunching(false), totalDuration - 400)
                 setTimeout(() => props.setDoneLaunch(true), totalDuration + 200)
             }

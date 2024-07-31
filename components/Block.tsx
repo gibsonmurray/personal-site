@@ -107,7 +107,7 @@ export default function Block({
     return (
         <motion.div
             className={cn(
-                "relative grid place-items-center",
+                "relative grid place-items-center will-change-transform",
                 gridSize,
                 className,
             )}
