@@ -111,19 +111,19 @@ export default function InfiniteViewport(props: { children: ReactNode }) {
     return (
         <div
             ref={containerRef}
-            className="relative h-screen w-screen bg-zinc-200 cursor-grab active:cursor-grabbing"
+            className="relative h-screen w-screen bg-zinc-200 cursor-grab active:cursor-grabbing grid place-items-center"
         >
             <canvas ref={canvasRef} className="absolute h-full w-full" />
 
             <div
                 ref={domContainerRef}
-                className="absolute grid h-full w-full place-items-center"
+                className="absolute grid h-[10000px] w-[10000px] place-items-center"
             >
                 <div
                     ref={bgRef}
                     className="absolute h-full w-full cursor-grab active:cursor-grabbing"
                 ></div>
-                <div className="z-10 grid place-items-center">
+                <div className="z-10 grid place-items-center w-full h-full">
                     {props.children}
                 </div>
             </div>

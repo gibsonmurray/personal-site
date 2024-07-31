@@ -131,7 +131,7 @@ export default function Block({
                 <Image
                     src={thumbnail}
                     fill
-                    alt="image"
+                    alt={`Thumbnail for ${title}`}
                     className="cursor-events-none rounded-3xl object-cover p-[2px]"
                 />
                 <BorderBeam

@@ -18,12 +18,29 @@ export default function Grid(props: { doneLaunch: boolean }) {
     }
 
     return (
-        <motion.div className="grid grid-cols-3 grid-rows-3 place-items-center gap-14">
+        <motion.div className="grid grid-cols-9 grid-rows-9 place-items-center gap-14">
             <Block
-                size="1x2"
-                title="Wordle+"
-                thumbnail="https://creatorspace.imgix.net/users/cln54h71q00zbo901sy1cmbot/t6z9iWc7mHHwOhCx-wordle%252B.png?w=1000&h=1000"
-                className="col-start-1 row-start-1"
+                size="1x1"
+                title="About Me"
+                thumbnail={profPic}
+                className="col-start-5 row-start-5"
+                style={{ opacity: props.doneLaunch ? 1 : 0 }}
+            />
+            <Block
+                size="1x1"
+                title="Trash Photos"
+                thumbnail="/images/trash-photos.jpg"
+                className="col-start-5 row-start-4"
+                variants={blockVariants}
+                initial="hidden"
+                animate="show"
+                custom={1}
+            />
+            <Block
+                size="2x1"
+                title="Jumpy Cards"
+                thumbnail="/images/jumpy-cards.jpg"
+                className="col-start-6 row-start-4"
                 variants={blockVariants}
                 initial="hidden"
                 animate="show"
@@ -32,39 +49,112 @@ export default function Grid(props: { doneLaunch: boolean }) {
             <Block
                 size="1x1"
                 title="Parallax Seasons"
-                thumbnail="https://creatorspace.imgix.net/users/cln54h71q00zbo901sy1cmbot/D6sHNNuNciQUBESa-thummy.png?w=1000&h=1000"
-                className="col-start-3 row-start-1"
+                thumbnail="/images/parallax-seasons.jpg"
+                className="col-start-6 row-start-5"
                 variants={blockVariants}
                 initial="hidden"
                 animate="show"
                 custom={3}
             />
             <Block
-                size="1x1"
-                title="Trash Photos"
-                thumbnail="https://creatorspace.imgix.net/users/cln54h71q00zbo901sy1cmbot/nrYlkJvOF6cn2stz-SCR-20240715-keql.png?w=1000&h=1000"
-                className="col-start-2 row-start-1"
+                size="2x1"
+                title="Magic Terminal"
+                thumbnail="/images/magic-terminal.jpg"
+                className="col-start-5 row-start-6"
                 variants={blockVariants}
                 initial="hidden"
                 animate="show"
-                custom={1}
+                custom={4}
             />
             <Block
-                size="1x1"
-                title="About Me"
-                thumbnail={profPic}
-                className="col-start-2 row-start-2"
-                style={{ opacity: props.doneLaunch ? 1 : 0 }}
+                size="2x2"
+                title="Parallax Devices"
+                thumbnail="/images/parallax-devices.jpg"
+                className="col-start-3 row-start-4"
+                variants={blockVariants}
+                initial="hidden"
+                animate="show"
+                custom={5}
             />
             <Block
                 size="2x1"
-                title="Magic Terminal"
-                thumbnail="https://creatorspace.imgix.net/users/cln54h71q00zbo901sy1cmbot/SMKHjHWv1mX2YYQA-dyBXxLG.custom.jpg?w=1000&h=1000"
-                className="col-start-2 row-start-3"
+                title="Sticky Notes"
+                thumbnail="/images/sticky-notes.jpg"
+                className="col-start-3 row-start-3"
                 variants={blockVariants}
                 initial="hidden"
                 animate="show"
-                custom={1}
+                custom={6}
+            />
+            <Block
+                size="2x2"
+                title="Wordle+"
+                thumbnail="/images/wordle-plus.jpg"
+                className="col-start-7 row-start-5"
+                variants={blockVariants}
+                initial="hidden"
+                animate="show"
+                custom={7}
+            />
+            <Block
+                size="1x1"
+                title="iPad Parallax Scroll"
+                thumbnail="/images/ipad-parallax-scroll.jpg"
+                className="col-start-5 row-start-7"
+                variants={blockVariants}
+                initial="hidden"
+                animate="show"
+                custom={8}
+            />
+            <Block
+                size="2x2"
+                title="Dune Thumper"
+                thumbnail="/images/dune-thumper.jpg"
+                className="col-start-3 row-start-6"
+                variants={blockVariants}
+                initial="hidden"
+                animate="show"
+                custom={9}
+            />
+            <Block
+                size="2x1"
+                title="iPhone Widget Flood"
+                thumbnail="/images/iphone-widget-flood.jpg"
+                className="col-start-7 row-start-3"
+                variants={blockVariants}
+                initial="hidden"
+                animate="show"
+                custom={10}
+            />
+            <Block
+                size="1x1"
+                title="Barrage"
+                thumbnail="/images/barrage.jpg"
+                className="col-start-2 row-start-4"
+                variants={blockVariants}
+                initial="hidden"
+                animate="show"
+                custom={10}
+            />
+            <Block
+                size="1x1"
+                title="Apple Watch Gestures"
+                thumbnail="/images/apple-watch-gestures.jpg"
+                className="col-start-2 row-start-7"
+                variants={blockVariants}
+                initial="hidden"
+                animate="show"
+                custom={11}
+            />
+            <Block
+                size="2x1"
+                title="Landing Page Hero"
+                thumbnail="/images/landing-page-hero.jpg"
+                className="col-start-6 row-start-7"
+                variants={blockVariants}
+                initial="hidden"
+                animate="show"
+                custom={12}
             />
         </motion.div>
     )
