@@ -22,7 +22,7 @@ export default function Grid(props: { doneLaunch: boolean }) {
             <Block
                 size="1x2"
                 title="Wordle+"
-                thumbnail="https://creatorspace.imgix.net/users/cln54h71q00zbo901sy1cmbot/t6z9iWc7mHHwOhCx-wordle%252B.png?w=1500&h=1500"
+                thumbnail="https://creatorspace.imgix.net/users/cln54h71q00zbo901sy1cmbot/t6z9iWc7mHHwOhCx-wordle%252B.png?w=1000&h=1000"
                 className="col-start-1 row-start-1"
                 variants={blockVariants}
                 initial="hidden"
@@ -31,9 +31,18 @@ export default function Grid(props: { doneLaunch: boolean }) {
             />
             <Block
                 size="1x1"
-                titlePosition="top"
+                title="Parallax Seasons"
+                thumbnail="https://creatorspace.imgix.net/users/cln54h71q00zbo901sy1cmbot/D6sHNNuNciQUBESa-thummy.png?w=1000&h=1000"
+                className="col-start-3 row-start-1"
+                variants={blockVariants}
+                initial="hidden"
+                animate="show"
+                custom={3}
+            />
+            <Block
+                size="1x1"
                 title="Trash Photos"
-                thumbnail="https://creatorspace.imgix.net/users/cln54h71q00zbo901sy1cmbot/nrYlkJvOF6cn2stz-SCR-20240715-keql.png?w=1500&h=1500"
+                thumbnail="https://creatorspace.imgix.net/users/cln54h71q00zbo901sy1cmbot/nrYlkJvOF6cn2stz-SCR-20240715-keql.png?w=1000&h=1000"
                 className="col-start-2 row-start-1"
                 variants={blockVariants}
                 initial="hidden"
@@ -50,7 +59,7 @@ export default function Grid(props: { doneLaunch: boolean }) {
             <Block
                 size="2x1"
                 title="Magic Terminal"
-                thumbnail="https://creatorspace.imgix.net/users/cln54h71q00zbo901sy1cmbot/SMKHjHWv1mX2YYQA-dyBXxLG.custom.jpg?w=1500&h=1500"
+                thumbnail="https://creatorspace.imgix.net/users/cln54h71q00zbo901sy1cmbot/SMKHjHWv1mX2YYQA-dyBXxLG.custom.jpg?w=1000&h=1000"
                 className="col-start-2 row-start-3"
                 variants={blockVariants}
                 initial="hidden"

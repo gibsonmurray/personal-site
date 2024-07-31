@@ -132,7 +132,7 @@ export default function Block({
                     src={thumbnail}
                     fill
                     alt="image"
-                    className="cursor-events-none rounded-3xl object-cover p-[3px]"
+                    className="cursor-events-none rounded-3xl object-cover p-[2px]"
                 />
                 <BorderBeam
                     size={size === "1x1" ? 200 : 300}
