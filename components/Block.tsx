@@ -35,18 +35,18 @@ export default function Block({
             gridSize: "col-span-1 row-span-1",
         },
         "1x2": {
-            height: "h-[424px]",
+            height: "h-[440px]",
             width: "w-48",
             gridSize: "col-span-1 row-span-2",
         },
         "2x1": {
             height: "h-48",
-            width: "w-[424px]",
+            width: "w-[440px]",
             gridSize: "col-span-2 row-span-1",
         },
         "2x2": {
-            height: "h-[424px]",
-            width: "w-[424px]",
+            height: "h-[440px]",
+            width: "w-[440px]",
             gridSize: "col-span-2 row-span-2",
         },
     }

@@ -75,10 +75,10 @@ export default function LaunchScreen(props: {
             >
                 <Block
                     size="1x1"
-                    thumbnail="/images/prof-pic.png"
+                    thumbnail="/images/prof-pic.svg"
                     playBeamAnimation={animateBeam}
                     beamDuration={animationTiming[1].duration * 1000}
-                    className="z-10 pointer-events-none"
+                    className="pointer-events-none z-10"
                     whileHover={undefined}
                 />
             </motion.div>
