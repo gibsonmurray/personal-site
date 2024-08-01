@@ -51,10 +51,12 @@ export default function LaunchScreen(props: {
             },
             {
                 scale: 1,
+                filter: "grayscale(1)",
+                borderRadius: 24,
                 transition: {
                     type: "spring",
                     stiffness: 1000,
-                    damping: 20,
+                    damping: 30,
                     duration: animationTiming[3].duration,
                     delay: animationTiming[3].delay,
                 },
@@ -91,6 +93,7 @@ export default function LaunchScreen(props: {
                     beamDuration={animationTiming[1].duration * 1000}
                     className="pointer-events-none z-10"
                     whileHover={undefined}
+                    gray={false}
                 />
             </motion.div>
         </motion.div>

@@ -15,6 +15,8 @@ type BlockProps = {
     playBeamAnimation?: boolean
     className?: string
     beamDuration?: number
+    gray?: boolean
+    circle?: boolean
 } & MotionProps
 
 export default function Block({
@@ -26,6 +28,8 @@ export default function Block({
     playBeamAnimation = false,
     className,
     beamDuration = 500,
+    gray = false,
+    circle = false,
     ...motionProps
 }: BlockProps) {
     const sizeMap = {
@@ -62,6 +66,7 @@ export default function Block({
     const [repeatInterval, setRepeatInterval] = useState<NodeJS.Timeout | null>(
         null,
     )
+    const [grayScale, setGrayScale] = useState(gray)
 
     const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
         if (blockRef.current) {
@@ -69,6 +74,7 @@ export default function Block({
             const centerX = rect.left + rect.width / 2
             const isFromLeft = e.clientX < centerX
             setHoverDirection(isFromLeft ? "left" : "right")
+            setGrayScale(false)
         }
 
         const interval = setInterval(() => {
@@ -82,6 +88,7 @@ export default function Block({
     const handleMouseLeave = () => {
         setHoverDirection(null)
         clearInterval(repeatInterval!)
+        setGrayScale(true)
     }
 
     const animateBeam = (duration: number = beamDuration) => {
@@ -107,7 +114,7 @@ export default function Block({
     return (
         <motion.div
             className={cn(
-                "relative grid place-items-center will-change-transform",
+                `relative grid place-items-center will-change-transform ${grayScale && "grayscale"}`,
                 gridSize,
                 className,
             )}
@@ -116,7 +123,7 @@ export default function Block({
         >
             <motion.div
                 ref={blockRef}
-                className={`relative grid cursor-pointer place-items-center overflow-hidden rounded-3xl bg-zinc-300 shadow-lg shadow-black/5 ${height} ${width}`}
+                className={`relative grid cursor-pointer place-items-center overflow-hidden rounded-3xl bg-zinc-300 shadow-lg shadow-black/5 ${height} ${width} ${circle && "rounded-full border-2 border-zinc-300"}`}
                 animate={{ y: 0 }}
                 whileHover={{
                     rotate: hoverDirection === "left" ? 1.5 : -1.5,
@@ -132,7 +139,7 @@ export default function Block({
                     src={thumbnail}
                     fill
                     alt={`Thumbnail for ${title}`}
-                    className="cursor-events-none rounded-3xl object-cover p-[2px]"
+                    className={`cursor-events-none rounded-3xl object-cover ${!circle && "p-[2px]"}`}
                 />
                 <BorderBeam
                     size={size === "1x1" ? 200 : 300}

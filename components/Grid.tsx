@@ -25,6 +25,7 @@ export default function Grid(props: { doneLaunch: boolean }) {
                 thumbnail={profPic}
                 className="col-start-5 row-start-5"
                 style={{ opacity: props.doneLaunch ? 1 : 0 }}
+                gray
             />
             <Block
                 size="1x1"
@@ -35,6 +36,7 @@ export default function Grid(props: { doneLaunch: boolean }) {
                 initial="hidden"
                 animate="show"
                 custom={1}
+                gray
             />
             <Block
                 size="2x1"
@@ -45,6 +47,7 @@ export default function Grid(props: { doneLaunch: boolean }) {
                 initial="hidden"
                 animate="show"
                 custom={2}
+                gray
             />
             <Block
                 size="1x1"
@@ -55,6 +58,7 @@ export default function Grid(props: { doneLaunch: boolean }) {
                 initial="hidden"
                 animate="show"
                 custom={3}
+                gray
             />
             <Block
                 size="2x1"
@@ -65,6 +69,7 @@ export default function Grid(props: { doneLaunch: boolean }) {
                 initial="hidden"
                 animate="show"
                 custom={4}
+                gray
             />
             <Block
                 size="2x2"
@@ -75,6 +80,7 @@ export default function Grid(props: { doneLaunch: boolean }) {
                 initial="hidden"
                 animate="show"
                 custom={5}
+                gray
             />
             <Block
                 size="2x1"
@@ -85,6 +91,7 @@ export default function Grid(props: { doneLaunch: boolean }) {
                 initial="hidden"
                 animate="show"
                 custom={6}
+                gray
             />
             <Block
                 size="2x2"
@@ -95,6 +102,7 @@ export default function Grid(props: { doneLaunch: boolean }) {
                 initial="hidden"
                 animate="show"
                 custom={7}
+                gray
             />
             <Block
                 size="1x1"
@@ -105,6 +113,7 @@ export default function Grid(props: { doneLaunch: boolean }) {
                 initial="hidden"
                 animate="show"
                 custom={8}
+                gray
             />
             <Block
                 size="2x2"
@@ -115,6 +124,7 @@ export default function Grid(props: { doneLaunch: boolean }) {
                 initial="hidden"
                 animate="show"
                 custom={9}
+                gray
             />
             <Block
                 size="2x1"
@@ -125,6 +135,7 @@ export default function Grid(props: { doneLaunch: boolean }) {
                 initial="hidden"
                 animate="show"
                 custom={10}
+                gray
             />
             <Block
                 size="1x1"
@@ -135,6 +146,7 @@ export default function Grid(props: { doneLaunch: boolean }) {
                 initial="hidden"
                 animate="show"
                 custom={10}
+                gray
             />
             <Block
                 size="1x1"
@@ -145,6 +157,7 @@ export default function Grid(props: { doneLaunch: boolean }) {
                 initial="hidden"
                 animate="show"
                 custom={11}
+                gray
             />
             <Block
                 size="2x1"
@@ -155,6 +168,7 @@ export default function Grid(props: { doneLaunch: boolean }) {
                 initial="hidden"
                 animate="show"
                 custom={12}
+                gray
             />
         </motion.div>
     )
