@@ -135,8 +135,8 @@ function Home() {
                 {
                     scale: 1,
                     delay: 0.4 + delay, // Start with a base delay and add the distance-based delay
-                    duration: 0.6,
-                    ease: "elastic.out(0.9, 0.9)",
+                    duration: 0.5,
+                    ease: "elastic.out(1, 0.7)",
                 },
             )
         })
