@@ -1,4 +1,4 @@
-import ExpandedBubble from "@/app/(components)/ExpandedBubble/main"
+import ExpandedBubble from "@/app/(components)/ExpandedBubble"
 import InlineLink from "@/app/(components)/InlineLink"
 
 const links = [

@@ -1,7 +1,7 @@
 "use client"
 
-import InlineLink from "../InlineLink"
-import ImageLink from "../ImageLink"
+import InlineLink from "./InlineLink"
+import ImageLink from "./ImageLink"
 import {
     ChevronLeftIcon,
     GithubIcon,
