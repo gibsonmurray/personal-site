@@ -1,23 +1,190 @@
-import Row from "./components/Row";
-import { bubbles } from "./bubbles";
-import Bubble from "./components/Bubble";
+"use client"
+
+import Row from "./components/Row"
+import { bubbles } from "./bubbles"
+import Bubble from "./components/Bubble"
+import { useEffect, useRef, useState } from "react"
+import { useAnimation } from "framer-motion"
 
 function Home() {
-    const rowSizes = [1];
-    const rowOffset = 20;
+    const rowSizes = [1]
+    const rowOffset = 20
+
+    const containerRef = useRef<HTMLDivElement>(null)
+    const mainRef = useRef<HTMLElement>(null)
+    const [position, setPosition] = useState({ x: 0, y: 0 })
+    const [lastMousePosition, setLastMousePosition] = useState({
+        x: 0,
+        y: 0,
+    })
+    const [isDragging, setIsDragging] = useState(false)
+
+    const bubbleControls = useAnimation()
+
+    useEffect(() => {
+        const $main = mainRef.current
+        const $container = containerRef.current
+
+        if (!$main || !$container) return
+
+        const setBubbleScales = () => {
+            const bubbles = document.querySelectorAll(".bubble")
+            bubbles.forEach((bubble) => {
+                const dist = distanceFromCenter(bubble as HTMLElement)
+                const scale = Math.max(1 - Math.pow(dist / 500, 2.5), 0)
+                bubbleControls.start({
+                    scale,
+                    pointerEvents: scale > 0.5 ? "auto" : "none",
+                })
+            })
+        }
+
+        const handleWheel = (event: WheelEvent) => {
+            const scrollSensitivity = -1
+            const dx = event.deltaX * scrollSensitivity
+            const dy = event.deltaY * scrollSensitivity
+            setPosition((prev) => ({ x: prev.x + dx, y: prev.y + dy }))
+            $container.style.transform = `translate(${position.x}px, ${position.y}px)`
+            setBubbleScales()
+        }
+
+        const handleMouseDown = (event: MouseEvent) => {
+            setIsDragging(true)
+            setLastMousePosition({ x: event.clientX, y: event.clientY })
+        }
+
+        const handleMouseMove = (event: MouseEvent) => {
+            if (!isDragging) return
+            const dx = event.clientX - lastMousePosition.x
+            const dy = event.clientY - lastMousePosition.y
+            setPosition((prev) => ({ x: prev.x + dx, y: prev.y + dy }))
+            setLastMousePosition({ x: event.clientX, y: event.clientY })
+            $container.style.transform = `translate(${position.x}px, ${position.y}px)`
+            setBubbleScales()
+        }
+
+        const handleMouseUp = () => {
+            setIsDragging(false)
+        }
+
+        const handleTouchStart = (event: TouchEvent) => {
+            setIsDragging(true)
+            setLastMousePosition({
+                x: event.touches[0].clientX,
+                y: event.touches[0].clientY,
+            })
+        }
+
+        const handleTouchMove = (event: TouchEvent) => {
+            if (!isDragging) return
+            const dx = event.touches[0].clientX - lastMousePosition.x
+            const dy = event.touches[0].clientY - lastMousePosition.y
+            setPosition((prev) => ({ x: prev.x + dx, y: prev.y + dy }))
+            setLastMousePosition({
+                x: event.touches[0].clientX,
+                y: event.touches[0].clientY,
+            })
+            $container.style.transform = `translate(${position.x}px, ${position.y}px)`
+            setBubbleScales()
+            event.preventDefault()
+        }
+
+        const handleTouchEnd = () => {
+            setIsDragging(false)
+        }
+
+        $main.addEventListener("wheel", handleWheel)
+        $main.addEventListener("mousedown", handleMouseDown)
+        $main.addEventListener("mousemove", handleMouseMove)
+        $main.addEventListener("mouseup", handleMouseUp)
+        $main.addEventListener("touchstart", handleTouchStart)
+        $main.addEventListener("touchmove", handleTouchMove)
+        $main.addEventListener("touchend", handleTouchEnd)
+
+        return () => {
+            $main.removeEventListener("wheel", handleWheel)
+            $main.removeEventListener("mousedown", handleMouseDown)
+            $main.removeEventListener("mousemove", handleMouseMove)
+            $main.removeEventListener("mouseup", handleMouseUp)
+            $main.removeEventListener("touchstart", handleTouchStart)
+            $main.removeEventListener("touchmove", handleTouchMove)
+            $main.removeEventListener("touchend", handleTouchEnd)
+        }
+    }, [isDragging, lastMousePosition, position])
+
+    useEffect(() => {
+        const bubbles = document.querySelectorAll(".bubble")
+        const $centerBubble = bubbles[Math.floor(bubbles.length / 2)]
+        const sortedBubbles = Array.from(bubbles).sort((a, b) => {
+            return (
+                distanceOfCenterBubble(
+                    a as HTMLElement,
+                    $centerBubble as HTMLElement,
+                ) -
+                distanceOfCenterBubble(
+                    b as HTMLElement,
+                    $centerBubble as HTMLElement,
+                )
+            )
+        })
+
+        sortedBubbles.forEach((_, index) => {
+            bubbleControls.start({
+                scale: 1,
+                transition: {
+                    delay: 0.5 + index * 0.01,
+                    duration: 0.7,
+                    ease: [0.175, 0.885, 0.32, 1.275], // Elastic ease equivalent
+                },
+            })
+        })
+    }, [])
+
+    const getCenterView = () => {
+        const vh = window.innerHeight
+        const vw = window.innerWidth
+        return { x: Math.round(vw / 2), y: Math.round(vh / 2) }
+    }
+
+    const distanceFromCenter = (element: HTMLElement) => {
+        const rect = element.getBoundingClientRect()
+        const center = getCenterView()
+        const x = rect.left + rect.width / 2
+        const y = rect.top + rect.height / 2
+        return Math.sqrt(Math.pow(center.x - x, 2) + Math.pow(center.y - y, 2))
+    }
+
+    const distanceOfCenterBubble = (
+        element: HTMLElement,
+        centerElement: HTMLElement,
+    ) => {
+        const rect1 = element.getBoundingClientRect()
+        const rect2 = centerElement.getBoundingClientRect()
+        const dx =
+            (rect1.left + rect1.right) / 2 - (rect2.left + rect2.right) / 2
+        const dy =
+            (rect1.top + rect1.bottom) / 2 - (rect2.top + rect2.bottom) / 2
+        return Math.sqrt(dx * dx + dy * dy)
+    }
 
     return (
-        <main className="relative flex h-screen w-screen flex-col items-center justify-center">
-            <div className="absolute flex h-[10000px] w-[10000px] cursor-grab flex-col items-center justify-center active:cursor-grabbing">
+        <div
+            ref={containerRef}
+            className="relative flex h-screen w-screen flex-col items-center justify-center"
+        >
+            <main
+                ref={mainRef}
+                className="absolute flex h-[10000px] w-[10000px] cursor-grab flex-col items-center justify-center active:cursor-grabbing"
+            >
                 {rowSizes.map((cols, i) => {
                     const offset =
-                        (Math.floor(rowSizes.length / 2) - i) * rowOffset;
+                        (Math.floor(rowSizes.length / 2) - i) * rowOffset
                     return (
                         <Row key={i} offset={offset}>
                             {bubbles.map(() => {
                                 return Array.from({ length: cols })
                                     .map((_, j) => {
-                                        return bubbles[i * cols + j];
+                                        return bubbles[i * cols + j]
                                     })
                                     .map((bubble, j) => {
                                         return (
@@ -26,16 +193,17 @@ function Home() {
                                                 link={bubble.link}
                                                 thumbnail={bubble.thumbnail}
                                                 color={bubble.color}
+                                                controls={bubbleControls}
                                             />
-                                        );
-                                    });
+                                        )
+                                    })
                             })}
                         </Row>
-                    );
+                    )
                 })}
-            </div>
-        </main>
-    );
+            </main>
+        </div>
+    )
 }
 
-export default Home;
+export default Home
