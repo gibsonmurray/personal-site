@@ -1,4 +1,5 @@
 import ExpandedBubble from "@/app/(components)/ExpandedBubble/main"
+import InlineLink from "@/app/(components)/InlineLink"
 
 const links = [
     {
@@ -33,6 +34,24 @@ const links = [
     },
 ]
 
+const images = [
+    {
+        title: "Jumpy Cards Codepen",
+        href: "https://codepen.io/gibsonmurray/pen/oNrXoaL",
+        src: "https://creatorspace.imgix.net/users/cln54h71q00zbo901sy1cmbot/qwesgTGQdqfwKZki-SCR-20240713-beie.png?w=1000&h=1000",
+    },
+    {
+        title: "Magic Terminal Codepen",
+        href: "https://codepen.io/gibsonmurray/full/dyBXxLG",
+        src: "https://creatorspace.imgix.net/users/cln54h71q00zbo901sy1cmbot/SMKHjHWv1mX2YYQA-dyBXxLG.custom.jpg?w=1000&h=1000",
+    },
+    {
+        title: "Sticky Notes Codepen",
+        href: "https://codepen.io/gibsonmurray/full/gOqMmvE",
+        src: "https://creatorspace.imgix.net/users/cln54h71q00zbo901sy1cmbot/sJKfm3vMoZldxdCo-sticky%2520notes%2520thumbnail.png?w=1000&h=1000",
+    },
+]
+
 function About() {
     return (
         <ExpandedBubble
@@ -48,6 +67,32 @@ function About() {
                         - Front-End Developer
                     </span>
                 </span>
+            }
+            imgs={images}
+            content={
+                <div className="flex w-full flex-col items-start justify-center gap-3 px-6 leading-7 text-zinc-600">
+                    <span>
+                        Hello world! I'm Gibson, a front-end developer with a
+                        passion for creating beautiful and functional web
+                        applications. I am currently working on exploring new
+                        front-end technologies and frameworks.
+                    </span>
+                    <span>
+                        I also do a lot of side projects and demos, so check out
+                        my{" "}
+                        <InlineLink
+                            text="Codepen"
+                            href="https://codepen.io/gibsonmurray"
+                            className="text-zinc-950"
+                            newTab
+                        />{" "}
+                        for more.
+                    </span>
+                    <span>Thanks for stopping by! 👋</span>
+                    <span className="w-full text-right font-semibold">
+                        - Gibson
+                    </span>
+                </div>
             }
         />
     )

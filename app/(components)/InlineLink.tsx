@@ -12,7 +12,7 @@ function InlineLink(props: {
         <Link
             href={href}
             target={newTab ? "_blank" : "_self"}
-            className={`${className}`}
+            className={`${className} font-semibold`}
         >
             {text}
         </Link>

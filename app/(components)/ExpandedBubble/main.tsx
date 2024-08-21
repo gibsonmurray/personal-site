@@ -10,39 +10,109 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { useState } from "react"
+import { MouseEvent, ReactNode, useMemo, useState } from "react"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 
 function ExpandedBubble(props: {
     color: string
     thumbnail: string
     title: string
-    subtitle?: React.ReactNode | string
+    subtitle?: ReactNode | string
     links?: {
         text: string
         href: string
         className?: string
         newTab?: boolean
     }[]
+    imgs?: {
+        href: string
+        src: string
+        title: string
+    }[]
+    content?: ReactNode | string
 }) {
     const [hoveringLink, setHoveringLink] = useState(false)
+    const [backClicked, setBackClicked] = useState(false)
+    const router = useRouter()
+    const [hoveringImg, setHoveringImg] = useState(-1)
+
+    const handleBackClicked = (event: MouseEvent<HTMLAnchorElement>) => {
+        event.preventDefault()
+        setBackClicked(true)
+        setTimeout(() => router.push("/"), 700)
+    }
+
+    const rotations = useMemo(() => {
+        return [
+            Math.random() * 20 - 10,
+            Math.random() * 20 - 10,
+            Math.random() * 20 - 10,
+        ]
+    }, [])
+
+    const containerVariants = {
+        hidden: {
+            opacity: 0,
+            y: 10,
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                staggerChildren: 0.2,
+            },
+        },
+    }
+
+    const childVariants = {
+        hidden: {
+            opacity: 0,
+            y: 10,
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+        },
+    }
+
+    const imgVariants = {
+        hidden: {
+            scale: backClicked ? 1 : 0,
+        },
+        visible: {
+            scale: 1,
+        },
+    }
 
     return (
-        <div
+        <motion.div
             className="flex items-center justify-center"
             style={{ backgroundColor: props.color }}
+            animate={{
+                opacity: backClicked ? 0 : 1,
+                transition: {
+                    delay: 0.5,
+                },
+            }}
         >
             <motion.div
                 className="container flex min-h-screen max-w-lg flex-col flex-wrap items-center justify-start gap-10 py-10"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial="hidden"
+                animate={backClicked ? "hidden" : "visible"}
+                variants={containerVariants}
             >
-                <div className="flex w-full items-center justify-between text-zinc-600">
+                {/* Header */}
+                <motion.div
+                    className="flex w-full items-center justify-between text-zinc-600"
+                    variants={childVariants}
+                >
                     <Link
                         href="/"
                         className="flex items-center justify-center gap-1"
                         onMouseEnter={() => setHoveringLink(true)}
                         onMouseLeave={() => setHoveringLink(false)}
+                        onClick={handleBackClicked}
                     >
                         <motion.div
                             animate={{
@@ -80,9 +150,12 @@ function ExpandedBubble(props: {
                             <LinkedinIcon />
                         </Link>
                     </div>
-                </div>
-
-                <div className="flex w-full items-center justify-center">
+                </motion.div>
+                {/* Image and Title */}
+                <motion.div
+                    variants={childVariants}
+                    className="flex w-full items-center justify-center"
+                >
                     <div className="relative aspect-square h-36 rounded-full">
                         <Image src={props.thumbnail} alt={props.title} fill />
                     </div>
@@ -92,28 +165,53 @@ function ExpandedBubble(props: {
                         </span>
                         {props.subtitle}
                         <span className="flex w-full flex-wrap items-center justify-start gap-1 text-base font-medium text-zinc-300">
-                            {props.links?.map((link, i) => {
-                                const spacer = " | "
-                                return (
-                                    <>
-                                        <InlineLink
-                                            key={`${link.text}-${i}`}
-                                            text={link.text}
-                                            href={link.href}
-                                            className={link.className}
-                                            newTab={link.newTab}
-                                        />
-                                        {props.links &&
-                                            i < props.links.length - 1 &&
-                                            spacer}
-                                    </>
-                                )
-                            })}
+                            {props.links?.map((link, i) => (
+                                <span key={`${link.text}-${i}`}>
+                                    <InlineLink
+                                        text={link.text}
+                                        href={link.href}
+                                        className={link.className}
+                                        newTab={link.newTab}
+                                    />
+                                    {props.links &&
+                                        i < props.links.length - 1 && (
+                                            <span>{" | "}</span>
+                                        )}
+                                </span>
+                            ))}
                         </span>
                     </div>
-                </div>
+                </motion.div>
+
+                {/* Example Imgs/Links */}
+                <motion.div
+                    className="flex h-52 w-full items-center justify-center"
+                    variants={containerVariants}
+                >
+                    {props.imgs?.map((imageData, idx) => (
+                        <motion.div
+                            key={idx}
+                            variants={imgVariants}
+                            className="relative flex items-center justify-center"
+                        >
+                            <ImageLink
+                                idx={idx}
+                                src={imageData.src}
+                                href={imageData.href}
+                                alt={imageData.title}
+                                rotations={rotations}
+                                hovering={hoveringImg}
+                                setHovering={setHoveringImg}
+                            />
+                        </motion.div>
+                    ))}
+                </motion.div>
+                {/* Content */}
+                <motion.div className="w-full" variants={childVariants}>
+                    {props.content}
+                </motion.div>
             </motion.div>
-        </div>
+        </motion.div>
     )
 }
 

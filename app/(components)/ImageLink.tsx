@@ -1,5 +1,4 @@
-import { useState } from "react"
-import { motion } from "framer-motion"
+import { motion, MotionProps } from "framer-motion"
 import Image from "next/image"
 
 type ImageLinkProps = {
@@ -8,40 +7,58 @@ type ImageLinkProps = {
     src: string
     alt: string
     rotations: number[]
+    hovering: number
+    setHovering: (idx: number) => void
 }
 
-function ImageLink({ idx, href, src, alt, rotations }: ImageLinkProps) {
-    const uniqueClass = `card-img-${idx}`
-    const [hovered, setHovered] = useState(false)
+function ImageLink({
+    idx,
+    href,
+    src,
+    alt,
+    rotations,
+    hovering,
+    setHovering,
+}: ImageLinkProps) {
 
-    const getMarginRight = (index: number) => {
-        if (!hovered) return 0
-        if (index < idx) return 50
-        if (index > idx) return -50
+    const setMarginRight = () => {
+        if (hovering === -1) return 0
+        if (hovering < idx) return -50
+        if (hovering > idx) return 50
         return 0
     }
 
     return (
         <motion.a
-            className={`card-img ${uniqueClass} absolute overflow-hidden rounded-3xl scale-0`}
+            className="absolute aspect-[4/3] h-52 overflow-hidden rounded-3xl"
             href={href}
             target="_blank"
-            onHoverStart={() => setHovered(true)}
-            onHoverEnd={() => setHovered(false)}
+            onMouseEnter={() => setHovering(idx)}
+            onMouseLeave={() => setHovering(-1)}
+            whileHover={{
+                scale: 1.05,
+                rotate: 0,
+            }}
             animate={{
-                scale: hovered ? 1.05 : 1,
-                rotate: hovered ? 0 : rotations[idx],
-                marginRight: getMarginRight(idx),
+                marginRight: setMarginRight(),
             }}
             transition={{
-                duration: 0.5,
-                ease: [0.175, 0.885, 0.32, 1.275], // equivalent to elastic(0.8, 0.6)
+                type: "spring",
+                stiffness: 500,
+                damping: 20,
+                mass: 0.8,
+                bounce: 0.6,
+            }}
+            style={{
+                translateX: idx === 0 ? -150 : idx === 2 ? 150 : 0,
+                rotate: rotations[idx],
             }}
         >
             <Image
                 src={src}
                 alt={alt}
                 className="aspect-[4/3] h-44 rounded-3xl object-cover"
+                fill
             />
             <div className="absolute left-0 top-0 h-full w-full rounded-3xl border-[5px] border-white/50 transition-all duration-300 hover:border-[8px]" />
         </motion.a>
