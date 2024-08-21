@@ -154,10 +154,10 @@ function ExpandedBubble(props: {
                 {/* Image and Title */}
                 <motion.div
                     variants={childVariants}
-                    className="flex w-full items-center justify-center"
+                    className="flex w-full items-center justify-center gap-4"
                 >
-                    <div className="relative aspect-square h-36 rounded-full">
-                        <Image src={props.thumbnail} alt={props.title} fill />
+                    <div className="relative h-36 aspect-square border-4 border-zinc-200 rounded-full">
+                        <Image src={props.thumbnail} alt={props.title} fill className="object-cover rounded-full" />
                     </div>
                     <div className="flex h-full w-full flex-col flex-wrap items-start justify-center gap-2">
                         <span className="text-3xl font-bold text-zinc-800">

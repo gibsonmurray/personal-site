@@ -21,13 +21,13 @@ const links = [
         newTab: true,
     },
     {
-        text: "Next.js",
+        text: "Next",
         href: "https://nextjs.org/",
         className: "text-zinc-500",
         newTab: true,
     },
     {
-        text: "Node.js",
+        text: "Node",
         href: "https://nodejs.org/en",
         className: "text-green-500",
         newTab: true,
