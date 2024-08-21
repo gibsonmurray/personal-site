@@ -16,7 +16,7 @@ function Bubble(props: { link: string; thumbnail: string; colors: string[] }) {
 
     return (
         <motion.button
-            className="bubble relative flex h-[200px] w-[200px] cursor-pointer items-center justify-center border-2 shadow-md shadow-zinc-400/5"
+            className="bubble relative flex h-[200px] w-[200px] cursor-pointer items-center justify-center border-2 shadow-md shadow-zinc-400/5 scale-0"
             onClick={handleClick}
             whileHover={{
                 scale: 1.1,

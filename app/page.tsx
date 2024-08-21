@@ -113,8 +113,8 @@ function Home() {
         setBubbleScales()
 
         sortedBubbles.forEach((bubble) => {
-            const distance = distanceOfCenterBubble(bubble, $centerBubble)
-            const delay = distance / 2000 
+            const dist = distanceOfCenterBubble(bubble, $centerBubble)
+            const delay = dist / 2000
 
             gsap.from(bubble, {
                 scale: 0,
@@ -170,7 +170,9 @@ function setBubbleScales() {
     bubbles.forEach((bubble) => {
         const dist = distanceFromCenter(bubble)
         const scale = Math.max(1 - Math.pow(dist / 500, 2.5), 0)
-        bubble.style.scale = scale.toString()
+        gsap.set(bubble, {
+            scale: scale,
+        })
         bubble.style.pointerEvents = scale > 0.5 ? "auto" : "none"
     })
 }
