@@ -3,11 +3,12 @@
 import Row from "./components/Row"
 import { bubbles } from "./bubbles"
 import Bubble from "./components/Bubble"
-import { useEffect, useRef, useState } from "react"
-import { useAnimation } from "framer-motion"
+import { useLayoutEffect, useRef, useState } from "react"
+import gsap from "gsap"
+import { useGSAP } from "@gsap/react"
 
 function Home() {
-    const rowSizes = [1]
+    const rowSizes = [2, 3, 2]
     const rowOffset = 20
 
     const containerRef = useRef<HTMLDivElement>(null)
@@ -19,32 +20,32 @@ function Home() {
     })
     const [isDragging, setIsDragging] = useState(false)
 
-    const bubbleControls = useAnimation()
-
-    useEffect(() => {
+    useLayoutEffect(() => {
         const $main = mainRef.current
         const $container = containerRef.current
 
         if (!$main || !$container) return
 
         const setBubbleScales = () => {
-            const bubbles = document.querySelectorAll(".bubble")
+            const bubbles = document.querySelectorAll(
+                ".bubble",
+            ) as NodeListOf<HTMLElement>
             bubbles.forEach((bubble) => {
-                const dist = distanceFromCenter(bubble as HTMLElement)
+                const dist = distanceFromCenter(bubble)
                 const scale = Math.max(1 - Math.pow(dist / 500, 2.5), 0)
-                bubbleControls.start({
-                    scale,
-                    pointerEvents: scale > 0.5 ? "auto" : "none",
-                })
+                bubble.style.scale = scale.toString()
+                bubble.style.pointerEvents = scale > 0.5 ? "auto" : "none"
             })
         }
+
+        setBubbleScales()
 
         const handleWheel = (event: WheelEvent) => {
             const scrollSensitivity = -1
             const dx = event.deltaX * scrollSensitivity
             const dy = event.deltaY * scrollSensitivity
             setPosition((prev) => ({ x: prev.x + dx, y: prev.y + dy }))
-            $container.style.transform = `translate(${position.x}px, ${position.y}px)`
+            $container.style.translate = `${position.x}px ${position.y}px`
             setBubbleScales()
         }
 
@@ -59,7 +60,7 @@ function Home() {
             const dy = event.clientY - lastMousePosition.y
             setPosition((prev) => ({ x: prev.x + dx, y: prev.y + dy }))
             setLastMousePosition({ x: event.clientX, y: event.clientY })
-            $container.style.transform = `translate(${position.x}px, ${position.y}px)`
+            $container.style.translate = `${position.x}px ${position.y}px`
             setBubbleScales()
         }
 
@@ -84,7 +85,7 @@ function Home() {
                 x: event.touches[0].clientX,
                 y: event.touches[0].clientY,
             })
-            $container.style.transform = `translate(${position.x}px, ${position.y}px)`
+            $container.style.translate = `${position.x}px ${position.y}px`
             setBubbleScales()
             event.preventDefault()
         }
@@ -112,33 +113,34 @@ function Home() {
         }
     }, [isDragging, lastMousePosition, position])
 
-    useEffect(() => {
-        const bubbles = document.querySelectorAll(".bubble")
+    useGSAP(() => {
+        const bubbles = document.querySelectorAll(
+            ".bubble",
+        ) as NodeListOf<HTMLElement>
         const $centerBubble = bubbles[Math.floor(bubbles.length / 2)]
         const sortedBubbles = Array.from(bubbles).sort((a, b) => {
             return (
-                distanceOfCenterBubble(
-                    a as HTMLElement,
-                    $centerBubble as HTMLElement,
-                ) -
-                distanceOfCenterBubble(
-                    b as HTMLElement,
-                    $centerBubble as HTMLElement,
-                )
+                distanceOfCenterBubble(a, $centerBubble) -
+                distanceOfCenterBubble(b, $centerBubble)
             )
         })
 
-        sortedBubbles.forEach((_, index) => {
-            bubbleControls.start({
-                scale: 1,
-                transition: {
-                    delay: 0.5 + index * 0.01,
-                    duration: 0.7,
-                    ease: [0.175, 0.885, 0.32, 1.275], // Elastic ease equivalent
+        sortedBubbles.forEach((bubble, index) => {
+            const distance = distanceOfCenterBubble(bubble, $centerBubble)
+            const delay = distance / 2000 // Adjust the divisor to control the wave speed
+
+            gsap.fromTo(
+                bubble,
+                { scale: 0 },
+                {
+                    scale: 1,
+                    delay: 0.4 + delay, // Start with a base delay and add the distance-based delay
+                    duration: 0.6,
+                    ease: "elastic.out(0.9, 0.7)",
                 },
-            })
+            )
         })
-    }, [])
+    })
 
     const getCenterView = () => {
         const vh = window.innerHeight
@@ -179,25 +181,23 @@ function Home() {
                 {rowSizes.map((cols, i) => {
                     const offset =
                         (Math.floor(rowSizes.length / 2) - i) * rowOffset
+                    const startIndex = rowSizes
+                        .slice(0, i)
+                        .reduce((acc, size) => acc + size, 0)
+                    const endIndex = startIndex + cols
+
                     return (
                         <Row key={i} offset={offset}>
-                            {bubbles.map(() => {
-                                return Array.from({ length: cols })
-                                    .map((_, j) => {
-                                        return bubbles[i * cols + j]
-                                    })
-                                    .map((bubble, j) => {
-                                        return (
-                                            <Bubble
-                                                key={j}
-                                                link={bubble.link}
-                                                thumbnail={bubble.thumbnail}
-                                                color={bubble.color}
-                                                controls={bubbleControls}
-                                            />
-                                        )
-                                    })
-                            })}
+                            {bubbles
+                                .slice(startIndex, endIndex)
+                                .map((bubble, j) => (
+                                    <Bubble
+                                        key={j}
+                                        link={bubble.link}
+                                        thumbnail={bubble.thumbnail}
+                                        color={bubble.color}
+                                    />
+                                ))}
                         </Row>
                     )
                 })}
