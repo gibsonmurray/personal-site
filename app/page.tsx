@@ -1,7 +1,9 @@
-export default function Home() {
-    return (
-        <div className="flex h-screen w-screen items-center justify-center">
-            Coming soon...
-        </div>
-    );
+function Home() {
+  return (
+    <main>
+      <h1>Hello World</h1>
+    </main>
+  )
 }
+
+export default Home
