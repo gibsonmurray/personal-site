@@ -3,6 +3,7 @@
 import React, { useState } from "react"
 import { motion } from "framer-motion"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
 
 function Bubble(props: { link: string; thumbnail: string; colors: string[] }) {
     const { link, thumbnail, colors } = props
@@ -60,14 +61,19 @@ function Bubble(props: { link: string; thumbnail: string; colors: string[] }) {
                 }}
             ></motion.div>
 
-            <motion.img
-                className="h-[200px] w-[200px] rounded-full object-cover"
-                src={thumbnail}
-                alt="thumbnail"
+            <motion.div
+                className="h-[200px] w-[200px] rounded-full"
                 animate={{
                     opacity: clicked ? 0 : 1,
                 }}
-            />
+            >
+                <Image
+                    className="object-cover"
+                    src={thumbnail}
+                    alt="thumbnail"
+                    fill
+                />
+            </motion.div>
         </motion.button>
     )
 }

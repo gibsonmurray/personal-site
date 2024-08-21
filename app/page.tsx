@@ -128,16 +128,12 @@ function Home() {
             const distance = distanceOfCenterBubble(bubble, $centerBubble)
             const delay = distance / 2000 // Adjust the divisor to control the wave speed
 
-            gsap.fromTo(
-                bubble,
-                { scale: 0 },
-                {
-                    scale: 1,
-                    delay: 0.4 + delay, // Start with a base delay and add the distance-based delay
-                    duration: 0.5,
-                    ease: "elastic.out(1, 0.7)",
-                },
-            )
+            gsap.from(bubble, {
+                scale: 0,
+                delay: 0.4 + delay, // Start with a base delay and add the distance-based delay
+                duration: 0.5,
+                ease: "elastic.out(1, 0.7)",
+            })
         })
     })
 
@@ -178,8 +174,7 @@ function Home() {
                 className="absolute flex h-[10000px] w-[10000px] cursor-grab flex-col items-center justify-center active:cursor-grabbing"
             >
                 {rows.map((cols, i) => {
-                    const offset =
-                        (Math.floor(rows.length / 2) - i) * rowOffset
+                    const offset = (Math.floor(rows.length / 2) - i) * rowOffset
                     const startIndex = rows
                         .slice(0, i)
                         .reduce((acc, size) => acc + size, 0)
