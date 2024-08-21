@@ -62,13 +62,13 @@ function Bubble(props: { link: string; thumbnail: string; colors: string[] }) {
             ></motion.div>
 
             <motion.div
-                className="h-[200px] w-[200px] rounded-full"
+                className="h-[200px] w-[200px]"
                 animate={{
                     opacity: clicked ? 0 : 1,
                 }}
             >
                 <Image
-                    className="object-cover"
+                    className="object-cover rounded-full"
                     src={thumbnail}
                     alt="thumbnail"
                     fill

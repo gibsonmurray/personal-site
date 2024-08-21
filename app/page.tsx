@@ -19,25 +19,25 @@ function Home() {
     })
     const [isDragging, setIsDragging] = useState(false)
 
+    const setBubbleScales = () => {
+        const bubbles = document.querySelectorAll(
+            ".bubble",
+        ) as NodeListOf<HTMLElement>
+        bubbles.forEach((bubble) => {
+            const dist = distanceFromCenter(bubble)
+            const scale = Math.max(1 - Math.pow(dist / 500, 2.5), 0)
+            bubble.style.scale = scale.toString()
+            bubble.style.pointerEvents = scale > 0.5 ? "auto" : "none"
+        })
+    }
+
     useLayoutEffect(() => {
         const $main = mainRef.current
         const $container = containerRef.current
 
         if (!$main || !$container) return
 
-        const setBubbleScales = () => {
-            const bubbles = document.querySelectorAll(
-                ".bubble",
-            ) as NodeListOf<HTMLElement>
-            bubbles.forEach((bubble) => {
-                const dist = distanceFromCenter(bubble)
-                const scale = Math.max(1 - Math.pow(dist / 500, 2.5), 0)
-                bubble.style.scale = scale.toString()
-                bubble.style.pointerEvents = scale > 0.5 ? "auto" : "none"
-            })
-        }
-
-        setBubbleScales()
+        // setBubbleScales()
 
         const handleWheel = (event: WheelEvent) => {
             const scrollSensitivity = -1
@@ -124,7 +124,9 @@ function Home() {
             )
         })
 
-        sortedBubbles.forEach((bubble, index) => {
+        setBubbleScales()
+
+        sortedBubbles.forEach((bubble) => {
             const distance = distanceOfCenterBubble(bubble, $centerBubble)
             const delay = distance / 2000 // Adjust the divisor to control the wave speed
 
