@@ -1,14 +1,14 @@
 "use client"
 
-import Row from "./components/Row"
+import Row from "./(components)/Row"
 import { bubbles } from "./bubbles"
-import Bubble from "./components/Bubble"
+import Bubble from "./(components)/Bubble"
 import { useLayoutEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 
 function Home() {
-    const rowSizes = [2, 3, 2]
+    const rowSizes = [1] // todo remember to update
     const rowOffset = 20
 
     const containerRef = useRef<HTMLDivElement>(null)
@@ -136,7 +136,7 @@ function Home() {
                     scale: 1,
                     delay: 0.4 + delay, // Start with a base delay and add the distance-based delay
                     duration: 0.6,
-                    ease: "elastic.out(0.9, 0.7)",
+                    ease: "elastic.out(0.9, 0.9)",
                 },
             )
         })

@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${figtree.className} overflow-hidden`}>{children}</body>
+      <body className={`${figtree.className} overflow-hidden bg-zinc-200`}>{children}</body>
     </html>
   );
 }
