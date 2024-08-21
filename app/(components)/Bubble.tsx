@@ -4,8 +4,8 @@ import React, { useState } from "react"
 import { motion } from "framer-motion"
 import { useRouter } from "next/navigation"
 
-function Bubble(props: { link: string; thumbnail: string; color: string }) {
-    const { link, thumbnail, color } = props
+function Bubble(props: { link: string; thumbnail: string; colors: string[] }) {
+    const { link, thumbnail, colors } = props
     const [clicked, setClicked] = useState(false)
     const router = useRouter()
 
@@ -37,6 +37,7 @@ function Bubble(props: { link: string; thumbnail: string; color: string }) {
             <motion.div
                 className="absolute flex h-full w-full items-center justify-center rounded-full border-2 border-zinc-300/90 opacity-0"
                 animate={{
+                    backgroundColor: clicked ? colors[1] : colors[0],
                     width: clicked
                         ? Math.max(window.innerWidth, window.innerHeight) * 3
                         : 200,
@@ -54,8 +55,8 @@ function Bubble(props: { link: string; thumbnail: string; color: string }) {
                     }
                 }}
                 style={{
-                    background: color,
                     opacity: clicked ? 1 : 0,
+                    backgroundColor: colors[0],
                 }}
             ></motion.div>
 

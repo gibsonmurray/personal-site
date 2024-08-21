@@ -1,14 +1,13 @@
 "use client"
 
 import Row from "./(components)/Row"
-import { bubbles } from "./bubbles"
+import { bubbles, rows } from "./bubbles"
 import Bubble from "./(components)/Bubble"
 import { useLayoutEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 
 function Home() {
-    const rowSizes = [1] // todo remember to update
     const rowOffset = 20
 
     const containerRef = useRef<HTMLDivElement>(null)
@@ -178,10 +177,10 @@ function Home() {
                 ref={mainRef}
                 className="absolute flex h-[10000px] w-[10000px] cursor-grab flex-col items-center justify-center active:cursor-grabbing"
             >
-                {rowSizes.map((cols, i) => {
+                {rows.map((cols, i) => {
                     const offset =
-                        (Math.floor(rowSizes.length / 2) - i) * rowOffset
-                    const startIndex = rowSizes
+                        (Math.floor(rows.length / 2) - i) * rowOffset
+                    const startIndex = rows
                         .slice(0, i)
                         .reduce((acc, size) => acc + size, 0)
                     const endIndex = startIndex + cols
@@ -195,7 +194,7 @@ function Home() {
                                         key={j}
                                         link={bubble.link}
                                         thumbnail={bubble.thumbnail}
-                                        color={bubble.color}
+                                        colors={bubble.colors}
                                     />
                                 ))}
                         </Row>
