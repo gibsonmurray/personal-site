@@ -19,25 +19,11 @@ function Home() {
     })
     const [isDragging, setIsDragging] = useState(false)
 
-    const setBubbleScales = () => {
-        const bubbles = document.querySelectorAll(
-            ".bubble",
-        ) as NodeListOf<HTMLElement>
-        bubbles.forEach((bubble) => {
-            const dist = distanceFromCenter(bubble)
-            const scale = Math.max(1 - Math.pow(dist / 500, 2.5), 0)
-            bubble.style.scale = scale.toString()
-            bubble.style.pointerEvents = scale > 0.5 ? "auto" : "none"
-        })
-    }
-
     useLayoutEffect(() => {
         const $main = mainRef.current
         const $container = containerRef.current
 
         if (!$main || !$container) return
-
-        // setBubbleScales()
 
         const handleWheel = (event: WheelEvent) => {
             const scrollSensitivity = -1
@@ -128,43 +114,16 @@ function Home() {
 
         sortedBubbles.forEach((bubble) => {
             const distance = distanceOfCenterBubble(bubble, $centerBubble)
-            const delay = distance / 2000 // Adjust the divisor to control the wave speed
+            const delay = distance / 2000 
 
             gsap.from(bubble, {
                 scale: 0,
-                delay: 0.4 + delay, // Start with a base delay and add the distance-based delay
+                delay: 0.4 + delay,
                 duration: 0.5,
                 ease: "elastic.out(1, 0.7)",
             })
         })
     })
-
-    const getCenterView = () => {
-        const vh = window.innerHeight
-        const vw = window.innerWidth
-        return { x: Math.round(vw / 2), y: Math.round(vh / 2) }
-    }
-
-    const distanceFromCenter = (element: HTMLElement) => {
-        const rect = element.getBoundingClientRect()
-        const center = getCenterView()
-        const x = rect.left + rect.width / 2
-        const y = rect.top + rect.height / 2
-        return Math.sqrt(Math.pow(center.x - x, 2) + Math.pow(center.y - y, 2))
-    }
-
-    const distanceOfCenterBubble = (
-        element: HTMLElement,
-        centerElement: HTMLElement,
-    ) => {
-        const rect1 = element.getBoundingClientRect()
-        const rect2 = centerElement.getBoundingClientRect()
-        const dx =
-            (rect1.left + rect1.right) / 2 - (rect2.left + rect2.right) / 2
-        const dy =
-            (rect1.top + rect1.bottom) / 2 - (rect2.top + rect2.bottom) / 2
-        return Math.sqrt(dx * dx + dy * dy)
-    }
 
     return (
         <div
@@ -203,3 +162,40 @@ function Home() {
 }
 
 export default Home
+
+function setBubbleScales() {
+    const bubbles = document.querySelectorAll(
+        ".bubble",
+    ) as NodeListOf<HTMLElement>
+    bubbles.forEach((bubble) => {
+        const dist = distanceFromCenter(bubble)
+        const scale = Math.max(1 - Math.pow(dist / 500, 2.5), 0)
+        bubble.style.scale = scale.toString()
+        bubble.style.pointerEvents = scale > 0.5 ? "auto" : "none"
+    })
+}
+
+function getCenterView() {
+    const vh = window.innerHeight
+    const vw = window.innerWidth
+    return { x: Math.round(vw / 2), y: Math.round(vh / 2) }
+}
+
+function distanceFromCenter(element: HTMLElement) {
+    const rect = element.getBoundingClientRect()
+    const center = getCenterView()
+    const x = rect.left + rect.width / 2
+    const y = rect.top + rect.height / 2
+    return Math.sqrt(Math.pow(center.x - x, 2) + Math.pow(center.y - y, 2))
+}
+
+function distanceOfCenterBubble(
+    element: HTMLElement,
+    centerElement: HTMLElement,
+) {
+    const rect1 = element.getBoundingClientRect()
+    const rect2 = centerElement.getBoundingClientRect()
+    const dx = (rect1.left + rect1.right) / 2 - (rect2.left + rect2.right) / 2
+    const dy = (rect1.top + rect1.bottom) / 2 - (rect2.top + rect2.bottom) / 2
+    return Math.sqrt(dx * dx + dy * dy)
+}

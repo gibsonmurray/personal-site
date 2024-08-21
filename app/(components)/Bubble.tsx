@@ -16,7 +16,7 @@ function Bubble(props: { link: string; thumbnail: string; colors: string[] }) {
 
     return (
         <motion.button
-            className={`bubble relative flex h-[200px] w-[200px] cursor-pointer items-center justify-center border-2 shadow-md shadow-zinc-400/5 scale-0`}
+            className="bubble relative flex h-[200px] w-[200px] cursor-pointer items-center justify-center border-2 shadow-md shadow-zinc-400/5"
             onClick={handleClick}
             whileHover={{
                 scale: 1.1,
@@ -62,13 +62,13 @@ function Bubble(props: { link: string; thumbnail: string; colors: string[] }) {
             ></motion.div>
 
             <motion.div
-                className="h-[200px] w-[200px]"
+                className="h-[200px] w-[200px] relative"
                 animate={{
                     opacity: clicked ? 0 : 1,
                 }}
             >
                 <Image
-                    className="object-cover rounded-full"
+                    className="rounded-full object-cover"
                     src={thumbnail}
                     alt="thumbnail"
                     fill
