@@ -56,25 +56,34 @@ function StickyNotes() {
             content={
                 <div className="flex w-full flex-col items-start justify-center gap-3 px-6 leading-7 text-zinc-600">
                     <span>
-                        Hello world! I&apos;m Gibson, a front-end developer with
-                        a passion for creating beautiful and functional web
-                        applications. I am currently working on exploring new
-                        front-end technologies and frameworks.
+                        This was a fun little project I made to practice my
+                        JavaScript skills. It&apos;s a simple sticky note app
+                        where you can create, edit, and delete sticky notes. It
+                        also has a trash can that you can use to delete each
+                        note or all of them at once.
                     </span>
                     <span>
-                        I also do a lot of side projects and demos, so check out
-                        my{" "}
+                        The original plan for this project was to make it a{" "}
+                        <InlineLink
+                            text="Bento"
+                            href="https://bento.me/"
+                            newTab
+                            className="text-[#768BFF]"
+                        />{" "}
+                        clone, but I decided to keep it simple and just focus on
+                        dragging interactions and animations.
+                    </span>
+                    <span>
+                        It ended up gaining some traction on{" "}
                         <InlineLink
                             text="Codepen"
                             href="https://codepen.io/gibsonmurray"
                             className="text-zinc-950"
                             newTab
                         />{" "}
-                        for more.
-                    </span>
-                    <span>Thanks for stopping by! 👋</span>
-                    <span className="w-full text-right font-semibold">
-                        - Gibson
+                        and I&apos;ve gotten a few messages from people who
+                        wanted to use it for their own projects. I&apos;m glad
+                        that it&apos;s been helpful to others!
                     </span>
                 </div>
             }
