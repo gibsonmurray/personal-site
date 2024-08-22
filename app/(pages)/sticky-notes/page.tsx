@@ -1,5 +1,6 @@
 import ExpandedBubble from "@/app/(components)/ExpandedBubble"
 import InlineLink from "@/app/(components)/InlineLink"
+import { CodepenLink } from "@/app/(components)/ReusedLinks"
 import { ExternalLinkIcon } from "lucide-react"
 import Link from "next/link"
 
@@ -46,14 +47,17 @@ function StickyNotes() {
     return (
         <ExpandedBubble
             color="#fff6e8"
+            mainLink="https://codepen.io/gibsonmurray/full/gOqMmvE"
             thumbnail="/images/thumbnails/sticky-notes.webp"
             title="Sticky Notes"
             links={links}
             subtitle={
-                <Link href="https://codepen.io/gibsonmurray/full/gOqMmvE" target="_blank" className="flex items-center justify-center gap-1 text-zinc-600 hover:underline underline-offset-2">
-                    <span className="text-base font-medium">
-                        Codepen Demo
-                    </span>
+                <Link
+                    href="https://codepen.io/gibsonmurray/full/gOqMmvE"
+                    target="_blank"
+                    className="flex items-center justify-center gap-1 text-zinc-600 underline-offset-2 hover:underline"
+                >
+                    <span className="text-base font-medium">Codepen Demo</span>
                     <ExternalLinkIcon className="h-4 w-4 stroke-[2.5px]" />
                 </Link>
             }
@@ -79,16 +83,10 @@ function StickyNotes() {
                         dragging interactions and animations.
                     </span>
                     <span>
-                        It ended up gaining some traction on{" "}
-                        <InlineLink
-                            text="Codepen"
-                            href="https://codepen.io/gibsonmurray"
-                            className="text-zinc-950"
-                            newTab
-                        />{" "}
-                        and I&apos;ve gotten a few messages from people who
-                        wanted to use it for their own projects. I&apos;m glad
-                        that it&apos;s been helpful to others!
+                        It ended up gaining some traction on <CodepenLink /> and
+                        I&apos;ve gotten a few messages from people who wanted
+                        to use it for their own projects. I&apos;m glad that
+                        it&apos;s been helpful to others!
                     </span>
                 </div>
             }

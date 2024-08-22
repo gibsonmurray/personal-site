@@ -33,6 +33,7 @@ function ExpandedBubble(props: {
     }[]
     content?: ReactNode | string
     darkBorder?: boolean
+    mainLink?: string
 }) {
     const [hoveringLink, setHoveringLink] = useState(false)
     const [backClicked, setBackClicked] = useState(false)
@@ -158,7 +159,11 @@ function ExpandedBubble(props: {
                     variants={childVariants}
                     className="flex w-full items-center justify-center gap-4"
                 >
-                    <div className="relative aspect-square h-36 rounded-full">
+                    <Link
+                        href={props.mainLink || "#"}
+                        target={props.mainLink ? "_blank" : "_self"}
+                        className="relative aspect-square h-36 rounded-full"
+                    >
                         <Image
                             src={props.thumbnail}
                             alt={props.title}
@@ -168,7 +173,7 @@ function ExpandedBubble(props: {
                         <div
                             className={`absolute left-0 top-0 h-full w-full rounded-full border-4 ${props.darkBorder ? "border-zinc-300/60" : "border-white/50"}`}
                         />
-                    </div>
+                    </Link>
                     <div className="flex h-full w-full flex-col flex-wrap items-start justify-center gap-2">
                         <span className="text-3xl font-bold text-zinc-800">
                             {props.title}

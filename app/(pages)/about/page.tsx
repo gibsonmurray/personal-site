@@ -1,5 +1,6 @@
 import ExpandedBubble from "@/app/(components)/ExpandedBubble"
 import InlineLink from "@/app/(components)/InlineLink"
+import { CodepenLink } from "@/app/(components)/ReusedLinks"
 
 const links = [
     {
@@ -73,21 +74,14 @@ function About() {
             content={
                 <div className="flex w-full flex-col items-start justify-center gap-3 px-6 leading-7 text-zinc-600">
                     <span>
-                        Hello world! I&apos;m Gibson, a front-end developer with a
-                        passion for creating beautiful and functional web
+                        Hello world! I&apos;m Gibson, a front-end developer with
+                        a passion for creating beautiful and functional web
                         applications. I am currently working on exploring new
                         front-end technologies and frameworks.
                     </span>
                     <span>
                         I also do a lot of side projects and demos, so check out
-                        my{" "}
-                        <InlineLink
-                            text="Codepen"
-                            href="https://codepen.io/gibsonmurray"
-                            className="text-zinc-950"
-                            newTab
-                        />{" "}
-                        for more.
+                        my {<CodepenLink />} for more.
                     </span>
                     <span>Thanks for stopping by! 👋</span>
                     <span className="w-full text-right font-semibold">

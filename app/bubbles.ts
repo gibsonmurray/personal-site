@@ -3,13 +3,13 @@ export const bubbles = [
         title: "Apple Watch Gestures",
         link: "/apple-watch-gestures",
         thumbnail: "/images/thumbnails/apple-watch-gestures.webp",
-        colors: ["#000000", "#b7b7b7"],
+        colors: ["#000000", "#e5e5e5"],
     },
     {
         title: "Parallax Seasons",
         link: "/parallax-seasons",
         thumbnail: "/images/thumbnails/parallax-seasons.webp",
-        colors: ["#CDDAE4", "#CDDAE4"],
+        colors: ["#CDDAE4", "#f4faff"],
     },
     {
         title: "Parallax Devices",

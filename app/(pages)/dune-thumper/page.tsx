@@ -1,5 +1,6 @@
 import ExpandedBubble from "@/app/(components)/ExpandedBubble"
 import InlineLink from "@/app/(components)/InlineLink"
+import { CSSLink, HTMLLink } from "@/app/(components)/ReusedLinks"
 import { ExternalLinkIcon } from "lucide-react"
 import Link from "next/link"
 
@@ -40,14 +41,17 @@ function DuneThumper() {
     return (
         <ExpandedBubble
             color="#ffe6cc"
+            mainLink="https://codepen.io/gibsonmurray/pen/MWRJajj"
             thumbnail="/images/thumbnails/dune-thumper.webp"
             title="Dune Thumper"
             links={links}
             subtitle={
-                <Link href="https://codepen.io/gibsonmurray/pen/MWRJajj" target="_blank" className="flex items-center justify-center gap-1 text-zinc-600 hover:underline underline-offset-2">
-                    <span className="text-base font-medium">
-                        Codepen Demo
-                    </span>
+                <Link
+                    href="https://codepen.io/gibsonmurray/pen/MWRJajj"
+                    target="_blank"
+                    className="flex items-center justify-center gap-1 text-zinc-600 underline-offset-2 hover:underline"
+                >
+                    <span className="text-base font-medium">Codepen Demo</span>
                     <ExternalLinkIcon className="h-4 w-4 stroke-[2.5px]" />
                 </Link>
             }
@@ -57,15 +61,15 @@ function DuneThumper() {
                     <span>
                         A short side project I made after I had seen{" "}
                         <InlineLink
-                            text="Dune: Part 2"
+                            text="Dune: Part 2 🏜️"
                             href="https://www.imdb.com/title/tt15239678/"
                             newTab
                             className="text-[#DF7506]"
                         />
                         . It is a 2D scene with a thumper hitting the ground,
-                        and a worm that emerges in the background. The
-                        animations and the scene are all made with pure HTML and
-                        CSS
+                        and a worm 🪱 that emerges in the background. The
+                        animations and the scene are all made with pure{" "}
+                        <HTMLLink /> and <CSSLink /> 😱.
                     </span>
                 </div>
             }

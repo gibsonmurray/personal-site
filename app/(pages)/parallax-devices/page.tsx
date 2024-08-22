@@ -1,5 +1,6 @@
 import ExpandedBubble from "@/app/(components)/ExpandedBubble"
 import InlineLink from "@/app/(components)/InlineLink"
+import { GSAPLink } from "@/app/(components)/ReusedLinks"
 import { ExternalLinkIcon } from "lucide-react"
 import Link from "next/link"
 
@@ -50,6 +51,7 @@ function ParallaxDevices() {
         <ExpandedBubble
             color="#edefff"
             darkBorder
+            mainLink="https://codepen.io/gibsonmurray/pen/JjzmrWR"
             thumbnail="/images/thumbnails/parallax-devices.webp"
             title="Parallax Devices"
             links={links}
@@ -73,16 +75,20 @@ function ParallaxDevices() {
                             text="portfolio website"
                             className="text-[#50747A]"
                             newTab
-                        />. My goal was to create a parallax effect, transitioning one device to the other.
+                        />
+                        . My goal was to create a parallax effect, transitioning
+                        one device 📱 to another 💻.
                     </span>
                     <span>
-                        I used{" "}
-                        <InlineLink
-                            href="https://gsap.com/"
-                            text="GSAP"
-                            className="text-[#0AE447]"
-                            newTab
-                        />
+                        I used <GSAPLink />{" "}
+                        timelines to animate the entire demo. This showed me
+                        that animation code is quite messy but also very
+                        powerful. For those who have done After Effects,
+                        it&apos;s like keyframing with text.
+                    </span>
+                    <span>
+                        Parallax effects are very clean for the user but very
+                        tedious for the developer.
                     </span>
                 </div>
             }
@@ -91,5 +97,3 @@ function ParallaxDevices() {
 }
 
 export default ParallaxDevices
-
-// https://natesmith.design/
