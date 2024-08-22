@@ -45,7 +45,7 @@ const images = [
 function StickyNotes() {
     return (
         <ExpandedBubble
-            color="#f2e4cb"
+            color="#fff6e8"
             thumbnail="/images/thumbnails/sticky-notes.webp"
             title="Sticky Notes"
             links={links}

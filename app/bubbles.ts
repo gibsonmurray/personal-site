@@ -15,13 +15,13 @@ export const bubbles = [
         title: "Parallax Devices",
         link: "/parallax-devices",
         thumbnail: "/images/thumbnails/parallax-devices.webp",
-        colors: ["#595F80", "#c9cff2"],
+        colors: ["#595F80", "#edefff"],
     },
     {
         title: "Sticky Notes",
         link: "/sticky-notes",
         thumbnail: "/images/thumbnails/sticky-notes.webp",
-        colors: ["#AE8A58", "#f2e4cb"],
+        colors: ["#AE8A58", "#fff6e8"],
     },
     {
         title: "About Me",

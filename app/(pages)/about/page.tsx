@@ -56,6 +56,7 @@ function About() {
     return (
         <ExpandedBubble
             color="#FDFCF7"
+            darkBorder
             thumbnail="/images/prof-pic.webp"
             title="About Me"
             links={links}

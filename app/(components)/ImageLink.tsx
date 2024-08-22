@@ -11,6 +11,7 @@ type ImageLinkProps = {
     hovering: number
     setHovering: (idx: number) => void
     title: string
+    className?: string
 }
 
 function ImageLink({
@@ -22,6 +23,7 @@ function ImageLink({
     hovering,
     setHovering,
     title,
+    className,
 }: ImageLinkProps) {
     const setMarginRight = () => {
         if (hovering === -1) return 0
@@ -63,8 +65,8 @@ function ImageLink({
                 className="aspect-[4/3] h-44 rounded-3xl object-cover"
                 fill
             />
-            <CircleArrowUpIcon className="absolute right-4 top-4 h-6 stroke-[3px] text-white/50 rotate-45" />
-            <div className="absolute left-0 top-0 h-full w-full rounded-3xl border-4 border-white/50 transition-all duration-300" />
+            <CircleArrowUpIcon className={`absolute right-4 top-4 h-6 stroke-[3px] text-white/50 rotate-45 ${className}`} />
+            <div className={`absolute left-0 top-0 h-full w-full rounded-3xl border-4 border-white/50 transition-all duration-300 ${className}`} />
         </motion.a>
     )
 }

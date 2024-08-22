@@ -64,7 +64,7 @@ function Bubble(props: {
         <motion.button
             ref={bubbleRef}
             title={title}
-            className={`${className} bubble relative flex h-[200px] w-[200px] cursor-pointer items-center justify-center rounded-full border-2 shadow-md shadow-zinc-400/5 scale-0`}
+            className={`${className} bubble relative flex h-[200px] w-[200px] cursor-pointer items-center justify-center rounded-full shadow-md shadow-zinc-400/5 scale-0`}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onClick={handleClick}
@@ -78,7 +78,7 @@ function Bubble(props: {
             }}
         >
             <motion.div
-                className="absolute flex h-full w-full items-center justify-center rounded-full border-2 border-zinc-300/90 opacity-0"
+                className="absolute flex h-full w-full items-center justify-center rounded-full opacity-0"
                 animate={{
                     backgroundColor: clicked ? colors[1] : colors[0],
                     width: clicked
@@ -116,6 +116,10 @@ function Bubble(props: {
                     fill
                 />
             </motion.div>
+            <motion.div
+                className={`absolute left-0 top-0 h-full w-full rounded-full border-4 border-zinc-300/70`}
+                style={{ opacity: clicked ? 0 : 1 }}
+            />
         </motion.button>
     )
 }

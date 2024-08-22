@@ -29,8 +29,10 @@ function ExpandedBubble(props: {
         href?: string
         src: string
         title: string
+        className?: string
     }[]
     content?: ReactNode | string
+    darkBorder?: boolean
 }) {
     const [hoveringLink, setHoveringLink] = useState(false)
     const [backClicked, setBackClicked] = useState(false)
@@ -72,7 +74,7 @@ function ExpandedBubble(props: {
         },
         visible: {
             opacity: 1,
-            y: 0
+            y: 0,
         },
     }
 
@@ -87,7 +89,7 @@ function ExpandedBubble(props: {
 
     return (
         <motion.div
-            className="relative min-h-screen w-screen flex flex-col items-center justify-start overflow-y-auto"
+            className="relative flex min-h-screen w-screen flex-col items-center justify-start overflow-y-auto"
             style={{ backgroundColor: props.color }}
             animate={{
                 opacity: backClicked ? 0 : 1,
@@ -97,7 +99,7 @@ function ExpandedBubble(props: {
             }}
         >
             <motion.div
-                className="absolute container flex min-h-screen max-w-lg flex-col flex-wrap items-center justify-start gap-10 py-10 top-0"
+                className="container absolute top-0 flex min-h-screen max-w-lg flex-col flex-wrap items-center justify-start gap-10 py-10"
                 initial="hidden"
                 animate={backClicked ? "hidden" : "visible"}
                 variants={containerVariants}
@@ -156,8 +158,16 @@ function ExpandedBubble(props: {
                     variants={childVariants}
                     className="flex w-full items-center justify-center gap-4"
                 >
-                    <div className="relative h-36 aspect-square border-4 border-zinc-200 rounded-full">
-                        <Image src={props.thumbnail} alt={props.title} fill className="object-cover rounded-full" />
+                    <div className="relative aspect-square h-36 rounded-full">
+                        <Image
+                            src={props.thumbnail}
+                            alt={props.title}
+                            fill
+                            className="rounded-full object-cover"
+                        />
+                        <div
+                            className={`absolute left-0 top-0 h-full w-full rounded-full border-4 ${props.darkBorder ? "border-zinc-300/60" : "border-white/50"}`}
+                        />
                     </div>
                     <div className="flex h-full w-full flex-col flex-wrap items-start justify-center gap-2">
                         <span className="text-3xl font-bold text-zinc-800">
@@ -203,6 +213,7 @@ function ExpandedBubble(props: {
                                 rotations={rotations}
                                 hovering={hoveringImg}
                                 setHovering={setHoveringImg}
+                                className={imageData.className}
                             />
                         </motion.div>
                     ))}
