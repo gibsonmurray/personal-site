@@ -47,6 +47,12 @@ export const bubbles = [
         thumbnail: "/images/thumbnails/jumpy-cards.webp",
         colors: ["#EEECEC", "#e0e0e0"],
     },
+    {
+        title: "Magic Terminal",
+        link: "/magic-terminal",
+        thumbnail: "/images/thumbnails/magic-terminal.webp",
+        colors: ["#1C1D1F", "#e8e9ea"],
+    }
 ]
 
-export const rows = [3, 3, 2]
+export const rows = [3, 3, 3]
