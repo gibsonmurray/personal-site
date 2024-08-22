@@ -8,8 +8,6 @@ import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 
 function Home() {
-    const rowOffset = 20
-
     const containerRef = useRef<HTMLDivElement>(null)
     const mainRef = useRef<HTMLElement>(null)
     const [position, setPosition] = useState({ x: 0, y: 0 })
@@ -135,14 +133,19 @@ function Home() {
                 className="absolute flex h-[10000px] w-[10000px] cursor-grab flex-col items-center justify-center active:cursor-grabbing"
             >
                 {rows.map((cols, i) => {
-                    const offset = (Math.floor(rows.length / 2) - i) * rowOffset
+                    const rowOffset = 20
+                    const colOffset = -100
+                    const offsetY =
+                        (Math.floor(rows.length / 2) - i) * rowOffset
+                    const offsetX =
+                        cols % 2 !== 0 ? ((i + 1) % 2) * colOffset : 0
                     const startIndex = rows
                         .slice(0, i)
                         .reduce((acc, size) => acc + size, 0)
                     const endIndex = startIndex + cols
 
                     return (
-                        <Row key={i} offset={offset}>
+                        <Row key={i} offsetY={offsetY} offsetX={offsetX}>
                             {bubbles
                                 .slice(startIndex, endIndex)
                                 .map((bubble, j) => (

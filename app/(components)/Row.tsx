@@ -1,8 +1,11 @@
-function Row(props: { children: React.ReactNode; offset: number }) {
-    const { children, offset } = props;
+function Row(props: { children: React.ReactNode; offsetY: number, offsetX: number }) {
+    const { children, offsetY, offsetX } = props;
     return (
         <div
-            className={`flex items-center justify-center gap-2 translate-y-[${offset}px]`}
+            className="flex items-center justify-center gap-2"
+            style={{
+                translate: `${offsetX}px ${offsetY}px`,
+            }}
         >
             {children}
         </div>
