@@ -165,11 +165,17 @@ function Home() {
             >
                 {rows.map((cols, i) => {
                     const rowOffset = 20
-                    const colOffset = -100
+                    const colOffset = 100
                     const offsetY =
                         (Math.floor(rows.length / 2) - i) * rowOffset
-                    const offsetX =
-                        cols % 2 !== 0 ? ((i + 1) % 2) * colOffset : 0
+                    let offsetX = cols % 2 !== 0 ? ((i + 1) % 2) * colOffset : 0
+                    if ( // if the row above is odd and the current row is even, add colOffset
+                        rows[i - 1] &&
+                        rows[i - 1] % 2 !== 0 &&
+                        cols % 2 === 0
+                    ) {
+                        offsetX = colOffset
+                    }
                     const startIndex = rows
                         .slice(0, i)
                         .reduce((acc, size) => acc + size, 0)

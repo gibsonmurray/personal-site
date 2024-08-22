@@ -1,12 +1,6 @@
 import ExpandedBubble from "@/app/(components)/ExpandedBubble"
 import InlineLink from "@/app/(components)/InlineLink"
-import {
-    CodepenLink,
-    CSSLink,
-    GSAPLink,
-    HTMLLink,
-    JavaScriptLink,
-} from "@/app/(components)/ReusedLinks"
+import { GSAPLink } from "@/app/(components)/ReusedLinks"
 import { ExternalLinkIcon } from "lucide-react"
 import Link from "next/link"
 

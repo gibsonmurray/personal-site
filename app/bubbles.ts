@@ -3,7 +3,7 @@ export const bubbles = [
         title: "Landing Page Hero",
         link: "/landing-page-hero",
         thumbnail: "/images/thumbnails/landing-page-hero.webp",
-        colors: ["#000000", "#e5e5e5"],
+        colors: ["#835484", "#ebe1ed"],
     },
     {
         title: "Apple Watch Gestures",
@@ -59,6 +59,12 @@ export const bubbles = [
         thumbnail: "/images/thumbnails/magic-terminal.webp",
         colors: ["#1C1D1F", "#e8e9ea"],
     },
+    {
+        title: "iPhone Widget Flood",
+        link: "/iphone-widget-flood",
+        thumbnail: "/images/thumbnails/iphone-widget-flood.webp",
+        colors: ["##0D0D0D", "#f9edff"],
+    },
 ]
 
-export const rows = [1, 3, 3, 3, 1]
+export const rows = [1, 3, 3, 4, 1]
