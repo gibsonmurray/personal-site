@@ -102,7 +102,7 @@ function Home() {
         }
 
         if (initAnimationDone) {
-            $main.addEventListener("wheel", handleWheel)
+            $main.addEventListener("wheel", handleWheel, { passive: true })
             $main.addEventListener("mousedown", handleMouseDown)
             $main.addEventListener("mousemove", handleMouseMove)
             $main.addEventListener("mouseup", handleMouseUp)
@@ -169,7 +169,8 @@ function Home() {
                     const offsetY =
                         (Math.floor(rows.length / 2) - i) * rowOffset
                     let offsetX = cols % 2 !== 0 ? ((i + 1) % 2) * colOffset : 0
-                    if ( // if the row above is odd and the current row is even, add colOffset
+                    if (
+                        // if the row above is odd and the current row is even, add colOffset
                         rows[i - 1] &&
                         rows[i - 1] % 2 !== 0 &&
                         cols % 2 === 0

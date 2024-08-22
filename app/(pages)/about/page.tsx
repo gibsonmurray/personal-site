@@ -1,5 +1,4 @@
 import ExpandedBubble from "@/app/(components)/ExpandedBubble"
-import InlineLink from "@/app/(components)/InlineLink"
 import { CodepenLink } from "@/app/(components)/ReusedLinks"
 
 const links = [
@@ -58,7 +57,7 @@ function About() {
         <ExpandedBubble
             color="#FDFCF7"
             darkBorder
-            thumbnail="/images/prof-pic.webp"
+            thumbnail="/images/thumbnails/prof-pic.webp"
             title="About Me"
             links={links}
             subtitle={

@@ -169,6 +169,8 @@ function ExpandedBubble(props: {
                             alt={props.title}
                             fill
                             className="rounded-full object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            priority
                         />
                         <div
                             className={`absolute left-0 top-0 h-full w-full rounded-full border-4 ${props.darkBorder ? "border-zinc-300/60" : "border-white/50"}`}
