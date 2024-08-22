@@ -29,25 +29,30 @@ function Bubble(props: {
     const [clicked, setClicked] = useState(false)
     const router = useRouter()
     const bubbleRef = useRef(null)
-    const [originalScale, setOriginalScale] = useState(0)
-    const [scaleValue, setScaleValue] = useState(originalScale)
+    const [scaleValue, setScaleValue] = useState(1)
 
     const handleClick = () => {
         setClicked(true)
     }
 
-    useEffect(() => {
+    const getScaleValue = () => {
+        if (!bubbleRef.current || !initAnimationDone) return 1
         const transform = (bubbleRef.current! as HTMLElement).style.transform
         const scaleMatch = transform.match(/scale\(([^)]+)\)/)
-        const scaleValue = scaleMatch ? parseFloat(scaleMatch[1]) : 1
-        setOriginalScale(scaleValue)
-        setScaleValue(scaleValue)
+        const sv = scaleMatch ? parseFloat(scaleMatch[1]) : 1
+        return sv
+    }
+
+    useEffect(() => {
+        setScaleValue(getScaleValue())
     }, [initAnimationDone])
 
     const handleMouseEnter = () => {
         if (!bubbleRef.current || !initAnimationDone) return
+        const sv = getScaleValue()
+        setScaleValue(sv)
         gsap.to(bubbleRef.current, {
-            scale: scaleValue + 0.08,
+            scale: sv + 0.08,
             ease: "elastic.out(0.8, 0.4)",
         })
     }
@@ -55,7 +60,7 @@ function Bubble(props: {
     const handleMouseLeave = () => {
         if (!bubbleRef.current || !initAnimationDone) return
         gsap.to(bubbleRef.current, {
-            scale: originalScale,
+            scale: scaleValue,
             ease: "elastic.out(0.8, 0.4)",
         })
     }
