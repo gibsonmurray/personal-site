@@ -65,6 +65,12 @@ export const bubbles = [
         thumbnail: "/images/thumbnails/iphone-widget-flood.webp",
         colors: ["##0D0D0D", "#f9edff"],
     },
+    {
+        title: "iPad Parallax Scroll",
+        link: "/ipad-parallax-scroll",
+        thumbnail: "/images/thumbnails/ipad-parallax-scroll.webp",
+        colors: ["#000000", "#cccccc"],
+    }
 ]
 
 export const rows = [1, 3, 3, 4, 1]
