@@ -1,5 +1,7 @@
 import ExpandedBubble from "@/app/(components)/ExpandedBubble"
 import InlineLink from "@/app/(components)/InlineLink"
+import { ExternalLinkIcon } from "lucide-react"
+import Link from "next/link"
 
 const links = [
     {
@@ -48,9 +50,12 @@ function StickyNotes() {
             title="Sticky Notes"
             links={links}
             subtitle={
-                <span className="text-base font-medium text-zinc-600">
-                    Codepen Demo
-                </span>
+                <Link href="https://codepen.io/gibsonmurray/full/gOqMmvE" target="_blank" className="flex items-center justify-center gap-1 text-zinc-600 hover:underline underline-offset-2">
+                    <span className="text-base font-medium">
+                        Codepen Demo
+                    </span>
+                    <ExternalLinkIcon className="h-4 w-4 stroke-[2.5px]" />
+                </Link>
             }
             imgs={images}
             content={
