@@ -3,12 +3,13 @@ import Image from "next/image"
 
 type ImageLinkProps = {
     idx: number
-    href: string
+    href?: string
     src: string
     alt: string
     rotations: number[]
     hovering: number
     setHovering: (idx: number) => void
+    title: string
 }
 
 function ImageLink({
@@ -19,8 +20,8 @@ function ImageLink({
     rotations,
     hovering,
     setHovering,
+    title, 
 }: ImageLinkProps) {
-
     const setMarginRight = () => {
         if (hovering === -1) return 0
         if (hovering < idx) return -50
@@ -30,9 +31,10 @@ function ImageLink({
 
     return (
         <motion.a
+            title={title}
             className="absolute aspect-[4/3] h-52 overflow-hidden rounded-3xl"
-            href={href}
-            target="_blank"
+            href={href || "#"}
+            target={href ? "_blank" : "_self"}
             onMouseEnter={() => setHovering(idx)}
             onMouseLeave={() => setHovering(-1)}
             whileHover={{

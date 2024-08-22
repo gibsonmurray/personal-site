@@ -9,71 +9,55 @@ const links = [
         newTab: true,
     },
     {
-        text: "TypeScript",
-        href: "https://www.typescriptlang.org/",
-        className: "text-blue-500",
+        text: "HTML",
+        href: "https://developer.mozilla.org/en-US/docs/Web/HTML",
+        className: "text-orange-600",
         newTab: true,
     },
     {
-        text: "React",
-        href: "https://reactjs.org/",
-        className: "text-blue-400",
-        newTab: true,
-    },
-    {
-        text: "Next.js",
-        href: "https://nextjs.org/",
-        className: "text-zinc-500",
-        newTab: true,
-    },
-    {
-        text: "Node.js",
-        href: "https://nodejs.org/en",
-        className: "text-green-500",
+        text: "CSS",
+        href: "https://developer.mozilla.org/en-US/docs/Web/CSS",
+        className: "text-sky-600",
         newTab: true,
     },
 ]
 
 const images = [
     {
-        title: "Jumpy Cards Codepen",
-        href: "https://codepen.io/gibsonmurray/pen/oNrXoaL",
-        src: "https://creatorspace.imgix.net/users/cln54h71q00zbo901sy1cmbot/qwesgTGQdqfwKZki-SCR-20240713-beie.png?w=1000&h=1000",
-    },
-    {
-        title: "Magic Terminal Codepen",
-        href: "https://codepen.io/gibsonmurray/full/dyBXxLG",
-        src: "https://creatorspace.imgix.net/users/cln54h71q00zbo901sy1cmbot/SMKHjHWv1mX2YYQA-dyBXxLG.custom.jpg?w=1000&h=1000",
-    },
-    {
-        title: "Sticky Notes Codepen",
+        title: "Sticky Notes: TODO Image",
         href: "https://codepen.io/gibsonmurray/full/gOqMmvE",
-        src: "https://creatorspace.imgix.net/users/cln54h71q00zbo901sy1cmbot/sJKfm3vMoZldxdCo-sticky%2520notes%2520thumbnail.png?w=1000&h=1000",
+        src: "/images/sticky-notes/stickies-1.png",
+    },
+    {
+        title: "Sticky Notes: Trash Image",
+        href: "https://codepen.io/gibsonmurray/full/gOqMmvE",
+        src: "/images/sticky-notes/stickies-3.png",
+    },
+    {
+        title: "Sticky Notes: Stacked Notes Image",
+        href: "https://codepen.io/gibsonmurray/full/gOqMmvE",
+        src: "/images/sticky-notes/stickies-2.png",
     },
 ]
 
 function StickyNotes() {
     return (
         <ExpandedBubble
-            color="#ffefa0"
-            thumbnail="/images/prof-pic.webp"
-            title="About Me"
+            color="#f2e4cb"
+            thumbnail="/images/thumbnails/sticky-notes.webp"
+            title="Sticky Notes"
             links={links}
             subtitle={
-                <span className="text-xl font-semibold text-zinc-600">
-                    Gibson Murray
-                    <span className="text-base font-medium text-zinc-600">
-                        {" "}
-                        - Front-End Developer
-                    </span>
+                <span className="text-base font-medium text-zinc-600">
+                    Codepen Demo
                 </span>
             }
             imgs={images}
             content={
                 <div className="flex w-full flex-col items-start justify-center gap-3 px-6 leading-7 text-zinc-600">
                     <span>
-                        Hello world! I&apos;m Gibson, a front-end developer with a
-                        passion for creating beautiful and functional web
+                        Hello world! I&apos;m Gibson, a front-end developer with
+                        a passion for creating beautiful and functional web
                         applications. I am currently working on exploring new
                         front-end technologies and frameworks.
                     </span>

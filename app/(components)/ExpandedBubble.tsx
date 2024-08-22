@@ -26,7 +26,7 @@ function ExpandedBubble(props: {
         newTab?: boolean
     }[]
     imgs?: {
-        href: string
+        href?: string
         src: string
         title: string
     }[]
@@ -196,6 +196,7 @@ function ExpandedBubble(props: {
                         >
                             <ImageLink
                                 idx={idx}
+                                title={imageData.title}
                                 src={imageData.src}
                                 href={imageData.href}
                                 alt={imageData.title}

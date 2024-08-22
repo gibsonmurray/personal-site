@@ -16,6 +16,30 @@ function Home() {
         y: 0,
     })
     const [isDragging, setIsDragging] = useState(false)
+    const [initAnimationDone, setInitAnimationDone] = useState(false)
+
+    function setBubbleScales() {
+        const bubbles = document.querySelectorAll(
+            ".bubble",
+        ) as NodeListOf<HTMLElement>
+        bubbles.forEach((bubble) => {
+            const dist = distanceFromCenter(bubble)
+            const scale = Math.max(1 - Math.pow(dist / 500, 2.5), 0)
+            if (initAnimationDone) {
+                // subtle scale down animation, less choppy
+                gsap.to(bubble, {
+                    scale: scale,
+                    ease: "elastic.out(1, 0.7)",
+                    duration: 0.2,
+                })
+            } else {
+                gsap.set(bubble, {
+                    scale: scale,
+                })
+            }
+            bubble.style.pointerEvents = scale > 0.5 ? "auto" : "none"
+        })
+    }
 
     useLayoutEffect(() => {
         const $main = mainRef.current
@@ -77,13 +101,15 @@ function Home() {
             setIsDragging(false)
         }
 
-        $main.addEventListener("wheel", handleWheel)
-        $main.addEventListener("mousedown", handleMouseDown)
-        $main.addEventListener("mousemove", handleMouseMove)
-        $main.addEventListener("mouseup", handleMouseUp)
-        $main.addEventListener("touchstart", handleTouchStart)
-        $main.addEventListener("touchmove", handleTouchMove)
-        $main.addEventListener("touchend", handleTouchEnd)
+        if (initAnimationDone) {
+            $main.addEventListener("wheel", handleWheel)
+            $main.addEventListener("mousedown", handleMouseDown)
+            $main.addEventListener("mousemove", handleMouseMove)
+            $main.addEventListener("mouseup", handleMouseUp)
+            $main.addEventListener("touchstart", handleTouchStart)
+            $main.addEventListener("touchmove", handleTouchMove)
+            $main.addEventListener("touchend", handleTouchEnd)
+        }
 
         return () => {
             $main.removeEventListener("wheel", handleWheel)
@@ -94,13 +120,15 @@ function Home() {
             $main.removeEventListener("touchmove", handleTouchMove)
             $main.removeEventListener("touchend", handleTouchEnd)
         }
-    }, [isDragging, lastMousePosition, position])
+    }, [isDragging, lastMousePosition, position, initAnimationDone])
 
     useGSAP(() => {
         const bubbles = document.querySelectorAll(
             ".bubble",
         ) as NodeListOf<HTMLElement>
-        const $centerBubble = bubbles[Math.floor(bubbles.length / 2)]
+        const $centerBubble = document.querySelector(
+            ".center-bubble",
+        ) as HTMLElement
         const sortedBubbles = Array.from(bubbles).sort((a, b) => {
             return (
                 distanceOfCenterBubble(a, $centerBubble) -
@@ -119,6 +147,9 @@ function Home() {
                 delay: 0.4 + delay,
                 duration: 0.5,
                 ease: "elastic.out(1, 0.7)",
+                onComplete: () => {
+                    setInitAnimationDone(true)
+                },
             })
         })
     })
@@ -145,15 +176,24 @@ function Home() {
                     const endIndex = startIndex + cols
 
                     return (
-                        <Row key={i} offsetY={offsetY} offsetX={offsetX}>
+                        <Row key={i}>
                             {bubbles
                                 .slice(startIndex, endIndex)
                                 .map((bubble, j) => (
                                     <Bubble
                                         key={j}
+                                        title={bubble.title}
                                         link={bubble.link}
                                         thumbnail={bubble.thumbnail}
                                         colors={bubble.colors}
+                                        offsetX={offsetX}
+                                        offsetY={offsetY}
+                                        initAnimationDone={initAnimationDone}
+                                        className={
+                                            bubble.link === "/about"
+                                                ? "center-bubble"
+                                                : ""
+                                        }
                                     />
                                 ))}
                         </Row>
@@ -165,20 +205,6 @@ function Home() {
 }
 
 export default Home
-
-function setBubbleScales() {
-    const bubbles = document.querySelectorAll(
-        ".bubble",
-    ) as NodeListOf<HTMLElement>
-    bubbles.forEach((bubble) => {
-        const dist = distanceFromCenter(bubble)
-        const scale = Math.max(1 - Math.pow(dist / 500, 2.5), 0)
-        gsap.set(bubble, {
-            scale: scale,
-        })
-        bubble.style.pointerEvents = scale > 0.5 ? "auto" : "none"
-    })
-}
 
 function getCenterView() {
     const vh = window.innerHeight
