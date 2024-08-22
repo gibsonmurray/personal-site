@@ -1,33 +1,51 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
+import gsap from "gsap"
 
 function Bubble(props: { link: string; thumbnail: string; colors: string[] }) {
     const { link, thumbnail, colors } = props
     const [clicked, setClicked] = useState(false)
     const router = useRouter()
+    const bubbleRef = useRef(null)
+    const [originalScale, setOriginalScale] = useState(1)
 
     const handleClick = () => {
         setClicked(true)
     }
 
+    const handleMouseEnter = () => {
+        if (!bubbleRef.current) return
+        const transform = (bubbleRef.current as HTMLElement).style.transform
+
+        const scaleMatch = transform.match(/scale\(([^)]+)\)/)
+        const scaleValue = scaleMatch ? parseFloat(scaleMatch[1]) : 1
+
+        setOriginalScale(scaleValue)
+
+        gsap.to(bubbleRef.current, {
+            scale: scaleValue + 0.08,
+            ease: "elastic.out(0.8, 0.4)"
+        })
+    }
+
+    const handleMouseLeave = () => {
+        gsap.to(bubbleRef.current, {
+            scale: originalScale,
+            ease: "elastic.out(0.8, 0.4)"
+        })
+    }
+
     return (
         <motion.button
-            className="bubble relative flex h-[200px] w-[200px] cursor-pointer items-center justify-center border-2 shadow-md shadow-zinc-400/5 scale-0"
+            ref={bubbleRef}
+            className="bubble relative flex h-[200px] w-[200px] cursor-pointer items-center justify-center rounded-full border-2 shadow-md shadow-zinc-400/5 scale-0"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
             onClick={handleClick}
-            whileHover={{
-                scale: 1.1,
-                transition: {
-                    type: "spring",
-                    stiffness: 500,
-                    damping: 10,
-                    mass: 0.8,
-                    bounce: 0.6,
-                },
-            }}
             style={{
                 borderRadius: 9999,
                 overflow: clicked ? "" : "hidden",
@@ -62,7 +80,7 @@ function Bubble(props: { link: string; thumbnail: string; colors: string[] }) {
             ></motion.div>
 
             <motion.div
-                className="h-[200px] w-[200px] relative"
+                className="relative h-[200px] w-[200px] rounded-full"
                 animate={{
                     opacity: clicked ? 0 : 1,
                 }}
