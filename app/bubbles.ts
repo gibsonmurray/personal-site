@@ -41,6 +41,12 @@ export const bubbles = [
         thumbnail: "/images/thumbnails/trashy-photos.webp",
         colors: ["#F1F4F6", "#F1F4F6"],
     },
+    {
+        title: "Jumpy Cards",
+        link: "/jumpy-cards",
+        thumbnail: "/images/thumbnails/jumpy-cards.webp",
+        colors: ["#EEECEC", "#e0e0e0"],
+    },
 ]
 
-export const rows = [3, 3, 1]
+export const rows = [3, 3, 2]

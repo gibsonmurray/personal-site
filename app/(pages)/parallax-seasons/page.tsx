@@ -1,5 +1,4 @@
 import ExpandedBubble from "@/app/(components)/ExpandedBubble"
-import InlineLink from "@/app/(components)/InlineLink"
 import {
     CodepenLink,
     CSSLink,
