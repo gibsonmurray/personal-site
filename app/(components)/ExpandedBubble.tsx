@@ -7,12 +7,14 @@ import {
     GithubIcon,
     LinkedinIcon,
     CodepenIcon,
+    RadioIcon,
 } from "lucide-react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { MouseEvent, ReactNode, useMemo, useState } from "react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
+import EmbededCodepen from "./EmbededCodepen"
 
 function ExpandedBubble(props: {
     color: string
@@ -85,6 +87,8 @@ function ExpandedBubble(props: {
             scale: 1,
         },
     }
+
+    const penHash = props.mainLink?.split("/").pop()!
 
     return (
         <motion.div
@@ -202,7 +206,7 @@ function ExpandedBubble(props: {
 
                 {/* Example Imgs/Links */}
                 <motion.div
-                    className="flex h-44 md:h-52 w-full items-center justify-center"
+                    className="flex h-44 w-full items-center justify-center md:h-52"
                     variants={containerVariants}
                 >
                     {props.imgs?.map((imageData, idx) => (
@@ -229,6 +233,23 @@ function ExpandedBubble(props: {
                 <motion.div className="w-full" variants={childVariants}>
                     {props.content}
                 </motion.div>
+
+                {/* Codepen Demo */}
+                {props.title !== "About Me" && (
+                    <motion.div
+                        variants={childVariants}
+                        className="flex w-full flex-col items-start justify-center gap-2 px-5"
+                    >
+                        <div className="ml-2 flex items-center justify-center gap-2 text-lg font-semibold text-zinc-800">
+                            <RadioIcon className="text-red-500" />
+                            Live Demo:
+                        </div>
+                        <EmbededCodepen
+                            penHash={penHash}
+                            penTitle={props.title}
+                        />
+                    </motion.div>
+                )}
             </motion.div>
         </motion.div>
     )
