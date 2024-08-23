@@ -161,7 +161,7 @@ function Home() {
         >
             <main
                 ref={mainRef}
-                className="absolute flex h-[10000px] w-[10000px] cursor-grab flex-col items-center justify-center active:cursor-grabbing"
+                className="absolute flex h-[10000px] w-[10000px] cursor-grab flex-col items-center justify-center active:cursor-grabbing -translate-x-[100px]"
             >
                 {rows.map((cols, i) => {
                     const rowOffset = 20
