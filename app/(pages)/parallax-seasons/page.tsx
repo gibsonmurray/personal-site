@@ -6,8 +6,11 @@ import {
     JavaScriptLink,
 } from "@/app/(components)/ReusedLinks"
 import Subtitle from "@/app/(components)/Subtitle"
-import { ExternalLinkIcon } from "lucide-react"
-import Link from "next/link"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+    title: "Parallax Seasons",
+}
 
 const links = [
     {

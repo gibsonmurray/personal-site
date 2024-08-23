@@ -1,6 +1,11 @@
 import ExpandedBubble from "@/app/(components)/ExpandedBubble"
 import { CodepenLink } from "@/app/(components)/ReusedLinks"
 import Subtitle from "@/app/(components)/Subtitle"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+    title: "About Me",
+}
 
 const links = [
     {

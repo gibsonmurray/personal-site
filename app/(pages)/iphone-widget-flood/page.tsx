@@ -1,9 +1,11 @@
 import ExpandedBubble from "@/app/(components)/ExpandedBubble"
-import InlineLink from "@/app/(components)/InlineLink"
 import { CodepenLink, GSAPLink } from "@/app/(components)/ReusedLinks"
 import Subtitle from "@/app/(components)/Subtitle"
-import { ExternalLinkIcon } from "lucide-react"
-import Link from "next/link"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+    title: "iPhone Widget Flood",
+}
 
 const links = [
     {
