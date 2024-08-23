@@ -28,20 +28,15 @@ const links = [
         newTab: true,
     },
 ]
-
+ 
 const images = [
     {
-        title: "Parallax Devices: Phone",
+        title: "Jumpy Cards",
         href: "https://codepen.io/gibsonmurray/pen/oNrXoaL",
         src: "/images/jumpy-cards/1.png",
     },
     {
-        title: "Parallax Devices: Laptop",
-        href: "https://codepen.io/gibsonmurray/pen/oNrXoaL",
-        src: "/images/jumpy-cards/2.jpeg",
-    },
-    {
-        title: "Parallax Devices: TV",
+        title: "Jumpy Cards",
         href: "https://codepen.io/gibsonmurray/pen/oNrXoaL",
         src: "/images/jumpy-cards/3.jpeg",
     },

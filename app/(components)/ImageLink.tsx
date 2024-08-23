@@ -75,24 +75,36 @@ function ImageLink({
             }}
             style={{
                 translateX:
-                    screenWidth < 768
-                        ? idx === 0
-                            ? -80
-                            : idx === 2
-                              ? 80
-                              : 0
-                        : idx === 0
-                          ? -150
-                          : idx === 2
-                            ? 150
-                            : 0,
+                    rotations.length > 2
+                        ? screenWidth < 768
+                            ? idx === 0
+                                ? -80
+                                : idx === 2
+                                  ? 80
+                                  : 0
+                            : idx === 0
+                              ? -150
+                              : idx === 2
+                                ? 150
+                                : 0
+                        : rotations.length > 1
+                          ? screenWidth < 768
+                              ? idx === 0
+                                  ? -50
+                                  : 50
+                              : idx === 0
+                                ? -100
+                                : 100
+                          : 0,
                 translateY:
                     screenWidth < 768
                         ? idx === 0
                             ? -50
-                            : idx === 2
-                              ? 50
-                              : 0
+                            : idx === 1 && rotations.length < 3
+                              ? 20
+                              : idx === 2
+                                ? 50
+                                : 0
                         : 0,
                 rotate: rotations[idx],
             }}

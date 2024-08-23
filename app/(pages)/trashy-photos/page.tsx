@@ -35,21 +35,15 @@ const links = [
 
 const images = [
     {
-        title: "Parallax Devices: Phone",
-        href: "https://codepen.io/gibsonmurray/pen/gONaLwy",
-        src: "/images/trashy-photos/animation.png",
-        className: "text-zinc-200 border-zinc-200",
-    },
-    {
-        title: "Parallax Devices: Laptop",
+        title: "Trashy Photos",
         href: "https://codepen.io/gibsonmurray/pen/gONaLwy",
         src: "/images/trashy-photos/grid.png",
         className: "text-zinc-200 border-zinc-200",
     },
     {
-        title: "Parallax Devices: TV",
+        title: "Trashy Photos",
         href: "https://codepen.io/gibsonmurray/pen/gONaLwy",
-        src: "/images/trashy-photos/trash.png",
+        src: "/images/trashy-photos/animation.png",
         className: "text-zinc-200 border-zinc-200",
     },
 ]

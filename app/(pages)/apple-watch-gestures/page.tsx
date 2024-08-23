@@ -30,17 +30,12 @@ const links = [
 
 const images = [
     {
-        title: "Parallax Devices: Phone",
+        title: "Apple Watch Gestures: Music",
         href: "https://codepen.io/gibsonmurray/pen/NWowKYg",
         src: "/images/apple-watch-gestures/1.jpeg",
     },
     {
-        title: "Parallax Devices: Laptop",
-        href: "https://codepen.io/gibsonmurray/pen/NWowKYg",
-        src: "/images/apple-watch-gestures/2.jpeg",
-    },
-    {
-        title: "Parallax Devices: TV",
+        title: "Apple Watch Gestures: Reply to Messages",
         href: "https://codepen.io/gibsonmurray/pen/NWowKYg",
         src: "/images/apple-watch-gestures/3.jpeg",
     },

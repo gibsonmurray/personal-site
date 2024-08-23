@@ -1,7 +1,7 @@
 "use client"
 
 import Row from "./(components)/Row"
-import { bubbles, rows } from "./bubbles"
+import { bubbles } from "./bubbles"
 import Bubble from "./(components)/Bubble"
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import gsap from "gsap"
@@ -190,46 +190,40 @@ function Home() {
                 ref={mainRef}
                 className="absolute flex h-[10000px] w-[10000px] cursor-grab flex-col items-center justify-center -translate-x-[100px] active:cursor-grabbing"
             >
-                {rows.map((cols, i) => {
+                {bubbles.map((row, idx) => {
                     const rowOffset = screenWidth < 768 ? 5 : 20
                     const colOffset = 100
                     const offsetY =
-                        (Math.floor(rows.length / 2) - i) * rowOffset
-                    let offsetX = cols % 2 !== 0 ? ((i + 1) % 2) * colOffset : 0
+                        (Math.floor(bubbles.length / 2) - idx) * rowOffset
+                    let offsetX =
+                        row.length % 2 !== 0 ? ((idx + 1) % 2) * colOffset : 0
                     if (
                         // if the row above is odd and the current row is even, add colOffset
-                        rows[i - 1] &&
-                        rows[i - 1] % 2 !== 0 &&
-                        cols % 2 === 0
+                        bubbles[idx - 1] &&
+                        bubbles[idx - 1].length % 2 !== 0 &&
+                        row.length % 2 === 0
                     ) {
                         offsetX = colOffset
                     }
-                    const startIndex = rows
-                        .slice(0, i)
-                        .reduce((acc, size) => acc + size, 0)
-                    const endIndex = startIndex + cols
-
                     return (
-                        <Row key={i}>
-                            {bubbles
-                                .slice(startIndex, endIndex)
-                                .map((bubble, j) => (
-                                    <Bubble
-                                        key={j}
-                                        title={bubble.title}
-                                        link={bubble.link}
-                                        thumbnail={bubble.thumbnail}
-                                        colors={bubble.colors}
-                                        offsetX={offsetX}
-                                        offsetY={offsetY}
-                                        initAnimationDone={initAnimationDone}
-                                        className={
-                                            bubble.link === "/about"
-                                                ? "center-bubble"
-                                                : ""
-                                        }
-                                    />
-                                ))}
+                        <Row key={idx}>
+                            {bubbles[idx].map((bubble, j) => (
+                                <Bubble
+                                    key={j}
+                                    title={bubble.title}
+                                    link={bubble.link}
+                                    thumbnail={bubble.thumbnail}
+                                    colors={bubble.colors}
+                                    offsetX={offsetX}
+                                    offsetY={offsetY}
+                                    initAnimationDone={initAnimationDone}
+                                    className={
+                                        bubble.link === "/about"
+                                            ? "center-bubble"
+                                            : ""
+                                    }
+                                />
+                            ))}
                         </Row>
                     )
                 })}
