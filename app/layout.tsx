@@ -1,22 +1,29 @@
-import type { Metadata } from "next";
-import { Figtree } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from "next"
+import { Figtree } from "next/font/google"
+import "./globals.css"
 
-const figtree = Figtree({ subsets: ["latin"] });
+const figtree = Figtree({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Gibson Murray",
-  description: "Welcome to my world!",
-};
+    title: {
+        template: "%s | Gibson Murray",
+        default: "Gibson Murray",
+    },
+    description: "Welcome to my portfolio showcasing my front-end work!",
+}
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode
 }>) {
-  return (
-    <html lang="en">
-      <body className={`${figtree.className} overflow-hidden bg-zinc-200`}>{children}</body>
-    </html>
-  );
+    return (
+        <html lang="en">
+            <body
+                className={`${figtree.className} overflow-hidden bg-zinc-200`}
+            >
+                {children}
+            </body>
+        </html>
+    )
 }
