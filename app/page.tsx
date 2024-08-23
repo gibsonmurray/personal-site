@@ -6,7 +6,6 @@ import Bubble from "./(components)/Bubble"
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
-import { useRouter } from "next/navigation"
 
 function Home() {
     const containerRef = useRef<HTMLDivElement>(null)
