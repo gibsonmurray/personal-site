@@ -143,10 +143,11 @@ function Bubble(props: {
                 }}
             >
                 <Image
-                    className="rounded-full object-cover"
+                    className="rounded-full object-cover h-full w-full"
                     src={thumbnail}
                     alt="thumbnail"
                     fill
+                    sizes="(max-width: 640px) 300px, (max-width: 768px) 400px, 500px"
                     priority
                 />
             </motion.div>

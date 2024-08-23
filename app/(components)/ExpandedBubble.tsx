@@ -100,7 +100,7 @@ function ExpandedBubble(props: {
             }}
         >
             <motion.div
-                className="container absolute top-0 flex min-h-screen max-w-lg flex-col flex-wrap items-center justify-start gap-10 p-10 md:px-0 md:py-10"
+                className="container absolute top-0 flex min-h-screen max-w-lg flex-col flex-wrap items-center justify-start gap-10 p-5 md:px-0 md:py-10"
                 initial="hidden"
                 animate={backClicked ? "hidden" : "visible"}
                 variants={containerVariants}

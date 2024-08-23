@@ -46,7 +46,7 @@ function Home() {
             const dist = distanceFromCenter(bubble)
             let scale = Math.max(1 - Math.pow(dist / 500, 2.5), 0)
             if (screenWidth < 768) {
-                scale = Math.max(1 - Math.pow(dist / 300, 2.5), 0)
+                scale = Math.max(1 - Math.pow(dist / 400, 2.5), 0)
             }
             if (initAnimationDone) {
                 // subtle scale down animation, less choppy
