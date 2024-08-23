@@ -1,6 +1,7 @@
 import { motion } from "framer-motion"
 import { CircleArrowUpIcon } from "lucide-react"
 import Image from "next/image"
+import { useEffect, useState } from "react"
 
 type ImageLinkProps = {
     idx: number
@@ -25,6 +26,8 @@ function ImageLink({
     title,
     className,
 }: ImageLinkProps) {
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+
     const setMarginRight = () => {
         if (hovering === -1) return 0
         if (hovering < idx) return -50
@@ -32,10 +35,20 @@ function ImageLink({
         return 0
     }
 
+    useEffect(() => {
+        const handleResize = () => {
+            setScreenWidth(window.innerWidth)
+        }
+        window.addEventListener("resize", handleResize)
+        return () => {
+            window.removeEventListener("resize", handleResize)
+        }
+    })
+
     return (
         <motion.a
             title={title}
-            className="absolute aspect-[4/3] h-52 overflow-hidden rounded-3xl"
+            className="absolute aspect-[4/3] h-32 overflow-hidden rounded-2xl md:rounded-3xl md:h-52"
             href={href || "#"}
             target={href ? "_blank" : "_self"}
             onMouseEnter={() => setHovering(idx)}
@@ -55,23 +68,42 @@ function ImageLink({
                 bounce: 0.6,
             }}
             style={{
-                translateX: idx === 0 ? -150 : idx === 2 ? 150 : 0,
+                translateX:
+                    screenWidth < 768
+                        ? idx === 0
+                            ? -80
+                            : idx === 2
+                              ? 80
+                              : 0
+                        : idx === 0
+                          ? -150
+                          : idx === 2
+                            ? 150
+                            : 0,
+                translateY:
+                    screenWidth < 768
+                        ? idx === 0
+                            ? -50
+                            : idx === 2
+                              ? 50
+                              : 0
+                        : 0,
                 rotate: rotations[idx],
             }}
         >
             <Image
                 src={src}
                 alt={alt}
-                className="aspect-[4/3] h-44 rounded-3xl object-cover"
+                className="aspect-[4/3] h-44 rounded-2xl md:rounded-3xl object-cover"
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 priority
             />
             <CircleArrowUpIcon
-                className={`absolute right-4 top-4 h-6 stroke-[3px] text-white/50 rotate-45 ${className}`}
+                className={`absolute right-2 top-2 h-5 md:right-4 md:top-4 md:h-6 stroke-[3px] text-white/50 rotate-45 ${className}`}
             />
             <div
-                className={`absolute left-0 top-0 h-full w-full rounded-3xl border-4 border-white/50 transition-all duration-300 ${className}`}
+                className={`absolute left-0 top-0 h-full w-full rounded-2xl md:rounded-3xl border-4 border-white/50 transition-all duration-300 ${className}`}
             />
         </motion.a>
     )

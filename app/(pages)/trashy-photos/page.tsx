@@ -1,6 +1,11 @@
 import ExpandedBubble from "@/app/(components)/ExpandedBubble"
 import InlineLink from "@/app/(components)/InlineLink"
-import { GSAPLink, JavaScriptLink, ReactLink } from "@/app/(components)/ReusedLinks"
+import {
+    GSAPLink,
+    JavaScriptLink,
+    ReactLink,
+} from "@/app/(components)/ReusedLinks"
+import Subtitle from "@/app/(components)/Subtitle"
 import { ExternalLinkIcon } from "lucide-react"
 import Link from "next/link"
 
@@ -56,14 +61,9 @@ function ParallaxSeasons() {
             title="Trashy Photos"
             links={links}
             subtitle={
-                <Link
-                    href="https://codepen.io/gibsonmurray/pen/gONaLwy"
-                    target="_blank"
-                    className="flex items-center justify-center gap-1 text-zinc-600 underline-offset-2 hover:underline"
-                >
-                    <span className="text-base font-medium">Codepen Demo</span>
-                    <ExternalLinkIcon className="h-4 w-4 stroke-[2.5px]" />
-                </Link>
+                <Subtitle href="https://codepen.io/gibsonmurray/pen/gONaLwy">
+                    Codepen Demo
+                </Subtitle>
             }
             imgs={images}
             content={
@@ -83,9 +83,7 @@ function ParallaxSeasons() {
                         I only used <GSAPLink /> 🪄 to create the animations.
                         This is all done with vanilla <JavaScriptLink /> . I did
                         not like doing it in vanilla JS, but I wanted to see how
-                        far I could get without tools like{" "}
-                        <ReactLink />{" "}
-                        ⚛️.
+                        far I could get without tools like <ReactLink /> ⚛️.
                     </span>
                 </div>
             }

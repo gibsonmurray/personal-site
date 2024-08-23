@@ -69,7 +69,7 @@ function Bubble(props: {
         <motion.button
             ref={bubbleRef}
             title={title}
-            className={`${className} bubble relative flex h-[200px] w-[200px] cursor-pointer items-center justify-center rounded-full shadow-md shadow-zinc-400/5 scale-0`}
+            className={`${className} bubble relative flex h-[150px] w-[150px] md:h-[200px] md:w-[200px] cursor-pointer items-center justify-center rounded-full shadow-md shadow-zinc-400/5 scale-0`}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onClick={handleClick}
@@ -119,7 +119,6 @@ function Bubble(props: {
                     src={thumbnail}
                     alt="thumbnail"
                     fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     priority
                 />
             </motion.div>

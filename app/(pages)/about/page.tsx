@@ -1,5 +1,6 @@
 import ExpandedBubble from "@/app/(components)/ExpandedBubble"
 import { CodepenLink } from "@/app/(components)/ReusedLinks"
+import Subtitle from "@/app/(components)/Subtitle"
 
 const links = [
     {
@@ -61,13 +62,15 @@ function About() {
             title="About Me"
             links={links}
             subtitle={
-                <span className="text-xl font-semibold text-zinc-600">
-                    Gibson Murray
-                    <span className="text-base font-medium text-zinc-600">
-                        {" "}
-                        - Front-End Developer
+                <Subtitle>
+                    <span className="text-xl font-semibold text-zinc-600">
+                        Gibson Murray
+                        <span className="text-base font-medium text-zinc-600">
+                            {" "}
+                            - Front-End Developer
+                        </span>
                     </span>
-                </span>
+                </Subtitle>
             }
             imgs={images}
             content={

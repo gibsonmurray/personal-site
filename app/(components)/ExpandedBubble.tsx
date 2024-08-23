@@ -100,7 +100,7 @@ function ExpandedBubble(props: {
             }}
         >
             <motion.div
-                className="container absolute top-0 flex min-h-screen max-w-lg flex-col flex-wrap items-center justify-start gap-10 py-10"
+                className="container absolute top-0 flex min-h-screen max-w-lg flex-col flex-wrap items-center justify-start gap-10 p-10 md:px-0 md:py-10"
                 initial="hidden"
                 animate={backClicked ? "hidden" : "visible"}
                 variants={containerVariants}
@@ -157,7 +157,7 @@ function ExpandedBubble(props: {
                 {/* Image and Title */}
                 <motion.div
                     variants={childVariants}
-                    className="flex w-full items-center justify-center gap-4"
+                    className="flex w-full flex-col items-center justify-center gap-4 md:flex-row"
                 >
                     <Link
                         href={props.mainLink || "#"}
@@ -177,11 +177,13 @@ function ExpandedBubble(props: {
                         />
                     </Link>
                     <div className="flex h-full w-full flex-col flex-wrap items-start justify-center gap-2">
-                        <span className="text-3xl font-bold text-zinc-800">
+                        <span className="w-full text-center text-3xl font-bold text-zinc-800 md:text-left">
                             {props.title}
                         </span>
-                        {props.subtitle}
-                        <span className="flex w-full flex-wrap items-center justify-start gap-1 text-base font-medium text-zinc-300">
+                        <span className="w-full text-center md:text-left">
+                            {props.subtitle}
+                        </span>
+                        <span className="flex w-full flex-wrap items-center justify-center md:justify-start gap-1 text-base font-medium text-zinc-300">
                             {props.links?.map((link, i) => (
                                 <span key={`${link.text}-${i}`}>
                                     <InlineLink

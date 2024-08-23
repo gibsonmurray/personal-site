@@ -24,7 +24,10 @@ function Home() {
         ) as NodeListOf<HTMLElement>
         bubbles.forEach((bubble) => {
             const dist = distanceFromCenter(bubble)
-            const scale = Math.max(1 - Math.pow(dist / 500, 2.5), 0)
+            let scale = Math.max(1 - Math.pow(dist / 500, 2.5), 0)
+            if (window.innerWidth < 768) {
+                scale = Math.max(1 - Math.pow(dist / 300, 2.5), 0)
+            }
             if (initAnimationDone) {
                 // subtle scale down animation, less choppy
                 gsap.to(bubble, {
@@ -111,6 +114,10 @@ function Home() {
             $main.addEventListener("touchend", handleTouchEnd)
         }
 
+        window.addEventListener("resize", () => {
+            window.location.reload()
+        })
+
         return () => {
             $main.removeEventListener("wheel", handleWheel)
             $main.removeEventListener("mousedown", handleMouseDown)
@@ -161,10 +168,10 @@ function Home() {
         >
             <main
                 ref={mainRef}
-                className="absolute flex h-[10000px] w-[10000px] cursor-grab flex-col items-center justify-center active:cursor-grabbing -translate-x-[100px]"
+                className="absolute flex h-[10000px] w-[10000px] cursor-grab flex-col items-center justify-center -translate-x-[100px] active:cursor-grabbing"
             >
                 {rows.map((cols, i) => {
-                    const rowOffset = 20
+                    const rowOffset = window.innerWidth < 768 ? 5 : 20
                     const colOffset = 100
                     const offsetY =
                         (Math.floor(rows.length / 2) - i) * rowOffset

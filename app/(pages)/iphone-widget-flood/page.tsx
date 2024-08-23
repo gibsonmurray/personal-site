@@ -1,6 +1,7 @@
 import ExpandedBubble from "@/app/(components)/ExpandedBubble"
 import InlineLink from "@/app/(components)/InlineLink"
 import { CodepenLink, GSAPLink } from "@/app/(components)/ReusedLinks"
+import Subtitle from "@/app/(components)/Subtitle"
 import { ExternalLinkIcon } from "lucide-react"
 import Link from "next/link"
 
@@ -52,14 +53,9 @@ function iPhoneWidgetFlood() {
             title="iPhone Widget Flood"
             links={links}
             subtitle={
-                <Link
-                    href="https://codepen.io/gibsonmurray/pen/RwEQKrY"
-                    target="_blank"
-                    className="flex items-center justify-center gap-1 text-zinc-600 underline-offset-2 hover:underline"
-                >
-                    <span className="text-base font-medium">Codepen Demo</span>
-                    <ExternalLinkIcon className="h-4 w-4 stroke-[2.5px]" />
-                </Link>
+                <Subtitle href="https://codepen.io/gibsonmurray/pen/RwEQKrY">
+                    Codepen Demo
+                </Subtitle>
             }
             imgs={images}
             content={
