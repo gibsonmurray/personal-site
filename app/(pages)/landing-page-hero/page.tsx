@@ -36,11 +36,6 @@ const images = [
         src: "/images/landing-page-hero/2.jpeg",
     },
     {
-        title: "Landing Page Hero: Blur Follows",
-        href: "https://codepen.io/gibsonmurray/pen/OJdzxyK",
-        src: "/images/landing-page-hero/3.jpeg",
-    },
-    {
         title: "Landing Page Hero: Button Animation",
         href: "https://codepen.io/gibsonmurray/pen/OJdzxyK",
         src: "/images/landing-page-hero/1.jpeg",

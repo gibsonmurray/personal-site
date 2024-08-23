@@ -31,19 +31,14 @@ const links = [
 
 const images = [
     {
-        title: "iPad Parallax Scroll: Right Corner",
-        href: "https://codepen.io/gibsonmurray/pen/BaMjoaP",
-        src: "/images/ipad-parallax-scroll/r.png",
-    },
-    {
-        title: "iPad Parallax Scroll: Center",
-        href: "https://codepen.io/gibsonmurray/pen/BaMjoaP",
-        src: "/images/ipad-parallax-scroll/m.jpeg",
-    },
-    {
         title: "iPad Parallax Scroll: Left Corner",
         href: "https://codepen.io/gibsonmurray/pen/BaMjoaP",
         src: "/images/ipad-parallax-scroll/l.jpeg",
+    },
+    {
+        title: "iPad Parallax Scroll: Right Corner",
+        href: "https://codepen.io/gibsonmurray/pen/BaMjoaP",
+        src: "/images/ipad-parallax-scroll/r.png",
     },
 ]
 

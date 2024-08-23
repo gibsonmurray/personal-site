@@ -47,11 +47,9 @@ function ExpandedBubble(props: {
     }
 
     const rotations = useMemo(() => {
-        return [
-            Math.random() * 20 - 10,
-            Math.random() * 20 - 10,
-            Math.random() * 20 - 10,
-        ]
+        return Array.from({ length: props.imgs!.length }).map(
+            () => Math.random() * 20 - 10,
+        )
     }, [])
 
     const containerVariants = {
@@ -183,7 +181,7 @@ function ExpandedBubble(props: {
                         <span className="w-full text-center md:text-left">
                             {props.subtitle}
                         </span>
-                        <span className="flex w-full flex-wrap items-center justify-center md:justify-start gap-1 text-base font-medium text-zinc-300">
+                        <span className="flex w-full flex-wrap items-center justify-center gap-1 text-base font-medium text-zinc-300 md:justify-start">
                             {props.links?.map((link, i) => (
                                 <span key={`${link.text}-${i}`}>
                                     <InlineLink
@@ -204,7 +202,7 @@ function ExpandedBubble(props: {
 
                 {/* Example Imgs/Links */}
                 <motion.div
-                    className="flex h-52 w-full items-center justify-center"
+                    className="flex h-44 md:h-52 w-full items-center justify-center"
                     variants={containerVariants}
                 >
                     {props.imgs?.map((imageData, idx) => (

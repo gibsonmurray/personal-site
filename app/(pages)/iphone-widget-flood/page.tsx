@@ -35,11 +35,6 @@ const images = [
         src: "/images/iphone-widget-flood/l.png",
     },
     {
-        title: "iPhone Widget Flood: Center",
-        href: "https://codepen.io/gibsonmurray/pen/RwEQKrY",
-        src: "/images/iphone-widget-flood/c.png",
-    },
-    {
         title: "iPhone Widget Flood: Right",
         href: "https://codepen.io/gibsonmurray/pen/RwEQKrY",
         src: "/images/iphone-widget-flood/r.png",

@@ -34,11 +34,6 @@ const images = [
         href: "https://codepen.io/gibsonmurray/pen/MWRJajj",
         src: "/images/dune-thumper/thumper-1.png",
     },
-    {
-        title: "Dune Thumper: Scene",
-        href: "https://codepen.io/gibsonmurray/pen/MWRJajj",
-        src: "/images/dune-thumper/thumper-3.png",
-    },
 ]
 
 function DuneThumper() {
