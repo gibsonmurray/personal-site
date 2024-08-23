@@ -9,7 +9,8 @@ export const metadata: Metadata = {
         template: "%s | Gibson Murray",
         default: "Gibson Murray",
     },
-    description: "Welcome to my portfolio showcasing my front-end work!",
+    description:
+        "Gibson Murray's personal website. A portfolio of web development projects.",
 }
 
 export default function RootLayout({
