@@ -90,7 +90,7 @@ function ExpandedBubble(props: {
 
     return (
         <motion.div
-            className="relative flex h-svh w-screen flex-col items-center justify-start overflow-y-auto"
+            className="relative flex h-svh w-screen flex-col items-center justify-start overflow-y-auto pb-10"
             style={{ backgroundColor: props.color }}
             animate={{
                 opacity: backClicked ? 0 : 1,

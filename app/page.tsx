@@ -6,6 +6,7 @@ import Bubble from "./(components)/Bubble"
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
+import { useRouter } from "next/navigation"
 
 function Home() {
     const containerRef = useRef<HTMLDivElement>(null)
@@ -192,7 +193,7 @@ function Home() {
             >
                 {rows.map((cols, i) => {
                     const rowOffset = screenWidth < 768 ? 5 : 20
-                    const colOffset = screenWidth < 768 ? -25 : 100
+                    const colOffset = 100
                     const offsetY =
                         (Math.floor(rows.length / 2) - i) * rowOffset
                     let offsetX = cols % 2 !== 0 ? ((i + 1) % 2) * colOffset : 0
