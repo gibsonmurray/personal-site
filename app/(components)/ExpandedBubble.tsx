@@ -90,7 +90,7 @@ function ExpandedBubble(props: {
 
     return (
         <motion.div
-            className="relative flex min-h-screen w-screen flex-col items-center justify-start overflow-y-auto"
+            className="relative flex h-svh w-screen flex-col items-center justify-start overflow-y-auto"
             style={{ backgroundColor: props.color }}
             animate={{
                 opacity: backClicked ? 0 : 1,
@@ -100,7 +100,7 @@ function ExpandedBubble(props: {
             }}
         >
             <motion.div
-                className="container absolute top-0 flex min-h-screen max-w-lg flex-col flex-wrap items-center justify-start gap-10 p-5 md:px-0 md:py-10"
+                className="container flex max-w-lg flex-col flex-wrap items-center justify-start gap-10 p-5 md:px-0 md:py-10"
                 initial="hidden"
                 animate={backClicked ? "hidden" : "visible"}
                 variants={containerVariants}
