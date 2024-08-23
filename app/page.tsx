@@ -3,7 +3,7 @@
 import Row from "./(components)/Row"
 import { bubbles, rows } from "./bubbles"
 import Bubble from "./(components)/Bubble"
-import { useLayoutEffect, useRef, useState } from "react"
+import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 
@@ -18,6 +18,26 @@ function Home() {
     const [isDragging, setIsDragging] = useState(false)
     const [initAnimationDone, setInitAnimationDone] = useState(false)
 
+    const [screenWidth, setScreenWidth] = useState(() => {
+        if (typeof window !== "undefined") {
+            return window.innerWidth
+        }
+        return 0
+    })
+
+    useEffect(() => {
+        const handleResize = () => {
+            setScreenWidth(window.innerWidth)
+        }
+        handleResize()
+
+        window.addEventListener("resize", handleResize)
+
+        return () => {
+            window.removeEventListener("resize", handleResize)
+        }
+    }, [])
+
     function setBubbleScales() {
         const bubbles = document.querySelectorAll(
             ".bubble",
@@ -25,7 +45,7 @@ function Home() {
         bubbles.forEach((bubble) => {
             const dist = distanceFromCenter(bubble)
             let scale = Math.max(1 - Math.pow(dist / 500, 2.5), 0)
-            if (window.innerWidth < 768) {
+            if (screenWidth < 768) {
                 scale = Math.max(1 - Math.pow(dist / 300, 2.5), 0)
             }
             if (initAnimationDone) {
@@ -171,7 +191,7 @@ function Home() {
                 className="absolute flex h-[10000px] w-[10000px] cursor-grab flex-col items-center justify-center -translate-x-[100px] active:cursor-grabbing"
             >
                 {rows.map((cols, i) => {
-                    const rowOffset = window.innerWidth < 768 ? 5 : 20
+                    const rowOffset = screenWidth < 768 ? 5 : 20
                     const colOffset = 100
                     const offsetY =
                         (Math.floor(rows.length / 2) - i) * rowOffset

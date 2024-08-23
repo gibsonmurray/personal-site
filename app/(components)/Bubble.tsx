@@ -31,6 +31,34 @@ function Bubble(props: {
     const bubbleRef = useRef(null)
     const [scaleValue, setScaleValue] = useState(1)
 
+    const [screenWidth, setScreenWidth] = useState(() => {
+        if (typeof window !== "undefined") {
+            return window.innerWidth
+        }
+        return 0
+    })
+    
+    const [screenHeight, setScreenHeight] = useState(() => {
+        if (typeof window !== "undefined") {
+            return window.innerHeight
+        }
+        return 0
+    })
+
+    useEffect(() => {
+        const handleResize = () => {
+            setScreenWidth(window.innerWidth)
+            setScreenHeight(window.innerHeight)
+        }
+        handleResize()
+
+        window.addEventListener("resize", handleResize)
+
+        return () => {
+            window.removeEventListener("resize", handleResize)
+        }
+    }, [])
+
     const handleClick = () => {
         setClicked(true)
     }
@@ -69,7 +97,7 @@ function Bubble(props: {
         <motion.button
             ref={bubbleRef}
             title={title}
-            className={`${className} bubble relative flex h-[150px] w-[150px] md:h-[200px] md:w-[200px] cursor-pointer items-center justify-center rounded-full shadow-md shadow-zinc-400/5 scale-0`}
+            className={`${className} bubble relative flex h-[150px] w-[150px] cursor-pointer items-center justify-center rounded-full shadow-md shadow-zinc-400/5 scale-0 md:h-[200px] md:w-[200px]`}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onClick={handleClick}
@@ -87,10 +115,10 @@ function Bubble(props: {
                 animate={{
                     backgroundColor: clicked ? colors[1] : colors[0],
                     width: clicked
-                        ? Math.max(window.innerWidth, window.innerHeight) * 3
+                        ? Math.max(screenWidth, screenHeight) * 3
                         : 200,
                     height: clicked
-                        ? Math.max(window.innerWidth, window.innerHeight) * 3
+                        ? Math.max(screenWidth, screenHeight) * 3
                         : 200,
                     transition: {
                         duration: 0.5,
