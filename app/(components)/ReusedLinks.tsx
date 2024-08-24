@@ -1,4 +1,5 @@
 import InlineLink from "./InlineLink"
+import { useTheme } from "@/hooks/Theme"
 
 export function GSAPLink() {
     return (
@@ -45,11 +46,12 @@ export function CSSLink() {
 }
 
 export function CodepenLink() {
+    const { theme } = useTheme()
     return (
         <InlineLink
             href="https://codepen.io/gibsonmurray"
             text="Codepen"
-            className="text-zinc-800"
+            className={theme === "dark" ? "text-zinc-200" : "text-zinc-800"}
             newTab
         />
     )

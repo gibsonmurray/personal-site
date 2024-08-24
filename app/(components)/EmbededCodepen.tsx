@@ -7,6 +7,7 @@ import { LoaderCircleIcon } from "lucide-react"
 function EmbededCodepen(props: { penHash: string; penTitle: string }) {
     const [loaded, setLoaded] = useState(false)
 
+
     useEffect(() => {
         const script = document.createElement("script")
         script.src = "https://cpwebassets.codepen.io/assets/embed/ei.js"
@@ -51,7 +52,7 @@ function EmbededCodepen(props: { penHash: string; penTitle: string }) {
                     data-slug-hash={props.penHash}
                     data-pen-title={props.penTitle}
                     data-user="gibsonmurray"
-                    className="codepen box-border flex resize items-center justify-center"
+                    className="codepen box-border flex items-center justify-center"
                 ></p>
                 <div
                     className={`pointer-events-none absolute left-0 top-0 h-full w-full rounded-2xl border-[6px] border-white/50 transition-all duration-300 md:rounded-3xl`}
