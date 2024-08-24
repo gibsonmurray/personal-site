@@ -6,6 +6,8 @@ import Bubble from "./(components)/Bubble"
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
+import ThemeToggle from "./(components)/ThemeToggle"
+import { useTheme } from "@/hooks/Theme"
 
 function Home() {
     const containerRef = useRef<HTMLDivElement>(null)
@@ -17,6 +19,8 @@ function Home() {
     })
     const [isDragging, setIsDragging] = useState(false)
     const [initAnimationDone, setInitAnimationDone] = useState(false)
+
+    const { theme } = useTheme()
 
     const [screenWidth, setScreenWidth] = useState(() => {
         if (typeof window !== "undefined") {
@@ -182,53 +186,60 @@ function Home() {
     })
 
     return (
-        <div
-            ref={containerRef}
-            className="relative flex h-screen w-screen flex-col items-center justify-center"
-        >
-            <main
-                ref={mainRef}
-                className="absolute flex h-[10000px] w-[10000px] cursor-grab flex-col items-center justify-center -translate-x-[100px] active:cursor-grabbing"
+        <>
+            <ThemeToggle className="absolute right-4 top-4 z-10 w-6" />
+
+            <div
+                ref={containerRef}
+                className="relative flex h-screen w-screen flex-col items-center justify-center"
             >
-                {bubbles.map((row, idx) => {
-                    const rowOffset = screenWidth < 768 ? 5 : 20
-                    const colOffset = 100
-                    const offsetY =
-                        (Math.floor(bubbles.length / 2) - idx) * rowOffset
-                    let offsetX =
-                        row.length % 2 !== 0 ? ((idx + 1) % 2) * colOffset : 0
-                    if (
-                        // if the row above is odd and the current row is even, add colOffset
-                        bubbles[idx - 1] &&
-                        bubbles[idx - 1].length % 2 !== 0 &&
-                        row.length % 2 === 0
-                    ) {
-                        offsetX = colOffset
-                    }
-                    return (
-                        <Row key={idx}>
-                            {bubbles[idx].map((bubble, j) => (
-                                <Bubble
-                                    key={j}
-                                    title={bubble.title}
-                                    link={bubble.link}
-                                    thumbnail={bubble.thumbnail}
-                                    colors={bubble.colors}
-                                    offsetX={offsetX}
-                                    offsetY={offsetY}
-                                    initAnimationDone={initAnimationDone}
-                                    className={
-                                        bubble.link === "/about"
-                                            ? "center-bubble"
-                                            : ""
-                                    }
-                                />
-                            ))}
-                        </Row>
-                    )
-                })}
-            </main>
-        </div>
+                <main
+                    ref={mainRef}
+                    className={`absolute flex h-[10000px] w-[10000px] cursor-grab flex-col items-center justify-center -translate-x-[100px] active:cursor-grabbing transition-[background-color] duration-500 ${theme === "light" ? "bg-zinc-200" : "bg-zinc-900"}`}
+                >
+                    {bubbles.map((row, idx) => {
+                        const rowOffset = screenWidth < 768 ? 5 : 20
+                        const colOffset = 100
+                        const offsetY =
+                            (Math.floor(bubbles.length / 2) - idx) * rowOffset
+                        let offsetX =
+                            row.length % 2 !== 0
+                                ? ((idx + 1) % 2) * colOffset
+                                : 0
+                        if (
+                            // if the row above is odd and the current row is even, add colOffset
+                            bubbles[idx - 1] &&
+                            bubbles[idx - 1].length % 2 !== 0 &&
+                            row.length % 2 === 0
+                        ) {
+                            offsetX = colOffset
+                        }
+                        return (
+                            <Row key={idx}>
+                                {bubbles[idx].map((bubble, j) => (
+                                    <Bubble
+                                        key={j}
+                                        title={bubble.title}
+                                        path={bubble.path}
+                                        thumbnail={bubble.thumbnail}
+                                        colors={bubble.colors}
+                                        darkColors={bubble.darkColors}
+                                        offsetX={offsetX}
+                                        offsetY={offsetY}
+                                        initAnimationDone={initAnimationDone}
+                                        className={
+                                            bubble.path === "/about"
+                                                ? "center-bubble"
+                                                : ""
+                                        }
+                                    />
+                                ))}
+                            </Row>
+                        )
+                    })}
+                </main>
+            </div>
+        </>
     )
 }
 

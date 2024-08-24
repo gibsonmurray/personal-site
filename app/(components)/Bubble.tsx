@@ -5,31 +5,34 @@ import { motion } from "framer-motion"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
 import gsap from "gsap"
+import { useTheme } from "@/hooks/Theme"
 
 function Bubble(props: {
     title: string
-    link: string
+    path: string
     thumbnail: string
     colors: string[]
+    darkColors: string[]
     offsetX: number
     offsetY: number
     initAnimationDone: boolean
     className?: string
 }) {
-    const {
-        title,
-        link,
-        thumbnail,
-        colors,
-        offsetX,
-        offsetY,
-        initAnimationDone,
-        className,
-    } = props
     const [clicked, setClicked] = useState(false)
     const router = useRouter()
     const bubbleRef = useRef(null)
     const [scaleValue, setScaleValue] = useState(1)
+
+    const { theme } = useTheme()
+    const [themeColors, setThemeColors] = useState(
+        theme === "dark" ? props.darkColors : props.colors,
+    )
+
+    useEffect(() => {
+        setThemeColors(theme === "dark" ? props.darkColors : props.colors)
+    }, [theme])
+
+    const { setBtnVisible } = useTheme()
 
     const [screenWidth, setScreenWidth] = useState(() => {
         if (typeof window !== "undefined") {
@@ -37,7 +40,7 @@ function Bubble(props: {
         }
         return 0
     })
-    
+
     const [screenHeight, setScreenHeight] = useState(() => {
         if (typeof window !== "undefined") {
             return window.innerHeight
@@ -61,10 +64,11 @@ function Bubble(props: {
 
     const handleClick = () => {
         setClicked(true)
+        setBtnVisible(false)
     }
 
     const getScaleValue = () => {
-        if (!bubbleRef.current || !initAnimationDone) return 1
+        if (!bubbleRef.current || !props.initAnimationDone) return 1
         const transform = (bubbleRef.current! as HTMLElement).style.transform
         const scaleMatch = transform.match(/scale\(([^)]+)\)/)
         const sv = scaleMatch ? parseFloat(scaleMatch[1]) : 1
@@ -73,10 +77,10 @@ function Bubble(props: {
 
     useEffect(() => {
         setScaleValue(getScaleValue())
-    }, [initAnimationDone])
+    }, [props.initAnimationDone])
 
     const handleMouseEnter = () => {
-        if (!bubbleRef.current || !initAnimationDone) return
+        if (!bubbleRef.current || !props.initAnimationDone) return
         const sv = getScaleValue()
         setScaleValue(sv)
         gsap.to(bubbleRef.current, {
@@ -86,7 +90,7 @@ function Bubble(props: {
     }
 
     const handleMouseLeave = () => {
-        if (!bubbleRef.current || !initAnimationDone) return
+        if (!bubbleRef.current || !props.initAnimationDone) return
         gsap.to(bubbleRef.current, {
             scale: scaleValue,
             ease: "elastic.out(0.8, 0.4)",
@@ -96,24 +100,23 @@ function Bubble(props: {
     return (
         <motion.button
             ref={bubbleRef}
-            title={title}
-            className={`${className} bubble relative flex h-[150px] w-[150px] cursor-pointer items-center justify-center rounded-full shadow-md shadow-zinc-400/5 scale-0 md:h-[200px] md:w-[200px]`}
+            title={props.title}
+            className={`${props.className} bubble relative flex h-[150px] w-[150px] cursor-pointer items-center justify-center rounded-full shadow-md shadow-zinc-400/5 scale-0 md:h-[200px] md:w-[200px]`}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onClick={handleClick}
             style={{
                 borderRadius: 9999,
                 overflow: clicked ? "visible" : "hidden",
-                borderColor: clicked ? "transparent" : "rgb(212 212 216 / 0.9)",
                 zIndex: clicked ? 100 : 0,
-                translate: `${offsetX}px ${offsetY}px`,
+                translate: `${props.offsetX}px ${props.offsetY}px`,
                 pointerEvents: "none",
             }}
         >
             <motion.div
                 className="absolute flex h-full w-full items-center justify-center rounded-full opacity-0"
                 animate={{
-                    backgroundColor: clicked ? colors[1] : colors[0],
+                    backgroundColor: clicked ? themeColors[1] : themeColors[0],
                     width: clicked
                         ? Math.max(screenWidth, screenHeight) * 3
                         : 200,
@@ -127,12 +130,12 @@ function Bubble(props: {
                 }}
                 onAnimationComplete={() => {
                     if (clicked) {
-                        router.push(link)
+                        router.push(props.path)
                     }
                 }}
                 style={{
                     opacity: clicked ? 1 : 0,
-                    backgroundColor: colors[0],
+                    backgroundColor: themeColors[0],
                 }}
             ></motion.div>
 
@@ -143,8 +146,8 @@ function Bubble(props: {
                 }}
             >
                 <Image
-                    className="rounded-full object-cover h-full w-full"
-                    src={thumbnail}
+                    className="h-full w-full rounded-full object-cover"
+                    src={props.thumbnail}
                     alt="thumbnail"
                     fill
                     sizes="(max-width: 640px) 300px, (max-width: 768px) 400px, 500px"
@@ -152,7 +155,7 @@ function Bubble(props: {
                 />
             </motion.div>
             <motion.div
-                className={`absolute left-0 top-0 h-full w-full rounded-full border-4 border-zinc-300/70`}
+                className={`absolute left-0 top-0 h-full w-full rounded-full border-4 transition-[border-color] duration-500 ${theme === "light" ? "border-zinc-300/70" : "border-zinc-800/70"}`}
                 style={{ opacity: clicked ? 0 : 1 }}
             />
         </motion.button>

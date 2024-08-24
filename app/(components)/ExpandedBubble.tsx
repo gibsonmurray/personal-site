@@ -11,17 +11,20 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { MouseEvent, ReactNode, useMemo, useState } from "react"
+import { MouseEvent, ReactNode, useEffect, useMemo, useState } from "react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import EmbededCodepen from "./EmbededCodepen"
+import ThemeToggle from "./ThemeToggle"
+import { useTheme } from "@/hooks/Theme"
 
 function ExpandedBubble(props: {
     color: string
+    darkColor: string
     thumbnail: string
     title: string
     subtitle?: ReactNode | string
-    links?: {
+    skills?: {
         text: string
         href: string
         className?: string
@@ -90,10 +93,19 @@ function ExpandedBubble(props: {
 
     const penHash = props.mainLink?.split("/").pop()!
 
+    const { theme, setBtnVisible } = useTheme()
+
+    useEffect(() => {
+        setBtnVisible(true)
+    }, [])
+
     return (
         <motion.div
-            className="relative flex h-svh w-screen flex-col items-center justify-start overflow-y-auto pb-16"
-            style={{ backgroundColor: props.color }}
+            className="relative flex h-svh w-screen flex-col items-center justify-start overflow-y-auto pb-16 transition-[background-color] duration-500"
+            style={{
+                backgroundColor:
+                    theme === "dark" ? props.darkColor : props.color,
+            }}
             animate={{
                 opacity: backClicked ? 0 : 1,
                 transition: {
@@ -109,7 +121,7 @@ function ExpandedBubble(props: {
             >
                 {/* Header */}
                 <motion.div
-                    className="flex w-full items-center justify-between text-zinc-600"
+                    className={`flex w-full items-center justify-between transition-[color] duration-500 ${theme === "dark" ? "text-zinc-300" : "text-zinc-600"}`}
                     variants={childVariants}
                 >
                     <Link
@@ -130,6 +142,7 @@ function ExpandedBubble(props: {
                     </Link>
 
                     <div className="flex items-center justify-center gap-3">
+                        <ThemeToggle className="h-full" />
                         <Link
                             href="https://github.com/gibsonmurray"
                             target="_blank"
@@ -179,23 +192,27 @@ function ExpandedBubble(props: {
                         />
                     </Link>
                     <div className="flex h-full w-full flex-col flex-wrap items-start justify-center gap-2">
-                        <span className="w-full text-center text-3xl font-bold text-zinc-800 md:text-left">
+                        <span
+                            className={`w-full text-center text-3xl font-bold transition-[color] duration-500 ${theme === "dark" ? "text-zinc-200" : "text-zinc-800"} md:text-left`}
+                        >
                             {props.title}
                         </span>
                         <span className="w-full text-center md:text-left">
                             {props.subtitle}
                         </span>
-                        <span className="flex w-full flex-wrap items-center justify-center gap-1 text-base font-medium text-zinc-300 md:justify-start">
-                            {props.links?.map((link, i) => (
-                                <span key={`${link.text}-${i}`}>
+                        <span
+                            className={`flex w-full flex-wrap items-center justify-center gap-1 text-base font-medium transition-[color] duration-500 ${theme === "dark" ? "text-zinc-300" : "text-zinc-600"} md:justify-start`}
+                        >
+                            {props.skills?.map((skill, i) => (
+                                <span key={`${skill.text}-${i}`}>
                                     <InlineLink
-                                        text={link.text}
-                                        href={link.href}
-                                        className={link.className}
-                                        newTab={link.newTab}
+                                        text={skill.text}
+                                        href={skill.href}
+                                        className={skill.className}
+                                        newTab={skill.newTab}
                                     />
-                                    {props.links &&
-                                        i < props.links.length - 1 && (
+                                    {props.skills &&
+                                        i < props.skills.length - 1 && (
                                             <span>{" | "}</span>
                                         )}
                                 </span>
@@ -230,7 +247,10 @@ function ExpandedBubble(props: {
                     ))}
                 </motion.div>
                 {/* Content */}
-                <motion.div className="w-full" variants={childVariants}>
+                <motion.div
+                    className={`flex w-full flex-col items-start justify-center gap-3 px-6 leading-7 transition-[color] duration-500 ${theme === "dark" ? "text-zinc-300" : "text-zinc-600"}`}
+                    variants={childVariants}
+                >
                     {props.content}
                 </motion.div>
 
@@ -240,7 +260,9 @@ function ExpandedBubble(props: {
                         variants={childVariants}
                         className="flex w-full flex-col items-start justify-center gap-2 px-5"
                     >
-                        <div className="ml-2 flex items-center justify-center gap-2 text-lg font-semibold text-zinc-800">
+                        <div
+                            className={`ml-2 flex items-center justify-center gap-2 text-lg font-semibold transition-[color] duration-500 ${theme === "dark" ? "text-zinc-200" : "text-zinc-800"}`}
+                        >
                             <RadioIcon className="text-red-500" />
                             Live Demo:
                         </div>
