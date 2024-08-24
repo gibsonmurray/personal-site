@@ -8,6 +8,7 @@ import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 import ThemeToggle from "./(components)/ThemeToggle"
 import { useTheme } from "@/hooks/Theme"
+import { motion } from "framer-motion"
 
 function Home() {
     const containerRef = useRef<HTMLDivElement>(null)
@@ -187,7 +188,14 @@ function Home() {
 
     return (
         <>
-            <ThemeToggle className="absolute right-4 top-4 z-10 w-6" />
+            <motion.div
+                className="absolute right-4 top-4 z-10 w-6"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+            >
+                <ThemeToggle />
+            </motion.div>
 
             <div
                 ref={containerRef}
@@ -195,7 +203,7 @@ function Home() {
             >
                 <main
                     ref={mainRef}
-                    className={`absolute flex h-[10000px] w-[10000px] cursor-grab flex-col items-center justify-center -translate-x-[100px] active:cursor-grabbing transition-[background-color] duration-500 ${theme === "light" ? "bg-zinc-200" : "bg-zinc-900"}`}
+                    className={`absolute flex h-[10000px] w-[10000px] cursor-grab flex-col items-center justify-center transition-[background-color] duration-500 -translate-x-[100px] active:cursor-grabbing ${theme === "light" ? "bg-zinc-200" : "bg-zinc-900"}`}
                 >
                     {bubbles.map((row, idx) => {
                         const rowOffset = screenWidth < 768 ? 5 : 20
