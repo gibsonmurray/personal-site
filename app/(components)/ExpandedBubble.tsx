@@ -16,7 +16,10 @@ import Image from "next/image"
 import { useRouter } from "next/navigation"
 import EmbededCodepen from "./EmbededCodepen"
 import ThemeToggle from "./ThemeToggle"
-import { useTheme } from "@/hooks/Theme"
+
+import { useAtom } from "jotai"
+
+import {themeState, btnVisibleState} from "./ThemeToggle"
 
 function ExpandedBubble(props: {
     color: string
@@ -93,7 +96,8 @@ function ExpandedBubble(props: {
 
     const penHash = props.mainLink?.split("/").pop()!
 
-    const { theme, setBtnVisible } = useTheme()
+    const [theme] = useAtom(themeState)
+    const [_, setBtnVisible] = useAtom(btnVisibleState)
 
     useEffect(() => {
         setBtnVisible(true)

@@ -1,9 +1,6 @@
 import type { Metadata } from "next"
-import { Figtree } from "next/font/google"
 import "./globals.css"
-import { ThemeProvider } from "@/hooks/Theme"
-
-const figtree = Figtree({ subsets: ["latin"] })
+import Body from "./Body"
 
 export const metadata: Metadata = {
     title: {
@@ -11,7 +8,7 @@ export const metadata: Metadata = {
         default: "Gibson Murray",
     },
     description:
-        "Gibson Murray's personal website. A portfolio of web development projects.",
+        "My personal website - A portfolio of my best web development projects.",
 }
 
 export default function RootLayout({
@@ -21,11 +18,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <ThemeProvider>
-                <body className={`${figtree.className} overflow-hidden`}>
-                    {children}
-                </body>
-            </ThemeProvider>
+            <Body>{children}</Body>
         </html>
     )
 }

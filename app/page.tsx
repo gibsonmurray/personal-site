@@ -7,8 +7,10 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 import ThemeToggle from "./(components)/ThemeToggle"
-import { useTheme } from "@/hooks/Theme"
 import { motion } from "framer-motion"
+import { useAtom } from "jotai"
+
+import { themeState } from "./(components)/ThemeToggle"
 
 function Home() {
     const containerRef = useRef<HTMLDivElement>(null)
@@ -21,7 +23,7 @@ function Home() {
     const [isDragging, setIsDragging] = useState(false)
     const [initAnimationDone, setInitAnimationDone] = useState(false)
 
-    const { theme } = useTheme()
+    const [theme] = useAtom(themeState)
 
     const [screenWidth, setScreenWidth] = useState(() => {
         if (typeof window !== "undefined") {
@@ -191,7 +193,7 @@ function Home() {
             <motion.div
                 className="absolute right-4 top-4 z-10 w-6"
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1, }}
+                animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
             >
                 <ThemeToggle />
