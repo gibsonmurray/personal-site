@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { Figtree } from "next/font/google"
 import "./globals.css"
-import { ThemeProvider } from "@/hooks/Theme"
 
 const figtree = Figtree({ subsets: ["latin"] })
 
@@ -21,11 +20,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <ThemeProvider>
-                <body className={`${figtree.className} overflow-hidden`}>
-                    {children}
-                </body>
-            </ThemeProvider>
+            <body className={`${figtree.className} overflow-hidden`}>
+                {children}
+            </body>
         </html>
     )
 }

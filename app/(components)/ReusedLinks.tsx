@@ -1,5 +1,7 @@
 import InlineLink from "./InlineLink"
-import { useTheme } from "@/hooks/Theme"
+import { useAtom } from "jotai"
+
+import { themeState } from "./ThemeToggle"
 
 export function GSAPLink() {
     return (
@@ -46,7 +48,7 @@ export function CSSLink() {
 }
 
 export function CodepenLink() {
-    const { theme } = useTheme()
+    const [theme] = useAtom(themeState)
     return (
         <InlineLink
             href="https://codepen.io/gibsonmurray"

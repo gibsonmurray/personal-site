@@ -3,10 +3,13 @@
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { LoaderCircleIcon } from "lucide-react"
+import { useAtom } from "jotai"
+
+import { themeState } from "./ThemeToggle"
 
 function EmbededCodepen(props: { penHash: string; penTitle: string }) {
     const [loaded, setLoaded] = useState(false)
-
+    const [theme] = useAtom(themeState)
 
     useEffect(() => {
         const script = document.createElement("script")
@@ -35,7 +38,9 @@ function EmbededCodepen(props: { penHash: string; penTitle: string }) {
                             },
                         }}
                     >
-                        <LoaderCircleIcon className="h-10 w-10 text-black/30" />
+                        <LoaderCircleIcon
+                            className={`h-10 w-10 ${theme === "light" ? "text-black/30" : "text-white/30"}`}
+                        />
                     </motion.div>
                 </div>
             )}

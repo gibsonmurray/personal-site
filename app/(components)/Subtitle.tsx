@@ -1,10 +1,12 @@
-import { useTheme } from "@/hooks/Theme"
 import { ExternalLinkIcon } from "lucide-react"
 import Link from "next/link"
 import { ReactNode } from "react"
+import { useAtom } from "jotai"
+
+import { themeState } from "./ThemeToggle"
 
 function Subtitle(props: { children?: ReactNode; href?: string }) {
-    const { theme } = useTheme()
+    const [theme] = useAtom(themeState)
 
     return (
         <Link

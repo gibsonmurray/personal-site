@@ -5,7 +5,10 @@ import { motion } from "framer-motion"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
 import gsap from "gsap"
-import { useTheme } from "@/hooks/Theme"
+
+import { useAtom } from "jotai"
+
+import {themeState, btnVisibleState} from "./ThemeToggle"
 
 function Bubble(props: {
     title: string
@@ -23,7 +26,7 @@ function Bubble(props: {
     const bubbleRef = useRef(null)
     const [scaleValue, setScaleValue] = useState(1)
 
-    const { theme } = useTheme()
+    const [theme] = useAtom(themeState)
     const [themeColors, setThemeColors] = useState(
         theme === "dark" ? props.darkColors : props.colors,
     )
@@ -32,7 +35,7 @@ function Bubble(props: {
         setThemeColors(theme === "dark" ? props.darkColors : props.colors)
     }, [theme])
 
-    const { setBtnVisible } = useTheme()
+    const [_, setBtnVisible] = useAtom(btnVisibleState)
 
     const [screenWidth, setScreenWidth] = useState(() => {
         if (typeof window !== "undefined") {
