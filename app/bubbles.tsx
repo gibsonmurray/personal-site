@@ -2,10 +2,12 @@ import InlineLink from "./(components)/InlineLink"
 import {
     CodepenLink,
     CSSLink,
+    FramerMotionLink,
     GSAPLink,
     HTMLLink,
     JavaScriptLink,
     ReactLink,
+    TailwindLink,
 } from "./(components)/ReusedLinks"
 import Subtitle from "./(components)/Subtitle"
 
@@ -293,6 +295,78 @@ export const bubbles = [
                     <span>
                         Parallax effects are very clean for the user but very
                         tedious for the developer.
+                    </span>
+                </>
+            ),
+        },
+        {
+            title: "Photography View Transitions",
+            path: "/photography-view-transitions",
+            mainLink: "https://codepen.io/gibsonmurray/pen/dyBKmJM",
+            thumbnail: "/images/thumbnails/photography-view-transitions.webp",
+            imgs: [
+                {
+                    title: "Photography View Transitions Img 1",
+                    src: "/images/photography-view-transitions/1.jpeg",
+                    className: "text-zinc-200 border-zinc-200",
+                },
+                {
+                    title: "Photography View Transitions Img 2",
+                    src: "/images/photography-view-transitions/2.png",
+                    className: "text-zinc-200 border-zinc-200",
+                },
+            ],
+            skills: [
+                {
+                    text: "React",
+                    href: "https://react.dev/",
+                    className: "text-blue-400",
+                    newTab: true,
+                },
+                {
+                    text: "TailwindCSS",
+                    href: "https://tailwindcss.com/",
+                    className: "text-cyan-500",
+                    newTab: true,
+                },
+                {
+                    text: "Framer Motion",
+                    href: "https://www.framer.com/motion/",
+                    className: "text-purple-700",
+                    newTab: true,
+                },
+            ],
+            colors: ["#ADC8D3", "#fffef4"],
+            darkColors: ["#2c2f3f", "#1a1a2e"],
+            subtitle: (
+                <Subtitle href="https://codepen.io/gibsonmurray/pen/dyBKmJM">
+                    Codepen Demo
+                </Subtitle>
+            ),
+            content: (
+                <>
+                    <span>
+                        This is an entry in a competition on{" "}
+                        <InlineLink
+                            href="https://x.com/wickedmishra/status/1828092758701342835"
+                            text="X/Twitter"
+                            className="text-[#508dff]"
+                            newTab
+                        />
+                        . I decided to go for a view transition effect for a
+                        social media-inspired design
+                    </span>
+                    <span>
+                        I used <ReactLink /> and <TailwindLink /> to create the
+                        UI, then <FramerMotionLink /> for the animations.
+                    </span>
+                    <span>
+                        This was a fun project! Only took a few hours and it is
+                        pretty small but I am happy with the result.{" "}
+                        <FramerMotionLink /> is a decent tool for <ReactLink />{" "}
+                        animations, however I noticed some limitations with
+                        seamless view transitions. I believe <GSAPLink /> would
+                        have done better here.
                     </span>
                 </>
             ),
