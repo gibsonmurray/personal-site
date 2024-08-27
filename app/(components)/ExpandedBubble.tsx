@@ -240,7 +240,7 @@ function ExpandedBubble(props: {
                                 idx={idx}
                                 title={imageData.title}
                                 src={imageData.src}
-                                href={imageData.href}
+                                href={imageData.href || props.mainLink}
                                 alt={imageData.title}
                                 rotations={rotations}
                                 hovering={hoveringImg}

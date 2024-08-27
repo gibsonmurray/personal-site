@@ -64,7 +64,40 @@ export function ReactLink() {
         <InlineLink
             href="https://react.dev/"
             text="React"
-            className="text-[#57C4DC]"
+            className="text-blue-400"
+            newTab
+        />
+    )
+}
+
+export function NextLink() {
+    return (
+        <InlineLink
+            href="https://nextjs.org/"
+            text="Next.js"
+            className="text-[#000]"
+            newTab
+        />
+    )
+}
+
+export function TailwindLink() {
+    return (
+        <InlineLink
+            href="https://tailwindcss.com/"
+            text="Tailwind"
+            className="text-cyan-500"
+            newTab
+        />
+    )
+}
+
+export function FramerMotionLink() {
+    return (
+        <InlineLink
+            href="https://www.framer.com/motion/"
+            text="Framer Motion"
+            className="text-purple-700"
             newTab
         />
     )
