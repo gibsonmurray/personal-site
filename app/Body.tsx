@@ -12,7 +12,7 @@ function Body(props: { children: ReactNode }) {
 
     return (
         <body
-            className={`${figtree.className} ${theme === "light" ? "bg-zinc-200" : "bg-zinc-900"} overflow-hidden`}
+            className={`${figtree.className} ${theme === "light" ? "bg-zinc-200" : "bg-zinc-900"} overflow-hidden transition-[background-color] duration-500`}
         >
             {props.children}
         </body>

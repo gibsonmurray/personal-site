@@ -19,7 +19,7 @@ import ThemeToggle from "./ThemeToggle"
 
 import { useAtom } from "jotai"
 
-import {themeState, btnVisibleState} from "./ThemeToggle"
+import { themeState, btnVisibleState } from "./ThemeToggle"
 
 function ExpandedBubble(props: {
     color: string
