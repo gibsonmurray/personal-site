@@ -6,7 +6,7 @@ export const days = [
         title: "...?",
         description:
             "Introduction to Framer Motion and what we will be building.",
-        date: "2022-01-01",
+        date: new Date().toDateString(),
         component: <Day1 />,
     },
 ]
