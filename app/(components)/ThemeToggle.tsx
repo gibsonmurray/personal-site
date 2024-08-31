@@ -7,7 +7,12 @@ import { atomWithStorage } from "jotai/utils"
 export const themeState = atomWithStorage<"light" | "dark">("theme", "light")
 export const btnVisibleState = atom(true)
 
-const ThemeToggle = (props: { className?: string }) => {
+const ThemeToggle = (
+    props: { className?: string; opaque?: boolean } = {
+        className: "",
+        opaque: true,
+    },
+) => {
     const [isToggled, setToggle] = useAtom(themeState)
     const [isBtnVisible, _] = useAtom(btnVisibleState)
 
@@ -19,7 +24,7 @@ const ThemeToggle = (props: { className?: string }) => {
         <DarkModeSwitch
             checked={isToggled === "dark"}
             onChange={handleToggle}
-            className={`transition ${isBtnVisible ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"} ${props.className}`}
+            className={`transition ${isBtnVisible ? `pointer-events-auto ${props.opaque ? "opacity-100" : "opacity-50"} hover:opacity-100` : "pointer-events-none opacity-0"} ${props.className}`}
             moonColor="rgb(212 212 216)" // text-zinc-300
             sunColor="rgb(82 82 91)" // text-zinc-600
         />

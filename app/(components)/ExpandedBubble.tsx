@@ -146,7 +146,7 @@ function ExpandedBubble(props: {
                     </Link>
 
                     <div className="flex items-center justify-center gap-3">
-                        <ThemeToggle className="h-full" />
+                        <ThemeToggle className="h-full" opaque />
                         <Link
                             href="https://github.com/gibsonmurray"
                             target="_blank"
