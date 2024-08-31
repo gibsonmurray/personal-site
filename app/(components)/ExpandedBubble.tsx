@@ -19,7 +19,7 @@ import ThemeToggle from "./ThemeToggle"
 
 import { useAtom } from "jotai"
 
-import {themeState, btnVisibleState} from "./ThemeToggle"
+import { themeState, btnVisibleState } from "./ThemeToggle"
 
 function ExpandedBubble(props: {
     color: string
@@ -146,7 +146,7 @@ function ExpandedBubble(props: {
                     </Link>
 
                     <div className="flex items-center justify-center gap-3">
-                        <ThemeToggle className="h-full" />
+                        <ThemeToggle className="h-full" opaque />
                         <Link
                             href="https://github.com/gibsonmurray"
                             target="_blank"

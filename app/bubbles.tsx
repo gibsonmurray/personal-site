@@ -472,7 +472,7 @@ export const bubbles = [
                     src: "https://creatorspace.imgix.net/users/cln54h71q00zbo901sy1cmbot/sJKfm3vMoZldxdCo-sticky%2520notes%2520thumbnail.png?w=1000&h=1000",
                 },
             ],
-            sills: [
+            skills: [
                 {
                     text: "JavaScript",
                     href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
@@ -725,83 +725,11 @@ export const bubbles = [
             ),
         },
         {
-            title: "Magic Terminal",
-            path: "/magic-terminal",
-            mainLink: "https://codepen.io/gibsonmurray/pen/dyBXxLG",
-            thumbnail: "/images/thumbnails/magic-terminal.webp",
-            imgs: [
-                {
-                    title: "Magic Terminal: Jumbled",
-                    src: "/images/magic-terminal/jumbled.png",
-                },
-                {
-                    title: "Magic Terminal: Math",
-                    src: "/images/magic-terminal/math.png",
-                },
-                {
-                    title: "Magic Terminal: Known",
-                    src: "/images/magic-terminal/known.png",
-                },
-            ],
-            skills: [
-                {
-                    text: "AI",
-                    href: "https://openai.com/api/",
-                    className: "text-purple-500",
-                    newTab: true,
-                },
-                {
-                    text: "JavaScript",
-                    href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-                    className: "text-amber-400",
-                    newTab: true,
-                },
-                {
-                    text: "HTML",
-                    href: "https://developer.mozilla.org/en-US/docs/Web/HTML",
-                    className: "text-orange-600",
-                    newTab: true,
-                },
-                {
-                    text: "CSS",
-                    href: "https://developer.mozilla.org/en-US/docs/Web/CSS",
-                    className: "text-sky-600",
-                    newTab: true,
-                },
-            ],
-            colors: ["#1C1D1F", "#e8e9ea"],
-            darkColors: ["#0d0d0d", "#1a1a1a"],
-            darkBorder: false,
-            subtitle: (
-                <Subtitle href="https://codepen.io/gibsonmurray/pen/dyBXxLG">
-                    Codepen Demo
-                </Subtitle>
-            ),
-            content: (
-                <>
-                    <span>
-                        Imagine a{" "}
-                        <InlineLink
-                            text="Bash shell"
-                            href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)"
-                            className="text-green-600"
-                            newTab
-                        />{" "}
-                        with knowledge of the universe and the future of what is
-                        to come... ✨
-                    </span>
-                    <span>
-                        The Magic Terminal is an interactive <CodepenLink />{" "}
-                        built with hidden lore. It will answer your questions
-                        but sometimes it reveals a bit more than you asked for.
-                    </span>
-                    <span>
-                        This started off as a tiny project to practice a
-                        &quot;hacker text&quot; style animation. However, as I
-                        went along, I decided to make it a bit more fun.
-                    </span>
-                </>
-            ),
+            title: "100 Days of Framer Motion",
+            path: "/100-days-of-framer-motion",
+            thumbnail: "/images/thumbnails/100-days-of-framer-motion.png",
+            colors: ["#FD008D", "#E4E4E7"],
+            darkColors: ["#6706FF", "#18181B"],
         },
         {
             title: "iPhone Widget Flood",
@@ -906,6 +834,85 @@ export const bubbles = [
                             newTab
                         />
                         .
+                    </span>
+                </>
+            ),
+        },
+        {
+            title: "Magic Terminal",
+            path: "/magic-terminal",
+            mainLink: "https://codepen.io/gibsonmurray/pen/dyBXxLG",
+            thumbnail: "/images/thumbnails/magic-terminal.webp",
+            imgs: [
+                {
+                    title: "Magic Terminal: Jumbled",
+                    src: "/images/magic-terminal/jumbled.png",
+                },
+                {
+                    title: "Magic Terminal: Math",
+                    src: "/images/magic-terminal/math.png",
+                },
+                {
+                    title: "Magic Terminal: Known",
+                    src: "/images/magic-terminal/known.png",
+                },
+            ],
+            skills: [
+                {
+                    text: "AI",
+                    href: "https://openai.com/api/",
+                    className: "text-purple-500",
+                    newTab: true,
+                },
+                {
+                    text: "JavaScript",
+                    href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+                    className: "text-amber-400",
+                    newTab: true,
+                },
+                {
+                    text: "HTML",
+                    href: "https://developer.mozilla.org/en-US/docs/Web/HTML",
+                    className: "text-orange-600",
+                    newTab: true,
+                },
+                {
+                    text: "CSS",
+                    href: "https://developer.mozilla.org/en-US/docs/Web/CSS",
+                    className: "text-sky-600",
+                    newTab: true,
+                },
+            ],
+            colors: ["#1C1D1F", "#e8e9ea"],
+            darkColors: ["#0d0d0d", "#1a1a1a"],
+            darkBorder: false,
+            subtitle: (
+                <Subtitle href="https://codepen.io/gibsonmurray/pen/dyBXxLG">
+                    Codepen Demo
+                </Subtitle>
+            ),
+            content: (
+                <>
+                    <span>
+                        Imagine a{" "}
+                        <InlineLink
+                            text="Bash shell"
+                            href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)"
+                            className="text-green-600"
+                            newTab
+                        />{" "}
+                        with knowledge of the universe and the future of what is
+                        to come... ✨
+                    </span>
+                    <span>
+                        The Magic Terminal is an interactive <CodepenLink />{" "}
+                        built with hidden lore. It will answer your questions
+                        but sometimes it reveals a bit more than you asked for.
+                    </span>
+                    <span>
+                        This started off as a tiny project to practice a
+                        &quot;hacker text&quot; style animation. However, as I
+                        went along, I decided to make it a bit more fun.
                     </span>
                 </>
             ),

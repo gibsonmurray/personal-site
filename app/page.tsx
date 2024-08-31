@@ -11,6 +11,7 @@ import { motion } from "framer-motion"
 import { useAtom } from "jotai"
 
 import { themeState } from "./(components)/ThemeToggle"
+import { btnVisibleState } from "./(components)/ThemeToggle"
 
 function Home() {
     const containerRef = useRef<HTMLDivElement>(null)
@@ -24,6 +25,7 @@ function Home() {
     const [initAnimationDone, setInitAnimationDone] = useState(false)
 
     const [theme] = useAtom(themeState)
+    const [_, setBtnVisible] = useAtom(btnVisibleState)
 
     const [screenWidth, setScreenWidth] = useState(() => {
         if (typeof window !== "undefined") {
@@ -37,6 +39,7 @@ function Home() {
             setScreenWidth(window.innerWidth)
         }
         handleResize()
+        setBtnVisible(true)
 
         window.addEventListener("resize", handleResize)
 
@@ -205,7 +208,7 @@ function Home() {
             >
                 <main
                     ref={mainRef}
-                    className={`absolute flex h-[10000px] w-[10000px] cursor-grab flex-col items-center justify-center transition-[background-color] duration-500 -translate-x-[100px] active:cursor-grabbing ${theme === "light" ? "bg-zinc-200" : "bg-zinc-900"}`}
+                    className={`absolute flex h-[10000px] w-[10000px] cursor-grab flex-col items-center justify-center -translate-x-[100px] active:cursor-grabbing`}
                 >
                     {bubbles.map((row, idx) => {
                         const rowOffset = screenWidth < 768 ? 5 : 20
