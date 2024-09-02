@@ -43,7 +43,7 @@ function FramerMotion100() {
     return (
         <motion.div
             animate={{ opacity: backClicked ? 0 : 1 }}
-            className={`center relative h-screen w-screen transition-[background-color] duration-500 ${theme === "dark" ? "bg-zinc-800" : "bg-zinc-100"}`}
+            className={`center relative h-svh w-screen transition-[background-color] duration-500 ${theme === "dark" ? "bg-zinc-800" : "bg-zinc-100"}`}
         >
             <motion.a
                 initial={{ opacity: 0 }}
