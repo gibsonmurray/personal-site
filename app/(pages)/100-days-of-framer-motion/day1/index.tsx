@@ -8,6 +8,7 @@ import jpn from "./assets/jpn.png"
 import usa from "./assets/usa.png"
 import { AnimatePresence, motion } from "framer-motion"
 import CountryCard from "./components/CountryCard"
+import { atom, useAtom } from "jotai"
 
 export const data = [
     {
@@ -44,9 +45,12 @@ export const data = [
     },
 ]
 
+export const activeCntryIdxAtom = atom(0)
+export const progressAtom = atom(0)
+
 function Day1() {
-    const [activeCountryIdx, setActiveCountryIdx] = useState(0)
-    const [progress, setProgress] = useState(0)
+    const [activeCountryIdx, setActiveCountryIdx] = useAtom(activeCntryIdxAtom)
+    const [progress, setProgress] = useAtom(progressAtom)
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -64,9 +68,7 @@ function Day1() {
     }, [progress])
 
     return (
-        <main
-            className={`center relative aspect-square h-[280px] flex-col gap-52 overflow-hidden rounded-[40px] border border-zinc-300 bg-zinc-200 font-bold tracking-widest`}
-        >
+        <main className="center relative aspect-square h-[280px] flex-col gap-52 overflow-hidden rounded-[40px] border border-zinc-300 bg-zinc-200 font-bold tracking-widest">
             <Image
                 src={olympicsSVG}
                 alt="Olympic Rings"
@@ -80,7 +82,6 @@ function Day1() {
                             <CountryCard
                                 key={country.id}
                                 country={data[country.id]}
-                                activeCountryIdx={activeCountryIdx}
                             />
                         ),
                 )}
