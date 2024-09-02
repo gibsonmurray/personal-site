@@ -50,16 +50,16 @@ function FramerMotion100() {
                 animate={{ opacity: backClicked ? 0 : 1 }}
                 transition={{ duration: 0.5, delay: backClicked ? 0 : 0.5 }}
                 onClick={handleBackClicked}
-                className="center absolute left-4 top-4 z-10 cursor-pointer gap-2 text-zinc-400 transition-colors duration-200 hover:text-zinc-700"
+                className="center absolute left-4 top-5 z-10 cursor-pointer gap-2 text-zinc-400 transition-colors duration-200 hover:text-zinc-700"
             >
                 <motion.div
                     initial={{ rotate: 90 }}
                     animate={{ rotate: 0 }}
                     transition={{ duration: 0.5, delay: 0.6 }}
                 >
-                    <Undo2Icon className="h-4 w-4 stroke-[3px]" />
+                    <Undo2Icon className="h-6 w-6 stroke-[3px] md:h-4 md:w-4" />
                 </motion.div>
-                <span className="font-semibold">Back</span>
+                <span className="hidden font-semibold md:flex">Back</span>
             </motion.a>
             <motion.div
                 initial={{ opacity: 0, y: -20 }}
@@ -95,7 +95,7 @@ function FramerMotion100() {
                 </Select>
             </motion.div>
             <motion.div
-                className="absolute right-4 top-4 z-10 w-6"
+                className="absolute right-4 top-5 z-10 w-6"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: backClicked ? 0 : 1 }}
                 transition={{ duration: 0.5, delay: backClicked ? 0 : 0.5 }}
@@ -118,40 +118,44 @@ function FramerMotion100() {
                     }
                 </motion.div>
             }
-            <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: backClicked ? 0 : 1 }}
-                transition={{ duration: 0.5, delay: backClicked ? 0 : 0.8 }}
-                className={`transition-color absolute bottom-4 left-4 duration-500 ${theme === "light" ? "text-zinc-700/40" : "text-zinc-400/40"} ${caveat.className}`}
-            >
-                {
-                    reorderedDays.find((day) => day.id === selectedDay)
-                        ?.description
-                }
-                {reorderedDays.find((day) => day.id === selectedDay)?.link && (
-                    <a
-                        href={
-                            reorderedDays.find((day) => day.id === selectedDay)
-                                ?.link
-                        }
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`transition-color duration-200 ${theme === "light" ? "hover:text-zinc-700" : "hover:text-zinc-300"} `}
-                    >
-                        {" "}
-                        (source)
-                    </a>
-                )}
-            </motion.span>
-            <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: backClicked ? 0 : 1 }}
-                transition={{ duration: 0.5, delay: backClicked ? 0 : 0.8 }}
-                className={`transition-color absolute bottom-4 right-4 duration-500 ${theme === "light" ? "text-zinc-700/40" : "text-zinc-400/40"} ${caveat.className}`}
-            >
-                Published{" "}
-                {reorderedDays.find((day) => day.id === selectedDay)?.date}
-            </motion.span>
+            <div className="absolute bottom-4 flex w-full flex-col items-center justify-between px-4 md:flex-row text-center">
+                <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: backClicked ? 0 : 1 }}
+                    transition={{ duration: 0.5, delay: backClicked ? 0 : 0.8 }}
+                    className={`transition-color left-4 duration-500 ${theme === "light" ? "text-zinc-700/40" : "text-zinc-400/40"} ${caveat.className}`}
+                >
+                    {
+                        reorderedDays.find((day) => day.id === selectedDay)
+                            ?.description
+                    }
+                    {reorderedDays.find((day) => day.id === selectedDay)
+                        ?.link && (
+                        <a
+                            href={
+                                reorderedDays.find(
+                                    (day) => day.id === selectedDay,
+                                )?.link
+                            }
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`transition-color duration-200 ${theme === "light" ? "hover:text-zinc-700" : "hover:text-zinc-300"} `}
+                        >
+                            {" "}
+                            (source)
+                        </a>
+                    )}
+                </motion.span>
+                <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: backClicked ? 0 : 1 }}
+                    transition={{ duration: 0.5, delay: backClicked ? 0 : 0.8 }}
+                    className={`transition-color duration-500 ${theme === "light" ? "text-zinc-700/40" : "text-zinc-400/40"} ${caveat.className}`}
+                >
+                    Published{" "}
+                    {reorderedDays.find((day) => day.id === selectedDay)?.date}
+                </motion.span>
+            </div>
         </motion.div>
     )
 }
