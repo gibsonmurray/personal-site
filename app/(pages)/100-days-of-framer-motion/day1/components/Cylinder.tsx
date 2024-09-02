@@ -34,36 +34,26 @@ const delay = {
     bronze: 0.4,
 }
 
-/**
- * Renders a cylinder-shaped medal component with customizable color and height.
- *
- * @param props - The props for the Cylinder component.
- * @param props.medal - The type of medal, either "gold", "silver", or "bronze".
- * @param props.countryIdx - The index of the country in the `data` array.
- * @param props.height - The height of the cylinder (optional).
- * @returns A React component that renders a cylinder-shaped medal.
- */
 function Cylinder(props: {
     medal: "gold" | "silver" | "bronze"
     countryIdx: number
+    active?: boolean
     height?: number
 }) {
     return (
         <motion.div
             className={`relative w-11 ${medalColors[props.medal].baseBg} perspective-500`}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: props.height, opacity: 1 }}
+            animate={{
+                height: props.active ? props.height : 0,
+                opacity: props.active ? 1 : 0,
+            }}
             transition={{
                 delay: 0.2 + delay[props.medal],
             }}
         >
-            <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="absolute w-full text-center text-sm tracking-normal text-zinc-700 -translate-y-8"
-            >
+            <span className="absolute w-full text-center text-sm tracking-normal text-zinc-700 -translate-y-8">
                 {data[props.countryIdx][props.medal]}
-            </motion.span>
+            </span>
             <div
                 className={`center absolute h-11 w-full rounded-full border ${medalColors[props.medal].border} ${medalColors[props.medal].topBg} -translate-y-[22px] rotate-x-[65deg]`}
             >

@@ -2,29 +2,26 @@ import { useEffect, useState } from "react"
 import Image from "next/image"
 import olympicsSVG from "./assets/olympics.svg"
 import { Progress } from "@/components/ui/progress"
-import { AnimatePresence, motion } from "framer-motion"
+import { motion } from "framer-motion"
 import CountryCard from "./components/CountryCard"
-import { atom, useAtom } from "jotai"
 import { data } from "./data"
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+} from "@/components/ui/carousel"
+import { type CarouselApi } from "@/components/ui/carousel"
 
-export const activeCntryIdxAtom = atom(0)
-export const progressAtom = atom(0)
-
-/**
- * Renders a component that displays Olympic medal data for different countries, with a progress bar and animated country cards.
- *
- * The component uses the `useAtom` hook from the `jotai` library to manage the state of the active country index and the progress value. The `useEffect` hook is used to update the progress value and the active country index at regular intervals.
- *
- * The component renders the Olympic rings image, the country cards, and the progress bars for each country. The country cards are rendered using the `AnimatePresence` component from the `framer-motion` library, which allows for smooth transitions when the active country changes.
- *
- * The component is exported as the default export of the file.
- */
 function Day1() {
-    const [activeCountryIdx, setActiveCountryIdx] = useAtom(activeCntryIdxAtom)
-    const [progress, setProgress] = useAtom(progressAtom)
+    const [activeCountryIdx, setActiveCountryIdx] = useState(0)
+    const [progress, setProgress] = useState(0)
+    const [api, setApi] = useState<CarouselApi>()
 
-    // Update progress value at regular intervals
     useEffect(() => {
+        if (!api) {
+            return
+        }
+
         const interval = setInterval(() => {
             setProgress((prev) => (prev === 100 ? 0 : prev + 1))
         }, 50)
@@ -34,30 +31,44 @@ function Day1() {
                 prev === data.length - 1 ? 0 : prev + 1,
             )
             setProgress(0)
+            api.scrollNext()
         }
 
+        api.on("select", () => {
+            setActiveCountryIdx(api.selectedScrollSnap())
+            setProgress(0)
+        })
+
         return () => clearInterval(interval)
-    }, [progress])
+    }, [progress, api])
 
     return (
-        <main className="center relative aspect-square h-[280px] flex-col gap-52 overflow-hidden rounded-[40px] border border-zinc-300 bg-zinc-200 font-bold tracking-widest">
+        <main className="center relative aspect-square h-[280px] select-none flex-col gap-52 overflow-hidden rounded-[40px] border border-zinc-300 bg-zinc-200 font-bold tracking-widest">
             <Image
                 src={olympicsSVG}
                 alt="Olympic Rings"
                 className="w-20 object-contain"
             />
 
-            <AnimatePresence>
-                {data.map(
-                    (country) =>
-                        activeCountryIdx === country.id && (
+            <Carousel
+                setApi={setApi}
+                className="absolute *:overflow-visible"
+                opts={{
+                    align: "start",
+                    loop: true,
+                }}
+            >
+                <CarouselContent>
+                    {data.map((country, i) => (
+                        <CarouselItem key={i} className="w-20">
                             <CountryCard
-                                key={country.id}
-                                country={data[country.id]}
+                                country={country}
+                                activeCountryIdx={activeCountryIdx}
                             />
-                        ),
-                )}
-            </AnimatePresence>
+                        </CarouselItem>
+                    ))}
+                </CarouselContent>
+            </Carousel>
 
             <div className="center gap-2">
                 {data.map((_, i) => {

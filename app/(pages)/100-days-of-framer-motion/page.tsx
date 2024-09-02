@@ -43,7 +43,7 @@ function FramerMotion100() {
     return (
         <motion.div
             animate={{ opacity: backClicked ? 0 : 1 }}
-            className="center relative h-screen w-screen bg-zinc-100"
+            className={`center relative h-screen w-screen transition-[background-color] duration-500 ${theme === "dark" ? "bg-zinc-800" : "bg-zinc-100"}`}
         >
             <motion.a
                 initial={{ opacity: 0 }}
@@ -75,7 +75,7 @@ function FramerMotion100() {
                     defaultValue={selectedDay.toString()}
                 >
                     <SelectTrigger
-                        className={`transition-[background-color, border-color, width] w-max rounded-full border duration-500 ${theme === "light" ? "border-zinc-300 bg-zinc-50" : "border-zinc-500 bg-zinc-700 text-zinc-100"}`}
+                        className={`transition-[background-color, border-color, width] w-max rounded-full border duration-500 ${theme === "light" ? "border-zinc-300 bg-zinc-50" : "border-zinc-500 bg-zinc-700 text-zinc-100"} px-4`}
                     >
                         <SelectValue placeholder="Day" />
                     </SelectTrigger>
@@ -88,7 +88,7 @@ function FramerMotion100() {
                                 value={day.id.toString()}
                                 className={`cursor-pointer rounded-full ${theme === "dark" && "text-zinc-100 focus:bg-zinc-500 focus:text-zinc-100"}`}
                             >
-                                Day {day.id} - {day.title}
+                                Day {day.id}: {day.title}
                             </SelectItem>
                         ))}
                     </SelectContent>
@@ -109,7 +109,7 @@ function FramerMotion100() {
                         opacity: backClicked ? 0 : 1,
                         y: backClicked ? 20 : 0,
                     }}
-                    transition={{ duration: 0.5, delay: backClicked ? 0 : 0.8 }}
+                    transition={{ duration: 0.5, delay: backClicked ? 0 : 0.5 }}
                     className="center h-screen w-screen"
                 >
                     {
@@ -122,8 +122,34 @@ function FramerMotion100() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: backClicked ? 0 : 1 }}
                 transition={{ duration: 0.5, delay: backClicked ? 0 : 0.8 }}
-                className={`absolute bottom-4 right-4 ${theme === "light" ? "text-zinc-700/40" : "text-zinc-400/40"} ${caveat.className}`}
+                className={`transition-color absolute bottom-4 left-4 duration-500 ${theme === "light" ? "text-zinc-700/40" : "text-zinc-400/40"} ${caveat.className}`}
             >
+                {
+                    reorderedDays.find((day) => day.id === selectedDay)
+                        ?.description
+                }
+                {reorderedDays.find((day) => day.id === selectedDay)?.link && (
+                    <a
+                        href={
+                            reorderedDays.find((day) => day.id === selectedDay)
+                                ?.link
+                        }
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`transition-color duration-200 ${theme === "light" ? "hover:text-zinc-700" : "hover:text-zinc-300"} `}
+                    >
+                        {" "}
+                        (source)
+                    </a>
+                )}
+            </motion.span>
+            <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: backClicked ? 0 : 1 }}
+                transition={{ duration: 0.5, delay: backClicked ? 0 : 0.8 }}
+                className={`transition-color absolute bottom-4 right-4 duration-500 ${theme === "light" ? "text-zinc-700/40" : "text-zinc-400/40"} ${caveat.className}`}
+            >
+                Published{" "}
                 {reorderedDays.find((day) => day.id === selectedDay)?.date}
             </motion.span>
         </motion.div>
