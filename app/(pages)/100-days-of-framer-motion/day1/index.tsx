@@ -2,56 +2,28 @@ import { useEffect, useState } from "react"
 import Image from "next/image"
 import olympicsSVG from "./assets/olympics.svg"
 import { Progress } from "@/components/ui/progress"
-import aus from "./assets/aus.png"
-import chn from "./assets/chn.png"
-import jpn from "./assets/jpn.png"
-import usa from "./assets/usa.png"
 import { AnimatePresence, motion } from "framer-motion"
 import CountryCard from "./components/CountryCard"
 import { atom, useAtom } from "jotai"
-
-export const data = [
-    {
-        country: "USA",
-        id: 0,
-        gold: 40,
-        silver: 44,
-        bronze: 42,
-        img: usa,
-    },
-    {
-        country: "China",
-        id: 1,
-        gold: 40,
-        silver: 27,
-        bronze: 24,
-        img: chn,
-    },
-    {
-        country: "Japan",
-        id: 2,
-        gold: 20,
-        silver: 12,
-        bronze: 13,
-        img: jpn,
-    },
-    {
-        country: "Austrailia",
-        id: 3,
-        gold: 18,
-        silver: 19,
-        bronze: 16,
-        img: aus,
-    },
-]
+import { data } from "./data"
 
 export const activeCntryIdxAtom = atom(0)
 export const progressAtom = atom(0)
 
+/**
+ * Renders a component that displays Olympic medal data for different countries, with a progress bar and animated country cards.
+ *
+ * The component uses the `useAtom` hook from the `jotai` library to manage the state of the active country index and the progress value. The `useEffect` hook is used to update the progress value and the active country index at regular intervals.
+ *
+ * The component renders the Olympic rings image, the country cards, and the progress bars for each country. The country cards are rendered using the `AnimatePresence` component from the `framer-motion` library, which allows for smooth transitions when the active country changes.
+ *
+ * The component is exported as the default export of the file.
+ */
 function Day1() {
     const [activeCountryIdx, setActiveCountryIdx] = useAtom(activeCntryIdxAtom)
     const [progress, setProgress] = useAtom(progressAtom)
 
+    // Update progress value at regular intervals
     useEffect(() => {
         const interval = setInterval(() => {
             setProgress((prev) => (prev === 100 ? 0 : prev + 1))

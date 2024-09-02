@@ -5,6 +5,13 @@ import { useEffect, useState } from "react"
 import { activeCntryIdxAtom, progressAtom } from "../index"
 import { useAtom } from "jotai"
 
+/**
+ * Renders a country card component with a draggable interface to navigate between countries.
+ * The card displays the medal counts for a given country, and updates the active country index and progress state accordingly.
+ *
+ * @param props - An object containing the `country` prop, which is the data for the current country being displayed.
+ * @returns A React component that renders the country card.
+ */
 function CountryCard(props: { country: any }) {
     const [activeCountryIdxAtom, setActiveCountryIdx] =
         useAtom(activeCntryIdxAtom)
@@ -13,6 +20,7 @@ function CountryCard(props: { country: any }) {
     const [fromX, setFromX] = useState(270)
     const [toX, setToX] = useState(-270)
 
+    // Update the card animation direction based on the active country index and swipe direction
     useEffect(() => {
         if (activeCountryIdxAtom <= props.country.id) {
             setFromX(-270)

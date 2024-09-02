@@ -1,44 +1,53 @@
 import { motion } from "framer-motion"
-import { data } from "../index"
+import { data } from "../data"
 
+const medalColors = {
+    gold: {
+        topBg: "bg-[#FCC861]",
+        baseBg: "bg-[#FBB832]",
+        border: "border-[#FA9B10]/60",
+        text: "text-[#FA9B10]",
+    },
+    silver: {
+        topBg: "bg-[#C7C7C7]",
+        baseBg: "bg-[#B8B8B8]",
+        border: "border-[#9A9A9A]/60",
+        text: "text-[#9A9A9A]",
+    },
+    bronze: {
+        topBg: "bg-[#DEB289]",
+        baseBg: "bg-[#CE9A5E]",
+        border: "border-[#BF7424]/60",
+        text: "text-[#BF7424]",
+    },
+}
+
+const medalLetter = {
+    gold: "G",
+    silver: "S",
+    bronze: "B",
+}
+
+const delay = {
+    gold: 0,
+    silver: 0.2,
+    bronze: 0.4,
+}
+
+/**
+ * Renders a cylinder-shaped medal component with customizable color and height.
+ *
+ * @param props - The props for the Cylinder component.
+ * @param props.medal - The type of medal, either "gold", "silver", or "bronze".
+ * @param props.countryIdx - The index of the country in the `data` array.
+ * @param props.height - The height of the cylinder (optional).
+ * @returns A React component that renders a cylinder-shaped medal.
+ */
 function Cylinder(props: {
     medal: "gold" | "silver" | "bronze"
     countryIdx: number
     height?: number
 }) {
-    const medalColors = {
-        gold: {
-            topBg: "bg-[#FCC861]",
-            baseBg: "bg-[#FBB832]",
-            border: "border-[#FA9B10]/60",
-            text: "text-[#FA9B10]",
-        },
-        silver: {
-            topBg: "bg-[#C7C7C7]",
-            baseBg: "bg-[#B8B8B8]",
-            border: "border-[#9A9A9A]/60",
-            text: "text-[#9A9A9A]",
-        },
-        bronze: {
-            topBg: "bg-[#DEB289]",
-            baseBg: "bg-[#CE9A5E]",
-            border: "border-[#BF7424]/60",
-            text: "text-[#BF7424]",
-        },
-    }
-
-    const medalLetter = {
-        gold: "G",
-        silver: "S",
-        bronze: "B",
-    }
-
-    const delay = {
-        gold: 0,
-        silver: 0.2,
-        bronze: 0.4,
-    }
-
     return (
         <motion.div
             className={`relative w-11 ${medalColors[props.medal].baseBg} perspective-500`}
