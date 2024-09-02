@@ -8,7 +8,7 @@ export const metadata: Metadata = {
         default: "Gibson Murray",
     },
     description:
-        "My personal website - A portfolio of my best web development projects.",
+        `Welcome to my personal website - A portfolio of my best web development projects.\nI specialize in making React-based websites and apps with a sleek design and a custom feel.`,
 }
 
 export default function RootLayout({
