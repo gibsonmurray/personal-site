@@ -336,7 +336,7 @@ export const bubbles = [
                     newTab: true,
                 },
             ],
-            colors: ["#ADC8D3", "#fffef4"],
+            colors: ["#ADC8D3", "#f4f4f5"],
             darkColors: ["#2c2f3f", "#1a1a2e"],
             subtitle: (
                 <Subtitle href="https://codepen.io/gibsonmurray/pen/dyBKmJM">
