@@ -40,10 +40,10 @@ export const bubbles = [
                     newTab: true,
                 },
             ],
-            colors: ["#835484", "#ebe1ed"],
-            darkColors: ["#4a2c4a", "#2e1f2e"],
+            color: "#1D1D1F",
             subtitle: "subtitle",
-            content: (
+            component: null,
+            caption: (
                 <>
                     <span>
                         An exploration in text splitting effects, cursor
@@ -91,10 +91,10 @@ export const bubbles = [
                     newTab: true,
                 },
             ],
-            colors: ["#000000", "#e5e5e5"],
-            darkColors: ["#1a1a1a", "#333333"],
+            color: "#000000",
             subtitle: "subtitle",
-            content: (
+            component: null,
+            caption: (
                 <>
                     <span>
                         A very simple demo of Apple&apos;s watch gestures
@@ -145,10 +145,10 @@ export const bubbles = [
                     newTab: true,
                 },
             ],
-            colors: ["#CDDAE4", "#f4faff"],
-            darkColors: ["#2c3e50", "#34495e"],
+            color: "#FFFFFF",
             subtitle: "subtitle",
-            content: (
+            component: null,
+            caption: (
                 <>
                     <span>
                         One of my most popular projects on <CodepenLink />, this
@@ -196,10 +196,10 @@ export const bubbles = [
                     newTab: true,
                 },
             ],
-            colors: ["#595F80", "#edefff"],
-            darkColors: ["#2c2f3f", "#1a1a2e"],
+            color: "#FFFFFF",
             subtitle: "subtitle",
-            content: (
+            component: null,
+            caption: (
                 <>
                     <span>
                         This project was insired by Nate Smith&apos;s{" "}
@@ -250,10 +250,10 @@ export const bubbles = [
                     newTab: true,
                 },
             ],
-            colors: ["#ADC8D3", "#f4f4f5"],
-            darkColors: ["#2c2f3f", "#1a1a2e"],
+            color: "#F4F4F5",
             subtitle: "subtitle",
-            content: (
+            component: null,
+            caption: (
                 <>
                     <span>
                         This is an entry in a competition on{" "}
@@ -309,10 +309,10 @@ export const bubbles = [
                     newTab: true,
                 },
             ],
-            colors: ["#AE8A58", "#fff6e8"],
-            darkColors: ["#5c4a2e", "#3e2c1a"],
+            color: "#CD995F",
             subtitle: "subtitle",
-            content: (
+            component: null,
+            caption: (
                 <>
                     <span>
                         This was a fun little project I made to practice my
@@ -378,10 +378,10 @@ export const bubbles = [
                     newTab: true,
                 },
             ],
-            colors: ["#FDFCF7", "#FDFCF7"],
-            darkColors: ["#2e2e2e", "#1a1a1a"],
+            color: "#FEFDF8",
             subtitle: "Gibson Murray - Front-End Developer",
-            content: (
+            component: null,
+            caption: (
                 <>
                     <span>
                         Hello world! I&apos;m Gibson, a front-end developer with
@@ -419,10 +419,10 @@ export const bubbles = [
                     newTab: true,
                 },
             ],
-            colors: ["#f2a682", "#ffe6cc"],
-            darkColors: ["#8c5a42", "#4a2e1a"],
+            color: "#F1925D",
             subtitle: "subtitle",
-            content: (
+            component: null,
+            caption: (
                 <>
                     <span>
                         A short side project I made after I had seen{" "}
@@ -468,10 +468,10 @@ export const bubbles = [
                     newTab: true,
                 },
             ],
-            colors: ["#F1F4F6", "#F1F4F6"],
-            darkColors: ["#2e2f30", "#1a1b1c"],
+            color: "#FDFDFC",
             subtitle: "subtitle",
-            content: (
+            component: null,
+            caption: (
                 <>
                     <span>
                         I wanted to challenge myself by recreating Emil
@@ -518,10 +518,10 @@ export const bubbles = [
                     newTab: true,
                 },
             ],
-            colors: ["#EEECEC", "#e0e0e0"],
-            darkColors: ["#2e2e2e", "#1a1a1a"],
+            color: "#EEECED",
             subtitle: "subtitle",
-            content: (
+            component: null,
+            caption: (
                 <>
                     <span>
                         A very simple project with a few cards that jump on
@@ -557,10 +557,11 @@ export const bubbles = [
             path: "/pressure-grid",
             penLink: "https://codepen.io/gibsonmurray/pen/KKjLRMj",
             thumbnail: "/images/thumbnails/pressure-grid.webp",
-            colors: ["#BA22A3", "#DDA7E0"],
-            darkColors: ["#6D12CF", "#400e7a"],
+            color: "#000000",
             subtitle: "subtitle",
-            content: (
+            component: null,
+            skills: [],
+            caption: (
                 <>
                     <span>
                         Feeling the pressure? This emulates a touch-sensitive
@@ -585,10 +586,11 @@ export const bubbles = [
             path: "/iphone-widget-flood",
             penLink: "https://codepen.io/gibsonmurray/pen/RwEQKrY",
             thumbnail: "/images/thumbnails/iphone-widget-flood.webp",
-            colors: ["##0D0D0D", "#f9edff"],
-            darkColors: ["#1a1a1a", "#2e2e2e"],
+            color: "#0D0D0D",
             subtitle: "subtitle",
-            content: (
+            component: null,
+            skills: [],
+            caption: (
                 <>
                     <span>
                         A very simple scroll animation that scales cards from
@@ -633,10 +635,10 @@ export const bubbles = [
                     newTab: true,
                 },
             ],
-            colors: ["#000000", "#cccccc"],
-            darkColors: ["#1a1a1a", "#333333"],
+            color: "#000000",
             subtitle: "subtitle",
-            content: (
+            component: null,
+            caption: (
                 <>
                     <span>
                         This was my first ever featured <CodepenLink />. It is a
@@ -688,10 +690,10 @@ export const bubbles = [
                     newTab: true,
                 },
             ],
-            colors: ["#1C1D1F", "#e8e9ea"],
-            darkColors: ["#0d0d0d", "#1a1a1a"],
+            color: "#434343",
             subtitle: "subtitle",
-            content: (
+            component: null,
+            caption: (
                 <>
                     <span>
                         Imagine a{" "}
@@ -722,12 +724,11 @@ export const bubbles = [
             path: "/olympic-medals",
             penLink: "https://x.com/sovpal/status/1820582630439674228/photo/1",
             thumbnail: "/images/thumbnails/olympic-medals.webp",
-            colors: ["#000000", "#cccccc"],
-            darkColors: ["#1a1a1a", "#333333"],
+            color: "#F5F5F5",
             subtitle: "subtitle",
-            content: (
-                <OlympicMedals />
-            ),
+            skills: [],
+            component: <OlympicMedals />,
+            caption: "caption",
         },
     ],
 ]

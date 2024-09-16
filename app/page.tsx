@@ -213,8 +213,7 @@ function Home() {
                                     title={bubble.title}
                                     path={bubble.path}
                                     thumbnail={bubble.thumbnail}
-                                    colors={bubble.colors}
-                                    darkColors={bubble.darkColors}
+                                    color={bubble.color}
                                     offsetX={offsetX}
                                     offsetY={offsetY}
                                     initAnimationDone={initAnimationDone}

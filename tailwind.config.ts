@@ -63,6 +63,6 @@ const config: Config = {
             },
         },
     },
-    plugins: [require("tailwindcss-3d")],
+    plugins: [],
 }
 export default config

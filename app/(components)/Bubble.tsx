@@ -10,8 +10,7 @@ function Bubble(props: {
     title: string
     path: string
     thumbnail: string
-    colors: string[]
-    darkColors: string[]
+    color: string
     offsetX: number
     offsetY: number
     initAnimationDone: boolean
@@ -101,11 +100,8 @@ function Bubble(props: {
             }}
         >
             <motion.div
-                className="absolute flex h-full w-full items-center justify-center rounded-full opacity-0"
+                className={`absolute flex h-full w-full items-center justify-center rounded-full opacity-0`}
                 animate={{
-                    backgroundColor: clicked
-                        ? props.colors[1]
-                        : props.colors[0],
                     width: clicked
                         ? Math.max(screenWidth, screenHeight) * 3
                         : 200,
@@ -123,8 +119,8 @@ function Bubble(props: {
                     }
                 }}
                 style={{
+                    backgroundColor: props.color,
                     opacity: clicked ? 1 : 0,
-                    backgroundColor: props.colors[0],
                 }}
             ></motion.div>
 

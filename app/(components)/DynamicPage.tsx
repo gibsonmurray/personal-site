@@ -14,22 +14,24 @@ const DynamicPage = () => {
     }
 
     const {
-        colors,
         title,
-        penLink,
-        skills,
         subtitle,
-        content,
+        caption,
+        skills,
+        color,
+        component,
+        penLink,
     } = bubble
 
     return (
         <ExpandedBubble
-            color={colors[1]}
+            color={color}
             title={title}
             skills={skills}
             subtitle={subtitle}
-            content={content}
+            caption={caption}
             penLink={penLink}
+            component={component}
         />
     )
 }
