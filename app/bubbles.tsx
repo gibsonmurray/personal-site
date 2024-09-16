@@ -6,10 +6,11 @@ import {
     GSAPLink,
     HTMLLink,
     JavaScriptLink,
+    JQueryLink,
     ReactLink,
     TailwindLink,
 } from "./(components)/ReusedLinks"
-import Subtitle from "./(components)/Subtitle"
+import OlympicMedals from "./(pages)/olympic-medals/OlympicMedals"
 
 export const bubbles = [
     [
@@ -17,20 +18,8 @@ export const bubbles = [
         {
             title: "Landing Page Hero",
             path: "/landing-page-hero",
-            mainLink: "https://codepen.io/gibsonmurray/pen/OJdzxyK",
+            penLink: "https://codepen.io/gibsonmurray/pen/OJdzxyK",
             thumbnail: "/images/thumbnails/landing-page-hero.webp",
-            imgs: [
-                {
-                    title: "Landing Page Hero: Mid-Animation",
-                    href: "https://codepen.io/gibsonmurray/pen/OJdzxyK",
-                    src: "/images/landing-page-hero/2.jpeg",
-                },
-                {
-                    title: "Landing Page Hero: Button Animation",
-                    href: "https://codepen.io/gibsonmurray/pen/OJdzxyK",
-                    src: "/images/landing-page-hero/1.jpeg",
-                },
-            ],
             skills: [
                 {
                     text: "JavaScript",
@@ -53,12 +42,7 @@ export const bubbles = [
             ],
             colors: ["#835484", "#ebe1ed"],
             darkColors: ["#4a2c4a", "#2e1f2e"],
-            darkBorder: false,
-            subtitle: (
-                <Subtitle href="https://codepen.io/gibsonmurray/pen/OJdzxyK">
-                    Codepen Demo
-                </Subtitle>
-            ),
+            subtitle: "subtitle",
             content: (
                 <>
                     <span>
@@ -85,20 +69,8 @@ export const bubbles = [
         {
             title: "Apple Watch Gestures",
             path: "/apple-watch-gestures",
-            mainLink: "https://codepen.io/gibsonmurray/pen/NWowKYg",
+            penLink: "https://codepen.io/gibsonmurray/pen/NWowKYg",
             thumbnail: "/images/thumbnails/apple-watch-gestures.webp",
-            imgs: [
-                {
-                    title: "Apple Watch Gestures: Music",
-                    href: "https://codepen.io/gibsonmurray/pen/NWowKYg",
-                    src: "/images/apple-watch-gestures/1.jpeg",
-                },
-                {
-                    title: "Apple Watch Gestures: Reply to Messages",
-                    href: "https://codepen.io/gibsonmurray/pen/NWowKYg",
-                    src: "/images/apple-watch-gestures/3.jpeg",
-                },
-            ],
             skills: [
                 {
                     text: "JavaScript",
@@ -121,12 +93,7 @@ export const bubbles = [
             ],
             colors: ["#000000", "#e5e5e5"],
             darkColors: ["#1a1a1a", "#333333"],
-            darkBorder: false,
-            subtitle: (
-                <Subtitle href="https://codepen.io/gibsonmurray/pen/NWowKYg">
-                    Codepen Demo
-                </Subtitle>
-            ),
+            subtitle: "subtitle",
             content: (
                 <>
                     <span>
@@ -156,22 +123,8 @@ export const bubbles = [
         {
             title: "Parallax Seasons",
             path: "/parallax-seasons",
-            mainLink: "https://codepen.io/gibsonmurray/pen/jOdwaKb",
+            penLink: "https://codepen.io/gibsonmurray/pen/jOdwaKb",
             thumbnail: "/images/thumbnails/parallax-seasons.webp",
-            imgs: [
-                {
-                    title: "Parallax Seasons: Spring",
-                    src: "/images/parallax-seasons/spring.png",
-                },
-                {
-                    title: "Parallax Seasons: Summer",
-                    src: "/images/parallax-seasons/summer.png",
-                },
-                {
-                    title: "Parallax Seasons: Fall",
-                    src: "/images/parallax-seasons/fall.png",
-                },
-            ],
             skills: [
                 {
                     text: "JavaScript",
@@ -194,12 +147,7 @@ export const bubbles = [
             ],
             colors: ["#CDDAE4", "#f4faff"],
             darkColors: ["#2c3e50", "#34495e"],
-            darkBorder: true,
-            subtitle: (
-                <Subtitle href="https://codepen.io/gibsonmurray/pen/jOdwaKb">
-                    Codepen Demo
-                </Subtitle>
-            ),
+            subtitle: "subtitle",
             content: (
                 <>
                     <span>
@@ -226,25 +174,8 @@ export const bubbles = [
         {
             title: "Parallax Devices",
             path: "/parallax-devices",
-            mainLink: "https://codepen.io/gibsonmurray/pen/JjzmrWR",
+            penLink: "https://codepen.io/gibsonmurray/pen/JjzmrWR",
             thumbnail: "/images/thumbnails/parallax-devices.webp",
-            imgs: [
-                {
-                    title: "Parallax Devices: Laptop",
-                    src: "/images/parallax-devices/parallax-devices-2.png",
-                    className: "text-zinc-200 border-zinc-200",
-                },
-                {
-                    title: "Parallax Devices: Phone",
-                    src: "/images/parallax-devices/parallax-devices-1.jpeg",
-                    className: "text-zinc-200 border-zinc-200",
-                },
-                {
-                    title: "Parallax Devices: TV",
-                    src: "/images/parallax-devices/parallax-devices-3.jpeg",
-                    className: "text-zinc-200 border-zinc-200",
-                },
-            ],
             skills: [
                 {
                     text: "JavaScript",
@@ -267,12 +198,7 @@ export const bubbles = [
             ],
             colors: ["#595F80", "#edefff"],
             darkColors: ["#2c2f3f", "#1a1a2e"],
-            darkBorder: true,
-            subtitle: (
-                <Subtitle href="https://codepen.io/gibsonmurray/pen/JjzmrWR">
-                    Codepen Demo
-                </Subtitle>
-            ),
+            subtitle: "subtitle",
             content: (
                 <>
                     <span>
@@ -302,20 +228,8 @@ export const bubbles = [
         {
             title: "Photography View Transitions",
             path: "/photography-view-transitions",
-            mainLink: "https://codepen.io/gibsonmurray/pen/dyBKmJM",
+            penLink: "https://codepen.io/gibsonmurray/pen/dyBKmJM",
             thumbnail: "/images/thumbnails/photography-view-transitions.webp",
-            imgs: [
-                {
-                    title: "Photography View Transitions Img 1",
-                    src: "/images/photography-view-transitions/1.jpeg",
-                    className: "text-zinc-200 border-zinc-200",
-                },
-                {
-                    title: "Photography View Transitions Img 2",
-                    src: "/images/photography-view-transitions/2.png",
-                    className: "text-zinc-200 border-zinc-200",
-                },
-            ],
             skills: [
                 {
                     text: "React",
@@ -338,11 +252,7 @@ export const bubbles = [
             ],
             colors: ["#ADC8D3", "#f4f4f5"],
             darkColors: ["#2c2f3f", "#1a1a2e"],
-            subtitle: (
-                <Subtitle href="https://codepen.io/gibsonmurray/pen/dyBKmJM">
-                    Codepen Demo
-                </Subtitle>
-            ),
+            subtitle: "subtitle",
             content: (
                 <>
                     <span>
@@ -377,22 +287,8 @@ export const bubbles = [
         {
             title: "Sticky Notes",
             path: "/sticky-notes",
-            mainLink: "https://codepen.io/gibsonmurray/full/gOqMmvE",
+            penLink: "https://codepen.io/gibsonmurray/full/gOqMmvE",
             thumbnail: "/images/thumbnails/sticky-notes.webp",
-            imgs: [
-                {
-                    title: "Sticky Notes: TODO Image",
-                    src: "/images/sticky-notes/stickies-1.png",
-                },
-                {
-                    title: "Sticky Notes: Trash Image",
-                    src: "/images/sticky-notes/stickies-3.png",
-                },
-                {
-                    title: "Sticky Notes: Stacked Notes Image",
-                    src: "/images/sticky-notes/stickies-2.png",
-                },
-            ],
             skills: [
                 {
                     text: "JavaScript",
@@ -415,12 +311,7 @@ export const bubbles = [
             ],
             colors: ["#AE8A58", "#fff6e8"],
             darkColors: ["#5c4a2e", "#3e2c1a"],
-            darkBorder: false,
-            subtitle: (
-                <Subtitle href="https://codepen.io/gibsonmurray/full/gOqMmvE">
-                    Codepen Demo
-                </Subtitle>
-            ),
+            subtitle: "subtitle",
             content: (
                 <>
                     <span>
@@ -453,25 +344,8 @@ export const bubbles = [
         {
             title: "About Me",
             path: "/about",
-            mainLink: "",
+            penLink: "",
             thumbnail: "/images/thumbnails/prof-pic.webp",
-            imgs: [
-                {
-                    title: "Jumpy Cards Codepen",
-                    href: "https://codepen.io/gibsonmurray/pen/oNrXoaL",
-                    src: "https://creatorspace.imgix.net/users/cln54h71q00zbo901sy1cmbot/qwesgTGQdqfwKZki-SCR-20240713-beie.png?w=1000&h=1000",
-                },
-                {
-                    title: "Magic Terminal Codepen",
-                    href: "https://codepen.io/gibsonmurray/full/dyBXxLG",
-                    src: "https://creatorspace.imgix.net/users/cln54h71q00zbo901sy1cmbot/SMKHjHWv1mX2YYQA-dyBXxLG.custom.jpg?w=1000&h=1000",
-                },
-                {
-                    title: "Sticky Notes Codepen",
-                    href: "https://codepen.io/gibsonmurray/full/gOqMmvE",
-                    src: "https://creatorspace.imgix.net/users/cln54h71q00zbo901sy1cmbot/sJKfm3vMoZldxdCo-sticky%2520notes%2520thumbnail.png?w=1000&h=1000",
-                },
-            ],
             skills: [
                 {
                     text: "JavaScript",
@@ -506,8 +380,7 @@ export const bubbles = [
             ],
             colors: ["#FDFCF7", "#FDFCF7"],
             darkColors: ["#2e2e2e", "#1a1a1a"],
-            darkBorder: false,
-            subtitle: <Subtitle>Gibson Murray - Front-End Developer</Subtitle>,
+            subtitle: "Gibson Murray - Front-End Developer",
             content: (
                 <>
                     <span>
@@ -530,18 +403,8 @@ export const bubbles = [
         {
             title: "Dune Thumper",
             path: "/dune-thumper",
-            mainLink: "https://codepen.io/gibsonmurray/pen/MWRJajj",
+            penLink: "https://codepen.io/gibsonmurray/pen/MWRJajj",
             thumbnail: "/images/thumbnails/dune-thumper.webp",
-            imgs: [
-                {
-                    title: "Dune Thumper: Worm",
-                    src: "/images/dune-thumper/thumper-2.png",
-                },
-                {
-                    title: "Dune Thumper: Activated",
-                    src: "/images/dune-thumper/thumper-1.png",
-                },
-            ],
             skills: [
                 {
                     text: "HTML",
@@ -558,12 +421,7 @@ export const bubbles = [
             ],
             colors: ["#f2a682", "#ffe6cc"],
             darkColors: ["#8c5a42", "#4a2e1a"],
-            darkBorder: false,
-            subtitle: (
-                <Subtitle href="https://codepen.io/gibsonmurray/pen/MWRJajj">
-                    Codepen Demo
-                </Subtitle>
-            ),
+            subtitle: "subtitle",
             content: (
                 <>
                     <span>
@@ -588,18 +446,8 @@ export const bubbles = [
         {
             title: "Trashy Photos",
             path: "/trashy-photos",
-            mainLink: "https://codepen.io/gibsonmurray/pen/gONaLwy",
+            penLink: "https://codepen.io/gibsonmurray/pen/gONaLwy",
             thumbnail: "/images/thumbnails/trashy-photos.webp",
-            imgs: [
-                {
-                    title: "Trashy Photos",
-                    src: "/images/trashy-photos/grid.png",
-                },
-                {
-                    title: "Trashy Photos",
-                    src: "/images/trashy-photos/animation.png",
-                },
-            ],
             skills: [
                 {
                     text: "JavaScript",
@@ -622,12 +470,7 @@ export const bubbles = [
             ],
             colors: ["#F1F4F6", "#F1F4F6"],
             darkColors: ["#2e2f30", "#1a1b1c"],
-            darkBorder: true,
-            subtitle: (
-                <Subtitle href="https://codepen.io/gibsonmurray/pen/gONaLwy">
-                    Codepen Demo
-                </Subtitle>
-            ),
+            subtitle: "subtitle",
             content: (
                 <>
                     <span>
@@ -653,18 +496,8 @@ export const bubbles = [
         {
             title: "Jumpy Cards",
             path: "/jumpy-cards",
-            mainLink: "https://codepen.io/gibsonmurray/pen/oNrXoaL",
+            penLink: "https://codepen.io/gibsonmurray/pen/oNrXoaL",
             thumbnail: "/images/thumbnails/jumpy-cards.webp",
-            imgs: [
-                {
-                    title: "Jumpy Cards",
-                    src: "/images/jumpy-cards/1.png",
-                },
-                {
-                    title: "Jumpy Cards",
-                    src: "/images/jumpy-cards/3.jpeg",
-                },
-            ],
             skills: [
                 {
                     text: "JavaScript",
@@ -687,12 +520,7 @@ export const bubbles = [
             ],
             colors: ["#EEECEC", "#e0e0e0"],
             darkColors: ["#2e2e2e", "#1a1a1a"],
-            darkBorder: false,
-            subtitle: (
-                <Subtitle href="https://codepen.io/gibsonmurray/pen/oNrXoaL">
-                    Codepen Demo
-                </Subtitle>
-            ),
+            subtitle: "subtitle",
             content: (
                 <>
                     <span>
@@ -725,35 +553,41 @@ export const bubbles = [
             ),
         },
         {
-            title: "100 Days of Framer Motion",
-            path: "/100-days-of-framer-motion",
-            thumbnail: "/images/thumbnails/100-days-of-framer-motion.png",
-            colors: ["#FD008D", "#E4E4E7"],
-            darkColors: ["#6706FF", "#18181B"],
+            title: "Pressure Grid",
+            path: "/pressure-grid",
+            penLink: "https://codepen.io/gibsonmurray/pen/KKjLRMj",
+            thumbnail: "/images/thumbnails/pressure-grid.webp",
+            colors: ["#BA22A3", "#DDA7E0"],
+            darkColors: ["#6D12CF", "#400e7a"],
+            subtitle: "subtitle",
+            content: (
+                <>
+                    <span>
+                        Feeling the pressure? This emulates a touch-sensitive
+                        pad that can be used to control different things. On
+                        touch release a crosshair of cells will meet at the
+                        point of release.
+                    </span>
+                    <span>
+                        Uses <GSAPLink /> and <JQueryLink /> to animate the
+                        grid.
+                    </span>
+                    <span>
+                        This was a simple project to practice using{" "}
+                        <JQueryLink /> and to explore different animation
+                        techniques.
+                    </span>
+                </>
+            ),
         },
         {
             title: "iPhone Widget Flood",
             path: "/iphone-widget-flood",
-            mainLink: "https://codepen.io/gibsonmurray/pen/RwEQKrY",
+            penLink: "https://codepen.io/gibsonmurray/pen/RwEQKrY",
             thumbnail: "/images/thumbnails/iphone-widget-flood.webp",
-            imgs: [
-                {
-                    title: "iPhone Widget Flood: Left",
-                    src: "/images/iphone-widget-flood/l.png",
-                },
-                {
-                    title: "iPhone Widget Flood: Right",
-                    src: "/images/iphone-widget-flood/r.png",
-                },
-            ],
             colors: ["##0D0D0D", "#f9edff"],
             darkColors: ["#1a1a1a", "#2e2e2e"],
-            darkBorder: false,
-            subtitle: (
-                <Subtitle href="https://codepen.io/gibsonmurray/pen/RwEQKrY">
-                    Codepen Demo
-                </Subtitle>
-            ),
+            subtitle: "subtitle",
             content: (
                 <>
                     <span>
@@ -777,18 +611,8 @@ export const bubbles = [
         {
             title: "iPad Parallax Scroll",
             path: "/ipad-parallax-scroll",
-            mainLink: "https://codepen.io/gibsonmurray/pen/BaMjoaP",
+            penLink: "https://codepen.io/gibsonmurray/pen/BaMjoaP",
             thumbnail: "/images/thumbnails/ipad-parallax-scroll.webp",
-            imgs: [
-                {
-                    title: "iPad Parallax Scroll: Left Corner",
-                    src: "/images/ipad-parallax-scroll/l.jpeg",
-                },
-                {
-                    title: "iPad Parallax Scroll: Right Corner",
-                    src: "/images/ipad-parallax-scroll/r.png",
-                },
-            ],
             skills: [
                 {
                     text: "JavaScript",
@@ -811,12 +635,7 @@ export const bubbles = [
             ],
             colors: ["#000000", "#cccccc"],
             darkColors: ["#1a1a1a", "#333333"],
-            darkBorder: false,
-            subtitle: (
-                <Subtitle href="https://codepen.io/gibsonmurray/pen/BaMjoaP">
-                    Codepen Demo
-                </Subtitle>
-            ),
+            subtitle: "subtitle",
             content: (
                 <>
                     <span>
@@ -841,22 +660,8 @@ export const bubbles = [
         {
             title: "Magic Terminal",
             path: "/magic-terminal",
-            mainLink: "https://codepen.io/gibsonmurray/pen/dyBXxLG",
+            penLink: "https://codepen.io/gibsonmurray/pen/dyBXxLG",
             thumbnail: "/images/thumbnails/magic-terminal.webp",
-            imgs: [
-                {
-                    title: "Magic Terminal: Jumbled",
-                    src: "/images/magic-terminal/jumbled.png",
-                },
-                {
-                    title: "Magic Terminal: Math",
-                    src: "/images/magic-terminal/math.png",
-                },
-                {
-                    title: "Magic Terminal: Known",
-                    src: "/images/magic-terminal/known.png",
-                },
-            ],
             skills: [
                 {
                     text: "AI",
@@ -885,12 +690,7 @@ export const bubbles = [
             ],
             colors: ["#1C1D1F", "#e8e9ea"],
             darkColors: ["#0d0d0d", "#1a1a1a"],
-            darkBorder: false,
-            subtitle: (
-                <Subtitle href="https://codepen.io/gibsonmurray/pen/dyBXxLG">
-                    Codepen Demo
-                </Subtitle>
-            ),
+            subtitle: "subtitle",
             content: (
                 <>
                     <span>
@@ -915,6 +715,18 @@ export const bubbles = [
                         went along, I decided to make it a bit more fun.
                     </span>
                 </>
+            ),
+        },
+        {
+            title: "Olympic Medals",
+            path: "/olympic-medals",
+            penLink: "https://x.com/sovpal/status/1820582630439674228/photo/1",
+            thumbnail: "/images/thumbnails/olympic-medals.webp",
+            colors: ["#000000", "#cccccc"],
+            darkColors: ["#1a1a1a", "#333333"],
+            subtitle: "subtitle",
+            content: (
+                <OlympicMedals />
             ),
         },
     ],

@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import "./globals.css"
-import Body from "./Body"
+import { Figtree } from "next/font/google"
+
+const figtree = Figtree({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
     title: {
@@ -18,7 +20,11 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <Body>{children}</Body>
+            <body
+                className={`${figtree.className} overflow-hidden bg-zinc-200`}
+            >
+                {children}
+            </body>
         </html>
     )
 }

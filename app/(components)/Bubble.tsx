@@ -6,10 +6,6 @@ import { useRouter } from "next/navigation"
 import Image from "next/image"
 import gsap from "gsap"
 
-import { useAtom } from "jotai"
-
-import {themeState, btnVisibleState} from "./ThemeToggle"
-
 function Bubble(props: {
     title: string
     path: string
@@ -25,17 +21,6 @@ function Bubble(props: {
     const router = useRouter()
     const bubbleRef = useRef(null)
     const [scaleValue, setScaleValue] = useState(1)
-
-    const [theme] = useAtom(themeState)
-    const [themeColors, setThemeColors] = useState(
-        theme === "dark" ? props.darkColors : props.colors,
-    )
-
-    useEffect(() => {
-        setThemeColors(theme === "dark" ? props.darkColors : props.colors)
-    }, [theme])
-
-    const [_, setBtnVisible] = useAtom(btnVisibleState)
 
     const [screenWidth, setScreenWidth] = useState(() => {
         if (typeof window !== "undefined") {
@@ -67,7 +52,6 @@ function Bubble(props: {
 
     const handleClick = () => {
         setClicked(true)
-        setBtnVisible(false)
     }
 
     const getScaleValue = () => {
@@ -119,7 +103,9 @@ function Bubble(props: {
             <motion.div
                 className="absolute flex h-full w-full items-center justify-center rounded-full opacity-0"
                 animate={{
-                    backgroundColor: clicked ? themeColors[1] : themeColors[0],
+                    backgroundColor: clicked
+                        ? props.colors[1]
+                        : props.colors[0],
                     width: clicked
                         ? Math.max(screenWidth, screenHeight) * 3
                         : 200,
@@ -138,7 +124,7 @@ function Bubble(props: {
                 }}
                 style={{
                     opacity: clicked ? 1 : 0,
-                    backgroundColor: themeColors[0],
+                    backgroundColor: props.colors[0],
                 }}
             ></motion.div>
 
@@ -158,7 +144,7 @@ function Bubble(props: {
                 />
             </motion.div>
             <motion.div
-                className={`absolute left-0 top-0 h-full w-full rounded-full border-4 transition-[border-color] duration-500 ${theme === "light" ? "border-zinc-300/70" : "border-zinc-800/70"}`}
+                className="absolute left-0 top-0 h-full w-full rounded-full border-4 border-zinc-300/70 transition-[border-color] duration-500"
                 style={{ opacity: clicked ? 0 : 1 }}
             />
         </motion.button>

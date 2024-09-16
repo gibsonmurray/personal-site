@@ -1,14 +1,11 @@
 import InlineLink from "./InlineLink"
-import { useAtom } from "jotai"
-
-import { themeState } from "./ThemeToggle"
 
 export function GSAPLink() {
     return (
         <InlineLink
             href="https://gsap.com/"
             text="GSAP"
-            className="text-[#0AE447]"
+            className="text-green-500"
             newTab
         />
     )
@@ -48,12 +45,11 @@ export function CSSLink() {
 }
 
 export function CodepenLink() {
-    const [theme] = useAtom(themeState)
     return (
         <InlineLink
             href="https://codepen.io/gibsonmurray"
             text="Codepen"
-            className={theme === "dark" ? "text-zinc-200" : "text-zinc-800"}
+            className="text-zinc-800"
             newTab
         />
     )
@@ -98,6 +94,17 @@ export function FramerMotionLink() {
             href="https://www.framer.com/motion/"
             text="Framer Motion"
             className="text-purple-700"
+            newTab
+        />
+    )
+}
+
+export function JQueryLink() {
+    return (
+        <InlineLink
+            href="https://jquery.com/"
+            text="jQuery"
+            className="text-blue-700"
             newTab
         />
     )
