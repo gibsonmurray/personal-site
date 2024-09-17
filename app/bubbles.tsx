@@ -1,3 +1,4 @@
+import { CSSProperties, ReactNode } from "react"
 import InlineLink from "./(components)/InlineLink"
 import {
     CodepenLink,
@@ -12,7 +13,28 @@ import {
 } from "./(components)/ReusedLinks"
 import OlympicMedals from "./(pages)/olympic-medals/OlympicMedals"
 
-export const bubbles = [
+type Bubble = {
+    title: string
+    subtitle: string
+    caption: ReactNode
+    path: string
+    thumbnail: string
+    color: string
+    skills: Skill[]
+    penLink?: string
+    component?: ReactNode
+    style?: CSSProperties
+    className?: string
+}
+
+type Skill = {
+    text: string
+    href: string
+    className: string
+    newTab: boolean
+}
+
+export const bubbles: Bubble[][] = [
     [
         // row 1
         {
@@ -42,7 +64,6 @@ export const bubbles = [
             ],
             color: "#1D1D1F",
             subtitle: "subtitle",
-            component: null,
             caption: (
                 <>
                     <span>
@@ -93,7 +114,6 @@ export const bubbles = [
             ],
             color: "#000000",
             subtitle: "subtitle",
-            component: null,
             caption: (
                 <>
                     <span>
@@ -147,7 +167,6 @@ export const bubbles = [
             ],
             color: "#FFFFFF",
             subtitle: "subtitle",
-            component: null,
             caption: (
                 <>
                     <span>
@@ -198,7 +217,6 @@ export const bubbles = [
             ],
             color: "#FFFFFF",
             subtitle: "subtitle",
-            component: null,
             caption: (
                 <>
                     <span>
@@ -252,7 +270,6 @@ export const bubbles = [
             ],
             color: "#F4F4F5",
             subtitle: "subtitle",
-            component: null,
             caption: (
                 <>
                     <span>
@@ -311,7 +328,6 @@ export const bubbles = [
             ],
             color: "#CD995F",
             subtitle: "subtitle",
-            component: null,
             caption: (
                 <>
                     <span>
@@ -380,7 +396,6 @@ export const bubbles = [
             ],
             color: "#FEFDF8",
             subtitle: "Gibson Murray - Front-End Developer",
-            component: null,
             caption: (
                 <>
                     <span>
@@ -421,7 +436,6 @@ export const bubbles = [
             ],
             color: "#F1925D",
             subtitle: "subtitle",
-            component: null,
             caption: (
                 <>
                     <span>
@@ -470,7 +484,6 @@ export const bubbles = [
             ],
             color: "#FDFDFC",
             subtitle: "subtitle",
-            component: null,
             caption: (
                 <>
                     <span>
@@ -520,7 +533,6 @@ export const bubbles = [
             ],
             color: "#EEECED",
             subtitle: "subtitle",
-            component: null,
             caption: (
                 <>
                     <span>
@@ -559,7 +571,6 @@ export const bubbles = [
             thumbnail: "/images/thumbnails/pressure-grid.webp",
             color: "#000000",
             subtitle: "subtitle",
-            component: null,
             skills: [],
             caption: (
                 <>
@@ -588,7 +599,6 @@ export const bubbles = [
             thumbnail: "/images/thumbnails/iphone-widget-flood.webp",
             color: "#0D0D0D",
             subtitle: "subtitle",
-            component: null,
             skills: [],
             caption: (
                 <>
@@ -637,7 +647,6 @@ export const bubbles = [
             ],
             color: "#000000",
             subtitle: "subtitle",
-            component: null,
             caption: (
                 <>
                     <span>
@@ -692,7 +701,6 @@ export const bubbles = [
             ],
             color: "#434343",
             subtitle: "subtitle",
-            component: null,
             caption: (
                 <>
                     <span>
@@ -722,7 +730,6 @@ export const bubbles = [
         {
             title: "Olympic Medals",
             path: "/olympic-medals",
-            penLink: "https://x.com/sovpal/status/1820582630439674228/photo/1",
             thumbnail: "/images/thumbnails/olympic-medals.webp",
             color: "#F5F5F5",
             subtitle: "subtitle",

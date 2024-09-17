@@ -21,6 +21,8 @@ const DynamicPage = () => {
         color,
         component,
         penLink,
+        style,
+        className,
     } = bubble
 
     return (
@@ -32,6 +34,8 @@ const DynamicPage = () => {
             caption={caption}
             penLink={penLink}
             component={component}
+            style={style}
+            className={className}
         />
     )
 }

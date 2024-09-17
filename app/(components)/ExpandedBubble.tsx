@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { MouseEvent, ReactNode, useState } from "react"
 import { useRouter } from "next/navigation"
 import EmbededCodepen from "./EmbededCodepen"
+import { cn } from "@/lib/utils"
 
 function ExpandedBubble(props: {
     color: string
@@ -16,8 +17,10 @@ function ExpandedBubble(props: {
         className?: string
         newTab?: boolean
     }[]
-    penLink: string
+    penLink?: string
     component: ReactNode | null
+    style?: React.CSSProperties
+    className?: string
 }) {
     // const [backClicked, setBackClicked] = useState(false)
     // const router = useRouter()
@@ -41,12 +44,24 @@ function ExpandedBubble(props: {
                 },
             }}
         >
-            <motion.div className="flex h-full w-full flex-col flex-wrap items-center justify-start gap-10 p-5 md:px-0 md:py-10">
-                {/* TODO: Navbar */}
+            {/* TODO: Navbar */}
 
+            <motion.div
+                className={cn(
+                    "center absolute left-0 top-0 h-full w-full overflow-hidden",
+                    props.penLink ? "*:w-full" : "",
+                    props.className,
+                )}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 2 }}
+                style={props.style}
+            >
                 {/* Codepen Demo */}
-                {props.title !== "About Me" && (
+                {!props.component && props.penLink ? (
                     <EmbededCodepen penHash={penHash} penTitle={props.title} />
+                ) : (
+                    props.component
                 )}
             </motion.div>
         </motion.div>
