@@ -21,7 +21,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${figtree.className} overflow-hidden bg-zinc-200`}
+                className={`${figtree.className} bg-black`}
             >
                 {children}
             </body>

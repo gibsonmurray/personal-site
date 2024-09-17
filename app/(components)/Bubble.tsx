@@ -1,25 +1,32 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from "react"
-import { motion } from "framer-motion"
+import React, {
+    RefObject,
+    useCallback,
+    useEffect,
+    useRef,
+    useState,
+} from "react"
+import { motion, useMotionValueEvent } from "framer-motion"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
 import gsap from "gsap"
+import { cn } from "@/lib/utils"
+import { useScroll } from "framer-motion"
 
 function Bubble(props: {
     title: string
     path: string
     thumbnail: string
     color: string
-    offsetX: number
-    offsetY: number
     initAnimationDone: boolean
     className?: string
+    hidden?: boolean
 }) {
     const [clicked, setClicked] = useState(false)
     const router = useRouter()
     const bubbleRef = useRef(null)
-    const [scaleValue, setScaleValue] = useState(1)
+    const [scale, setScale] = useState(1)
 
     const [screenWidth, setScreenWidth] = useState(() => {
         if (typeof window !== "undefined") {
@@ -34,6 +41,8 @@ function Bubble(props: {
         }
         return 0
     })
+
+    const { scrollY } = useScroll()
 
     useEffect(() => {
         const handleResize = () => {
@@ -53,50 +62,35 @@ function Bubble(props: {
         setClicked(true)
     }
 
-    const getScaleValue = () => {
-        if (!bubbleRef.current || !props.initAnimationDone) return 1
-        const transform = (bubbleRef.current! as HTMLElement).style.transform
-        const scaleMatch = transform.match(/scale\(([^)]+)\)/)
-        const sv = scaleMatch ? parseFloat(scaleMatch[1]) : 1
-        return sv
-    }
+    const setBubbleScale = useCallback(() => {
+        const dist = distanceFromCenter(bubbleRef.current!)
+        let scale = Math.max(1 - Math.pow(dist / 700, 2.5), 0)
+        setScale(scale)
+    }, [bubbleRef])
+
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        setBubbleScale()
+    })
 
     useEffect(() => {
-        setScaleValue(getScaleValue())
-    }, [props.initAnimationDone])
-
-    const handleMouseEnter = () => {
-        if (!bubbleRef.current || !props.initAnimationDone) return
-        const sv = getScaleValue()
-        setScaleValue(sv)
-        gsap.to(bubbleRef.current, {
-            scale: sv + 0.08,
-            ease: "elastic.out(0.8, 0.4)",
-        })
-    }
-
-    const handleMouseLeave = () => {
-        if (!bubbleRef.current || !props.initAnimationDone) return
-        gsap.to(bubbleRef.current, {
-            scale: scaleValue,
-            ease: "elastic.out(0.8, 0.4)",
-        })
-    }
+        setBubbleScale()
+    }, [setBubbleScale])
 
     return (
         <motion.button
             ref={bubbleRef}
             title={props.title}
-            className={`${props.className} bubble relative flex h-[150px] w-[150px] cursor-pointer items-center justify-center rounded-full shadow-md shadow-zinc-400/5 scale-0 md:h-[200px] md:w-[200px]`}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            className={cn(
+                "bubble relative flex aspect-square h-[20vh] max-h-[25vw] max-w-[25vw] cursor-pointer items-center justify-center",
+                props.className,
+                props.hidden ? "invisible" : "",
+            )}
             onClick={handleClick}
             style={{
                 borderRadius: 9999,
                 overflow: clicked ? "visible" : "hidden",
                 zIndex: clicked ? 100 : 0,
-                translate: `${props.offsetX}px ${props.offsetY}px`,
-                pointerEvents: "none",
+                scale
             }}
         >
             <motion.div
@@ -125,19 +119,21 @@ function Bubble(props: {
             ></motion.div>
 
             <motion.div
-                className="relative h-[200px] w-[200px] rounded-full"
+                className="relative h-full w-full rounded-full"
                 animate={{
                     opacity: clicked ? 0 : 1,
                 }}
             >
-                <Image
-                    className="h-full w-full rounded-full object-cover"
-                    src={props.thumbnail}
-                    alt="thumbnail"
-                    fill
-                    sizes="(max-width: 640px) 300px, (max-width: 768px) 400px, 500px"
-                    priority
-                />
+                {!props.hidden && (
+                    <Image
+                        className="h-full w-full rounded-full object-cover"
+                        src={props.thumbnail}
+                        alt="thumbnail"
+                        fill
+                        sizes="300px"
+                        priority
+                    />
+                )}
             </motion.div>
             <motion.div
                 className="absolute left-0 top-0 h-full w-full rounded-full border-4 border-zinc-300/70 transition-[border-color] duration-500"
@@ -148,3 +144,17 @@ function Bubble(props: {
 }
 
 export default Bubble
+
+function getCenterPoint() {
+    const vh = window.innerHeight
+    const vw = window.innerWidth
+    return { x: Math.round(vw / 2), y: Math.round(vh / 2) }
+}
+
+function distanceFromCenter(element: HTMLElement) {
+    const rect = element.getBoundingClientRect()
+    const center = getCenterPoint()
+    const x = rect.left + rect.width / 2
+    const y = rect.top + rect.height / 2
+    return Math.sqrt(Math.pow(center.x - x, 2) + Math.pow(center.y - y, 2))
+}

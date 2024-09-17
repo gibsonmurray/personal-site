@@ -1,10 +1,6 @@
-function Row(props: {
-    children: React.ReactNode
-}) {
+function Row(props: { children: React.ReactNode }) {
     const { children } = props
-    return (
-        <div className="flex items-center justify-center gap-1 md:gap-2">{children}</div>
-    )
+    return <div className="center gap-1 md:gap-4 min-h-[100px]">{children}</div>
 }
 
 export default Row
