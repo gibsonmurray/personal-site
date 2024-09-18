@@ -1,16 +1,9 @@
 "use client"
 
-import React, {
-    RefObject,
-    useCallback,
-    useEffect,
-    useRef,
-    useState,
-} from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { motion, useMotionValueEvent } from "framer-motion"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
-import gsap from "gsap"
 import { cn } from "@/lib/utils"
 import { useScroll } from "framer-motion"
 
@@ -27,27 +20,22 @@ function Bubble(props: {
     const router = useRouter()
     const bubbleRef = useRef(null)
     const [scale, setScale] = useState(1)
-
-    const [screenWidth, setScreenWidth] = useState(() => {
+    const [screenDimensions, setScreenDimensions] = useState(() => {
         if (typeof window !== "undefined") {
-            return window.innerWidth
+            return {
+                width: window.innerWidth,
+                height: window.innerHeight,
+            }
         }
-        return 0
+        return { width: 0, height: 0 }
     })
-
-    const [screenHeight, setScreenHeight] = useState(() => {
-        if (typeof window !== "undefined") {
-            return window.innerHeight
-        }
-        return 0
-    })
-
-    const { scrollY } = useScroll()
 
     useEffect(() => {
         const handleResize = () => {
-            setScreenWidth(window.innerWidth)
-            setScreenHeight(window.innerHeight)
+            setScreenDimensions({
+                width: window.innerWidth,
+                height: window.innerHeight,
+            })
         }
         handleResize()
 
@@ -62,9 +50,11 @@ function Bubble(props: {
         setClicked(true)
     }
 
+    const { scrollY } = useScroll()
+
     const setBubbleScale = useCallback(() => {
         const dist = distanceFromCenter(bubbleRef.current!)
-        let scale = Math.max(1 - Math.pow(dist / 700, 2.5), 0)
+        let scale = Math.max(1 - Math.pow(dist / 470, 3), 0)
         setScale(scale)
     }, [bubbleRef])
 
@@ -81,7 +71,7 @@ function Bubble(props: {
             ref={bubbleRef}
             title={props.title}
             className={cn(
-                "bubble relative flex aspect-square h-[20vh] max-h-[25vw] max-w-[25vw] cursor-pointer items-center justify-center",
+                "bubble relative flex aspect-square h-52 cursor-pointer items-center justify-center",
                 props.className,
                 props.hidden ? "invisible" : "",
             )}
@@ -90,17 +80,23 @@ function Bubble(props: {
                 borderRadius: 9999,
                 overflow: clicked ? "visible" : "hidden",
                 zIndex: clicked ? 100 : 0,
-                scale
+                scale,
             }}
         >
             <motion.div
                 className={`absolute flex h-full w-full items-center justify-center rounded-full opacity-0`}
                 animate={{
                     width: clicked
-                        ? Math.max(screenWidth, screenHeight) * 3
+                        ? Math.max(
+                              screenDimensions.width,
+                              screenDimensions.height,
+                          ) * 3
                         : 200,
                     height: clicked
-                        ? Math.max(screenWidth, screenHeight) * 3
+                        ? Math.max(
+                              screenDimensions.width,
+                              screenDimensions.height,
+                          ) * 3
                         : 200,
                     transition: {
                         duration: 0.5,

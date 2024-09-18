@@ -3,26 +3,38 @@
 import Row from "./(components)/Row"
 import { bubbles } from "./bubbles"
 import Bubble from "./(components)/Bubble"
-import { useState } from "react"
-import gsap from "gsap"
-import { motion, useAnimate } from "framer-motion"
+import { useEffect, useRef, useState } from "react"
+import { useAnimate } from "framer-motion"
+
+bubbles.push(...bubbles)
 
 function Home() {
-    const [scope, animate] = useAnimate()
+    const [scope, animate] = useAnimate() //todo intro animation
 
-    const [screenWidth, setScreenWidth] = useState(() => {
-        if (typeof window !== "undefined") {
-            return window.innerWidth
+    const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
+    const container = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        const handleResize = () => {
+            setDimensions({
+                width: window.innerWidth,
+                height: window.innerHeight,
+            })
         }
-        return 0
-    })
+        window.addEventListener("resize", handleResize)
+        handleResize()
+        return () => window.removeEventListener("resize", handleResize)
+    }, [])
 
     return (
         <section
             ref={scope}
             className="center h-svh w-screen flex-col justify-start"
         >
-            <main className="center container flex-col justify-start">
+            <main
+                ref={container}
+                className="center relative flex-col justify-start"
+            >
                 {Array.from({ length: Math.ceil(bubbles.length / 3.5) }).map(
                     (_, rowIndex) => {
                         const startIndex = Math.floor(rowIndex * 3.5)
