@@ -1,9 +1,12 @@
 <script setup lang="ts">
     import animations from "./animations"
-    import { getBubbleScale } from "./utils"
+    import { getBubbleScale, getBubbleYTranslation } from "./utils"
 
     const props = defineProps<{
-        id: string
+        location: {
+            row: number
+            column: number
+        }
         title?: string
         path?: string
         penLink?: string
@@ -25,6 +28,9 @@
     onMounted(() => {
         const scale = getBubbleScale(bubbleRef.value)
         animations.setScale(bubbleRef.value, scale)
+
+        const y = getBubbleYTranslation(bubbleRef.value, scale)
+        animations.setYTranslation(bubbleRef.value, y)
     })
 
     // onMounted(() => {
@@ -41,14 +47,14 @@
 
     const handleClick = () => {
         clicked.value = true
-        animations.expand(bubbleRef.value)
+        animations.expand(bubbleRef.value, props.location)
     }
 </script>
 
 <template>
     <button
         ref="bubbleRef"
-        :id="id"
+        :id="`bubble-${location.row}-${location.column}`"
         :title="title"
         :class="[
             'bubble relative flex aspect-square h-[20vh] max-h-52 cursor-pointer items-center justify-center opacity-0',

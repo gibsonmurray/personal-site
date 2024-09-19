@@ -16,12 +16,13 @@
     <section class="flex h-svh w-screen flex-col items-center justify-start">
         <div
             v-for="(row, i) in honeycombifiedProjects"
+            :id="`row-${i}`"
             class="row flex items-center justify-center gap-4"
         >
             <Bubble
                 v-for="(project, j) in row"
                 :key="project?.title ?? `$bubble-${i}-${j}`"
-                :id="`bubble-${i}-${j}`"
+                :location="{ row: i, column: j }"
                 :title="project?.title ?? ''"
                 :path="project?.path ?? ''"
                 :penLink="project?.penLink ?? ''"

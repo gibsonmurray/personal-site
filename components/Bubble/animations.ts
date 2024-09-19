@@ -10,6 +10,13 @@ const animations = {
         })
     },
 
+    setYTranslation: (bubble: HTMLElement | null, y: number) => {
+        if (!bubble) return
+        gsap.set(bubble, {
+            y,
+        })
+    },
+
     enter: () => {
         gsap.from(".row", {
             opacity: 0,
@@ -18,11 +25,14 @@ const animations = {
             y: 70,
             duration: 0.3,
             ease: "back.out(1)",
-            stagger: 0.2,
+            stagger: 0.08,
         })
     },
 
-    expand: (bubble: HTMLElement | null) => {
+    expand: (
+        bubble: HTMLElement | null,
+        location: { row: number; column: number },
+    ) => {
         if (!bubble) return
         const $bubble = $(bubble)
         const img = $bubble.find(".bubble-image")
@@ -33,6 +43,8 @@ const animations = {
         const scaledSize = baseSize / scale
 
         $(".bubble").css("pointer-events", "none") // Disable pointer events for all bubbles
+
+        $(".row").not(`:eq(${location.row})`).css("z-index", -1)
 
         gsap.timeline()
             .set(bubble, {
