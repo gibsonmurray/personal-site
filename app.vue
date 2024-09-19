@@ -35,7 +35,15 @@
 </template>
 
 <style>
+
   body {
     font-family: "Figtree", "Inter", sans-serif;
+    background-color: #000;
+    color: #fff;
   }
+
+  .center {
+    @apply flex justify-center items-center;
+  }
+
 </style>

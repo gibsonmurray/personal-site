@@ -10,8 +10,10 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "gsap": "^3.12.5",
-    "nuxt": "^3.13.0",
+    "axios": "^1.7.7",
+    "gsap": "latest",
+    "jquery": "^3.7.1",
+    "nuxt": "latest",
     "vue": "latest",
     "vue-router": "latest"
   },
@@ -19,6 +21,7 @@
     "@nuxt/fonts": "^0.8.0",
     "@nuxt/icon": "^1.5.1",
     "@nuxt/image": "^1.8.0",
-    "@nuxtjs/tailwindcss": "^6.12.1"
+    "@nuxtjs/tailwindcss": "^6.12.1",
+    "@types/jquery": "^3.5.30"
   }
 }

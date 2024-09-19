@@ -1,0 +1,45 @@
+[
+    {
+        "title": "Landing Page Hero",
+        "path": "/landing-page-hero",
+        "penLink": "https://codepen.io/gibsonmurray/pen/OJdzxyK",
+        "thumbnail": "/thumbnails/landing-page-hero.webp",
+        "skills": ["JavaScript", "HTML", "CSS"],
+        "color": "#1D1D1F",
+        "subtitle": "A hero section based on Poppr's website",
+        "description": "Exploration in text splitting effects, cursor following animations, and 3D transforms. All made with GSAP.",
+        "keywords": "landing page, hero section, gsap, text splitting, cursor driven animation, 3d transforms"
+    },
+    {
+        "title": "Apple Watch Gestures",
+        "path": "/apple-watch-gestures",
+        "penLink": "https://codepen.io/gibsonmurray/pen/NWowKYg",
+        "thumbnail": "/thumbnails/apple-watch-gestures.webp",
+        "skills": ["JavaScript", "HTML", "CSS"],
+        "color": "#000000",
+        "subtitle": "Inspired by Apple's Watch Series 9",
+        "description": "A simple demo of Apple's watch gestures from their website.",
+        "keywords": "apple watch, gestures, demo"
+    },
+    {
+        "title": "Parallax Seasons",
+        "path": "/parallax-seasons",
+        "penLink": "https://codepen.io/gibsonmurray/pen/jOdwaKb",
+        "thumbnail": "/thumbnails/parallax-seasons.webp",
+        "skills": ["JavaScript", "HTML", "CSS"],
+        "color": "#FFFFFF",
+        "subtitle": "An interactive exploration of the seasons",
+        "description": "One of my most popular projects on Codepen, this is a simple parallax effect that I created using just HTML, CSS, and JS. The effect is triggered when the user moves their mouse across the screen. By default, the season on desplay is the current one in the United States 🇺🇸 (as of right now that is <SEASON>). However, users can change the season by clicking on the menu. This was my entry to getting highly featured on the Codepen trending page and newsletter ❤️.",
+        "keywords": "parallax, seasons, demo"
+    }, {
+        "title": "Parallax Devices",
+        "path": "/parallax-devices",
+        "penLink": "https://codepen.io/gibsonmurray/pen/JjzmrWR",
+        "thumbnail": "/thumbnails/parallax-devices.webp",
+        "skills": ["JavaScript", "HTML", "CSS"],
+        "color": "#FFFFFF",
+        "subtitle": "subtitle",
+        "description": "subtitle",
+        "keywords": "parallax, devices, demo"
+    }
+]
