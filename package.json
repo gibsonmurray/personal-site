@@ -23,6 +23,7 @@
     "@nuxt/icon": "^1.5.1",
     "@nuxt/image": "^1.8.0",
     "@nuxtjs/tailwindcss": "^6.12.1",
-    "@types/jquery": "^3.5.30"
+    "@types/jquery": "^3.5.30",
+    "sass": "^1.79.1"
   }
 }

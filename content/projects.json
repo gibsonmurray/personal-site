@@ -8,7 +8,7 @@
         "color": "#1D1D1F",
         "subtitle": "A hero section based on Poppr's website",
         "description": "Exploration in text splitting effects, cursor following animations, and 3D transforms. All made with GSAP.",
-        "keywords": "landing page, hero section, gsap, text splitting, cursor driven animation, 3d transforms"
+        "keywords": ["landing page", "hero section", "gsap", "text splitting", "cursor driven animation", "3d transforms"]
     },
     {
         "title": "Apple Watch Gestures",
@@ -19,7 +19,7 @@
         "color": "#000000",
         "subtitle": "Inspired by Apple's Watch Series 9",
         "description": "A simple demo of Apple's watch gestures from their website.",
-        "keywords": "apple watch, gestures, demo"
+        "keywords": ["apple watch", "gestures", "demo"]
     },
     {
         "title": "Parallax Seasons",
@@ -30,7 +30,7 @@
         "color": "#FFFFFF",
         "subtitle": "An interactive exploration of the seasons",
         "description": "One of my most popular projects on Codepen, this is a simple parallax effect that I created using just HTML, CSS, and JS. The effect is triggered when the user moves their mouse across the screen. By default, the season on desplay is the current one in the United States 🇺🇸 (as of right now that is <SEASON>). However, users can change the season by clicking on the menu. This was my entry to getting highly featured on the Codepen trending page and newsletter ❤️.",
-        "keywords": "parallax, seasons, demo"
+        "keywords": ["parallax", "seasons", "demo"]
     },
     {
         "title": "Parallax Devices",
@@ -41,7 +41,7 @@
         "color": "#FFFFFF",
         "subtitle": "Flow from Device to Device",
         "description": "This project was insired by Nate Smith's portfolio website. My goal was to create a parallax effect, transitioning one device 📱 to another 💻. GSAP timelines are used to animate the entire flow.",
-        "keywords": "parallax, devices, demo, ios, macos, apple tv, iphone, macbook"
+        "keywords": ["parallax", "devices", "demo", "ios", "macos", "apple tv", "iphone", "macbook"]
     },
     {
         "title": "Photography View Transitions",
@@ -52,7 +52,7 @@
         "color": "#F4F4F5",
         "subtitle": "View Transitions API",
         "description": "My entry for a small competition on X/Twitter. The goal was to create a view transition effect for a social media-inspired design.",
-        "keywords": "view transitions, photography, demo, social media, x/twitter, react, tailwindcss, framer motion"
+        "keywords": ["view transitions", "photography", "demo", "social media", "x/twitter", "react", "tailwindcss", "framer motion"]
     },
     {
         "title": "Sticky Notes",
@@ -63,7 +63,7 @@
         "color": "#CD995F",
         "subtitle": "A simple sticky notes app",
         "description": "A simple sticky notes app that allows you to add, edit, and delete notes. It uses local storage to save the notes and has realistic animations to make it feel more interactive.",
-        "keywords": "sticky notes, app, demo, local storage, interaction design, post-it notes"
+        "keywords": ["sticky notes", "app", "demo", "local storage", "interaction design", "post-it notes"]
     },
     {
         "title": "About Me",
@@ -81,7 +81,7 @@
         "color": "#FEFDF8",
         "subtitle": "Gibson Murray - Front-End Developer",
         "description": "Hello world! I'm Gibson, a front-end developer with a passion for creating beautiful and functional web applications. I am currently working on exploring new front-end technologies and frameworks like Vue and Nuxt.",
-        "keywords": "about me, portfolio, resume, front-end developer, web developer, web applications, front-end technologies, front-end frameworks, vue, nuxt"
+        "keywords": ["about me", "portfolio", "resume", "front-end developer", "web developer", "web applications", "front-end technologies", "front-end frameworks", "vue", "nuxt"]
     },
     {
         "title": "Dune Thumper",
@@ -92,7 +92,7 @@
         "color": "#F1925D",
         "subtitle": "Dune: Part 2 - inspired scene",
         "description": "It is a 2D scene with a thumper hitting the ground, and aworm 🪱 that emerges in the background. The animations and the scene are all made with pure HTML and CSS 😱",
-        "keywords": "dune, thumper, worm, 2d, scene, animation, html, css"
+        "keywords": ["dune", "thumper", "worm", "2d", "scene", "animation", "html", "css"]
     },
     {
         "title": "Trashy Photos",
@@ -103,7 +103,7 @@
         "color": "#FDFDFC",
         "subtitle": "Throw them away!",
         "description": "I wanted to challenge myself by recreating Emil Kowalski's demo of deleting photos in a stylish way. I only used GSAP 🪄 to create the animations. This is all done with vanilla JavaScript. I did not like doing it in vanilla JS, but I wanted to see how far I could get without tools like React ⚛️",
-        "keywords": "photos, trash, delete, style, gsap, vanilla javascript, demo, interaction design"
+        "keywords": ["photos", "trash", "delete", "style", "gsap", "vanilla javascript", "demo", "interaction design"]
     },
     {
         "title": "Jumpy Cards",
@@ -114,7 +114,7 @@
         "color": "#EEECED",
         "subtitle": "Watch them bounce!",
         "description": "A very simple project with a few cards that jump on launch. Mimics AirBnB's micro-interactions as seen on their app. It uses a simple GSAP tween used to stagger the scales of the cards.",
-        "keywords": "cards, bounce, airbnb, micro-interactions, gsap, vanilla javascript, demo, interaction design"
+        "keywords": ["cards", "bounce", "airbnb", "micro-interactions", "gsap", "vanilla javascript", "demo", "interaction design"]
     },
     {
         "title": "Pressure Grid",
@@ -125,7 +125,7 @@
         "color": "#000000",
         "subtitle": "Feeling the pressure?",
         "description": "This emulates a touch-sensitive pad that can be used to control different things. On touch release a crosshair of cells will meet at the point of release.",
-        "keywords": "pressure, grid, touch, sensitive, pad, control, gsap, vanilla javascript, demo, interaction design"
+        "keywords": ["pressure", "grid", "touch", "sensitive", "pad", "control", "gsap", "vanilla javascript", "demo", "interaction design"]
     },
     {
         "title": "iPhone Widget Flood",
@@ -136,7 +136,7 @@
         "color": "#0D0D0D",
         "subtitle": "A widget flood like no other",
         "description": "A very simple scroll animation that scales cards from behind an iPhone 14 Pro.",
-        "keywords": "iphone, widget, flood, scroll, animation, gsap, vanilla javascript, demo, interaction design"
+        "keywords": ["iphone", "widget", "flood", "scroll", "animation", "gsap", "vanilla javascript", "demo", "interaction design"]
     },
     {
         "title": "iPad Parallax Scroll",
@@ -147,7 +147,7 @@
         "color": "#FFFFFF",
         "subtitle": "Bringing an iPad to life",
         "description": "This is one of my first featured projects on Codepen. It is a small project designed to gain more experience with GSAP and to learn how to create a scrolling effect.",
-        "keywords": "ipad, parallax, scroll, animation, gsap, vanilla javascript, demo, interaction design"
+        "keywords": ["ipad", "parallax", "scroll", "animation", "gsap", "vanilla javascript", "demo", "interaction design"]
     },
     {
         "title": "Magic Terminal",
@@ -158,7 +158,7 @@
         "color": "#434343",
         "subtitle": "The Future Awaits",
         "description": "Imagine a Bash shell with knowledge of the universe and the future of what is to come... ✨ The Magic Terminal is an interactive <CodepenLink /> built with hidden lore. It will answer your questions but sometimes it reveals a bit more than you asked for.",
-        "keywords": "magic, terminal, animation, gsap, vanilla javascript, demo, interaction design, ai, chatgpt, future, prophecy, lore"
+        "keywords": ["magic", "terminal", "animation", "gsap", "vanilla javascript", "demo", "interaction design", "ai", "chatgpt", "future", "prophecy", "lore"]
     },
     {
         "title": "Olympic Medals",
@@ -169,6 +169,6 @@
         "color": "#F5F5F5",
         "subtitle": "Winners of the 2024 Olympics",
         "description": "An interactive widget built with React and Framer Motion that displays the number of medals won by the top 4 countries during the 2024 Olympics in Paris, France.",
-        "keywords": "olympics, medals, 2024, paris, france, react, tailwindcss, framer motion, demo, interactive, awards, widgets"
+        "keywords": ["olympics", "medals", "2024", "paris", "france", "react", "tailwindcss", "framer motion", "demo", "interactive", "awards", "widgets"]
     }
 ]
