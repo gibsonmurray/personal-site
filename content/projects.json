@@ -66,24 +66,6 @@
         "keywords": ["sticky notes", "app", "demo", "local storage", "interaction design", "post-it notes"]
     },
     {
-        "title": "About Me",
-        "path": "/about",
-        "penLink": null,
-        "thumbnail": "/thumbnails/prof-pic.webp",
-        "skills": [
-            "JavaScript",
-            "TypeScript",
-            "Vue",
-            "React",
-            "TailwindCSS",
-            "GSAP"
-        ],
-        "color": "#FEFDF8",
-        "subtitle": "Gibson Murray - Front-End Developer",
-        "description": "Hello world! I'm Gibson, a front-end developer with a passion for creating beautiful and functional web applications. I am currently working on exploring new front-end technologies and frameworks like Vue and Nuxt.",
-        "keywords": ["about me", "portfolio", "resume", "front-end developer", "web developer", "web applications", "front-end technologies", "front-end frameworks", "vue", "nuxt"]
-    },
-    {
         "title": "Dune Thumper",
         "path": "/dune-thumper",
         "penLink": "https://codepen.io/gibsonmurray/pen/MWRJajj",
@@ -104,6 +86,24 @@
         "subtitle": "Throw them away!",
         "description": "I wanted to challenge myself by recreating Emil Kowalski's demo of deleting photos in a stylish way. I only used GSAP 🪄 to create the animations. This is all done with vanilla JavaScript. I did not like doing it in vanilla JS, but I wanted to see how far I could get without tools like React ⚛️",
         "keywords": ["photos", "trash", "delete", "style", "gsap", "vanilla javascript", "demo", "interaction design"]
+    },
+    {
+        "title": "About Me",
+        "path": "/about",
+        "penLink": null,
+        "thumbnail": "/thumbnails/prof-pic.webp",
+        "skills": [
+            "JavaScript",
+            "TypeScript",
+            "Vue",
+            "React",
+            "TailwindCSS",
+            "GSAP"
+        ],
+        "color": "#FEFDF8",
+        "subtitle": "Gibson Murray - Front-End Developer",
+        "description": "Hello world! I'm Gibson, a front-end developer with a passion for creating beautiful and functional web applications. I am currently working on exploring new front-end technologies and frameworks like Vue and Nuxt.",
+        "keywords": ["about me", "portfolio", "resume", "front-end developer", "web developer", "web applications", "front-end technologies", "front-end frameworks", "vue", "nuxt"]
     },
     {
         "title": "Jumpy Cards",
@@ -144,7 +144,7 @@
         "penLink": "https://codepen.io/gibsonmurray/pen/BaMjoaP",
         "thumbnail": "/thumbnails/ipad-parallax-scroll.webp",
         "skills": ["JavaScript", "HTML", "CSS"],
-        "color": "#FFFFFF",
+        "color": "#000000",
         "subtitle": "Bringing an iPad to life",
         "description": "This is one of my first featured projects on Codepen. It is a small project designed to gain more experience with GSAP and to learn how to create a scrolling effect.",
         "keywords": ["ipad", "parallax", "scroll", "animation", "gsap", "vanilla javascript", "demo", "interaction design"]

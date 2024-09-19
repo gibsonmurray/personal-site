@@ -2,33 +2,46 @@ import gsap from "gsap"
 import $ from "jquery"
 
 const animations = {
-    enter: (selector: string) => {
-        gsap.from(selector, {
+    setScale: (bubble: HTMLElement | null, scale: number) => {
+        if (!bubble) return
+        gsap.set(bubble, {
+            opacity: 1,
+            scale: scale,
+        })
+    },
+
+    enter: () => {
+        gsap.from(".row", {
             opacity: 0,
             scale: 1.3,
             filter: "blur(10px)",
             y: 70,
-            duration: 0.5,
+            duration: 0.3,
             ease: "back.out(1)",
+            stagger: 0.2,
         })
     },
 
-    expand: (selector: string) => {
-        const bubble = $(selector).parent()
-        const img = bubble.find("#bubble-image")
+    expand: (bubble: HTMLElement | null) => {
+        if (!bubble) return
+        const $bubble = $(bubble)
+        const img = $bubble.find(".bubble-image")
+        const bg = $bubble.find(".bubble-background")
 
-        const scale = gsap.getProperty(bubble.get(0)!, "scale") as number
-        const baseSize = 100
+        const scale = gsap.getProperty(bubble, "scale") as number
+        const baseSize = 300
         const scaledSize = baseSize / scale
+
+        $(".bubble").css("pointer-events", "none") // Disable pointer events for all bubbles
 
         gsap.timeline()
             .set(bubble, {
                 pointerEvents: "none",
             })
-            .set(selector, {
+            .set(bg, {
                 opacity: 1,
             })
-            .to(selector, {
+            .to(bg, {
                 width: `${scaledSize}vmax`,
                 height: `${scaledSize}vmax`,
                 duration: 0.5,
@@ -36,12 +49,12 @@ const animations = {
                 ease: "power3.in",
             })
             .to(
-                img,
+                img.get(0)!,
                 {
                     opacity: 0,
                     duration: 0.5,
                 },
-                "<"
+                "<",
             )
     },
 }

@@ -1,7 +1,9 @@
 <script setup lang="ts">
     import animations from "./animations"
+    import { getBubbleScale } from "./utils"
 
     const props = defineProps<{
+        id: string
         title?: string
         path?: string
         penLink?: string
@@ -20,27 +22,10 @@
     const clicked = ref(false)
     const scale = ref(1)
 
-    const getCenterPoint = () => {
-        const vh = window.innerHeight
-        const vw = window.innerWidth
-        return { x: Math.round(vw / 2), y: Math.round(vh / 2) }
-    }
-
-    const distanceFromCenter = (element: HTMLElement) => {
-        const rect = element.getBoundingClientRect()
-        const center = getCenterPoint()
-        const x = rect.left + rect.width / 2
-        const y = rect.top + rect.height / 2
-        return Math.sqrt(Math.pow(center.x - x, 2) + Math.pow(center.y - y, 2))
-    }
-
-    // const setBubbleScale = () => {
-    //     if (bubbleRef.value) {
-    //         const dist = distanceFromCenter(bubbleRef.value)
-    //         let newScale = Math.max(1 - Math.pow(dist / 470, 3), 0)
-    //         scale.value = newScale
-    //     }
-    // }
+    onMounted(() => {
+        const scale = getBubbleScale(bubbleRef.value)
+        animations.setScale(bubbleRef.value, scale)
+    })
 
     // onMounted(() => {
     //     window.addEventListener("scroll", setBubbleScale)
@@ -56,17 +41,17 @@
 
     const handleClick = () => {
         clicked.value = true
-        animations.expand("#bubble-background")
+        animations.expand(bubbleRef.value)
     }
 </script>
 
 <template>
     <button
         ref="bubbleRef"
-        id="bubble"
+        :id="id"
         :title="title"
         :class="[
-            'bubble relative flex aspect-square h-52 cursor-pointer items-center justify-center',
+            'bubble relative flex aspect-square h-[20vh] max-h-52 cursor-pointer items-center justify-center opacity-0',
             className,
             hidden ? 'invisible' : '',
         ]"
@@ -79,15 +64,13 @@
         }"
     >
         <div
-            id="bubble-background"
-            class="absolute flex h-full w-full items-center justify-center rounded-full opacity-0"
+            class="bubble-background absolute flex h-full w-full items-center justify-center rounded-full opacity-0"
             :style="{ backgroundColor: color }"
         ></div>
 
         <div
             v-if="!hidden"
-            id="bubble-image"
-            class="relative h-full w-full rounded-full"
+            class="bubble-image relative h-full w-full rounded-full"
         >
             <NuxtImg
                 class="h-full w-full rounded-full object-cover"
