@@ -20,7 +20,7 @@ const animations = {
     enter: () => {
         gsap.from(".row", {
             opacity: 0,
-            scale: 1.3,
+            scale: 1.5,
             filter: "blur(10px)",
             y: 70,
             duration: 0.3,

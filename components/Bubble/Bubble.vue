@@ -29,7 +29,7 @@
         const scale = getBubbleScale(bubbleRef.value)
         animations.setScale(bubbleRef.value, scale)
 
-        const y = getBubbleYTranslation(bubbleRef.value, scale)
+        const y = getBubbleYTranslation(bubbleRef.value)
         animations.setYTranslation(bubbleRef.value, y)
     })
 
