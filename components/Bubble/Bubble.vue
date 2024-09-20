@@ -23,26 +23,11 @@
     const router = useRouter()
     const bubbleRef = ref(null)
     const clicked = ref(false)
-    // const scale = ref(1)
 
     onMounted(() => {
-        const scale = getBubbleScale(bubbleRef.value)
-        const y = getBubbleY(bubbleRef.value)
-        animations.setScale(bubbleRef.value, scale)
-        animations.setY(bubbleRef.value, y)
+
+        animations.scroll(bubbleRef.value)
     })
-
-    // onMounted(() => {
-    //     window.addEventListener("scroll", setBubbleScale)
-    //     setBubbleScale()
-    //     animations.enter("#bubble")
-    // })
-
-    // onUnmounted(() => {
-    //     window.removeEventListener("scroll", setBubbleScale)
-    // })
-
-    // watch(() => bubbleRef.value, setBubbleScale)
 
     const handleClick = () => {
         clicked.value = true
@@ -56,7 +41,7 @@
         :id="`bubble-${location.row}-${location.column}`"
         :title="title"
         :class="[
-            'bubble relative flex aspect-square h-[20vh] max-h-52 cursor-pointer items-center justify-center opacity-0',
+            'bubble relative flex aspect-square h-[20vh] max-h-52 cursor-pointer items-center justify-center',
             className,
             hidden ? 'invisible' : '',
         ]"

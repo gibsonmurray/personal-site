@@ -1,32 +1,58 @@
 import gsap from "gsap"
 import $ from "jquery"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+gsap.registerPlugin(ScrollTrigger)
 
 const animations = {
-    setScale: (bubble: HTMLElement | null, scale: number) => {
-        if (!bubble) return
-        gsap.set(bubble, {
-            opacity: 1,
-            scale: scale,
+    scroll: (bubble: HTMLElement | null) => {
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: bubble,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+                // markers: true,
+            },
         })
-    },
-
-    setY: (bubble: HTMLElement | null, y: number) => {
-        if (!bubble) return
-        gsap.set(bubble, {
-            y,
-        })
+            .fromTo(
+                bubble,
+                {
+                    scale: 0,
+                    y: -50,
+                },
+                {
+                    scale: 1,
+                    y: 0,
+                    ease: "power4.out",
+                },
+            )
+            .to(bubble, {
+                scale: 0,
+                y: 50,
+                ease: "power4.in",
+            })
     },
 
     enter: () => {
-        gsap.from(".row", {
-            opacity: 0,
-            scale: 1.5,
-            filter: "blur(10px)",
-            y: 70,
-            duration: 0.3,
-            ease: "back.out(1)",
-            stagger: 0.08,
-        })
+        gsap.fromTo(
+            ".row",
+            {
+                opacity: 0,
+                scale: 1.5,
+                filter: "blur(10px)",
+                y: 70,
+            },
+            {
+                opacity: 1,
+                scale: 1,
+                filter: "blur(0px)",
+                y: 0,
+                duration: 0.3,
+                ease: "back.out(1)",
+                stagger: 0.08,
+            },
+        )
     },
 
     expand: (

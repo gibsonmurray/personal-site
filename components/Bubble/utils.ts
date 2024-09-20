@@ -1,4 +1,4 @@
-const getCenterPoint = () => {
+export const getCenterPoint = () => {
     const vh = window.innerHeight
     const vw = window.innerWidth
     return { x: Math.round(vw / 2), y: Math.round(vh / 2) }
@@ -17,7 +17,7 @@ export const getBubbleScale = (bubble: HTMLElement | null) => {
     if (!bubble) return 0
     const dist = distanceFromCenter(bubble)
     let newScale = Math.max(1 - Math.pow(dist / 500, 4), 0)
-    return parseFloat(newScale.toFixed(3)) // Round to the nearest thousandth
+    return newScale
 }
 
 export const getBubbleY = (bubble: HTMLElement | null) => {

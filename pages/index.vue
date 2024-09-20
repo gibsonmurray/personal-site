@@ -13,11 +13,11 @@
 </script>
 
 <template>
-    <section class="flex h-svh w-screen flex-col items-center justify-start">
+    <section class="flex h-[200vh] w-screen flex-col items-center justify-start">
         <div
             v-for="(row, i) in honeycombifiedProjects"
             :id="`row-${i}`"
-            class="row flex items-center justify-center gap-4"
+            class="row flex items-center justify-center gap-4 opacity-0"
         >
             <Bubble
                 v-for="(project, j) in row"
