@@ -1,6 +1,6 @@
 <script setup lang="ts">
     import animations from "./animations"
-    import { getBubbleScale, getBubbleYTranslation } from "./utils"
+    import { getBubbleScale, getBubbleY } from "./utils"
 
     const props = defineProps<{
         location: {
@@ -23,14 +23,13 @@
     const router = useRouter()
     const bubbleRef = ref(null)
     const clicked = ref(false)
-    const scale = ref(1)
+    // const scale = ref(1)
 
     onMounted(() => {
         const scale = getBubbleScale(bubbleRef.value)
+        const y = getBubbleY(bubbleRef.value)
         animations.setScale(bubbleRef.value, scale)
-
-        const y = getBubbleYTranslation(bubbleRef.value)
-        animations.setYTranslation(bubbleRef.value, y)
+        animations.setY(bubbleRef.value, y)
     })
 
     // onMounted(() => {
@@ -66,7 +65,6 @@
             borderRadius: '9999px',
             overflow: clicked ? 'visible' : 'hidden',
             zIndex: clicked ? 100 : 0,
-            scale: scale,
         }"
     >
         <div

@@ -20,7 +20,7 @@ export const getBubbleScale = (bubble: HTMLElement | null) => {
     return parseFloat(newScale.toFixed(3)) // Round to the nearest thousandth
 }
 
-export const getBubbleYTranslation = (bubble: HTMLElement | null) => {
+export const getBubbleY = (bubble: HTMLElement | null) => {
     if (!bubble) return 0
     const dist = distanceFromCenter(bubble)
     const maxDist = 470

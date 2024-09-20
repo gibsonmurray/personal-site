@@ -10,7 +10,7 @@ const animations = {
         })
     },
 
-    setYTranslation: (bubble: HTMLElement | null, y: number) => {
+    setY: (bubble: HTMLElement | null, y: number) => {
         if (!bubble) return
         gsap.set(bubble, {
             y,
