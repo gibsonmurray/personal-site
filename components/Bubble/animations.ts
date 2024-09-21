@@ -68,42 +68,49 @@ const animations = {
     expand: (
         bubble: HTMLElement | null,
         location: { row: number; column: number },
-    ) => {
-        if (!bubble) return
-        const $bubble = $(bubble)
-        const img = $bubble.find(".bubble-image")
-        const bg = $bubble.find(".bubble-background")
+    ): Promise<void> => {
+        return new Promise((resolve) => {
+            if (!bubble) {
+                resolve()
+                return
+            }
+            const $bubble = $(bubble)
+            const img = $bubble.find(".bubble-image")
+            const bg = $bubble.find(".bubble-background")
 
-        const scale = gsap.getProperty(bubble, "scale") as number
-        const baseSize = 300
-        const scaledSize = baseSize / scale
+            const scale = gsap.getProperty(bubble, "scale") as number
+            const baseSize = 300
+            const scaledSize = baseSize / scale
 
-        $(".bubble").css("pointer-events", "none") // Disable pointer events for all bubbles
+            $(".bubble").css("pointer-events", "none") // Disable pointer events for all bubbles
 
-        $(".row").not(`:eq(${location.row})`).css("z-index", -1)
+            $(".row").not(`:eq(${location.row})`).css("z-index", -1)
 
-        gsap.timeline()
-            .set(bubble, {
-                pointerEvents: "none",
+            gsap.timeline({
+                onComplete: resolve, // Add this line to resolve the Promise when the animation is complete
             })
-            .set(bg, {
-                opacity: 1,
-            })
-            .to(bg, {
-                width: `${scaledSize}vmax`,
-                height: `${scaledSize}vmax`,
-                duration: 0.5,
-                borderRadius: 0,
-                ease: "power3.in",
-            })
-            .to(
-                img.get(0)!,
-                {
-                    opacity: 0,
+                .set(bubble, {
+                    pointerEvents: "none",
+                })
+                .set(bg, {
+                    opacity: 1,
+                })
+                .to(bg, {
+                    width: `${scaledSize}vmax`,
+                    height: `${scaledSize}vmax`,
                     duration: 0.5,
-                },
-                "<",
-            )
+                    borderRadius: 0,
+                    ease: "power3.in",
+                })
+                .to(
+                    img.get(0)!,
+                    {
+                        opacity: 0,
+                        duration: 0.5,
+                    },
+                    "<",
+                )
+        })
     },
 }
 

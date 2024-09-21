@@ -32,9 +32,10 @@
         )
     })
 
-    const handleClick = () => {
+    const handleClick = async () => {
         clicked.value = true
-        animations.expand(bubbleRef.value, props.location)
+        await animations.expand(bubbleRef.value, props.location)
+        router.push(props.path || "/")
     }
 </script>
 

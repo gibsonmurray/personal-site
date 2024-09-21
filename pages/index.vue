@@ -1,6 +1,6 @@
 <script setup lang="ts">
     import type { Project } from "~/types"
-    import { honeycombify } from "./scripts"
+    import { honeycombify } from "./utils"
     import animations from "~/components/Bubble/animations"
     const res = (await queryContent("/projects").findOne())
         ?.body as unknown as Project[]
