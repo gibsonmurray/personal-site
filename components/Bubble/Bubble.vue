@@ -1,11 +1,11 @@
 <script setup lang="ts">
     import animations from "./animations"
-    import { getBubbleScale, getBubbleY } from "./utils"
 
     const props = defineProps<{
         location: {
             row: number
             column: number
+            rowLength: number
         }
         title?: string
         path?: string
@@ -25,8 +25,11 @@
     const clicked = ref(false)
 
     onMounted(() => {
-
-        animations.scroll(bubbleRef.value)
+        animations.scroll(
+            bubbleRef.value,
+            props.location.column,
+            props.location.rowLength,
+        )
     })
 
     const handleClick = () => {

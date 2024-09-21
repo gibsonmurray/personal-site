@@ -1,44 +1,31 @@
-export const getCenterPoint = () => {
-    const vh = window.innerHeight
-    const vw = window.innerWidth
-    return { x: Math.round(vw / 2), y: Math.round(vh / 2) }
+export function getMaxScale(
+    column: number,
+    totalColumns: number,
+    options: {
+        minScale?: number
+        scaleDecrement?: number
+        centerBoost?: number
+    } = {},
+): number {
+    const { minScale = 0.7, scaleDecrement = 0.1, centerBoost = 0 } = options
+
+    const isEven = totalColumns % 2 === 0
+    const middleColumn = Math.floor(totalColumns / 2)
+    let distanceFromMiddle
+
+    if (isEven && (column === middleColumn || column === middleColumn - 1)) {
+        distanceFromMiddle = 0
+    } else {
+        distanceFromMiddle = Math.abs(
+            column - (isEven ? middleColumn - 0.5 : middleColumn),
+        )
+    }
+
+    const maxScale = 1 + centerBoost - distanceFromMiddle * scaleDecrement
+    return Math.max(minScale, maxScale)
 }
 
-const distanceFromCenter = (bubble: HTMLElement | null) => {
-    if (!bubble) return 0
-    const rect = bubble.getBoundingClientRect()
-    const center = getCenterPoint()
-    const x = rect.left + rect.width / 2
-    const y = rect.top + rect.height / 2
-    return Math.sqrt(Math.pow(center.x - x, 2) + Math.pow(center.y - y, 2))
-}
-
-export const getBubbleScale = (bubble: HTMLElement | null) => {
-    if (!bubble) return 0
-    const dist = distanceFromCenter(bubble)
-    let newScale = Math.max(1 - Math.pow(dist / 500, 4), 0)
-    return newScale
-}
-
-export const getBubbleY = (bubble: HTMLElement | null) => {
-    if (!bubble) return 0
-    const dist = distanceFromCenter(bubble)
-    const maxDist = 470
-    const maxTranslation = 80
-
-    const rect = bubble.getBoundingClientRect()
-    const center = getCenterPoint()
-    const y = rect.top + rect.height / 2
-
-    const margin = 1 // Margin of 1px
-
-    if (Math.abs(y - center.y) <= margin) return 0 // No translation if within the margin
-
-    const direction = y < center.y ? 1 : -1 // Determine if the bubble is above or below the center
-
-    // Use an exponential function for translation
-    const exponentialFactor = 3 // Adjust this factor to control the exponential growth
-    const translation = direction * maxTranslation * Math.pow(dist / maxDist, exponentialFactor)
-
-    return translation
+export function getEasePrefix(maxScale: number, threshold: number) {
+    console.log(maxScale)
+    return maxScale > threshold ? "power4" : "power1"
 }

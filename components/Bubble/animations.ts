@@ -1,11 +1,21 @@
 import gsap from "gsap"
 import $ from "jquery"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { getEasePrefix, getMaxScale } from "./utils"
 
 gsap.registerPlugin(ScrollTrigger)
 
 const animations = {
-    scroll: (bubble: HTMLElement | null) => {
+    scroll: (
+        bubble: HTMLElement | null,
+        column: number,
+        totalColumns: number,
+    ) => {
+        const maxScale = getMaxScale(column, totalColumns, {
+            scaleDecrement: 0.1,
+        })
+        const easePrefix = getEasePrefix(maxScale, 0.9)
+
         gsap.timeline({
             scrollTrigger: {
                 trigger: bubble,
@@ -22,15 +32,15 @@ const animations = {
                     y: -50,
                 },
                 {
-                    scale: 1,
+                    scale: maxScale,
                     y: 0,
-                    ease: "power4.out",
+                    ease: `${easePrefix}.out`,
                 },
             )
             .to(bubble, {
                 scale: 0,
                 y: 50,
-                ease: "power4.in",
+                ease: `${easePrefix}.in`,
             })
     },
 
