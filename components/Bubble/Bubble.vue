@@ -35,19 +35,7 @@
     const handleClick = async () => {
         clicked.value = true
         await animations.expand(bubbleRef.value, props.location)
-        const path = props.path || "/"
-        const query = new URLSearchParams({
-            title: props.title,
-            path: props.path,
-            penLink: props.penLink,
-            thumbnail: props.thumbnail,
-            skills: props.skills.join(","),
-            color: props.color,
-            subtitle: props.subtitle,
-            description: props.description,
-            keywords: props.keywords.join(","),
-        })
-        router.push(`${path}?${query.toString()}`)
+        router.push(`/project${props.path}`)
     }
 </script>
 

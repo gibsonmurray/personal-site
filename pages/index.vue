@@ -2,12 +2,18 @@
     import type { Project } from "~/types"
     import { honeycombify } from "./utils"
     import animations from "~/components/Bubble/animations"
+    import $ from "jquery"
+    import { store } from "~/pages/store"
+    
     const res = (await queryContent("/projects").findOne())
         ?.body as unknown as Project[]
     const projects: Project[] = res || []
+    store.projects = projects
+
     const honeycombifiedProjects = honeycombify(projects)
 
     onMounted(() => {
+        $("body").css("background-color", "#000")
         animations.enter()
     })
 </script>

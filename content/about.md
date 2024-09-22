@@ -25,12 +25,11 @@ Innovative and detail-oriented Web Developer with 3+ years of experience in crea
 
 ## Experience
 
-| Title | Company | Date |
-| --- | --- | --- |
-| Front-End Engineer | Republican National Committee | July 2024 - Present |
-| Freelancer | Self-Employed | Jan 2024 - Present |
-| Front-End Engineering Intern | Pivotal Consulting Group | Dec 2023 - Feb 2024 |
-
+| Title                        | Company                       | Date                |
+| ---------------------------- | ----------------------------- | ------------------- |
+| Front-End Engineer           | Republican National Committee | July 2024 - Present |
+| Freelancer                   | Self-Employed                 | Jan 2024 - Present  |
+| Front-End Engineering Intern | Pivotal Consulting Group      | Dec 2023 - Feb 2024 |
 
 ## Education
 

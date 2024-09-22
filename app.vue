@@ -32,7 +32,7 @@
                 ? `${titleChunk} | Gibson Murray`
                 : "Gibson Murray"
         },
-    })
+    });
 </script>
 
 <template>

@@ -140,7 +140,7 @@
     {
         "title": "",
         "path": "/about",
-        "penLink": null,
+        "penLink": "",
         "thumbnail": "/thumbnails/prof-pic.webp",
         "skills": [
             "JavaScript",
@@ -243,7 +243,7 @@
         "penLink": "https://codepen.io/gibsonmurray/pen/BaMjoaP",
         "thumbnail": "/thumbnails/ipad-parallax-scroll.webp",
         "skills": ["JavaScript", "HTML", "CSS"],
-        "color": "#000000",
+        "color": "#1D1D1F",
         "subtitle": "Bringing an iPad to life",
         "description": "This is one of my first featured projects on Codepen. It is a small project designed to gain more experience with GSAP and to learn how to create a scrolling effect.",
         "keywords": [

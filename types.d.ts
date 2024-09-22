@@ -1,7 +1,7 @@
 export type Project = {
     title: string
     path: string
-    penLink: string | null
+    penLink: string
     thumbnail: string
     skills: string[]
     color: string
