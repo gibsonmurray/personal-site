@@ -27,7 +27,12 @@
                 href: "/favicon.ico",
             },
         ],
-    });
+        titleTemplate: (titleChunk) => {
+            return titleChunk
+                ? `${titleChunk} | Gibson Murray`
+                : "Gibson Murray"
+        },
+    })
 </script>
 
 <template>
@@ -37,7 +42,7 @@
 <style>
     body {
         font-family: "Figtree", "Inter", sans-serif;
-        background-color: #101010;
+        background-color: #000;
         color: #fff;
     }
 </style>

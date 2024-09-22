@@ -26,6 +26,5 @@ export function getMaxScale(
 }
 
 export function getEasePrefix(maxScale: number, threshold: number) {
-    console.log(maxScale)
     return maxScale > threshold ? "power4" : "power1"
 }
