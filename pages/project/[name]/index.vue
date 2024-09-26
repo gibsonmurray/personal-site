@@ -1,8 +1,9 @@
 <script setup lang="ts">
     import $ from "jquery"
     import gsap from "gsap"
-    import { store } from "~/pages/store"
+    import { store } from "~/global/store"
     import { useRoute } from "vue-router"
+    import { setBackground } from "~/global/background"
 
     const route = useRoute()
 
@@ -23,8 +24,9 @@
 
     const hash = penLink?.split("/").pop()
 
+    setBackground(color!)
+
     onMounted(() => {
-        $("body").css("background-color", color!)
         height.value = window.innerHeight
 
         const script = $("<script>", {
@@ -54,14 +56,16 @@
 </script>
 
 <template>
-    <p
-        :data-height="height"
-        data-theme-id="44795"
-        :data-zoom="height < 768 ? 0.5 : 1"
-        data-default-tab="result"
-        :data-slug-hash="hash"
-        :data-pen-title="title"
-        data-user="gibsonmurray"
-        class="codepen center opa box-border w-full"
-    ></p>
+    <div :style="`background-color: ${color}`">
+        <p
+            :data-height="height"
+            data-theme-id="44795"
+            :data-zoom="height < 768 ? 0.5 : 1"
+            data-default-tab="result"
+            :data-slug-hash="hash"
+            :data-pen-title="title"
+            data-user="gibsonmurray"
+            class="codepen center opa box-border w-full"
+        ></p>
+    </div>
 </template>

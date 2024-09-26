@@ -1,4 +1,7 @@
-<script setup>
+<script setup lang="ts">
+    import { store } from "~/global/store"
+    import { setBackground } from "~/global/background"
+
     const description =
         "My personal website - A portfolio of my best web development adventures"
     const title = "Gibson Murray"
@@ -32,7 +35,9 @@
                 ? `${titleChunk} | Gibson Murray`
                 : "Gibson Murray"
         },
-    });
+    })
+
+    setBackground(store.bgColor)
 </script>
 
 <template>
@@ -42,7 +47,6 @@
 <style>
     body {
         font-family: "Figtree", "Inter", sans-serif;
-        background-color: #000;
         color: #fff;
     }
 </style>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
     import animations from "./animations"
+    import { store } from "~/global/store"
 
     const props = defineProps<{
         location: {
@@ -35,7 +36,12 @@
     const handleClick = async () => {
         clicked.value = true
         await animations.expand(bubbleRef.value, props.location)
-        router.push(`/project${props.path}`)
+        store.bgColor = props.color
+        if (props.path === "/about") {
+            router.push(`/about`)
+        } else {
+            router.push(`/project${props.path}`)
+        }
     }
 </script>
 

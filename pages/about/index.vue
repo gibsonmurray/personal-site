@@ -1,8 +1,8 @@
 <script setup lang="ts">
-    import type { Project } from "@/types"
-    import gsap from "gsap"
     import $ from "jquery"
-    import { store } from "~/pages/store"
+    import gsap from "gsap"
+    import { store } from "~/global/store"
+    import { setBackground } from "~/global/background"
 
     const route = useRoute()
     const entry = route.path.split("/").pop()
@@ -10,9 +10,9 @@
 
     const { color } = data || {}
 
-    onMounted(() => {
-        $("body").css("background-color", color!)
+    setBackground(color!)
 
+    onMounted(() => {
         gsap.fromTo(
             "#about > *",
             { opacity: 0, y: 20 },
