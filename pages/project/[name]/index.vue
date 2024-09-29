@@ -3,7 +3,6 @@
     import gsap from "gsap"
     import { store } from "~/global/store"
     import { useRoute } from "vue-router"
-    import { setBackground } from "~/global/background"
 
     const route = useRoute()
 
@@ -24,10 +23,9 @@
 
     const hash = penLink?.split("/").pop()
 
-    setBackground(color!)
-
     onMounted(() => {
         height.value = window.innerHeight
+        $("body").css("background-color", color!)
 
         const script = $("<script>", {
             src: "https://cpwebassets.codepen.io/assets/embed/ei.js",
@@ -52,6 +50,7 @@
 
     onUnmounted(() => {
         $("#codepen-script, .cp_embed_wrapper").remove()
+        $("body").css("background-color", "#000")
     })
 </script>
 

@@ -1,6 +1,5 @@
 <script setup lang="ts">
-    import { store } from "~/global/store"
-    import { setBackground } from "~/global/background"
+    import $ from "jquery"
 
     const description =
         "My personal website - A portfolio of my best web development adventures"
@@ -37,7 +36,9 @@
         },
     })
 
-    setBackground(store.bgColor)
+    onMounted(() => {
+        $("body").css("background-color", "#000")
+    })
 </script>
 
 <template>

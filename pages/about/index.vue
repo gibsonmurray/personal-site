@@ -2,7 +2,6 @@
     import $ from "jquery"
     import gsap from "gsap"
     import { store } from "~/global/store"
-    import { setBackground } from "~/global/background"
 
     const route = useRoute()
     const entry = route.path.split("/").pop()
@@ -10,9 +9,8 @@
 
     const { color } = data || {}
 
-    setBackground(color!)
-
     onMounted(() => {
+        $("body").css("background-color", color!)
         gsap.fromTo(
             "#about > *",
             { opacity: 0, y: 20 },
