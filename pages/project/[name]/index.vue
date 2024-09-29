@@ -41,7 +41,7 @@
                 {
                     opacity: 1,
                     duration: 1,
-                    delay: 1.5,
+                    delay: 1,
                     ease: "power1.out",
                 },
             )
@@ -64,7 +64,7 @@
             :data-slug-hash="hash"
             :data-pen-title="title"
             data-user="gibsonmurray"
-            class="codepen center opa box-border w-full"
+            class="codepen center opacity-0 box-border w-full"
         ></p>
     </div>
 </template>

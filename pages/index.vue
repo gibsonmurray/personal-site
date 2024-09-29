@@ -20,7 +20,7 @@
 
 <template>
     <section
-        class="flex h-[200vh] w-screen flex-col items-center justify-start bg-black"
+        class="flex min-h-svh w-screen flex-col items-center justify-start bg-black"
     >
         <div
             v-for="(row, i) in honeycombifiedProjects"
