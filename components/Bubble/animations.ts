@@ -84,7 +84,9 @@ const animations = {
 
             $(".bubble").css("pointer-events", "none") // Disable pointer events for all bubbles
 
-            $(".row").not(`:eq(${location.row})`).css("z-index", -1)
+            $(".row").eq(location.row).css("z-index", 100)
+
+            $(".row").not(`:eq(${location.row})`).css("z-index", 0)
 
             gsap.timeline({
                 onComplete: resolve, // Add this line to resolve the Promise when the animation is complete

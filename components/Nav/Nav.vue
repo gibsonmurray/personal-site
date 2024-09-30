@@ -24,12 +24,12 @@
 <template>
     <nav
         id="nav"
-        class="fixed bottom-10 z-10 flex h-12 items-center justify-center gap-2 overflow-hidden rounded-full border border-zinc-200 bg-zinc-300/30 px-2 py-1 backdrop-blur-sm"
+        class="fixed bottom-10 z-10 flex h-12 items-center justify-center gap-2 overflow-hidden rounded-full border border-zinc-200 bg-zinc-200/50 px-2 py-1 backdrop-blur-md"
     >
         <button
             v-if="info"
             title="More Info"
-            class="flex aspect-square h-full items-center justify-center rounded-full transition-colors duration-300 hover:bg-zinc-400/30"
+            class="flex aspect-square h-full items-center justify-center rounded-full transition-colors duration-300"
         >
             <BadgeInfo color="#000" />
         </button>
@@ -40,7 +40,7 @@
             @mouseleave="animations.homeRestore()"
             @mousedown="animations.homeDown()"
             @click="handleHomeClick"
-            class="grid aspect-square h-full rotate-45 grid-cols-2 grid-rows-2 place-items-center rounded-full p-[9px] transition-colors duration-300 hover:bg-zinc-400/30"
+            class="grid aspect-square h-full rotate-45 grid-cols-2 grid-rows-2 place-items-center rounded-full p-[9px]"
         >
             <!-- <LayoutGrid color="#000" /> -->
             <div

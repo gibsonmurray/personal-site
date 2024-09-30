@@ -55,16 +55,21 @@
 </script>
 
 <template>
-    <div :style="`background-color: ${color}`">
-        <p
-            :data-height="height"
-            data-theme-id="44795"
-            :data-zoom="height < 768 ? 0.5 : 1"
-            data-default-tab="result"
-            :data-slug-hash="hash"
-            :data-pen-title="title"
-            data-user="gibsonmurray"
-            class="codepen center opacity-0 box-border w-full"
-        ></p>
+    <div
+        class="relative flex h-svh w-screen flex-col items-center justify-start overflow-hidden pb-12"
+    >
+        <Nav />
+        <div class="w-full" :style="`background-color: ${color}`">
+            <p
+                :data-height="height"
+                data-theme-id="44795"
+                :data-zoom="height < 768 ? 0.5 : 1"
+                data-default-tab="result"
+                :data-slug-hash="hash"
+                :data-pen-title="title"
+                data-user="gibsonmurray"
+                class="codepen center box-border w-full opacity-0"
+            ></p>
+        </div>
     </div>
 </template>
