@@ -4,6 +4,7 @@ const config = {
     nav: "#nav",
     squares: ".home-square",
     homeBtn: "#home-btn",
+    overlay: "#overlay",
     ease: "back.out",
 }
 
@@ -37,25 +38,45 @@ export const animations = {
                 "-=0.5",
             )
     },
-    homeHover: () => {
+
+    homeHover: (homeClicked: boolean) => {
+        if (homeClicked) return
         gsap.to(config.homeBtn, {
             padding: 6,
             duration: 0.5,
             ease: "back.out(0.8)",
         })
     },
-    homeRestore: () => {
+
+    homeRestore: (homeClicked: boolean) => {
+        if (homeClicked) return
         gsap.to(config.homeBtn, {
             padding: 9,
             duration: 0.5,
             ease: "back.out(0.8)",
         })
     },
+
     homeDown: () => {
         gsap.to(config.homeBtn, {
             padding: 20,
             duration: 0.5,
             ease: "back.out(0.8)",
         })
+    },
+
+    homeOut: () => {
+        setTimeout(() => {
+            gsap.fromTo(
+                config.overlay,
+                {
+                    opacity: 0,
+                },
+                {
+                    opacity: 1,
+                    duration: 0.5,
+                },
+            )
+        }, 0)
     },
 }

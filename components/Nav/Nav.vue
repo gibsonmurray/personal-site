@@ -2,8 +2,9 @@
     import { BadgeInfo, CodeXml } from "lucide-vue-next"
     import { animations } from "./animations"
     import { useRouter } from "vue-router"
+    import { store } from "@/global/store"
 
-    const props = defineProps<{
+    defineProps<{
         info?: boolean
         sourceCode?: boolean
     }>()
@@ -15,16 +16,23 @@
     })
 
     const handleHomeClick = () => {
+        store.homeClicked = true
+        animations.homeOut()
         setTimeout(() => {
             router.push("/")
-        }, 500)
+        }, 700)
     }
 </script>
 
 <template>
+    <div
+        id="overlay"
+        v-if="store.homeClicked"
+        class="fixed left-0 top-0 z-50 h-screen w-screen bg-black"
+    ></div>
     <nav
         id="nav"
-        class="fixed bottom-10 z-10 flex h-12 items-center justify-center gap-2 overflow-hidden rounded-full border border-zinc-200 bg-zinc-200/50 px-2 py-1 backdrop-blur-md"
+        class="fixed bottom-10 z-10 flex h-12 items-center justify-center gap-2 overflow-hidden rounded-full border border-zinc-200 bg-zinc-100/50 px-2 py-1 backdrop-blur-md shadow-sm"
     >
         <button
             v-if="info"
@@ -36,8 +44,8 @@
         <button
             id="home-btn"
             title="Home"
-            @mouseenter="animations.homeHover()"
-            @mouseleave="animations.homeRestore()"
+            @mouseenter="animations.homeHover(store.homeClicked)"
+            @mouseleave="animations.homeRestore(store.homeClicked)"
             @mousedown="animations.homeDown()"
             @click="handleHomeClick"
             class="grid aspect-square h-full rotate-45 grid-cols-2 grid-rows-2 place-items-center rounded-full p-[9px]"
