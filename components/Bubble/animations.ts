@@ -1,9 +1,6 @@
 import gsap from "gsap"
 import $ from "jquery"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { getEasePrefix, getMaxScale } from "./utils"
-
-gsap.registerPlugin(ScrollTrigger)
 
 const animations = {
     scroll: (
