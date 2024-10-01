@@ -1,6 +1,9 @@
 <script setup lang="ts">
+    import { ref, onMounted, onUnmounted } from "vue"
+    import { gsap } from "gsap"
     import type { Project } from "~/types"
     import { animations } from "./animations"
+    import { XIcon } from "lucide-vue-next"
 
     const { project } = defineProps<{
         project: Project
@@ -8,10 +11,44 @@
 
     const emit = defineEmits(["close"])
 
+    const tickerRef = ref<HTMLDivElement | null>(null)
+    let tickerAnimation: gsap.core.Tween | null = null
+
     onMounted(() => {
         animations.open()
         console.log(project)
+        setupTicker()
     })
+
+    onUnmounted(() => {
+        if (tickerAnimation) {
+            tickerAnimation.kill()
+        }
+    })
+
+    const setupTicker = () => {
+        if (!tickerRef.value) return
+
+        const ticker = tickerRef.value
+        const tickerContent = ticker.querySelector(
+            ".ticker-content",
+        ) as HTMLElement
+        const tickerWidth = tickerContent.offsetWidth
+
+        // Clone the content
+        ticker.appendChild(tickerContent.cloneNode(true))
+
+        // Set up GSAP animation
+        tickerAnimation = gsap.to(ticker, {
+            x: -(tickerWidth + 8), // Add 8px to account for the gap
+            duration: 30,
+            ease: "linear",
+            repeat: -1,
+            onRepeat: () => {
+                gsap.set(ticker, { x: 0 })
+            },
+        })
+    }
 
     const handleClose = async () => {
         await animations.close()
@@ -22,7 +59,7 @@
 <template>
     <div
         id="modal-bg"
-        class="fixed left-0 top-0 z-50 flex h-svh w-screen items-center justify-center bg-white/20 backdrop-blur-md"
+        class="fixed left-0 top-0 z-50 flex h-svh w-screen items-center justify-center bg-black/20 backdrop-blur-md"
     >
         <div
             id="close-bg"
@@ -35,28 +72,107 @@
         >
             <div
                 id="tl"
-                class="modal-square aspect-[4/3] h-[250px] bg-white"
+                class="modal-square aspect-[4/3] h-[250px] bg-white/80 backdrop-blur-lg"
             ></div>
             <div
                 id="tr"
-                class="modal-square aspect-[4/3] h-[250px] bg-white"
+                class="modal-square aspect-[4/3] h-[250px] bg-white/80 backdrop-blur-lg"
             ></div>
             <div
                 id="bl"
-                class="modal-square aspect-[4/3] h-[250px] bg-white"
+                class="modal-square aspect-[4/3] h-[250px] bg-white/80 backdrop-blur-lg"
             ></div>
             <div
                 id="br"
-                class="modal-square aspect-[4/3] h-[250px] bg-white"
+                class="modal-square aspect-[4/3] h-[250px] bg-white/80 backdrop-blur-lg"
             ></div>
 
             <!-- todo: remove bg color -->
             <div
                 id="modal-content"
-                class="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-start overflow-y-auto bg-white p-3 text-black"
+                class="absolute left-0 top-0 flex h-full w-full flex-col items-start justify-between gap-5 overflow-y-auto px-10 py-8 text-black"
             >
-                <h1>{{ project.title }}</h1>
+                <div
+                    id="modal-header"
+                    class="relative flex w-full items-center justify-start gap-4"
+                >
+                    <NuxtImg
+                        :src="project.thumbnail"
+                        class="aspect-square h-20 overflow-hidden rounded-full object-cover border border-zinc-400"
+                    />
+                    <div
+                        class="flex h-full flex-col items-start justify-evenly"
+                    >
+                        <h1 class="w-full text-2xl font-bold">
+                            {{ project.title }}
+                        </h1>
+                        <div
+                            class="flex items-center justify-start gap-2 text-sm"
+                        >
+                            <span
+                                v-for="skill in project.skills"
+                                :key="skill"
+                                :id="`s-${skill.toLowerCase()}`"
+                                :class="`skill-tag overflow-hidden rounded-full bg-zinc-300 px-3 py-1`"
+                                >{{ skill }}</span
+                            >
+                        </div>
+                    </div>
+                    <XIcon
+                        class="absolute right-0 top-0 h-6 w-6 cursor-pointer text-zinc-600"
+                        @click="handleClose"
+                    />
+                </div>
+                <hr class="w-full border border-b-0 border-zinc-400" />
+                <div
+                    id="modal-body"
+                    class="flex h-full flex-col items-center justify-start gap-2"
+                >
+                    <h2 class="w-full font-bold italic text-zinc-800">
+                        "{{ project.subtitle }}"
+                    </h2>
+                    <p class="w-full leading-relaxed text-zinc-700">
+                        {{ project.description }}
+                    </p>
+                </div>
+                <div id="modal-footer" class="flex w-full flex-col gap-2">
+                    <h3 class="font-bold text-zinc-800">Tags:</h3>
+                    <div
+                        class="ticker-wrap relative h-8 overflow-hidden text-sm"
+                    >
+                        <div
+                            ref="tickerRef"
+                            class="ticker absolute flex whitespace-nowrap"
+                        >
+                            <div class="ticker-content flex gap-2">
+                                <span
+                                    v-for="tag in project.keywords"
+                                    :key="tag"
+                                    :class="`t-${tag.toLowerCase()} whitespace-nowrap rounded-full bg-blue-500 px-3 py-1 text-white`"
+                                    >{{ tag }}</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </template>
+
+<style scoped>
+    .ticker-wrap {
+        width: 100%;
+        overflow: hidden;
+        border-radius: 999px;
+    }
+
+    .ticker {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .ticker-content {
+        margin-right: 8px;
+    }
+</style>

@@ -63,7 +63,21 @@ export const animations = {
                     duration: config.duration,
                 },
                 "<40%",
-            ) // todo: display content
+            )
+            .fromTo(
+                "#modal-content > *",
+                {
+                    opacity: 0,
+                    y: 10,
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    stagger: 0.1,
+                    ease: config.ease,
+                    duration: config.duration,
+                },
+            )
     },
 
     close: () => {
@@ -71,6 +85,13 @@ export const animations = {
             gsap.timeline({
                 onComplete: () => resolve(true),
             })
+                .to("#modal-content > *", {
+                    opacity: 0,
+                    y: -10,
+                    stagger: 0.1,
+                    ease: config.ease,
+                    duration: config.duration,
+                })
                 .to("#modal-grid", {
                     borderColor: "transparent",
                     boxShadow: "none",

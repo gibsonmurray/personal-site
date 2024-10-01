@@ -36,7 +36,7 @@
         "skills": ["JavaScript", "HTML", "CSS"],
         "color": "#FFFFFF",
         "subtitle": "An interactive exploration of the seasons",
-        "description": "One of my most popular projects on Codepen, this is a simple parallax effect that I created using just HTML, CSS, and JS. The effect is triggered when the user moves their mouse across the screen. By default, the season on desplay is the current one in the United States 🇺🇸 (as of right now that is <SEASON>). However, users can change the season by clicking on the menu. This was my entry to getting highly featured on the Codepen trending page and newsletter ❤️.",
+        "description": "One of my most popular projects on Codepen, this is a simple parallax effect that I created using just HTML, CSS, and JS. The effect is triggered when the user moves their mouse across the screen. By default, the season on desplay is the current one in the United States (as of right now that is <SEASON>). However, users can change the season by clicking on the menu. This was my entry to getting highly featured on the Codepen trending page and newsletter ❤️.",
         "keywords": ["parallax", "seasons", "demo"]
     },
     {
@@ -47,7 +47,7 @@
         "skills": ["JavaScript", "HTML", "CSS"],
         "color": "#FFFFFF",
         "subtitle": "Flow from Device to Device",
-        "description": "This project was insired by Nate Smith's portfolio website. My goal was to create a parallax effect, transitioning one device 📱 to another 💻. GSAP timelines are used to animate the entire flow.",
+        "description": "This project was insired by Nate Smith's portfolio website. My goal was to create a parallax effect, transitioning one device to another. GSAP timelines are used to animate the entire flow.",
         "keywords": [
             "parallax",
             "devices",
@@ -105,7 +105,7 @@
         "skills": ["HTML", "CSS"],
         "color": "#F1925D",
         "subtitle": "Dune: Part 2 - inspired scene",
-        "description": "It is a 2D scene with a thumper hitting the ground, and aworm 🪱 that emerges in the background. The animations and the scene are all made with pure HTML and CSS 😱",
+        "description": "It is a 2D scene with a thumper hitting the ground, and a worm that emerges in the background. The animations and the scene are all made with pure HTML and CSS",
         "keywords": [
             "dune",
             "thumper",
@@ -125,7 +125,7 @@
         "skills": ["JavaScript", "HTML", "CSS"],
         "color": "#FDFDFC",
         "subtitle": "Throw them away!",
-        "description": "I wanted to challenge myself by recreating Emil Kowalski's demo of deleting photos in a stylish way. I only used GSAP 🪄 to create the animations. This is all done with vanilla JavaScript. I did not like doing it in vanilla JS, but I wanted to see how far I could get without tools like React ⚛️",
+        "description": "I wanted to challenge myself by recreating Emil Kowalski's demo of deleting photos in a stylish way. I only used GSAP to create the animations. This is all done with vanilla JavaScript. I did not like doing it in vanilla JS, but I wanted to see how far I could get without tools like React",
         "keywords": [
             "photos",
             "trash",
@@ -182,7 +182,7 @@
         "skills": ["JavaScript", "HTML", "CSS"],
         "color": "#EEECED",
         "subtitle": "Watch them bounce!",
-        "description": "A very simple project with a few cards that jump on launch. Mimics AirBnB's micro-interactions as seen on their app. It uses a simple GSAP tween used to stagger the scales of the cards.",
+        "description": "A very simple project with a few cards that jump on launch. Mimics Airbnb's micro-interactions as seen on their app. It uses a simple GSAP tween used to stagger the scales of the cards.",
         "keywords": [
             "cards",
             "bounce",
@@ -265,7 +265,7 @@
         "skills": ["JavaScript", "HTML", "CSS"],
         "color": "#434343",
         "subtitle": "The Future Awaits",
-        "description": "Imagine a Bash shell with knowledge of the universe and the future of what is to come... ✨ The Magic Terminal is an interactive <CodepenLink /> built with hidden lore. It will answer your questions but sometimes it reveals a bit more than you asked for.",
+        "description": "Imagine a Bash shell with knowledge of the universe and the future of what is to come... The Magic Terminal is an interactive Codepen built with hidden lore. It will answer your questions but sometimes it reveals a bit more than you asked for.",
         "keywords": [
             "magic",
             "terminal",
