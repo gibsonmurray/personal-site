@@ -4,7 +4,8 @@ const config = {
     nav: "#nav",
     squares: ".home-square",
     homeBtn: "#home-btn",
-    overlay: "#overlay",
+    overlayTop: "#overlay-top",
+    overlayBottom: "#overlay-bottom",
     ease: "back.out",
 }
 
@@ -66,15 +67,29 @@ export const animations = {
     },
 
     homeOut: () => {
+        const duration = 0.8
+        const ease = "power4.inOut"
         setTimeout(() => {
             gsap.fromTo(
-                config.overlay,
+                config.overlayTop,
                 {
-                    opacity: 0,
+                    bottom: "100%",
                 },
                 {
-                    opacity: 1,
-                    duration: 0.5,
+                    top: 0,
+                    duration,
+                    ease,
+                },
+            )
+            gsap.fromTo(
+                config.overlayBottom,
+                {
+                    top: "100%",
+                },
+                {
+                    top: "50%",
+                    duration,
+                    ease,
                 },
             )
         }, 0)

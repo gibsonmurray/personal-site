@@ -2,12 +2,13 @@
     import { BadgeInfo, CodeXml } from "lucide-vue-next"
     import { animations } from "./animations"
     import { useRouter } from "vue-router"
-    import { store } from "@/global/store"
 
     defineProps<{
         info?: boolean
         sourceCode?: boolean
     }>()
+
+    const homeClicked = ref(false)
 
     const router = useRouter()
 
@@ -16,23 +17,28 @@
     })
 
     const handleHomeClick = () => {
-        store.homeClicked = true
+        homeClicked.value = true
         animations.homeOut()
         setTimeout(() => {
             router.push("/")
-        }, 700)
+        }, 1000)
     }
 </script>
 
 <template>
     <div
-        id="overlay"
-        v-if="store.homeClicked"
-        class="fixed left-0 top-0 z-50 h-screen w-screen bg-black"
+        id="overlay-top"
+        class="fixed bottom-full left-0 z-50 h-1/2 w-screen bg-black"
+        :style="{ opacity: homeClicked ? 1 : 0 }"
+    ></div>
+    <div
+        id="overlay-bottom"
+        class="fixed left-0 top-full z-50 h-1/2 w-screen bg-black"
+        :style="{ opacity: homeClicked ? 1 : 0 }"
     ></div>
     <nav
         id="nav"
-        class="fixed bottom-10 z-10 flex h-12 items-center justify-center gap-2 overflow-hidden rounded-full border border-zinc-200 bg-zinc-100/50 px-2 py-1 backdrop-blur-md shadow-sm"
+        class="fixed bottom-10 z-10 flex h-12 items-center justify-center gap-2 overflow-hidden rounded-full border border-zinc-200 bg-zinc-100/50 px-2 py-1 shadow-sm backdrop-blur-md"
     >
         <button
             v-if="info"
@@ -44,8 +50,8 @@
         <button
             id="home-btn"
             title="Home"
-            @mouseenter="animations.homeHover(store.homeClicked)"
-            @mouseleave="animations.homeRestore(store.homeClicked)"
+            @mouseenter="animations.homeHover(homeClicked)"
+            @mouseleave="animations.homeRestore(homeClicked)"
             @mousedown="animations.homeDown()"
             @click="handleHomeClick"
             class="grid aspect-square h-full rotate-45 grid-cols-2 grid-rows-2 place-items-center rounded-full p-[9px]"
