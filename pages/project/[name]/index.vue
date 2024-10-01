@@ -3,6 +3,7 @@
     import gsap from "gsap"
     import { store } from "~/global/store"
     import { useRoute } from "vue-router"
+    import { ref, watch } from "vue"
 
     const route = useRoute()
 
@@ -22,6 +23,8 @@
     } = project || {}
 
     const hash = penLink?.split("/").pop()
+
+    const modal = ref(store.modal)
 
     onMounted(() => {
         height.value = window.innerHeight
@@ -52,13 +55,20 @@
         $("#codepen-script, .cp_embed_wrapper").remove()
         $("body").css("background-color", "#000")
     })
+
+    watch(
+        () => store.modal,
+        (newValue) => {
+            modal.value = newValue
+        },
+    )
 </script>
 
 <template>
     <div
         class="relative flex h-svh w-screen flex-col items-center justify-start overflow-hidden pb-12"
     >
-        <Nav />
+        <Nav info />
         <div class="w-full" :style="`background-color: ${color}`">
             <p
                 :data-height="height"
@@ -71,5 +81,6 @@
                 class="codepen center box-border w-full opacity-0"
             ></p>
         </div>
+        <Modal v-if="modal" />
     </div>
 </template>

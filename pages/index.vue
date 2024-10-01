@@ -13,7 +13,6 @@
     const honeycombifiedProjects = honeycombify(projects)
 
     onMounted(() => {
-        store.homeClicked = false
         $("body").css("background-color", "#000")
         animations.enter()
     })

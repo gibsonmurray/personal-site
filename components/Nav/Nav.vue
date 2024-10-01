@@ -2,8 +2,9 @@
     import { BadgeInfo, CodeXml } from "lucide-vue-next"
     import { animations } from "./animations"
     import { useRouter } from "vue-router"
+    import { store } from "~/global/store"
 
-    defineProps<{
+    const props = defineProps<{
         info?: boolean
         sourceCode?: boolean
     }>()
@@ -15,6 +16,11 @@
     onMounted(() => {
         animations.enter()
     })
+
+    const handleInfoClick = () => {
+        console.log("info clicked")
+        store.modal = true
+    }
 
     const handleHomeClick = () => {
         homeClicked.value = true
@@ -42,6 +48,7 @@
     >
         <button
             v-if="info"
+            @click="handleInfoClick"
             title="More Info"
             class="flex aspect-square h-full items-center justify-center rounded-full transition-colors duration-300"
         >
