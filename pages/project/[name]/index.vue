@@ -3,72 +3,87 @@
     import gsap from "gsap"
     import { store } from "~/global/store"
     import { useRoute } from "vue-router"
-    import { ref, watch } from "vue"
+    import { ref, onMounted, watch } from "vue"
+    import type { Project } from "~/types"
 
     const route = useRoute()
 
     const height = ref(1000)
     const entry = route.path.split("/").pop()
-    const project = store.projects.find((p) => p.path === "/" + entry)
+    const project = ref<Project>({})
+    const hash = ref("")
+    const color = ref("")
+    const title = ref("")
 
-    const {
-        title,
-        penLink,
-        thumbnail,
-        skills,
-        color,
-        subtitle,
-        description,
-        keywords,
-    } = project || {}
+    const modal = ref(false)
 
-    const hash = penLink?.split("/").pop()
+    const handleInfo = () => {
+        modal.value = true
+    }
 
-    const modal = ref(store.modal)
+    const handleClose = () => {
+        modal.value = false
+    }
 
     onMounted(() => {
-        height.value = window.innerHeight
-        $("body").css("background-color", color!)
-
-        const script = $("<script>", {
-            src: "https://cpwebassets.codepen.io/assets/embed/ei.js",
-            async: true,
-            id: "codepen-script",
-        })
-        $("body").append(script)
-
-        setTimeout(() => {
-            gsap.fromTo(
-                ".cp_embed_wrapper",
-                { opacity: 0 },
-                {
-                    opacity: 1,
-                    duration: 1,
-                    delay: 1,
-                    ease: "power1.out",
-                },
+        const updateProject = () => {
+            const foundProject = store.projects.find(
+                (p) => p.path === "/" + entry,
             )
-        }, 0) // Delay to ensure the script is loaded
+            if (foundProject) {
+                project.value = foundProject
+                hash.value = foundProject.penLink?.split("/").pop() ?? ""
+                color.value = foundProject.color ?? ""
+                title.value = foundProject.title ?? ""
+
+                console.log("Found project:", foundProject)
+
+                $("body").css("background-color", color.value)
+
+                const script = $("<script>", {
+                    src: "https://cpwebassets.codepen.io/assets/embed/ei.js",
+                    async: true,
+                    id: "codepen-script",
+                })
+                $("body").append(script)
+
+                setTimeout(() => {
+                    gsap.fromTo(
+                        ".cp_embed_wrapper",
+                        { opacity: 0 },
+                        {
+                            opacity: 1,
+                            duration: 1,
+                            delay: 1,
+                            ease: "power1.out",
+                        },
+                    )
+                }, 0) // Delay to ensure the script is loaded
+            } else {
+                console.error("Project not found for path:", "/" + entry)
+            }
+        }
+
+        // Initial check
+        updateProject()
+
+        // Watch for changes in store.projects
+        watch(() => store.projects, updateProject, { deep: true })
+
+        height.value = window.innerHeight
     })
 
     onUnmounted(() => {
         $("#codepen-script, .cp_embed_wrapper").remove()
         $("body").css("background-color", "#000")
     })
-
-    watch(
-        () => store.modal,
-        (newValue) => {
-            modal.value = newValue
-        },
-    )
 </script>
 
 <template>
     <div
         class="relative flex h-svh w-screen flex-col items-center justify-start overflow-hidden pb-12"
     >
-        <Nav info />
+        <Nav @info="handleInfo" info />
         <div class="w-full" :style="`background-color: ${color}`">
             <p
                 :data-height="height"
@@ -81,6 +96,10 @@
                 class="codepen center box-border w-full opacity-0"
             ></p>
         </div>
-        <Modal v-if="modal" />
+        <Modal
+            v-if="modal"
+            @close="handleClose"
+            :project="project"
+        />
     </div>
 </template>

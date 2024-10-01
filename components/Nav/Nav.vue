@@ -9,6 +9,8 @@
         sourceCode?: boolean
     }>()
 
+    const emit = defineEmits(["info"])
+
     const homeClicked = ref(false)
 
     const router = useRouter()
@@ -18,8 +20,7 @@
     })
 
     const handleInfoClick = () => {
-        console.log("info clicked")
-        store.modal = true
+        emit("info")
     }
 
     const handleHomeClick = () => {

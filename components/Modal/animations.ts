@@ -12,8 +12,17 @@ const config = {
 }
 
 export const animations = {
-    enter: () => {
+    open: () => {
         gsap.timeline()
+            .fromTo(
+                "#modal-bg",
+                {
+                    opacity: 0,
+                },
+                {
+                    opacity: 1,
+                },
+            )
             .fromTo(
                 ".modal-square",
                 {
@@ -54,6 +63,50 @@ export const animations = {
                     duration: config.duration,
                 },
                 "<40%",
-            )
+            ) // todo: display content
+    },
+
+    close: () => {
+        return new Promise<boolean>((resolve) => {
+            gsap.timeline({
+                onComplete: () => resolve(true),
+            })
+                .to("#modal-grid", {
+                    borderColor: "transparent",
+                    boxShadow: "none",
+                    ease: config.ease,
+                    duration: config.duration,
+                })
+                .to("#modal-grid", {
+                    gap: 20,
+                    ease: config.ease,
+                    duration: config.duration,
+                })
+                .to(
+                    ".modal-square",
+                    {
+                        borderRadius: "42px",
+                        ease: config.ease,
+                        duration: config.duration,
+                    },
+                    "<",
+                )
+                .to(
+                    ".modal-square",
+                    {
+                        scale: 0,
+                        y: -500,
+                        ease: "power4.inOut",
+                        duration: config.duration,
+                        stagger: 0.08,
+                    },
+                    "<10%",
+                )
+                .to("#modal-bg", {
+                    opacity: 0,
+                    ease: config.ease,
+                    duration: config.duration,
+                })
+        })
     },
 }
