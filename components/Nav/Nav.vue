@@ -2,14 +2,13 @@
     import { BadgeInfo, CodeXml } from "lucide-vue-next"
     import { animations } from "./animations"
     import { useRouter } from "vue-router"
-    import { store } from "~/global/store"
 
     const props = defineProps<{
-        info?: boolean
-        sourceCode?: boolean
+        infoBtn?: boolean
+        sourceCodeBtn?: boolean
     }>()
 
-    const emit = defineEmits(["info"])
+    const emit = defineEmits(["openModal"])
 
     const homeClicked = ref(false)
 
@@ -20,7 +19,7 @@
     })
 
     const handleInfoClick = () => {
-        emit("info")
+        emit("openModal")
     }
 
     const handleHomeClick = () => {
@@ -48,7 +47,7 @@
         class="fixed bottom-10 z-10 flex h-12 items-center justify-center gap-2 overflow-hidden rounded-full border border-zinc-200 bg-zinc-100/50 px-2 py-1 shadow-sm backdrop-blur-md"
     >
         <button
-            v-if="info"
+            v-if="infoBtn"
             @click="handleInfoClick"
             title="More Info"
             class="flex aspect-square h-full items-center justify-center rounded-full transition-colors duration-300"
@@ -79,7 +78,7 @@
             ></div>
         </button>
         <button
-            v-if="sourceCode"
+            v-if="sourceCodeBtn"
             title="Source Code"
             class="flex aspect-square h-full items-center justify-center rounded-full transition-colors duration-300 hover:bg-zinc-400/30"
         >

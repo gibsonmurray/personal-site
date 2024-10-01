@@ -55,7 +55,7 @@
                 id="modal-content"
                 class="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-start overflow-y-auto bg-white p-3 text-black"
             >
-                <!-- <h1>{{ project.title }}</h1> -->
+                <h1>{{ project.title }}</h1>
             </div>
         </div>
     </div>
