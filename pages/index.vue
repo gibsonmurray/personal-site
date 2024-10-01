@@ -2,7 +2,6 @@
     import type { Project } from "~/types"
     import { honeycombify } from "./utils"
     import animations from "~/components/Bubble/animations"
-    import { store } from "~/global/store"
     import $ from "jquery"
     import { gsap, ScrollTrigger } from "gsap/all"
 
@@ -11,7 +10,6 @@
     const res = (await queryContent("/projects").findOne())
         ?.body as unknown as Project[]
     const projects: Project[] = res || []
-    store.projects = projects
 
     const honeycombifiedProjects = honeycombify(projects)
 

@@ -1,22 +1,18 @@
 <script setup lang="ts">
     import $ from "jquery"
     import gsap from "gsap"
-    import { store } from "~/global/store"
     import { useRoute } from "vue-router"
-    import { ref, computed } from "vue"
+    import { ref } from "vue"
     import type { Project } from "~/types"
 
     const route = useRoute()
-
     const height = ref(1000)
     const entry = route.path.split("/").pop()
-    const project: Project = store.projects.find((p) => p.path === "/" + entry)!
-
-    const { title, penLink, color } = project || {}
-
-    const hash = penLink?.split("/").pop()
-
     const modal = ref(false)
+
+    const res = (await queryContent("/projects").findOne())
+        ?.body as unknown as Project[]
+    const project = res.find((p) => p.path === "/" + entry) || null
 
     const handleOpenModal = () => {
         modal.value = true
@@ -28,7 +24,7 @@
 
     onMounted(() => {
         height.value = window.innerHeight
-        $("body").css("background-color", color!)
+        $("body").css("background-color", project?.color || "#000")
 
         const script = $("<script>", {
             src: "https://cpwebassets.codepen.io/assets/embed/ei.js",
@@ -62,20 +58,20 @@
         class="relative flex h-svh w-screen flex-col items-center justify-start overflow-hidden pb-12"
     >
         <Nav @openModal="handleOpenModal" infoBtn />
-        <div class="w-full" :style="`background-color: ${color}`">
+        <div class="w-full" :style="`background-color: ${project?.color}`">
             <p
                 :data-height="height"
                 data-theme-id="44795"
                 :data-zoom="height < 768 ? 0.5 : 1"
                 data-default-tab="result"
-                :data-slug-hash="hash"
-                :data-pen-title="title"
+                :data-slug-hash="project?.penLink?.split('/').pop()"
+                :data-pen-title="project?.title"
                 data-user="gibsonmurray"
                 class="codepen center box-border w-full opacity-0"
             ></p>
         </div>
         <Modal
-            v-if="modal"
+            v-if="modal && project"
             @close="handleClose"
             :project="project"
         />

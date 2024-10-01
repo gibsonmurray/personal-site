@@ -16,7 +16,6 @@
 
     onMounted(() => {
         animations.open()
-        console.log(project)
         setupTicker()
     })
 
