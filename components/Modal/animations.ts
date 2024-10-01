@@ -88,21 +88,29 @@ export const animations = {
                 .to("#modal-content > *", {
                     opacity: 0,
                     y: -10,
+                    ease: config.ease,
                     stagger: 0.1,
-                    ease: config.ease,
                     duration: config.duration,
                 })
-                .to("#modal-grid", {
-                    borderColor: "transparent",
-                    boxShadow: "none",
-                    ease: config.ease,
-                    duration: config.duration,
-                })
-                .to("#modal-grid", {
-                    gap: 20,
-                    ease: config.ease,
-                    duration: config.duration,
-                })
+                .to(
+                    "#modal-grid",
+                    {
+                        borderColor: "transparent",
+                        boxShadow: "none",
+                        ease: config.ease,
+                        duration: config.duration,
+                    },
+                    "<",
+                )
+                .to(
+                    "#modal-grid",
+                    {
+                        gap: 20,
+                        ease: config.ease,
+                        duration: config.duration,
+                    },
+                    "<70%",
+                )
                 .to(
                     ".modal-square",
                     {
