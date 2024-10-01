@@ -4,6 +4,7 @@
     import type { Project } from "~/types"
     import { animations } from "./animations"
     import { XIcon } from "lucide-vue-next"
+import { formatChips } from "./text-formater"
 
     const { project } = defineProps<{
         project: Project
@@ -17,6 +18,7 @@
     onMounted(() => {
         animations.open()
         setupTicker()
+        formatChips()
     })
 
     onUnmounted(() => {
@@ -112,7 +114,7 @@
                                 v-for="skill in project.skills"
                                 :key="skill"
                                 :id="`s-${skill.toLowerCase()}`"
-                                :class="`skill-tag overflow-hidden rounded-full bg-zinc-300 px-3 py-1`"
+                                :class="`skill-chip overflow-hidden rounded-full bg-zinc-300 px-3 py-1`"
                                 >{{ skill }}</span
                             >
                         </div>
