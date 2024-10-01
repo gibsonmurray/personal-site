@@ -4,8 +4,10 @@
     import animations from "~/components/Bubble/animations"
     import { store } from "~/global/store"
     import $ from "jquery"
-    import { ScrollTrigger } from "gsap/ScrollTrigger"
-    
+    import { gsap, ScrollTrigger } from "gsap/all"
+
+    gsap.registerPlugin(ScrollTrigger)
+
     const res = (await queryContent("/projects").findOne())
         ?.body as unknown as Project[]
     const projects: Project[] = res || []
@@ -16,7 +18,6 @@
     onMounted(() => {
         $("body").css("background-color", "#000")
         animations.enter()
-        gsap.registerPlugin(ScrollTrigger)
     })
 </script>
 
