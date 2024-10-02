@@ -15,19 +15,6 @@
     const tickerRef = ref<HTMLDivElement | null>(null)
     let tickerAnimation: gsap.core.Tween | null = null
 
-    onMounted(() => {
-        animations.open()
-        setupTicker()
-        formatChips()
-        animations.scrollArrowYoyo()
-    })
-
-    onUnmounted(() => {
-        if (tickerAnimation) {
-            tickerAnimation.kill()
-        }
-    })
-
     const setupTicker = () => {
         if (!tickerRef.value) return
 
@@ -75,12 +62,34 @@
         }
     }
 
+    onMounted(() => {
+        animations.open()
+        setupTicker()
+        formatChips()
+        animations.scrollArrowYoyo()
+    })
+
+    onUnmounted(() => {
+        if (tickerAnimation) {
+            tickerAnimation.kill()
+        }
+    })
+
     watch(
         () => content.value?.scrollTop,
         () => {
             checkScroll()
         },
     )
+
+    const handleScroll = () => {
+        if (!content.value) return
+        const scrollTo = arrowFlipped ? 0 : content.value.scrollHeight
+        content.value.scrollTo({
+            top: scrollTo,
+            behavior: "smooth",
+        })
+    }
 </script>
 
 <template>
@@ -163,13 +172,16 @@
                     />
                 </div>
 
-                <ChevronDownIcon
-                    id="chevron-down"
-                    class="absolute bottom-[100px] left-1/2 h-6 w-6 -translate-x-1/2 text-zinc-600"
-                />
+                <div class="flex h-2 w-full items-center justify-center">
+                    <ChevronDownIcon
+                        @click="handleScroll"
+                        id="chevron-down"
+                        class="h-6 w-6 cursor-pointer text-zinc-400"
+                    />
+                </div>
 
                 <div id="modal-footer" class="flex w-full flex-col gap-2">
-                    <h3 class="font-bold text-zinc-800">Tags:</h3>
+                    <!-- <h3 class="font-bold text-zinc-800">Tags:</h3> -->
                     <div
                         class="ticker-wrap relative h-8 overflow-hidden text-sm"
                     >

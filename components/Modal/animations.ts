@@ -141,7 +141,7 @@ export const animations = {
 
     scrollArrowYoyo: () => {
         gsap.to("#chevron-down", {
-            y: "+=5",
+            y: "-=5",
             ease: "power1.inOut",
             duration: 1,
             repeat: -1,
