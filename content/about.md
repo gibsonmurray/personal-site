@@ -7,7 +7,7 @@ description: A little bit about me
 
 Front-End Web Developer & Design Engineer
 
-[Codepen](https://codepen.io/gibsonmurray){:target="\_blank"} | [Github](https://github.com/gibsonmurray){:target="\_blank"} | [X](https://x.com/gibsonsmurray){:target="\_blank"} | [LinkedIn](https://linkedin.com/in/gibsonmurray){:target="\_blank"}
+[Codepen](https://codepen.io/gibsonmurray){:target="\_blank"} | [Github](https://github.com/gibsonmurray){:target="\_blank"} | [X/Twitter](https://x.com/gibsonsmurray){:target="\_blank"} | [LinkedIn](https://linkedin.com/in/gibsonmurray){:target="\_blank"}
 
 ## Summary
 
@@ -16,12 +16,12 @@ Innovative and detail-oriented Web Developer with 3+ years of experience in crea
 ## Skills
 
 -   **Languages:** JavaScript, TypeScript, HTML, CSS
--   **Frameworks/Libraries:** React, Vue, Node.js, Next.js, TailwindCSS, Nuxt
+-   **Frameworks/Libraries:** React, Vue, Node, Next, Tailwind, Nuxt, Sass/SCSS
 -   **Database:** MySQL, MongoDB, PostgreSQL
--   **Tools:** Git, Bun, npm, Docker, GSAP, Framer Motion
+-   **Tools:** Git, Bun, NPM, Docker, GSAP, Framer Motion
 -   **Design:** Responsive Web Design, UI/UX principles, Figma
 -   **Other:** RESTful APIs, CI/CD, Agile/Scrum
--   **Soft Skills:** Problem Solving, Communication, Time Management, Attention to Detail, Teamwork, Adaptability, Proactivness
+-   **Soft Skills:** Problem solving, communication, time management, attention to detail, teamwork, adaptability, proactivness
 
 ## Experience
 
@@ -37,7 +37,7 @@ Innovative and detail-oriented Web Developer with 3+ years of experience in crea
 
 University of Maryland, College Park | 2020 - 2024
 
--   Relevant coursework: Web Development, Software Security, Compilers, Data Structures and Algorithms
+-   Relevant coursework: Web Development; Software Security; Compilers; Data Structures & Algorithms
 
 ## Certifications
 

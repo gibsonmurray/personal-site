@@ -38,9 +38,6 @@
                 :thumbnail="project?.thumbnail ?? ''"
                 :skills="project?.skills ?? []"
                 :color="project?.color ?? ''"
-                :subtitle="project?.subtitle ?? ''"
-                :description="project?.description ?? ''"
-                :keywords="project?.keywords ?? []"
                 :hidden="project === null"
             />
         </div>

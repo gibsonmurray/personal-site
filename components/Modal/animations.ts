@@ -100,7 +100,7 @@ export const animations = {
                         ease: config.ease,
                         duration: config.duration,
                     },
-                    "<",
+                    "<50%",
                 )
                 .to(
                     "#modal-grid",
@@ -136,6 +136,32 @@ export const animations = {
                     ease: config.ease,
                     duration: config.duration,
                 })
+        })
+    },
+
+    scrollArrowYoyo: () => {
+        gsap.to("#chevron-down", {
+            y: "+=5",
+            ease: "power1.inOut",
+            duration: 1,
+            repeat: -1,
+            yoyo: true,
+        })
+    },
+
+    flipArrowUp: () => {
+        gsap.to("#chevron-down", {
+            rotation: 180,
+            ease: "power1.inOut",
+            duration: config.duration,
+        })
+    },
+
+    flipArrowDown: () => {
+        gsap.to("#chevron-down", {
+            rotation: 0,
+            ease: "power1.inOut",
+            duration: config.duration,
         })
     },
 }

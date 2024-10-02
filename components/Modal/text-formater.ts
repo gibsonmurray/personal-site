@@ -2,29 +2,34 @@ import $ from "jquery"
 
 export function formatChips() {
     const $chips = $(".skill-chip")
-    console.log($chips)
     $chips.each((_, chip) => {
         const $chip = $(chip)
         const text = $chip.text().toLowerCase()
         if (text.includes("javascript")) {
-            formatJSChip($chip)
+            formatJsChip($chip)
         } else if (text.includes("typescript")) {
-            formatTSChip($chip)
+            formatTsChip($chip)
         } else if (text.includes("html")) {
-            formatHTMLChip($chip)
+            formatHtmlChip($chip)
         } else if (text.includes("css")) {
-            formatCSSChip($chip)
+            formatCssChip($chip)
         } else if (text.includes("react")) {
             formatReactChip($chip)
         } else if (text.includes("framer")) {
             formatFramerChip($chip)
         } else if (text.includes("vue")) {
             formatVueChip($chip)
+        } else if (text.includes("sass")) {
+            formatSassChip($chip)
+        } else if (text.includes("jquery")) {
+            formatJqueryChip($chip)
+        } else if (text.includes("gsap")) {
+            formatGsapChip($chip)
         }
     })
 }
 
-function formatJSChip($chip: JQuery<HTMLElement>) {
+function formatJsChip($chip: JQuery<HTMLElement>) {
     $chip.css({
         "background-color": "#fde047",
         color: "#000",
@@ -32,15 +37,23 @@ function formatJSChip($chip: JQuery<HTMLElement>) {
     })
 }
 
-function formatTSChip($chip: JQuery<HTMLElement>) {
+function formatTsChip($chip: JQuery<HTMLElement>) {
     $chip.css({
         "background-color": "#1d4ed8",
-        color: "#000",
+        color: "#fff",
         border: "1px solid #1e40af",
     })
 }
 
-function formatHTMLChip($chip: JQuery<HTMLElement>) {
+function formatJqueryChip($chip: JQuery<HTMLElement>) {
+    $chip.css({
+        "background-color": "#2563eb",
+        color: "#fff",
+        border: "1px solid #1d4ed8",
+    })
+}
+
+function formatHtmlChip($chip: JQuery<HTMLElement>) {
     $chip.css({
         "background-color": "#ea580c",
         color: "#fff",
@@ -48,7 +61,7 @@ function formatHTMLChip($chip: JQuery<HTMLElement>) {
     })
 }
 
-function formatCSSChip($chip: JQuery<HTMLElement>) {
+function formatCssChip($chip: JQuery<HTMLElement>) {
     $chip.css({
         "background-color": "#60a5fa",
         color: "#fff    ",
@@ -77,5 +90,21 @@ function formatVueChip($chip: JQuery<HTMLElement>) {
         "background-color": "#10b981",
         color: "#fff",
         border: "1px solid #059669",
+    })
+}
+
+function formatSassChip($chip: JQuery<HTMLElement>) {
+    $chip.css({
+        "background-color": "#ec4899",
+        color: "#fff",
+        border: "1px solid #c026d3",
+    })
+}
+
+function formatGsapChip($chip: JQuery<HTMLElement>) {
+    $chip.css({
+        "background-color": "#22c55e",
+        color: "#fff",
+        border: "1px solid #16a34a",
     })
 }

@@ -3,8 +3,8 @@
     import { gsap } from "gsap"
     import type { Project } from "~/types"
     import { animations } from "./animations"
-    import { XIcon } from "lucide-vue-next"
-import { formatChips } from "./text-formater"
+    import { XIcon, ChevronDownIcon } from "lucide-vue-next"
+    import { formatChips } from "./text-formater"
 
     const { project } = defineProps<{
         project: Project
@@ -19,6 +19,7 @@ import { formatChips } from "./text-formater"
         animations.open()
         setupTicker()
         formatChips()
+        animations.scrollArrowYoyo()
     })
 
     onUnmounted(() => {
@@ -55,6 +56,31 @@ import { formatChips } from "./text-formater"
         await animations.close()
         emit("close")
     }
+
+    const content = useTemplateRef<HTMLElement>("content")
+    let arrowFlipped = false
+
+    const checkScroll = () => {
+        if (!content.value) return
+        const elmt = content.value
+        const isScrollable = elmt.scrollHeight > elmt.clientHeight
+        const isScrolledToBottom =
+            elmt.scrollHeight - elmt.scrollTop <= elmt.clientHeight + 1
+        if (isScrollable && isScrolledToBottom) {
+            animations.flipArrowUp()
+            arrowFlipped = true
+        } else if (arrowFlipped) {
+            animations.flipArrowDown()
+            arrowFlipped = false
+        }
+    }
+
+    watch(
+        () => content.value?.scrollTop,
+        () => {
+            checkScroll()
+        },
+    )
 </script>
 
 <template>
@@ -88,7 +114,6 @@ import { formatChips } from "./text-formater"
                 class="modal-square aspect-[4/3] h-[250px] bg-white/80 backdrop-blur-lg"
             ></div>
 
-            <!-- todo: remove bg color -->
             <div
                 id="modal-content"
                 class="absolute left-0 top-0 flex h-full w-full flex-col items-start justify-between gap-5 overflow-y-auto px-10 py-8 text-black"
@@ -99,7 +124,7 @@ import { formatChips } from "./text-formater"
                 >
                     <NuxtImg
                         :src="project.thumbnail"
-                        class="aspect-square h-20 overflow-hidden rounded-full object-cover border border-zinc-400"
+                        class="aspect-square h-20 overflow-hidden rounded-full border border-zinc-400 object-cover"
                     />
                     <div
                         class="flex h-full flex-col items-start justify-evenly"
@@ -126,16 +151,23 @@ import { formatChips } from "./text-formater"
                 </div>
                 <hr class="w-full border border-b-0 border-zinc-400" />
                 <div
+                    ref="content"
                     id="modal-body"
-                    class="flex h-full flex-col items-center justify-start gap-2"
+                    class="flex h-full flex-col items-center justify-start overflow-y-auto"
+                    @scroll="checkScroll"
                 >
-                    <h2 class="w-full font-bold italic text-zinc-800">
-                        "{{ project.subtitle }}"
-                    </h2>
-                    <p class="w-full leading-relaxed text-zinc-700">
-                        {{ project.description }}
-                    </p>
+                    <ContentDoc
+                        :id="project.title"
+                        :path="`/projects${project.path}`"
+                        class="prose w-full"
+                    />
                 </div>
+
+                <ChevronDownIcon
+                    id="chevron-down"
+                    class="absolute bottom-[100px] left-1/2 h-6 w-6 -translate-x-1/2 text-zinc-600"
+                />
+
                 <div id="modal-footer" class="flex w-full flex-col gap-2">
                     <h3 class="font-bold text-zinc-800">Tags:</h3>
                     <div
@@ -171,6 +203,7 @@ import { formatChips } from "./text-formater"
     .ticker {
         top: 50%;
         transform: translateY(-50%);
+        will-change: transform; /* Optimize animation performance */
     }
 
     .ticker-content {

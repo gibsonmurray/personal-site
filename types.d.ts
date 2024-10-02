@@ -5,7 +5,5 @@ export type Project = {
     thumbnail?: string
     skills?: string[]
     color?: string
-    subtitle?: string
-    description?: string
     keywords?: string[]
 }

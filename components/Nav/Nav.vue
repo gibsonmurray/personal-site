@@ -44,7 +44,7 @@
     ></div>
     <nav
         id="nav"
-        class="fixed bottom-10 z-10 flex h-12 items-center justify-center gap-2 overflow-hidden rounded-full border border-zinc-200 bg-zinc-100/50 px-2 py-1 shadow-sm backdrop-blur-md"
+        class="fixed bottom-10 z-10 flex h-12 items-center justify-center gap-2 overflow-hidden rounded-full border border-zinc-200 bg-zinc-100/60 px-2 py-1 shadow-sm backdrop-blur-md"
     >
         <button
             v-if="infoBtn"
