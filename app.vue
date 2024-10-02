@@ -10,11 +10,11 @@
         description: description,
         ogTitle: title,
         ogDescription: description,
-        ogImage: "/og-image.jpg",
+        ogImage: "/og-image.jpeg",
         ogUrl: "https://gibsonmurray.com",
         twitterTitle: title,
         twitterDescription: description,
-        twitterImage: "/twitter-image.jpg",
+        twitterImage: "/og-image.jpeg",
         twitterCard: "summary",
     })
 

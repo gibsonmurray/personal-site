@@ -14,6 +14,18 @@
         ?.body as unknown as Project[]
     const project = res.find((p) => p.path === "/" + entry) || null
 
+    useSeoMeta({
+        title: project?.title,
+        // description: project?.description,
+        ogTitle: project?.title,
+        // ogDescription: project?.description,
+        ogImage: "/og-image.jpeg",
+        ogUrl: `https://gibsonmurray.com/project/${project?.path}`,
+        twitterTitle: project?.title,
+        // twitterDescription: project?.description,
+        twitterImage: "/og-image.jpeg",
+    })
+
     const handleOpenModal = () => {
         modal.value = true
     }
@@ -57,7 +69,11 @@
     <div
         class="relative flex h-svh w-screen flex-col items-center justify-start overflow-hidden pb-12"
     >
-        <Nav @openModal="handleOpenModal" infoBtn />
+        <Nav
+            @openModal="handleOpenModal"
+            infoBtn
+            :source-code-btn="project?.penLink"
+        />
         <div class="w-full" :style="`background-color: ${project?.color}`">
             <p
                 :data-height="height"

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+    import { getSeason } from "../Modal/utils"
     import animations from "./animations"
 
     const props = defineProps<{
@@ -36,6 +37,10 @@
             router.push(`/project${props.path}`)
         }
     }
+
+    const img = props.path?.includes("parallax-seasons")
+        ? `/thumbnails/parallax-seasons/${getSeason()}.jpeg`
+        : props.thumbnail
 </script>
 
 <template>
@@ -66,7 +71,7 @@
         >
             <NuxtImg
                 class="h-full w-full rounded-full object-cover"
-                :src="thumbnail"
+                :src="img"
                 alt="thumbnail"
             />
         </div>

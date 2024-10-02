@@ -5,6 +5,7 @@
     import { animations } from "./animations"
     import { XIcon, ChevronDownIcon } from "lucide-vue-next"
     import { formatChips } from "./text-formater"
+    import { getSeason } from "./utils"
 
     const { project } = defineProps<{
         project: Project
@@ -90,6 +91,10 @@
             behavior: "smooth",
         })
     }
+
+    const img = project.path?.includes("parallax-seasons")
+        ? `/thumbnails/parallax-seasons/${getSeason()}.jpeg`
+        : project.thumbnail
 </script>
 
 <template>
@@ -132,7 +137,7 @@
                     class="relative flex w-full items-center justify-start gap-4"
                 >
                     <NuxtImg
-                        :src="project.thumbnail"
+                        :src="img"
                         class="aspect-square h-20 overflow-hidden rounded-full border border-zinc-400 object-cover"
                     />
                     <div

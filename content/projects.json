@@ -1,18 +1,39 @@
 [
     {
-        "title": "Landing Page Hero",
-        "path": "/landing-page-hero",
-        "penLink": "https://codepen.io/gibsonmurray/pen/OJdzxyK",
-        "thumbnail": "/thumbnails/landing-page-hero.webp",
-        "skills": ["JavaScript", "HTML", "CSS", "GSAP"],
-        "color": "#1D1D1F",
+        "title": "iPhone Widget Flood",
+        "path": "/iphone-widget-flood",
+        "penLink": "https://codepen.io/gibsonmurray/pen/RwEQKrY",
+        "thumbnail": "/thumbnails/iphone-widget-flood.webp",
+        "skills": ["JavaScript", "HTML", "CSS"],
+        "color": "#0D0D0D",
         "keywords": [
-            "landing page",
-            "hero section",
+            "iphone",
+            "widget",
+            "flood",
+            "scroll",
+            "animation",
             "gsap",
-            "text splitting",
-            "cursor driven animation",
-            "3d transforms"
+            "vanilla javascript",
+            "demo",
+            "interaction design"
+        ]
+    },
+    {
+        "title": "Photography View Transitions",
+        "path": "/photography-view-transitions",
+        "penLink": "https://codepen.io/gibsonmurray/pen/dyBKmJM",
+        "thumbnail": "/thumbnails/photography-view-transitions.webp",
+        "skills": ["React", "TailwindCSS", "Framer Motion"],
+        "color": "#F4F4F5",
+        "keywords": [
+            "view transitions",
+            "photography",
+            "demo",
+            "social media",
+            "x/twitter",
+            "react",
+            "tailwindcss",
+            "framer motion"
         ]
     },
     {
@@ -34,26 +55,6 @@
         ]
     },
     {
-        "title": "Parallax Seasons",
-        "path": "/parallax-seasons",
-        "penLink": "https://codepen.io/gibsonmurray/pen/jOdwaKb",
-        "thumbnail": "/thumbnails/parallax-seasons.webp",
-        "skills": ["JavaScript", "HTML", "CSS", "GSAP"],
-        "color": "#FFFFFF",
-        "keywords": [
-            "parallax",
-            "seasons",
-            "demo",
-            "gsap",
-            "spring",
-            "summer",
-            "fall",
-            "autumn",
-            "winter",
-            "dynamic"
-        ]
-    },
-    {
         "title": "Parallax Devices",
         "path": "/parallax-devices",
         "penLink": "https://codepen.io/gibsonmurray/pen/JjzmrWR",
@@ -72,21 +73,23 @@
         ]
     },
     {
-        "title": "Photography View Transitions",
-        "path": "/photography-view-transitions",
-        "penLink": "https://codepen.io/gibsonmurray/pen/dyBKmJM",
-        "thumbnail": "/thumbnails/photography-view-transitions.webp",
-        "skills": ["React", "TailwindCSS", "Framer Motion"],
-        "color": "#F4F4F5",
+        "title": "Parallax Seasons",
+        "path": "/parallax-seasons",
+        "penLink": "https://codepen.io/gibsonmurray/pen/jOdwaKb",
+        "thumbnail": "/thumbnails/parallax-seasons.webp",
+        "skills": ["JavaScript", "HTML", "CSS", "GSAP"],
+        "color": "#FFFFFF",
         "keywords": [
-            "view transitions",
-            "photography",
+            "parallax",
+            "seasons",
             "demo",
-            "social media",
-            "x/twitter",
-            "react",
-            "tailwindcss",
-            "framer motion"
+            "gsap",
+            "spring",
+            "summer",
+            "fall",
+            "autumn",
+            "winter",
+            "dynamic"
         ]
     },
     {
@@ -191,63 +194,6 @@
         ]
     },
     {
-        "title": "Pressure Grid",
-        "path": "/pressure-grid",
-        "penLink": "https://codepen.io/gibsonmurray/pen/KKjLRMj",
-        "thumbnail": "/thumbnails/pressure-grid.webp",
-        "skills": ["TypeScript", "jQuery", "SASS", "GSAP"],
-        "color": "#1B1B1B",
-        "keywords": [
-            "pressure",
-            "grid",
-            "touch",
-            "sensitive",
-            "pad",
-            "control",
-            "gsap",
-            "vanilla javascript",
-            "demo",
-            "interaction design"
-        ]
-    },
-    {
-        "title": "iPhone Widget Flood",
-        "path": "/iphone-widget-flood",
-        "penLink": "https://codepen.io/gibsonmurray/pen/RwEQKrY",
-        "thumbnail": "/thumbnails/iphone-widget-flood.webp",
-        "skills": ["JavaScript", "HTML", "CSS"],
-        "color": "#0D0D0D",
-        "keywords": [
-            "iphone",
-            "widget",
-            "flood",
-            "scroll",
-            "animation",
-            "gsap",
-            "vanilla javascript",
-            "demo",
-            "interaction design"
-        ]
-    },
-    {
-        "title": "iPad Parallax Scroll",
-        "path": "/ipad-parallax-scroll",
-        "penLink": "https://codepen.io/gibsonmurray/pen/BaMjoaP",
-        "thumbnail": "/thumbnails/ipad-parallax-scroll.webp",
-        "skills": ["JavaScript", "HTML", "CSS", "GSAP"],
-        "color": "#1D1D1F",
-        "keywords": [
-            "ipad",
-            "parallax",
-            "scroll",
-            "animation",
-            "gsap",
-            "vanilla javascript",
-            "demo",
-            "interaction design"
-        ]
-    },
-    {
         "title": "Magic Terminal",
         "path": "/magic-terminal",
         "penLink": "https://codepen.io/gibsonmurray/pen/dyBXxLG",
@@ -290,6 +236,60 @@
             "interactive",
             "awards",
             "widgets"
+        ]
+    },
+    {
+        "title": "Pressure Grid",
+        "path": "/pressure-grid",
+        "penLink": "https://codepen.io/gibsonmurray/pen/KKjLRMj",
+        "thumbnail": "/thumbnails/pressure-grid.webp",
+        "skills": ["TypeScript", "jQuery", "SASS", "GSAP"],
+        "color": "#1B1B1B",
+        "keywords": [
+            "pressure",
+            "grid",
+            "touch",
+            "sensitive",
+            "pad",
+            "control",
+            "gsap",
+            "vanilla javascript",
+            "demo",
+            "interaction design"
+        ]
+    },
+    {
+        "title": "Landing Page Hero",
+        "path": "/landing-page-hero",
+        "penLink": "https://codepen.io/gibsonmurray/pen/OJdzxyK",
+        "thumbnail": "/thumbnails/landing-page-hero.webp",
+        "skills": ["JavaScript", "HTML", "CSS", "GSAP"],
+        "color": "#1D1D1F",
+        "keywords": [
+            "landing page",
+            "hero section",
+            "gsap",
+            "text splitting",
+            "cursor driven animation",
+            "3d transforms"
+        ]
+    },
+    {
+        "title": "iPad Parallax Scroll",
+        "path": "/ipad-parallax-scroll",
+        "penLink": "https://codepen.io/gibsonmurray/pen/BaMjoaP",
+        "thumbnail": "/thumbnails/ipad-parallax-scroll.webp",
+        "skills": ["JavaScript", "HTML", "CSS", "GSAP"],
+        "color": "#1D1D1F",
+        "keywords": [
+            "ipad",
+            "parallax",
+            "scroll",
+            "animation",
+            "gsap",
+            "vanilla javascript",
+            "demo",
+            "interaction design"
         ]
     }
 ]

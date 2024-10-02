@@ -11,6 +11,10 @@
         ?.body as unknown as Project[]
     const projects: Project[] = res || []
 
+    useSeoMeta({
+        title: null,
+    })
+
     const honeycombifiedProjects = honeycombify(projects)
 
     onMounted(() => {

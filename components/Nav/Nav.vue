@@ -5,7 +5,7 @@
 
     const props = defineProps<{
         infoBtn?: boolean
-        sourceCodeBtn?: boolean
+        sourceCodeBtn?: string
     }>()
 
     const emit = defineEmits(["openModal"])
@@ -28,6 +28,10 @@
         setTimeout(() => {
             router.push("/")
         }, 1000)
+    }
+
+    const handleCodeClick = () => {
+        window.open(props.sourceCodeBtn, "_blank")
     }
 </script>
 
@@ -81,6 +85,7 @@
             v-if="sourceCodeBtn"
             title="Source Code"
             class="flex aspect-square h-full items-center justify-center rounded-full transition-colors duration-300 hover:bg-zinc-400/30"
+            @click="handleCodeClick"
         >
             <CodeXml color="#000" />
         </button>
