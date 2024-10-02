@@ -25,12 +25,12 @@
 
 <template>
     <section
-        class="flex min-h-svh w-screen flex-col items-center justify-start bg-black"
+        class="flex min-h-svh w-screen flex-col items-center justify-center md:justify-start bg-black"
     >
         <div
             v-for="(row, i) in honeycombifiedProjects"
             :id="`row-${i}`"
-            class="row flex items-center justify-center gap-4 opacity-0"
+            class="row flex items-center justify-center gap-2 md:gap-4 opacity-0"
         >
             <Bubble
                 v-for="(project, j) in row"

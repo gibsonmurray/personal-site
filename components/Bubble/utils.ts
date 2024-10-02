@@ -26,5 +26,5 @@ export function getMaxScale(
 }
 
 export function getEasePrefix(maxScale: number, threshold: number) {
-    return maxScale > threshold ? "power4" : "power1"
+    return maxScale > threshold && window.innerWidth > 768 ? "power4" : "power1"
 }

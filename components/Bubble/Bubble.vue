@@ -49,7 +49,7 @@
         :id="`bubble-${location.row}-${location.column}`"
         :title="title"
         :class="[
-            'bubble relative flex aspect-square h-[20vh] max-h-52 cursor-pointer items-center justify-center',
+            'bubble relative flex aspect-square w-[25vw] cursor-pointer items-center justify-center md:h-[20vh] md:max-h-52 md:w-auto',
             className,
             hidden ? 'invisible' : '',
         ]"
@@ -73,6 +73,7 @@
                 class="h-full w-full rounded-full object-cover"
                 :src="img"
                 alt="thumbnail"
+                preload
             />
         </div>
     </button>

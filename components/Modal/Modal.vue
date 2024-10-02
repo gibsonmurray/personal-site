@@ -95,6 +95,11 @@
     const img = project.path?.includes("parallax-seasons")
         ? `/thumbnails/parallax-seasons/${getSeason()}.jpeg`
         : project.thumbnail
+
+    const windowWidth = ref(window.innerWidth)
+    window.addEventListener("resize", () => {
+        windowWidth.value = window.innerWidth
+    })
 </script>
 
 <template>
@@ -109,57 +114,58 @@
         ></div>
         <div
             id="modal-grid"
-            class="relative grid grid-cols-2 grid-rows-2 place-items-center gap-5 rounded-[42px] border border-transparent *:rounded-[42px]"
+            class="relative grid grid-cols-2 grid-rows-2 place-items-center gap-5 rounded-[42px] p-2 *:rounded-[42px] md:border md:border-transparent md:p-0"
         >
             <div
                 id="tl"
-                class="modal-square aspect-[4/3] h-[250px] bg-white/80 backdrop-blur-lg"
+                class="modal-square h-[40vh] w-full max-w-[48vw] bg-white/80 backdrop-blur-lg md:aspect-[4/3] md:h-[250px] md:w-auto md:max-w-none"
             ></div>
             <div
                 id="tr"
-                class="modal-square aspect-[4/3] h-[250px] bg-white/80 backdrop-blur-lg"
+                class="modal-square h-[40vh] w-[48vw] bg-white/80 backdrop-blur-lg md:aspect-[4/3] md:h-[250px] md:w-auto md:max-w-none"
             ></div>
             <div
                 id="bl"
-                class="modal-square aspect-[4/3] h-[250px] bg-white/80 backdrop-blur-lg"
+                class="modal-square h-[40vh] w-full max-w-[48vw] bg-white/80 backdrop-blur-lg md:aspect-[4/3] md:h-[250px] md:w-auto md:max-w-none"
             ></div>
             <div
                 id="br"
-                class="modal-square aspect-[4/3] h-[250px] bg-white/80 backdrop-blur-lg"
+                class="modal-square h-[40vh] w-[48vw] bg-white/80 backdrop-blur-lg md:aspect-[4/3] md:h-[250px] md:w-auto md:max-w-none"
             ></div>
 
             <div
                 id="modal-content"
-                class="absolute left-0 top-0 flex h-full w-full flex-col items-start justify-between gap-5 overflow-y-auto px-10 py-8 text-black"
+                class="absolute left-0 top-0 flex h-full w-full flex-col items-start justify-between gap-5 overflow-y-auto overflow-x-hidden px-10 py-8 text-black"
             >
                 <div
                     id="modal-header"
-                    class="relative flex w-full items-center justify-start gap-4"
+                    class="relative flex h-24 w-full items-center justify-start gap-4"
                 >
                     <NuxtImg
+                        v-if="windowWidth > 500"
                         :src="img"
-                        class="aspect-square h-20 overflow-hidden rounded-full border border-zinc-400 object-cover"
+                        class="aspect-square h-20 rounded-full border border-zinc-400 object-cover"
                     />
                     <div
-                        class="flex h-full flex-col items-start justify-evenly"
+                        class="flex h-full flex-col items-start justify-evenly md:gap-0"
                     >
-                        <h1 class="w-full text-2xl font-bold">
+                        <h1 class="text-lg font-bold md:text-2xl">
                             {{ project.title }}
                         </h1>
                         <div
-                            class="flex items-center justify-start gap-2 text-sm"
+                            class="flex w-[calc(100vw-5rem)] items-center justify-start gap-2 overflow-x-auto text-xs md:text-sm"
                         >
                             <span
                                 v-for="skill in project.skills"
                                 :key="skill"
                                 :id="`s-${skill.toLowerCase()}`"
-                                :class="`skill-chip overflow-hidden rounded-full bg-zinc-300 px-3 py-1`"
+                                :class="`skill-chip overflow-hidden rounded-full bg-zinc-300 px-2 py-[2px] md:px-3 md:py-1`"
                                 >{{ skill }}</span
                             >
                         </div>
                     </div>
                     <XIcon
-                        class="absolute right-0 top-0 h-6 w-6 cursor-pointer text-zinc-600"
+                        class="absolute -right-4 -top-2 h-6 w-6 cursor-pointer text-zinc-600 md:right-0 md:top-0"
                         @click="handleClose"
                     />
                 </div>
@@ -186,9 +192,8 @@
                 </div>
 
                 <div id="modal-footer" class="flex w-full flex-col gap-2">
-                    <!-- <h3 class="font-bold text-zinc-800">Tags:</h3> -->
                     <div
-                        class="ticker-wrap relative h-8 overflow-hidden text-sm"
+                        class="ticker-wrap relative h-8 overflow-hidden text-xs md:text-sm"
                     >
                         <div
                             ref="tickerRef"
@@ -198,7 +203,7 @@
                                 <span
                                     v-for="tag in project.keywords"
                                     :key="tag"
-                                    :class="`t-${tag.toLowerCase()} whitespace-nowrap rounded-full bg-blue-500 px-3 py-1 text-white`"
+                                    :class="`t-${tag.toLowerCase()} whitespace-nowrap rounded-full bg-blue-500 px-2 md:px-3 py-1 text-white`"
                                     >{{ tag }}</span
                                 >
                             </div>

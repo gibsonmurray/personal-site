@@ -3,11 +3,17 @@ import gsap from "gsap"
 const config = {
     duration: 0.5,
     ease: "back.out(0.8)",
-    cornerTweens: [
+    lgCornerTweens: [
         "42px 0px 0px 0px",
         "0px 42px 0px 0px",
         "0px 0px 0px 42px",
         "0px 0px 42px 0px",
+    ],
+    smCornerTweens: [
+        "20px 0px 0px 0px",
+        "0px 20px 0px 0px",
+        "0px 0px 0px 20px",
+        "0px 0px 20px 0px",
     ],
 }
 
@@ -39,7 +45,10 @@ export const animations = {
             )
             .to(".modal-square", {
                 borderRadius: function (index: number) {
-                    const corner = config.cornerTweens[index]
+                    const corner =
+                        window.innerWidth > 768
+                            ? config.lgCornerTweens[index]
+                            : config.smCornerTweens[index]
                     return corner
                 },
                 ease: config.ease,
@@ -114,7 +123,7 @@ export const animations = {
                 .to(
                     ".modal-square",
                     {
-                        borderRadius: "42px",
+                        borderRadius: window.innerWidth > 768 ? 42 : 20,
                         ease: config.ease,
                         duration: config.duration,
                     },
