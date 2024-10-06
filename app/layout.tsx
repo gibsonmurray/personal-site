@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Figtree } from "next/font/google"
 import "./globals.css"
+import { cn } from "@/utils"
 
 const figtree = Figtree({
     subsets: ["latin"],
@@ -22,7 +23,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${figtree.className} antialiased`}>
+            <body className={cn("antialiased bg-zinc-50", figtree.className)}>
                 {children}
             </body>
         </html>
