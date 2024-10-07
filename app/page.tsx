@@ -1,14 +1,13 @@
 import Image from "next/image"
 import { capitalize } from "@/utils"
+import Nav from "@/components/Nav"
 
 const images = [
-    "jumpy-cards.webp",
+    "sticky-notes.webp",
     "landing-page-hero.webp",
-    "olympic-medals.webp",
     "parallax-seasons.webp",
     "pressure-grid.webp",
-    "sticky-notes.webp",
-    "trashy-photos.webp",
+    "olympic-medals.webp",
 ]
 
 const titles = images.map((image) => {
@@ -26,17 +25,20 @@ export default function Home() {
                 height={100}
                 className="rounded-full"
             />
-            <div className="flex items-center justify-center flex-col gap-5">
-                <div className="w-full h-24 relative flex items-center justify-center">
+            <div className="flex items-center justify-center flex-col gap-8">
+                <div className="w-full h-28 relative flex items-center justify-center">
                     {images.map((image, index) => (
-                        <Image
+                        <div
+                            className="h-full aspect-[5/3] absolute border-4 border-white rounded-lg overflow-hidden shadow-md"
                             key={index}
-                            src={`/thumbnails/${image}`}
-                            alt={`${titles[index]} Thumbnail`}
-                            width={100}
-                            height={100}
-                            className="rounded-full"
-                        />
+                        >
+                            <Image
+                                src={`/thumbnails/${image}`}
+                                alt={`${titles[index]} Thumbnail`}
+                                fill
+                                className="object-cover"
+                            />
+                        </div>
                     ))}
                 </div>
                 <div className="flex flex-col items-center justify-center gap-4">
@@ -65,6 +67,7 @@ export default function Home() {
                 </span>
                 <span>Gibson Murray © 2024</span>
             </div>
+            <Nav />
         </main>
     )
 }
