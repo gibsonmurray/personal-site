@@ -2,10 +2,10 @@
 
 import { ScrollText, CodeXml } from "lucide-react"
 import { animations } from "./animations"
-import { useRef, useState } from "react"
+import { FC, useRef, useState } from "react"
 import { useGSAP } from "@gsap/react"
 
-export default function Nav() {
+const Nav: FC = () => {
     const scope = useRef<HTMLDivElement>(null)
     const homeBtn = useRef<HTMLButtonElement>(null)
 
@@ -85,3 +85,5 @@ export default function Nav() {
         </nav>
     )
 }
+
+export default Nav

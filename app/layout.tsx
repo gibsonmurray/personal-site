@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Figtree } from "next/font/google"
 import "./globals.css"
 import { cn } from "@/utils"
+import { FC } from "react"
 
 const figtree = Figtree({
     subsets: ["latin"],
@@ -16,11 +17,11 @@ export const metadata: Metadata = {
         "My personal website: A portfolio of my best web development adventures.",
 }
 
-export default function RootLayout({
-    children,
-}: Readonly<{
+type RootLayoutProps = {
     children: React.ReactNode
-}>) {
+}
+
+const RootLayout: FC<RootLayoutProps> = ({ children }) => {
     return (
         <html lang="en">
             <body className={cn("antialiased bg-zinc-50", figtree.className)}>
@@ -29,3 +30,5 @@ export default function RootLayout({
         </html>
     )
 }
+
+export default RootLayout
