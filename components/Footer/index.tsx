@@ -1,10 +1,8 @@
 "use client"
 
-import { CodeXmlIcon } from "lucide-react"
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { useRef } from 'react'
-import Logo from "../Logo"
 
 const Footer = () => {
     const scope = useRef<HTMLDivElement>(null)
