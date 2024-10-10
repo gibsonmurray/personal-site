@@ -10,10 +10,6 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
-    "@mdx-js/loader": "^3.0.1",
-    "@mdx-js/react": "^3.0.1",
-    "@next/mdx": "^14.2.15",
-    "@types/mdx": "^2.0.13",
     "gsap": "^3.12.5",
     "lucide-react": "^0.447.0",
     "next": "14.2.14",
@@ -21,7 +17,6 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.15",
     "@types/gsap": "^3.0.0",
     "@types/node": "^20.16.11",
     "@types/react": "^18.3.11",
