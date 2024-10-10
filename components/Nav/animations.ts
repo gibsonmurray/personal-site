@@ -12,6 +12,7 @@ const config = {
 export const animations = {
     enter: () => {
         gsap.timeline({ defaults: { ease: config.ease } })
+            .set(config.nav, { opacity: 1 }) // so it doesn't appear before it should
             .fromTo(
                 config.nav,
                 {
@@ -20,7 +21,7 @@ export const animations = {
                 {
                     y: 0,
                     duration: 0.5,
-                    delay: 2,
+                    delay: 1.2,
                 },
             )
             .fromTo(
@@ -58,11 +59,15 @@ export const animations = {
         })
     },
 
-    homeDown: () => {
+    homeDown: (setHomeClicked: (clicked: boolean) => void) => {
         gsap.to(config.homeBtn, {
-            padding: 20,
+            padding: 19,
             duration: 0.5,
             ease: "back.out(0.8)",
+            onComplete: () => {
+                setHomeClicked(false)
+                animations.homeRestore(false)
+            },
         })
     },
 
