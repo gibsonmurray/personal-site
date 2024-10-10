@@ -18,6 +18,8 @@ export const metadata: Metadata = {
     openGraph: {
         type: "website",
         title: "gibson murray",
+        siteName: "gibson murray",
+        url: "https://gibsonmurray.com",
         description:
             "hey everyone, welcome to my website! i'm gibson, a front end web developer and interaction designer.",
         images: [
