@@ -50,12 +50,12 @@ const Nav: FC = () => {
         >
             <div
                 id="nav"
-                className="flex h-12 items-center justify-center gap-2 overflow-hidden rounded-full border border-zinc-200 bg-zinc-100/20 px-2 py-1 shadow-sm backdrop-blur-md opacity-0"
+                className="flex h-12 items-center justify-center gap-2 overflow-hidden rounded-full border border-zinc-200 bg-zinc-100/20 px-2 py-1 shadow-sm backdrop-blur-md opacity-0 *:transition-colors *:duration-300"
             >
                 <button
                     title="Blog"
                     onClick={handleBlog}
-                    className="flex aspect-square h-full items-center justify-center rounded-full transition-colors duration-300 hover:bg-zinc-400/30"
+                    className="flex aspect-square h-full items-center justify-center rounded-full hover:bg-zinc-400/30"
                 >
                     <ScrollText color="#000" />
                 </button>
@@ -67,7 +67,7 @@ const Nav: FC = () => {
                     onClick={handleHomeClick}
                     onMouseEnter={handleHomeEnter}
                     onMouseLeave={handleHomeLeave}
-                    className="grid aspect-square h-full rotate-45 grid-cols-2 grid-rows-2 place-items-center rounded-full p-[9px]"
+                    className="grid aspect-square h-full rotate-45 grid-cols-2 grid-rows-2 place-items-center rounded-full p-[9px] hover:bg-zinc-400/30"
                 >
                     <div className="home-square aspect-square w-2 rounded-sm border-2 border-black"></div>
                     <div className="home-square aspect-square w-2 rounded-sm border-2 border-black"></div>
@@ -76,7 +76,7 @@ const Nav: FC = () => {
                 </button>
                 <button
                     title="Projects"
-                    className="flex aspect-square h-full items-center justify-center rounded-full transition-colors duration-300 hover:bg-zinc-400/30"
+                    className="flex aspect-square h-full items-center justify-center rounded-full hover:bg-zinc-400/30"
                     onClick={handleProjects}
                 >
                     <CodeXml color="#000" />
