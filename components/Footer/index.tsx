@@ -21,7 +21,7 @@ const Footer = () => {
     }, { scope })
 
     return (
-        <div ref={scope} className="footer flex items-center justify-center gap-2 text-zinc-500 text-sm *:opacity-0 *:translate-x-3">
+        <div ref={scope} className="footer flex items-center justify-center gap-1 text-zinc-500 text-sm *:opacity-0 *:translate-x-3">
             <span>made</span>
             <span>in</span>
             <span>the</span>
