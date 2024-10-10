@@ -14,7 +14,7 @@ export const metadata: Metadata = {
         default: "Gibson Murray",
     },
     description:
-        "My personal website: A portfolio of my best web development adventures.",
+        "hey everyone, welcome to my website! i'm gibson, a front end web developer and interaction designer.",
 }
 
 type RootLayoutProps = {
