@@ -10,30 +10,30 @@ const figtree = Figtree({
 
 export const metadata: Metadata = {
     title: {
-        template: "%s | Gibson Murray",
-        default: "Gibson Murray",
+        template: "%s | gibson murray",
+        default: "gibson murray",
     },
     description:
         "hey everyone, welcome to my website! i'm gibson, a front end web developer and interaction designer.",
     openGraph: {
         type: "website",
-        title: "Gibson Murray",
+        title: "gibson murray",
         description:
             "hey everyone, welcome to my website! i'm gibson, a front end web developer and interaction designer.",
         images: [
             {
-                url: "/og.png",
+                url: "/og.jpg",
             },
         ],
     },
     twitter: {
         card: "summary_large_image",
-        title: "Gibson Murray",
+        title: "gibson murray",
         description:
             "hey everyone, welcome to my website! i'm gibson, a front end web developer and interaction designer.",
         images: [
             {
-                url: "/og.png",
+                url: "/og.jpg",
             },
         ],
     },
