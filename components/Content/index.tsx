@@ -26,7 +26,7 @@ const Content = () => {
                 i am a front end web developer which means i build cool stuff a lot of the time.
             </span>
             <span>
-                i specialize in interaction design with react and tailwind.
+                my specialty is in interaction design using tools like react and tailwind.
             </span>
             <span>
                 if you want to see my work you can click on these things:
