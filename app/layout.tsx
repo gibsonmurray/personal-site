@@ -15,6 +15,28 @@ export const metadata: Metadata = {
     },
     description:
         "hey everyone, welcome to my website! i'm gibson, a front end web developer and interaction designer.",
+    openGraph: {
+        type: "website",
+        title: "Gibson Murray",
+        description:
+            "hey everyone, welcome to my website! i'm gibson, a front end web developer and interaction designer.",
+        images: [
+            {
+                url: "/og.png",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Gibson Murray",
+        description:
+            "hey everyone, welcome to my website! i'm gibson, a front end web developer and interaction designer.",
+        images: [
+            {
+                url: "/og.png",
+            },
+        ],
+    },
 }
 
 type RootLayoutProps = {
