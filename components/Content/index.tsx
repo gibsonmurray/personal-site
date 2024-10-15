@@ -41,16 +41,19 @@ const Content = () => {
                 stuff
             </span>
             <span>
-                my speciality is interaction design with react and tailwind.
+                my speciality is interaction design with react, tailwind, gsap,
+                and framer motion.
+            </span>
+            <span className="w-full">
+                believe it or not, i also have cs degree.
             </span>
             <span className="w-full">here&apos;s some more info:</span>
 
-            <div className="flex flex-col items-start justify-start gap-3 py-4">
+            <div className="flex flex-col items-start justify-start gap-3 py-2 text-lg text-zinc-700 *:flex *:items-center *:gap-3 *:underline">
                 <a
                     href="https://codepen.io/gibsonmurray"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 underline"
                 >
                     <CodepenIcon /> codepen
                 </a>
@@ -59,7 +62,6 @@ const Content = () => {
                     href="https://x.com/gibsonsmurray"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 underline"
                 >
                     <TwitterIcon /> twitter/x
                 </a>
@@ -68,7 +70,6 @@ const Content = () => {
                     href="https://github.com/gibsonmurray"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 underline"
                 >
                     <GithubIcon /> github
                 </a>
@@ -76,7 +77,6 @@ const Content = () => {
                     href="https://read.cv/gibsonmurray"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 underline"
                 >
                     <FileTextIcon /> resume/cv
                 </a>
@@ -84,39 +84,46 @@ const Content = () => {
                     href="https://www.linkedin.com/in/gibsonmurray/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 underline"
                 >
                     <LinkedinIcon /> linkedin
                 </a>
             </div>
 
-            <span className="w-full">on the side i build libraries for react:</span>
+            <span className="w-full">
+                on the side i build libraries for react:
+            </span>
 
-            <div className="flex flex-col items-start justify-start gap-3 py-4">
+            <div className="flex flex-col items-start justify-start gap-3 py-2 text-lg text-zinc-700 *:flex *:items-center *:gap-3">
                 <a
                     href="https://github.com/gibsonmurray/react-hooks"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 underline"
                 >
-                    <LightbulbIcon /> react-hooks - useful react hooks
+                    <LightbulbIcon />
+                    <span className="underline">react-hooks</span>
+                    <span className="text-zinc-500">handy react hooks</span>
                 </a>
                 <a
                     href="https://github.com/gibsonmurray/ghooks-cli"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 underline"
                 >
-                    <SquareTerminalIcon /> ghooks cli - install said^ react
-                    hooks
+                    <SquareTerminalIcon />
+                    <span className="underline">ghooks-cli</span>
+                    <span className="text-zinc-500">
+                        install those react hooks
+                    </span>
                 </a>
                 <a
                     href="https://github.com/gibsonmurray/gmake"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 underline"
                 >
-                    <BlocksIcon /> gmake - quickstart a react project
+                    <BlocksIcon />
+                    <span className="underline">gmake</span>
+                    <span className="text-zinc-500">
+                        quickstart a react project
+                    </span>
                 </a>
             </div>
 
