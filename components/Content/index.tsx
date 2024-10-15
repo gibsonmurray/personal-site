@@ -1,71 +1,126 @@
 "use client"
 
-import { CodepenIcon, FileTextIcon, GithubIcon, LinkedinIcon, BookOpenIcon, TwitterIcon } from 'lucide-react'
-import { useGSAP } from '@gsap/react'
-import gsap from 'gsap'
-import { useRef } from 'react'
+import {
+    CodepenIcon,
+    FileTextIcon,
+    GithubIcon,
+    LinkedinIcon,
+    TwitterIcon,
+    SquareTerminalIcon,
+    BlocksIcon,
+    LightbulbIcon,
+} from "lucide-react"
+import { useGSAP } from "@gsap/react"
+import gsap from "gsap"
+import { useRef } from "react"
 
 const Content = () => {
-
     const scope = useRef<HTMLDivElement>(null)
 
-    useGSAP(() => {
-        gsap.to('.content > *', {
-            opacity: 1,
-            duration: 1,
-            y: 0,
-            delay: 2,
-            stagger: 0.05,
-            ease: 'back.out',
-        })
-    }, { scope })
+    useGSAP(
+        () => {
+            gsap.to(".content > *", {
+                opacity: 1,
+                duration: 1,
+                y: 0,
+                delay: 2,
+                stagger: 0.05,
+                ease: "back.out",
+            })
+        },
+        { scope },
+    )
 
     return (
-        <div ref={scope} className="content flex items-center justify-center gap-4 flex-col font-semibold text-xl px-4 *:opacity-0 *:translate-y-3">
+        <div
+            ref={scope}
+            className="content flex flex-col items-center justify-center gap-4 px-4 text-xl font-semibold *:translate-y-3 *:opacity-0"
+        >
             <span>
-                i am a front end web developer which means i build cool stuff a lot of the time.
+                i am a design engineer which means i css good and build cool
+                stuff
             </span>
             <span>
-                i specialize in interaction design with react and tailwind.
+                my speciality is interaction design with react and tailwind.
             </span>
-            <span>
-                if you want to see my work you can click on these things:
-            </span>
+            <span className="w-full">here&apos;s some more info:</span>
 
-            <div className="flex items-start justify-center flex-col gap-3 py-4">
-                <a href="https://codepen.io/gibsonmurray" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 underline">
+            <div className="flex flex-col items-start justify-start gap-3 py-4">
+                <a
+                    href="https://codepen.io/gibsonmurray"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 underline"
+                >
                     <CodepenIcon /> codepen
                 </a>
 
-                <a href="https://x.com/gibsonsmurray" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 underline">
+                <a
+                    href="https://x.com/gibsonsmurray"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 underline"
+                >
                     <TwitterIcon /> twitter/x
                 </a>
 
-                <a href="https://github.com/gibsonmurray" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 underline">
+                <a
+                    href="https://github.com/gibsonmurray"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 underline"
+                >
                     <GithubIcon /> github
                 </a>
-                <a href="https://read.cv/gibsonmurray" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 underline">
+                <a
+                    href="https://read.cv/gibsonmurray"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 underline"
+                >
                     <FileTextIcon /> resume/cv
                 </a>
-                <a href="https://www.linkedin.com/in/gibsonmurray/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 underline">
+                <a
+                    href="https://www.linkedin.com/in/gibsonmurray/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 underline"
+                >
                     <LinkedinIcon /> linkedin
                 </a>
             </div>
 
-            <span>
-                on the side i write stories and blog about design and development.
-            </span>
+            <span className="w-full">on the side i build libraries for react:</span>
 
-            <div className="flex items-start justify-center flex-col gap-3 py-4">
-                <span className="flex items-center gap-2 cursor-not-allowed text-zinc-500">
-                    <BookOpenIcon /> writings coming soon
-                </span>
+            <div className="flex flex-col items-start justify-start gap-3 py-4">
+                <a
+                    href="https://github.com/gibsonmurray/react-hooks"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 underline"
+                >
+                    <LightbulbIcon /> react-hooks - useful react hooks
+                </a>
+                <a
+                    href="https://github.com/gibsonmurray/ghooks-cli"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 underline"
+                >
+                    <SquareTerminalIcon /> ghooks cli - install said^ react
+                    hooks
+                </a>
+                <a
+                    href="https://github.com/gibsonmurray/gmake"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 underline"
+                >
+                    <BlocksIcon /> gmake - quickstart a react project
+                </a>
             </div>
 
-            <span>
-                thanks for stopping by!
-            </span>
-
+            <span className="w-full">thanks for checking me out, cheers!</span>
         </div>
     )
 }
