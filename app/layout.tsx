@@ -8,20 +8,21 @@ const figtree = Figtree({
     subsets: ["latin"],
 })
 
+const description =
+    "hey everyone, welcome to my website! i'm gibson, a design engineer."
+
 export const metadata: Metadata = {
     title: {
         template: "%s | gibson murray",
         default: "gibson murray",
     },
-    description:
-        "hey everyone, welcome to my website! i'm gibson, a front end web developer and interaction designer.",
+    description,
     openGraph: {
         type: "website",
         title: "gibson murray",
         siteName: "gibson murray",
         url: "https://gibsonmurray.com",
-        description:
-            "hey everyone, welcome to my website! i'm gibson, a front end web developer and interaction designer.",
+        description,
         images: [
             {
                 url: "/og.jpg",
@@ -31,8 +32,7 @@ export const metadata: Metadata = {
     twitter: {
         card: "summary_large_image",
         title: "gibson murray",
-        description:
-            "hey everyone, welcome to my website! i'm gibson, a front end web developer and interaction designer.",
+        description,
         images: [
             {
                 url: "/og.jpg",
@@ -48,7 +48,7 @@ type RootLayoutProps = {
 const RootLayout: FC<RootLayoutProps> = ({ children }) => {
     return (
         <html lang="en">
-            <body className={cn("antialiased bg-zinc-50", figtree.className)}>
+            <body className={cn("bg-zinc-50 antialiased", figtree.className)}>
                 {children}
             </body>
         </html>
