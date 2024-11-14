@@ -24,7 +24,7 @@ const DemoLayoutWrapper: FC<DemoLayoutWrapperProps> = ({ children }) => {
         .pop()
         ?.split("-")
         .map((word) => capitalize(word))
-        .join(" ")
+        .join("")
 
     return (
         <div className="relative flex min-h-svh w-screen flex-col items-center justify-center">
