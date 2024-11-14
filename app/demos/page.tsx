@@ -9,6 +9,7 @@ import { container, children } from "./animations"
 
 const DemosPage = () => {
     const { isNavigating, navigateTo } = useNavigate()
+
     return (
         <main className="container flex min-h-svh max-w-md flex-col items-center justify-start gap-3 py-10">
             <div className="relative flex items-center justify-center gap-2">
@@ -36,7 +37,7 @@ const DemosPage = () => {
                 {!isNavigating && (
                     <motion.ul
                         variants={container}
-                        className="list-none p-0 *:p-0"
+                        className="mt-10 list-none p-0 *:p-0"
                     >
                         <motion.li
                             variants={children}

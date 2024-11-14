@@ -5,15 +5,16 @@ import { container, childVariants } from "./animations"
 type SplitTextProps = {
     children: ReactNode
     className?: string
+    delay?: number
 }
 
-const SplitText: FC<SplitTextProps> = ({ children, className }) => {
+const SplitText: FC<SplitTextProps> = ({ children, className, delay = 0.9 }) => {
     const letters = children?.toString().split("")
 
     return (
         <motion.span
             layout="position"
-            variants={container(0)}
+            variants={container(delay)}
             initial="initial"
             animate="animate"
             exit="exit"
