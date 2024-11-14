@@ -3,8 +3,10 @@
 import Logo from "@/components/Logo"
 import SplitText from "@/components/SplitText"
 import useNavigate from "@/hooks/useNavigate"
+import { capitalize } from "@/utils"
 import { AnimatePresence, motion } from "framer-motion"
 import { Code2Icon } from "lucide-react"
+import { usePathname } from "next/navigation"
 import { ReactNode, FC, useState } from "react"
 
 type DemoLayoutWrapperProps = {
@@ -15,6 +17,14 @@ const DemoLayoutWrapper: FC<DemoLayoutWrapperProps> = ({ children }) => {
     const { isNavigating, navigateTo } = useNavigate()
     const [hoveringBack, setHoveringBack] = useState(false)
     const [hoveringSourceCode, setHoveringSourceCode] = useState(false)
+
+    const pathname = usePathname()
+    const capitalizedPathname = pathname
+        .split("/")
+        .pop()
+        ?.split("-")
+        .map((word) => capitalize(word))
+        .join(" ")
 
     return (
         <div className="relative flex min-h-svh w-screen flex-col items-center justify-center">
@@ -51,7 +61,7 @@ const DemoLayoutWrapper: FC<DemoLayoutWrapperProps> = ({ children }) => {
                 transition={{ duration: 0.8 }}
                 onMouseEnter={() => setHoveringSourceCode(true)}
                 onMouseLeave={() => setHoveringSourceCode(false)}
-                href="https://github.com/gibsonmurray/personal-site"
+                href={`https://github.com/gibsonmurray/personal-site/tree/main/demos/${capitalizedPathname}`}
                 target="_blank"
                 referrerPolicy="no-referrer"
             >

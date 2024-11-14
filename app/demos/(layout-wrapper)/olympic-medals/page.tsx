@@ -1,4 +1,4 @@
-import OlympicMedals from "./OlympicMedals"
+import OlympicMedals from "@/demos/OlympicMedals"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
