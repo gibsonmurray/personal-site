@@ -14,6 +14,7 @@ import { container, children } from "./animations"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { FC } from "react"
+import TextRipple from "@/components/TextRipple"
 
 type ContentProps = {
     navigateTo: (href: string) => void
@@ -95,9 +96,12 @@ const Content: FC<ContentProps> = ({ navigateTo }) => {
                 className="flex flex-col items-start justify-start gap-3 py-2 text-lg text-zinc-700 *:flex *:items-center *:gap-3"
             >
                 <a
-                    className="cursor-pointer"
+                    className="relative cursor-pointer"
                     onClick={() => navigateTo("/demos")}
                 >
+                    <TextRipple className="absolute -left-11 text-sm font-bold text-blue-500">
+                        NEW
+                    </TextRipple>
                     <BlocksIcon />
                     <span className="underline">demos</span>
                     <span className="text-zinc-500">

@@ -6,6 +6,7 @@ import { backArrow } from "./animations"
 import useNavigate from "@/hooks/useNavigate"
 import SplitText from "@/components/SplitText"
 import { container, children } from "./animations"
+import TextRipple from "@/components/TextRipple"
 
 const DemosPage = () => {
     const { isNavigating, navigateTo } = useNavigate()
@@ -49,8 +50,11 @@ const DemosPage = () => {
                                 onClick={() =>
                                     navigateTo("/demos/olympic-medals")
                                 }
-                                className="flex items-center gap-2 underline"
+                                className="relative flex items-center justify-center gap-2 underline"
                             >
+                                <TextRipple className="absolute -left-11 text-sm font-bold text-blue-500">
+                                    NEW
+                                </TextRipple>
                                 <MedalIcon className="h-5 w-5" />
                                 olympic medals
                             </button>
