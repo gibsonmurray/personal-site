@@ -16,10 +16,10 @@ import Link from "next/link"
 import { FC } from "react"
 
 type ContentProps = {
-    handleNavigation: (href: string) => void
+    navigateTo: (href: string) => void
 }
 
-const Content: FC<ContentProps> = ({ handleNavigation }) => {
+const Content: FC<ContentProps> = ({ navigateTo }) => {
     return (
         <motion.div
             variants={container}
@@ -96,7 +96,7 @@ const Content: FC<ContentProps> = ({ handleNavigation }) => {
             >
                 <a
                     className="cursor-pointer"
-                    onClick={() => handleNavigation("/demos")}
+                    onClick={() => navigateTo("/demos")}
                 >
                     <BlocksIcon />
                     <span className="underline">demos</span>

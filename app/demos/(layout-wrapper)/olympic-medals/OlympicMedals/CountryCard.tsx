@@ -5,7 +5,7 @@ import Image from "next/image"
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function CountryCard(props: { country: any; activeCountryIdx: number }) {
     return (
-        <div className="relative flex translate-y-5 flex-col items-center justify-center">
+        <div className="relative flex translate-y-5 flex-col items-center justify-center cursor-grab active:cursor-grabbing">
             <Image
                 src={props.country.img}
                 alt="Country Flag"

@@ -12,7 +12,8 @@ const SplitText: FC<SplitTextProps> = ({ children, className }) => {
 
     return (
         <motion.span
-            variants={container}
+            layout="position"
+            variants={container(0)}
             initial="initial"
             animate="animate"
             exit="exit"

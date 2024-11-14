@@ -1,21 +1,21 @@
 import { Variants } from "framer-motion"
 
-export const container: Variants = {
+export const container = (delayChildren: number = 0.9) => ({
     initial: {},
     animate: {
         transition: {
             staggerChildren: 0.08,
-            delayChildren: 0.9,
+            delayChildren,
         },
     },
     exit: {
         transition: {
             staggerChildren: 0.08,
-            delayChildren: 0.5,
+            delayChildren: delayChildren,
             staggerDirection: -1,
         },
     },
-}
+})
 
 export const childVariants: Variants = {
     initial: {

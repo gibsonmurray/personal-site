@@ -45,7 +45,11 @@ function OlympicMedals() {
     }, [progress, api])
 
     return (
-        <main className="relative flex aspect-square h-[280px] select-none flex-col items-center justify-center gap-52 overflow-hidden rounded-[40px] border border-zinc-300 bg-zinc-200 font-bold tracking-widest">
+        <motion.main className="relative flex aspect-square h-[280px] select-none flex-col items-center justify-center gap-52 overflow-hidden rounded-[40px] border border-zinc-300 bg-zinc-200 font-bold tracking-widest"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { delay: 1 } }}
+            exit={{ opacity: 0, transition: { delay: 0 } }}
+        >
             <Image
                 src={olympicsSVG}
                 alt="Olympic Rings"
@@ -90,7 +94,7 @@ function OlympicMedals() {
                     )
                 })}
             </div>
-        </main>
+        </motion.main>
     )
 }
 

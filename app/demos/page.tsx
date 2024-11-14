@@ -1,26 +1,62 @@
+"use client"
+
+import { AnimatePresence, motion } from "framer-motion"
 import { MedalIcon, ChevronLeftIcon } from "lucide-react"
-import Link from "next/link"
+import { backArrow } from "./animations"
+import useNavigate from "@/hooks/useNavigate"
+import SplitText from "@/components/SplitText"
+import { container, children } from "./animations"
 
 const DemosPage = () => {
+    const { isNavigating, navigateTo } = useNavigate()
     return (
         <main className="container flex min-h-svh max-w-md flex-col items-center justify-start gap-3 py-10">
             <div className="relative flex items-center justify-center gap-2">
-                <Link href="/" className="absolute -left-24 p-2">
-                    <ChevronLeftIcon className="h-5 w-5" />
-                </Link>
-                <h1 className="text-2xl font-bold">demos</h1>
+                <AnimatePresence>
+                    {!isNavigating && (
+                        <>
+                            <motion.button
+                                initial={backArrow.initial}
+                                animate={backArrow.animate}
+                                exit={backArrow.exit}
+                                className="absolute -left-24"
+                                onClick={() => navigateTo("/")}
+                            >
+                                <ChevronLeftIcon className="h-5 w-5" />
+                            </motion.button>
+
+                            <SplitText className="text-2xl font-bold">
+                                demos
+                            </SplitText>
+                        </>
+                    )}
+                </AnimatePresence>
             </div>
-            <ul className="list-none p-0 *:p-0">
-                <li>
-                    <a
-                        href="/demos/olympic-medals"
-                        className="flex items-center gap-2 underline"
+            <AnimatePresence>
+                {!isNavigating && (
+                    <motion.ul
+                        variants={container}
+                        className="list-none p-0 *:p-0"
                     >
-                        <MedalIcon className="h-5 w-5" />
-                        olympic medals
-                    </a>
-                </li>
-            </ul>
+                        <motion.li
+                            variants={children}
+                            initial="initial"
+                            animate="animate"
+                            exit="exit"
+                        >
+                            <button
+                                onClick={() =>
+                                    navigateTo("/demos/olympic-medals")
+                                }
+                                className="flex items-center gap-2 underline"
+                            >
+                                <MedalIcon className="h-5 w-5" />
+                                olympic medals
+                            </button>
+                        </motion.li>
+                    </motion.ul>
+                )}
+            </AnimatePresence>
         </main>
     )
 }
