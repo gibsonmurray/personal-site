@@ -10,91 +10,101 @@ import {
     BlocksIcon,
     LightbulbIcon,
 } from "lucide-react"
-import { useGSAP } from "@gsap/react"
-import gsap from "gsap"
-import { useRef } from "react"
+import { container, children } from "./animations"
+import { motion } from "framer-motion"
+import Link from "next/link"
+import { FC } from "react"
 
-const Content = () => {
-    const scope = useRef<HTMLDivElement>(null)
+type ContentProps = {
+    navigateTo: (href: string) => void
+}
 
-    useGSAP(
-        () => {
-            gsap.to(".content > *", {
-                opacity: 1,
-                duration: 1,
-                y: 0,
-                delay: 2,
-                stagger: 0.05,
-                ease: "back.out",
-            })
-        },
-        { scope },
-    )
-
+const Content: FC<ContentProps> = ({ navigateTo }) => {
     return (
-        <div
-            ref={scope}
-            className="content flex flex-col items-center justify-center gap-4 px-4 text-xl font-semibold *:translate-y-3 *:opacity-0"
+        <motion.div
+            variants={container}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            className="content flex flex-col items-center justify-center gap-4 px-4 text-xl font-semibold *:opacity-0 *:translate-y-3"
         >
-            <span>
+            <motion.span variants={children} className="w-full">
                 i am a design engineer which means i css good and build cool
                 stuff
-            </span>
-            <span>
+            </motion.span>
+            <motion.span variants={children} className="w-full">
                 my speciality is interaction design with react, tailwind, gsap,
                 and framer motion.
-            </span>
-            <span className="w-full">
+            </motion.span>
+            <motion.span variants={children} className="w-full">
                 believe it or not, i also have cs degree.
-            </span>
-            <span className="w-full">here&apos;s some more info:</span>
+            </motion.span>
+            <motion.span variants={children} className="w-full">
+                here&apos;s some more info:
+            </motion.span>
 
-            <div className="flex flex-col items-start justify-start gap-3 py-2 text-lg text-zinc-700 *:flex *:items-center *:gap-3 *:underline">
-                <a
+            <motion.div
+                variants={children}
+                className="flex flex-col items-start justify-start gap-3 py-2 text-lg text-zinc-700 *:flex *:items-center *:gap-3 *:underline"
+            >
+                <Link
                     href="https://codepen.io/gibsonmurray"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
                     <CodepenIcon /> codepen
-                </a>
+                </Link>
 
-                <a
+                <Link
                     href="https://x.com/gibsonsmurray"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
                     <TwitterIcon /> twitter/x
-                </a>
+                </Link>
 
-                <a
+                <Link
                     href="https://github.com/gibsonmurray"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
                     <GithubIcon /> github
-                </a>
-                <a
+                </Link>
+                <Link
                     href="https://read.cv/gibsonmurray"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
                     <FileTextIcon /> resume/cv
-                </a>
-                <a
+                </Link>
+                <Link
                     href="https://www.linkedin.com/in/gibsonmurray/"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
                     <LinkedinIcon /> linkedin
-                </a>
-            </div>
+                </Link>
+            </motion.div>
 
-            <span className="w-full">
-                on the side i build libraries for react:
-            </span>
+            <motion.span variants={children} className="w-full">
+                on the side i build libraries and demos:
+            </motion.span>
 
-            <div className="flex flex-col items-start justify-start gap-3 py-2 text-lg text-zinc-700 *:flex *:items-center *:gap-3">
+            <motion.div
+                variants={children}
+                className="flex flex-col items-start justify-start gap-3 py-2 text-lg text-zinc-700 *:flex *:items-center *:gap-3"
+            >
                 <a
+                    className="cursor-pointer"
+                    onClick={() => navigateTo("/demos")}
+                >
+                    <BlocksIcon />
+                    <span className="underline">demos</span>
+                    <span className="text-zinc-500">
+                        micro-projects for the web
+                    </span>
+                </a>
+                <Link
                     href="https://github.com/gibsonmurray/react-hooks"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -102,8 +112,8 @@ const Content = () => {
                     <LightbulbIcon />
                     <span className="underline">react-hooks</span>
                     <span className="text-zinc-500">handy react hooks</span>
-                </a>
-                <a
+                </Link>
+                <Link
                     href="https://github.com/gibsonmurray/ghooks-cli"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -113,22 +123,13 @@ const Content = () => {
                     <span className="text-zinc-500">
                         install those react hooks
                     </span>
-                </a>
-                <a
-                    href="https://github.com/gibsonmurray/gmake"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <BlocksIcon />
-                    <span className="underline">gmake</span>
-                    <span className="text-zinc-500">
-                        quickstart a react project
-                    </span>
-                </a>
-            </div>
+                </Link>
+            </motion.div>
 
-            <span className="w-full">thanks for checking me out, cheers!</span>
-        </div>
+            <motion.span variants={children} className="w-full">
+                thanks for checking me out, cheers!
+            </motion.span>
+        </motion.div>
     )
 }
 

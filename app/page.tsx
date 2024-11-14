@@ -1,13 +1,25 @@
+"use client"
+
 import Header from "@/components/Header"
 import Content from "@/components/Content"
 import Footer from "@/components/Footer"
+import { AnimatePresence } from "framer-motion"
+import useNavigate from "@/hooks/useNavigate"
 
 const Home = () => {
+    const { isNavigating, navigateTo } = useNavigate()
+
     return (
-        <main className="flex min-h-svh flex-col items-center justify-between gap-10 container max-w-md mx-auto py-10">
-            <Header />
-            <Content />
-            <Footer />
+        <main className="container mx-auto flex min-h-svh max-w-md flex-col items-center justify-between gap-10 py-10">
+            <AnimatePresence>
+                {!isNavigating && (
+                    <>
+                        <Header key="header" />
+                        <Content key="content" navigateTo={navigateTo} />
+                        <Footer key="footer" />
+                    </>
+                )}
+            </AnimatePresence>
         </main>
     )
 }
