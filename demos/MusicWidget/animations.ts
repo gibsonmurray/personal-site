@@ -1,47 +1,48 @@
 import { TargetAndTransition } from "framer-motion"
 
+// Utility functions
+const randomBetween = (min: number, max: number) =>
+    Math.floor(Math.random() * (max - min + 1)) + min
+
+const generateUniqueArray = (length: number, min: number, max: number) => {
+    const array = []
+    let lastValue = null
+
+    for (let i = 0; i < length; i++) {
+        let newValue
+        do {
+            newValue = randomBetween(min, max)
+        } while (newValue === lastValue)
+        array.push(newValue)
+        lastValue = newValue
+    }
+
+    return array
+}
+
+// Constants
+const DURATION_UPPER = 3
+const DURATION_LOWER = 1.8
+const MAX_HEIGHT = 12
+const MIN_HEIGHT = 3
+
 const transition: TargetAndTransition["transition"] = {
     repeat: Infinity,
     repeatType: "reverse",
     ease: "easeInOut",
-    duration: 2,
 }
 
-export const waveformAnimations: TargetAndTransition[] = [
-    {
-        height: [12, 3, 10, 5, 8, 3],
-        transition: transition,
-    },
-    {
-        height: [3, 12, 5, 10, 3, 8],
+// Main function to generate animations
+export const generateWaveformAnimations = (
+    count: number,
+): TargetAndTransition[] => {
+    const durations = generateUniqueArray(count, DURATION_LOWER, DURATION_UPPER)
+
+    return Array.from({ length: count }, (_, index) => ({
+        height: generateUniqueArray(6, MIN_HEIGHT, MAX_HEIGHT),
         transition: {
             ...transition,
-            duration: 2.2,
+            duration: durations[index],
         },
-    },
-    {
-        height: [10, 5, 12, 3, 8, 5],
-        transition: {
-            ...transition,
-            duration: 2.5,
-        },
-    },
-    {
-        height: [7, 10, 12, 5, 8, 3],
-        transition,
-    },
-    {
-        height: [13, 3, 5, 10, 8, 11],
-        transition: {
-            ...transition,
-            duration: 2.2,
-        },
-    },
-    {
-        height: [4, 8, 10, 4, 3, 9],
-        transition: {
-            ...transition,
-            duration: 2.2,
-        },
-    },
-]
+    }))
+}

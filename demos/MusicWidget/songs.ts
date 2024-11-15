@@ -6,18 +6,18 @@ export type Song = {
 
 export const songs: Song[] = [
     {
-        title: "Wine Into Water",
-        artist: "Morgan Wallen",
-        image: "https://ci3.googleusercontent.com/proxy/PtLRlkZF9TQE_LIxBmUSm7wD7D8RypEZ2xSWjPi-oFDqywOLmnOpWcdpFz7wQRdICUbkmGVWuyzwJG3mr-5HVwCcDCKPJXs2Y-mv_wR_HMH_soRsZCULKrLxJEs0_-GgHV7g_kxE7jf17XQ-lJIch8HX8RNYsyB4xZCMcRMnve9ngpaOTuXCmQ=s0-d-e1-ft",
+        title: "Self Love (Spider-Man: Across the Spider-Verse)",
+        artist: "Metro Boomin, Coi Leray",
+        image: "https://i.scdn.co/image/ab67616d0000b2736ed9aef791159496b286179f",
     },
     {
         title: "BABY I'M BACK",
         artist: "The Kid LAROI",
-        image: "https://shorturl.at/s4e7r",
+        image: "https://i.scdn.co/image/ab67616d0000b273127bb9583e9861edbcde38f6",
     },
     {
-        title: "Self Love (Spider-Man: Across the Spider-Verse)",
-        artist: "Metro Boomin, Coi Leray",
-        image: "https://shorturl.at/w3tQr",
+        title: "Wine Into Water",
+        artist: "Morgan Wallen",
+        image: "https://i.scdn.co/image/ab67616d0000b273705079df9a25a28b452c1fc9",
     },
 ]
