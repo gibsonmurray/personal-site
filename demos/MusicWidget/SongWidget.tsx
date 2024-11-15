@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import Waveform from "./Waveform"
 import RotatingText from "./RotatingText"
-import { FC, useEffect, useRef, useState } from "react"
+import { FC } from "react"
 import { Song } from "./songs"
 import Image from "next/image"
 
@@ -10,13 +10,6 @@ type SongWidgetProps = {
 }
 
 const SongWidget: FC<SongWidgetProps> = ({ song }) => {
-    const rotatingTextRef = useRef<HTMLDivElement>(null)
-    const [parentWidth, setParentWidth] = useState(0)
-
-    useEffect(() => {
-        setParentWidth(rotatingTextRef.current?.clientWidth || 0)
-    }, [rotatingTextRef])
-
     return (
         <motion.div className="relative flex aspect-square h-48 items-center justify-center overflow-hidden rounded-[42px]">
             <Image
@@ -35,15 +28,11 @@ const SongWidget: FC<SongWidgetProps> = ({ song }) => {
             ></div>
             <div className="absolute bottom-0 left-0 flex w-full items-center justify-start gap-2 p-4">
                 <Waveform />
-                <div
-                    ref={rotatingTextRef}
-                    className="relative flex w-full flex-col items-start justify-center pr-5 -translate-x-2"
-                >
-                    <RotatingText text={song.title} parentWidth={parentWidth} />
+                <div className="relative flex w-full flex-col items-start justify-center pr-5 -translate-x-2">
+                    <RotatingText text={song.title} />
                     <RotatingText
                         text={song.artist}
                         className="w-full truncate text-xs font-normal text-zinc-300"
-                        parentWidth={parentWidth}
                     />
                 </div>
             </div>

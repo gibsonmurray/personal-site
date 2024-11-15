@@ -5,10 +5,9 @@ import { cn } from "../../utils"
 type RotatingTextProps = {
     text: string
     className?: string
-    parentWidth?: number
 }
 
-const RotatingText = ({ text, className, parentWidth }: RotatingTextProps) => {
+const RotatingText = ({ text, className }: RotatingTextProps) => {
     const [isPlaying, setIsPlaying] = useState(false)
     const textRef = useRef<HTMLSpanElement>(null)
 
@@ -19,19 +18,13 @@ const RotatingText = ({ text, className, parentWidth }: RotatingTextProps) => {
         }, 3000)
     }
 
-    useEffect(pause, [])
-
     useEffect(() => {
-        if (
-            textRef.current &&
-            parentWidth &&
-            textRef.current.clientWidth > parentWidth
-        ) {
+        if (textRef.current && textRef.current.textContent!.length > 16) {
             pause()
         } else {
             setIsPlaying(false)
         }
-    }, [textRef, parentWidth])
+    }, [textRef])
 
     return (
         <>
