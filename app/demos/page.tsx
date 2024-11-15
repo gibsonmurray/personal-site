@@ -1,12 +1,12 @@
 "use client"
 
 import { AnimatePresence, motion } from "framer-motion"
-import { MedalIcon, ChevronLeftIcon } from "lucide-react"
+import { ChevronLeftIcon } from "lucide-react"
 import { backArrow } from "./animations"
 import useNavigate from "@/hooks/useNavigate"
 import SplitText from "@/components/SplitText"
-import { container, children } from "./animations"
 import TextRipple from "@/components/TextRipple"
+import { demos } from "./list"
 
 const DemosPage = () => {
     const { isNavigating, navigateTo } = useNavigate()
@@ -36,29 +36,41 @@ const DemosPage = () => {
             </div>
             <AnimatePresence>
                 {!isNavigating && (
-                    <motion.ul
-                        variants={container}
-                        className="mt-10 list-none p-0 *:p-0"
-                    >
-                        <motion.li
-                            variants={children}
-                            initial="initial"
-                            animate="animate"
-                            exit="exit"
-                        >
-                            <button
-                                onClick={() =>
-                                    navigateTo("/demos/olympic-medals")
-                                }
-                                className="relative flex items-center justify-center gap-2 underline"
+                    <motion.ul className="mt-5 flex list-none flex-col items-center justify-center gap-2 p-0 *:p-0">
+                        {demos.map((demo, index) => (
+                            <motion.li
+                                key={demo.href}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{
+                                    opacity: 0,
+                                    y: -10,
+                                    transition: {
+                                        duration: 1,
+                                        delay: index * 0.1,
+                                        ease: "backOut",
+                                    },
+                                }}
+                                transition={{
+                                    duration: 1,
+                                    delay: index * 0.1 + 1.5,
+                                    ease: "backOut",
+                                }}
                             >
-                                <TextRipple className="absolute -left-11 text-sm font-bold text-blue-500">
-                                    NEW
-                                </TextRipple>
-                                <MedalIcon className="h-5 w-5" />
-                                olympic medals
-                            </button>
-                        </motion.li>
+                                <button
+                                    onClick={() => navigateTo(demo.href)}
+                                    className="relative flex items-center justify-center gap-2 underline"
+                                >
+                                    {demo.new && (
+                                        <TextRipple className="absolute -left-11 text-sm font-bold text-blue-500">
+                                            NEW
+                                        </TextRipple>
+                                    )}
+                                    {demo.icon}
+                                    {demo.title}
+                                </button>
+                            </motion.li>
+                        ))}
                     </motion.ul>
                 )}
             </AnimatePresence>
