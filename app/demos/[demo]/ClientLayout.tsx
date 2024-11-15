@@ -13,7 +13,7 @@ type DemoLayoutWrapperProps = {
     children: ReactNode
 }
 
-const DemoLayoutWrapper: FC<DemoLayoutWrapperProps> = ({ children }) => {
+const ClientLayout: FC<DemoLayoutWrapperProps> = ({ children }) => {
     const { isNavigating, navigateTo } = useNavigate()
     const [hoveringBack, setHoveringBack] = useState(false)
     const [hoveringSourceCode, setHoveringSourceCode] = useState(false)
@@ -27,7 +27,7 @@ const DemoLayoutWrapper: FC<DemoLayoutWrapperProps> = ({ children }) => {
         .join("")
 
     return (
-        <div className="relative flex min-h-svh w-screen flex-col items-center justify-center">
+        <>
             <motion.div
                 className="group absolute top-10 flex cursor-pointer items-center justify-center gap-2"
                 onMouseEnter={() => setHoveringBack(true)}
@@ -87,8 +87,8 @@ const DemoLayoutWrapper: FC<DemoLayoutWrapperProps> = ({ children }) => {
                 )}
             </AnimatePresence>
             <AnimatePresence>{!isNavigating && children}</AnimatePresence>
-        </div>
+        </>
     )
 }
 
-export default DemoLayoutWrapper
+export default ClientLayout
