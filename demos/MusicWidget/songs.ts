@@ -24,4 +24,10 @@ export const songs: Song[] = [
         artist: "Morgan Wallen",
         image: "https://i.scdn.co/image/ab67616d0000b273705079df9a25a28b452c1fc9",
     },
+    {
+        id: "parachute",
+        title: "Parachute",
+        artist: "Arden Jones",
+        image: "https://i.scdn.co/image/ab67616d0000b273aa8670465c4b07c410507e5d",
+    },
 ].reverse()

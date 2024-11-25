@@ -7,10 +7,12 @@ import { motion, animate } from "framer-motion"
 import { PanInfo } from "framer-motion"
 import { useMotionValue, useTransform } from "framer-motion"
 import { Lean } from "./index"
+import { cn } from "@/lib/utils"
 
 type SongWidgetProps = {
     song: Song
-    rank: number
+    orderedSongs: string[]
+    previousOrderedSongs: string[]
     emitSwipe: (direction: Exclude<Lean, null>) => void
     leaning: Lean
     setLeaning: (leaning: Lean) => void
@@ -18,67 +20,72 @@ type SongWidgetProps = {
 
 const SongWidget: FC<SongWidgetProps> = ({
     song,
-    rank,
+    orderedSongs,
+    previousOrderedSongs,
     emitSwipe,
     leaning,
     setLeaning,
 }) => {
-    const isActive = rank === 0
-    const isNext = rank === 1
-    const isLast = rank === 2
-
-    console.log(isLast, isNext, isActive)
+    const rank = orderedSongs.indexOf(song.id)
+    const previousRank = previousOrderedSongs.indexOf(song.id)
 
     const ref = useRef<HTMLDivElement>(null)
-
-    const [previousRank, setPreviousRank] = useState(rank)
+    const [isActive, setIsActive] = useState(false)
+    const [isLast, setIsLast] = useState(false)
+    const [isNext, setIsNext] = useState(false)
+    const [isDragging, setIsDragging] = useState(false)
 
     const dragOffset = useMotionValue(0)
     const dragRotation = useTransform(dragOffset, [-200, 200], [-5, 5])
-
-    const rotation = useMotionValue(0)
-    const x = useMotionValue(0)
+    const affectedRotation = useMotionValue(0)
 
     const handleDrag = (_: unknown, info: PanInfo) => {
+        setIsDragging(true)
         dragOffset.set(info.offset.x)
         if (info.offset.x > 100) {
-            setLeaning("left")
-        } else if (info.offset.x < -100) {
             setLeaning("right")
+        } else if (info.offset.x < -100) {
+            setLeaning("left")
         }
     }
 
     const handleDragEnd = (_: unknown, info: PanInfo) => {
+        setTimeout(() => {
+            setIsDragging(false)
+        }, 500)
         animate(dragOffset, 0, { type: "spring", stiffness: 300, damping: 30 })
         if (info.offset.x > 100) {
-            emitSwipe("left")
-        } else if (info.offset.x < -100) {
             emitSwipe("right")
+        } else if (info.offset.x < -100) {
+            emitSwipe("left")
         }
         setLeaning(null)
     }
 
     useEffect(() => {
-        if (previousRank !== rank) {
-            setPreviousRank(rank)
+        if (isLast && leaning === "right") {
+            animate(affectedRotation, -5)
+            animate(ref.current!, { x: -50 })
         }
-        if (previousRank === 0 && rank > 1 && ref.current) {
-            animate(ref.current, { rotate: [0, -10, 0], x: [0, -30, 0] })
+        if (isNext && leaning === "left") {
+            animate(affectedRotation, 5)
+            animate(ref.current!, { x: 50 })
         }
-    }, [rank, previousRank])
+        if (
+            previousRank <= orderedSongs.length - 2 &&
+            isActive &&
+            !isDragging
+        ) {
+            animate(affectedRotation, 0)
+            animate(ref.current!, { x: 0 })
+        }
+    }, [rank, previousRank, leaning, isLast, isActive, isDragging, isNext])
 
     useEffect(() => {
-        if (leaning === "left" && isNext && ref.current) {
-            rotation.set(10)
-            x.set(-30)
-        } else if (leaning === "right" && isLast && ref.current) {
-            rotation.set(-10)
-            x.set(30)
-        } else {
-            rotation.set(0)
-            x.set(0)
-        }
-    }, [leaning, isActive, isNext, isLast])
+        setIsActive(rank === orderedSongs.length - 1)
+        setIsNext(rank === orderedSongs.length - 2)
+        setIsLast(rank === 0)
+    }, [rank, orderedSongs.length])
 
     return (
         <motion.div
@@ -95,18 +102,18 @@ const SongWidget: FC<SongWidgetProps> = ({
             onDragEnd={handleDragEnd}
             onDrag={handleDrag}
             style={{
-                rotate: isActive ? dragRotation : 0,
+                rotate: isDragging ? dragRotation : affectedRotation,
                 zIndex: rank,
             }}
-            animate={{
-                rotate: rotation.get(),
-                x: x.get(),
-            }}
         >
+            <div className="absolute left-0 top-0 -z-10 h-full w-full bg-zinc-300"></div>
             <Image
                 src={song.image}
                 alt={`${song.title} by ${song.artist}`}
-                className="pointer-events-none h-full w-full object-cover"
+                className={cn(
+                    "pointer-events-none h-full w-full object-cover transition-opacity duration-150",
+                    !isActive && "opacity-50",
+                )}
                 width={300}
                 height={300}
             />

@@ -10,11 +10,14 @@ const MusicWidget = () => {
     const [orderedSongs, setOrderedSongs] = useState<string[]>(
         Array.from({ length: songs.length }, (_, index) => songs[index].id),
     )
+    const [previousOrderedSongs, setPreviousOrderedSongs] =
+        useState<string[]>(orderedSongs)
 
     const [leaning, setLeaning] = useState<Lean>(null)
 
     const emitSwipe = (direction: Exclude<Lean, null>) => {
-        if (direction === "left") {
+        setPreviousOrderedSongs(orderedSongs)
+        if (direction === "right") {
             setOrderedSongs((prev) => [...prev.slice(1), prev[0]])
         } else {
             setOrderedSongs((prev) => [
@@ -30,7 +33,8 @@ const MusicWidget = () => {
                 <SongWidget
                     key={song.id}
                     song={song}
-                    rank={orderedSongs.indexOf(song.id)}
+                    previousOrderedSongs={previousOrderedSongs}
+                    orderedSongs={orderedSongs}
                     emitSwipe={emitSwipe}
                     leaning={leaning}
                     setLeaning={setLeaning}
