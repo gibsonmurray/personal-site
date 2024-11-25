@@ -1,6 +1,6 @@
 import Waveform from "./Waveform"
 import RotatingText from "./RotatingText"
-import { FC, useEffect, useRef, useState } from "react"
+import { FC, RefObject, useEffect, useRef, useState } from "react"
 import { Song } from "./songs"
 import Image from "next/image"
 import { motion, animate } from "framer-motion"
@@ -67,6 +67,7 @@ const SongWidget: FC<SongWidgetProps> = ({
     useEffect(() => {
         if (!audioRef.current) {
             audioRef.current = new Audio(`/api/audio?id=${song.id}`)
+            audioRef.current.loop = true
         }
 
         if (isActive) {
@@ -143,7 +144,10 @@ const SongWidget: FC<SongWidgetProps> = ({
             />
             <div className="absolute bottom-0 left-0 h-1/2 w-full bg-gradient-to-t from-black to-transparent"></div>
             <div className="absolute bottom-0 left-0 flex w-full items-center justify-start gap-2 p-4">
-                <Waveform />
+                <Waveform
+                    active={isActive}
+                    audioRef={audioRef as RefObject<HTMLAudioElement>}
+                />
                 <div className="relative flex w-full flex-col items-start justify-center pr-5 -translate-x-2">
                     <RotatingText text={song.title} />
                     <RotatingText

@@ -1,6 +1,6 @@
 import { motion, TargetAndTransition } from "framer-motion"
 import { generateWaveformAnimations } from "./animations"
-import { useEffect, useState } from "react"
+import { FC, RefObject, useEffect, useState } from "react"
 
 const hoveringAnimation = {
     height: 2,
@@ -11,17 +11,29 @@ const toPauseAnimation = {
     height: 11,
 }
 
-const Waveform = () => {
+type WaveformProps = {
+    active: boolean
+    audioRef: RefObject<HTMLAudioElement> | null
+}
+
+const Waveform: FC<WaveformProps> = ({ active, audioRef }) => {
     const [isHovering, setIsHovering] = useState(false)
     const [paused, setPaused] = useState(false)
 
     const [animations, setAnimations] = useState<TargetAndTransition[]>([])
 
     useEffect(() => {
-        if (!paused && !isHovering) {
+        if (active && !paused && !isHovering) {
             setAnimations(generateWaveformAnimations(6))
         }
-    }, [paused, isHovering])
+    }, [active, paused, isHovering])
+
+    useEffect(() => {
+        if (active) {
+            setPaused(false)
+            audioRef?.current?.play()
+        }
+    }, [active])
 
     return (
         <motion.button
@@ -30,10 +42,13 @@ const Waveform = () => {
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
             onClick={() => {
+                setPaused(!paused)
                 if (paused) {
                     setIsHovering(false)
+                    audioRef?.current?.play()
+                } else {
+                    audioRef?.current?.pause()
                 }
-                setPaused(!paused)
             }}
         >
             {animations.slice(0, 2).map((animation, index) => (

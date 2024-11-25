@@ -21,7 +21,7 @@ const generateUniqueArray = (length: number, min: number, max: number) => {
 }
 
 // Constants
-const DURATION_UPPER = 3
+const DURATION_UPPER = 2.3
 const DURATION_LOWER = 1.8
 const MAX_HEIGHT = 12
 const MIN_HEIGHT = 3
