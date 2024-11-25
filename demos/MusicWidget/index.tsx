@@ -1,12 +1,41 @@
 "use client"
 
+import { useState } from "react"
 import { songs } from "./songs"
 import SongWidget from "./SongWidget"
 
+export type Lean = "left" | "right" | null
+
 const MusicWidget = () => {
+    const [orderedSongs, setOrderedSongs] = useState<string[]>(
+        Array.from({ length: songs.length }, (_, index) => songs[index].id),
+    )
+
+    const [leaning, setLeaning] = useState<Lean>(null)
+
+    const emitSwipe = (direction: Exclude<Lean, null>) => {
+        if (direction === "left") {
+            setOrderedSongs((prev) => [...prev.slice(1), prev[0]])
+        } else {
+            setOrderedSongs((prev) => [
+                prev[prev.length - 1],
+                ...prev.slice(0, -1),
+            ])
+        }
+    }
+
     return (
-        <div className="flex h-screen w-screen flex-col items-center justify-center">
-            <SongWidget song={songs[2]} />
+        <div className="relative flex items-center justify-center">
+            {songs.map((song) => (
+                <SongWidget
+                    key={song.id}
+                    song={song}
+                    rank={orderedSongs.indexOf(song.id)}
+                    emitSwipe={emitSwipe}
+                    leaning={leaning}
+                    setLeaning={setLeaning}
+                />
+            ))}
         </div>
     )
 }
