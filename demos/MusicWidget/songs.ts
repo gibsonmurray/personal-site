@@ -5,6 +5,7 @@ export type Song = {
     image: string
 }
 
+
 export const songs: Song[] = [
     {
         id: "self-love",

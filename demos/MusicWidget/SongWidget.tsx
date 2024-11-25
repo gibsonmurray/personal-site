@@ -39,6 +39,8 @@ const SongWidget: FC<SongWidgetProps> = ({
     const dragRotation = useTransform(dragOffset, [-200, 200], [-5, 5])
     const affectedRotation = useMotionValue(0)
 
+    const audioRef = useRef<HTMLAudioElement | null>(null)
+
     const handleDrag = (_: unknown, info: PanInfo) => {
         setIsDragging(true)
         dragOffset.set(info.offset.x)
@@ -61,6 +63,28 @@ const SongWidget: FC<SongWidgetProps> = ({
         }
         setLeaning(null)
     }
+
+    useEffect(() => {
+        if (!audioRef.current) {
+            audioRef.current = new Audio(`/api/audio?id=${song.id}`)
+        }
+
+        if (isActive) {
+            audioRef.current.play().catch((error) => {
+                console.log("Autoplay prevented:", error)
+            })
+        } else {
+            audioRef.current.pause()
+            audioRef.current.currentTime = 0
+        }
+
+        return () => {
+            if (audioRef.current) {
+                audioRef.current.pause()
+                audioRef.current.currentTime = 0
+            }
+        }
+    }, [isActive, song])
 
     useEffect(() => {
         if (isLast && leaning === "right") {
