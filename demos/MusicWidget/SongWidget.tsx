@@ -16,6 +16,7 @@ type SongWidgetProps = {
     emitSwipe: (direction: Exclude<Lean, null>) => void
     leaning: Lean
     setLeaning: (leaning: Lean) => void
+    volume: number
 }
 
 const SongWidget: FC<SongWidgetProps> = ({
@@ -25,6 +26,7 @@ const SongWidget: FC<SongWidgetProps> = ({
     emitSwipe,
     leaning,
     setLeaning,
+    volume,
 }) => {
     const rank = orderedSongs.indexOf(song.id)
     const previousRank = previousOrderedSongs.indexOf(song.id)
@@ -48,6 +50,8 @@ const SongWidget: FC<SongWidgetProps> = ({
             setLeaning("right")
         } else if (info.offset.x < -100) {
             setLeaning("left")
+        } else {
+            setLeaning(null)
         }
     }
 
@@ -65,9 +69,16 @@ const SongWidget: FC<SongWidgetProps> = ({
     }
 
     useEffect(() => {
+        if (audioRef.current) {
+            audioRef.current.volume = volume
+        }
+    }, [volume])
+
+    useEffect(() => {
         if (!audioRef.current) {
             audioRef.current = new Audio(`/api/audio?id=${song.id}`)
             audioRef.current.loop = true
+            audioRef.current.volume = volume
         }
 
         if (isActive) {
@@ -95,6 +106,10 @@ const SongWidget: FC<SongWidgetProps> = ({
         if (isNext && leaning === "left") {
             animate(affectedRotation, 5)
             animate(ref.current!, { x: 50 })
+        }
+        if (!isDragging && leaning === null) {
+            animate(affectedRotation, 0)
+            animate(ref.current!, { x: 0 })
         }
         if (
             previousRank <= orderedSongs.length - 2 &&

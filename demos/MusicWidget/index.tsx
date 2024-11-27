@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { songs } from "./songs"
 import SongWidget from "./SongWidget"
+import VolumeBar from "./VolumeBar"
 
 export type Lean = "left" | "right" | null
 
@@ -14,6 +15,7 @@ const MusicWidget = () => {
         useState<string[]>(orderedSongs)
 
     const [leaning, setLeaning] = useState<Lean>(null)
+    const [volume, setVolume] = useState(0.5)
 
     const emitSwipe = (direction: Exclude<Lean, null>) => {
         setPreviousOrderedSongs(orderedSongs)
@@ -38,8 +40,10 @@ const MusicWidget = () => {
                     emitSwipe={emitSwipe}
                     leaning={leaning}
                     setLeaning={setLeaning}
+                    volume={volume}
                 />
             ))}
+            <VolumeBar volume={volume} setVolume={setVolume} />
         </div>
     )
 }
