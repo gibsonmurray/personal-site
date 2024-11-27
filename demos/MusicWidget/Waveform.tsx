@@ -11,6 +11,10 @@ const toPauseAnimation = {
     height: 11,
 }
 
+const staticAnimation = {
+    height: 2,
+}
+
 type WaveformProps = {
     active: boolean
     audioRef: RefObject<HTMLAudioElement> | null
@@ -56,7 +60,11 @@ const Waveform: FC<WaveformProps> = ({ active, audioRef }) => {
                     key={index}
                     className="h-3 w-[2px] rounded-full bg-black"
                     animate={
-                        isHovering || paused ? hoveringAnimation : animation
+                        !active
+                            ? staticAnimation
+                            : isHovering || paused
+                              ? hoveringAnimation
+                              : animation
                     }
                 ></motion.div>
             ))}
@@ -64,14 +72,22 @@ const Waveform: FC<WaveformProps> = ({ active, audioRef }) => {
                 key={3}
                 className="h-3 w-[2px] rounded-full bg-black"
                 animate={
-                    isHovering || paused ? toPauseAnimation : animations[2]
+                    !active
+                        ? staticAnimation
+                        : isHovering || paused
+                          ? toPauseAnimation
+                          : animations[2]
                 }
             ></motion.div>
             <motion.div
                 key={4}
                 className="h-3 w-[2px] rounded-full bg-black"
                 animate={
-                    isHovering || paused ? toPauseAnimation : animations[3]
+                    !active
+                        ? staticAnimation
+                        : isHovering || paused
+                          ? toPauseAnimation
+                          : animations[3]
                 }
             ></motion.div>
             {animations.slice(4, 6).map((animation, index) => (
@@ -79,7 +95,11 @@ const Waveform: FC<WaveformProps> = ({ active, audioRef }) => {
                     key={index}
                     className="h-3 w-[2px] rounded-full bg-black"
                     animate={
-                        isHovering || paused ? hoveringAnimation : animation
+                        !active
+                            ? staticAnimation
+                            : isHovering || paused
+                              ? hoveringAnimation
+                              : animation
                     }
                 ></motion.div>
             ))}

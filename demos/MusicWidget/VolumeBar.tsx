@@ -38,7 +38,7 @@ const VolumeBar: FC<VolumeBarProps> = ({ volume, setVolume }) => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center gap-2 translate-x-36">
+        <div className="flex flex-col items-center justify-center gap-2 translate-x-36 overflow-hidden">
             <div
                 ref={range}
                 className="flex h-40 w-5 items-end overflow-hidden rounded-full bg-zinc-300"

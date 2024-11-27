@@ -130,7 +130,7 @@ const SongWidget: FC<SongWidgetProps> = ({
     return (
         <motion.div
             ref={ref}
-            className="absolute flex aspect-square h-48 cursor-grab items-center justify-center overflow-hidden rounded-[42px] active:cursor-grabbing"
+            className="absolute flex size-48 cursor-grab items-center justify-center overflow-hidden rounded-[42px] active:cursor-grabbing"
             drag="x"
             dragMomentum
             dragConstraints={{
