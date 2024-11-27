@@ -4,6 +4,7 @@ import { useState } from "react"
 import { songs } from "./songs"
 import SongWidget from "./SongWidget"
 import VolumeBar from "./VolumeBar"
+import { motion } from "framer-motion"
 
 export type Lean = "left" | "right" | null
 
@@ -16,6 +17,7 @@ const MusicWidget = () => {
 
     const [leaning, setLeaning] = useState<Lean>(null)
     const [volume, setVolume] = useState(0.5)
+    const [muted, setMuted] = useState(true)
 
     const emitSwipe = (direction: Exclude<Lean, null>) => {
         setPreviousOrderedSongs(orderedSongs)
@@ -30,7 +32,12 @@ const MusicWidget = () => {
     }
 
     return (
-        <div className="relative flex items-center justify-center -translate-x-8">
+        <motion.div
+            className="relative flex items-center justify-center -translate-x-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { delay: 0.8 } }}
+            exit={{ opacity: 0, transition: { delay: 0 } }}
+        >
             {songs.map((song) => (
                 <SongWidget
                     key={song.id}
@@ -41,10 +48,16 @@ const MusicWidget = () => {
                     leaning={leaning}
                     setLeaning={setLeaning}
                     volume={volume}
+                    muted={muted}
                 />
             ))}
-            <VolumeBar volume={volume} setVolume={setVolume} />
-        </div>
+            <VolumeBar
+                volume={volume}
+                setVolume={setVolume}
+                muted={muted}
+                setMuted={setMuted}
+            />
+        </motion.div>
     )
 }
 

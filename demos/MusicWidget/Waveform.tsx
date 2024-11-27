@@ -18,11 +18,17 @@ const staticAnimation = {
 type WaveformProps = {
     active: boolean
     audioRef: RefObject<HTMLAudioElement> | null
+    paused: boolean
+    setPaused: (paused: boolean) => void
 }
 
-const Waveform: FC<WaveformProps> = ({ active, audioRef }) => {
+const Waveform: FC<WaveformProps> = ({
+    active,
+    audioRef,
+    paused,
+    setPaused,
+}) => {
     const [isHovering, setIsHovering] = useState(false)
-    const [paused, setPaused] = useState(false)
 
     const [animations, setAnimations] = useState<TargetAndTransition[]>([])
 

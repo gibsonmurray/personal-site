@@ -17,6 +17,7 @@ type SongWidgetProps = {
     leaning: Lean
     setLeaning: (leaning: Lean) => void
     volume: number
+    muted: boolean
 }
 
 const SongWidget: FC<SongWidgetProps> = ({
@@ -27,6 +28,7 @@ const SongWidget: FC<SongWidgetProps> = ({
     leaning,
     setLeaning,
     volume,
+    muted,
 }) => {
     const rank = orderedSongs.indexOf(song.id)
     const previousRank = previousOrderedSongs.indexOf(song.id)
@@ -36,6 +38,7 @@ const SongWidget: FC<SongWidgetProps> = ({
     const [isLast, setIsLast] = useState(false)
     const [isNext, setIsNext] = useState(false)
     const [isDragging, setIsDragging] = useState(false)
+    const [paused, setPaused] = useState(false)
 
     const dragOffset = useMotionValue(0)
     const dragRotation = useTransform(dragOffset, [-200, 200], [-5, 5])
@@ -75,15 +78,23 @@ const SongWidget: FC<SongWidgetProps> = ({
     }, [volume])
 
     useEffect(() => {
-        if (!audioRef.current) {
-            audioRef.current = new Audio(`/api/audio?id=${song.id}`)
-            audioRef.current.loop = true
-            audioRef.current.volume = volume
-        }
+        if (!audioRef.current) return
+        audioRef.current.muted = muted
+    }, [muted])
+
+    useEffect(() => {
+        if (!audioRef.current) return
 
         if (isActive) {
             audioRef.current.play().catch((error) => {
-                console.log("Autoplay prevented:", error)
+                if (error.name === "NotAllowedError") {
+                    setPaused(true)
+                    console.log(
+                        "Audio autoplay blocked - waiting for user interaction",
+                    )
+                } else {
+                    console.error("Audio playback error:", error)
+                }
             })
         } else {
             audioRef.current.pause()
@@ -162,6 +173,8 @@ const SongWidget: FC<SongWidgetProps> = ({
                 <Waveform
                     active={isActive}
                     audioRef={audioRef as RefObject<HTMLAudioElement>}
+                    paused={paused}
+                    setPaused={setPaused}
                 />
                 <div className="relative flex w-full flex-col items-start justify-center pr-5 -translate-x-2">
                     <RotatingText text={song.title} />
@@ -171,6 +184,13 @@ const SongWidget: FC<SongWidgetProps> = ({
                     />
                 </div>
             </div>
+            <audio
+                ref={audioRef}
+                className="hidden"
+                src={`/api/audio?id=${song.id}`}
+                muted={muted}
+                loop
+            />
         </motion.div>
     )
 }

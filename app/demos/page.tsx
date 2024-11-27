@@ -28,7 +28,10 @@ const DemosPage = () => {
                                     <ChevronLeftIcon className="h-5 w-5" />
                                 </motion.button>
 
-                                <SplitText className="text-2xl font-bold">
+                                <SplitText
+                                    className="text-2xl font-bold"
+                                    delay={0.3}
+                                >
                                     demos
                                 </SplitText>
                             </>

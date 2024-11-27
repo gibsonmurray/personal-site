@@ -10,11 +10,17 @@ import {
 type VolumeBarProps = {
     volume: number
     setVolume: (volume: number) => void
+    muted: boolean
+    setMuted: (muted: boolean) => void
 }
 
-const VolumeBar: FC<VolumeBarProps> = ({ volume, setVolume }) => {
+const VolumeBar: FC<VolumeBarProps> = ({
+    volume,
+    setVolume,
+    muted,
+    setMuted,
+}) => {
     const [previousVolume, setPreviousVolume] = useState(volume)
-    const [isMuted, setIsMuted] = useState(false)
     const range = useRef<HTMLDivElement>(null)
     const [dragStartY, setDragStartY] = useState(0)
     const [volumeAtDragStart, setVolumeAtDragStart] = useState(0)
@@ -31,14 +37,24 @@ const VolumeBar: FC<VolumeBarProps> = ({ volume, setVolume }) => {
         return () => window.removeEventListener("keydown", handleKeyDown)
     }, [volume, setVolume])
 
+    useEffect(() => {
+        if (!muted) {
+            setPreviousVolume(volume)
+        }
+    }, [volume, muted])
+
     const handleVolumeClick = () => {
-        setPreviousVolume(volume)
-        setVolume(volume === 0 ? previousVolume : 0)
-        setIsMuted(!isMuted)
+        if (muted) {
+            setVolume(previousVolume)
+        } else {
+            setPreviousVolume(volume)
+            setVolume(0)
+        }
+        setMuted(!muted)
     }
 
     return (
-        <div className="flex flex-col items-center justify-center gap-2 translate-x-36 overflow-hidden">
+        <div className="flex flex-col items-center justify-center gap-2 overflow-hidden translate-x-36">
             <div
                 ref={range}
                 className="flex h-40 w-5 items-end overflow-hidden rounded-full bg-zinc-300"
@@ -59,7 +75,7 @@ const VolumeBar: FC<VolumeBarProps> = ({ volume, setVolume }) => {
                         }}
                         onDrag={(_, info) => {
                             if (!range.current) return
-                            setIsMuted(false)
+                            setMuted(false)
 
                             const rect = range.current.getBoundingClientRect()
                             const dragDelta = info.point.y - dragStartY
@@ -80,7 +96,7 @@ const VolumeBar: FC<VolumeBarProps> = ({ volume, setVolume }) => {
                 className="z-10 flex items-center justify-center text-zinc-500"
                 onClick={handleVolumeClick}
             >
-                {!isMuted ? (
+                {!muted ? (
                     volume === 0 ? (
                         <VolumeIcon className="translate-x-1" />
                     ) : volume < 0.5 ? (
