@@ -1,7 +1,8 @@
 import { ReactNode } from "react"
 import OlympicMedals from "@/demos/OlympicMedals"
 import MusicWidget from "@/demos/MusicWidget"
-import { MedalIcon, MusicIcon } from "lucide-react"
+import { CaseSensitiveIcon, MedalIcon, MusicIcon } from "lucide-react"
+import FunText from "@/demos/FunText"
 
 type Demo = {
     title: string
@@ -26,6 +27,12 @@ export const demos: Demo[] = [
         href: `${DEMOS_PATH}/music-widget`,
         component: <MusicWidget />,
         icon: <MusicIcon className={ICON_CLASS} />,
+    },
+    {
+        title: "fun text",
+        href: `${DEMOS_PATH}/fun-text`,
+        component: <FunText />,
+        icon: <CaseSensitiveIcon className={ICON_CLASS} />,
         new: true,
     },
 ].reverse()

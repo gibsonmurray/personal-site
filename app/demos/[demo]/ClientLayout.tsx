@@ -86,7 +86,15 @@ const ClientLayout: FC<DemoLayoutWrapperProps> = ({ children }) => {
                     </motion.a>
                 )}
             </AnimatePresence>
-            <AnimatePresence>{!isNavigating && children}</AnimatePresence>
+            <AnimatePresence>
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1, transition: { delay: 1 } }}
+                    exit={{ opacity: 0, transition: { delay: 0 } }}
+                >
+                    {!isNavigating && children}
+                </motion.div>
+            </AnimatePresence>
         </>
     )
 }

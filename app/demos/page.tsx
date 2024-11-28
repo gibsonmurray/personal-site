@@ -40,7 +40,7 @@ const DemosPage = () => {
                 </div>
                 <AnimatePresence>
                     {!isNavigating && (
-                        <motion.ul className="mt-5 flex list-none flex-col items-center justify-center gap-2 p-0 *:p-0">
+                        <motion.ul className="mt-5 flex list-none flex-col items-start justify-center gap-2 p-0 *:p-0">
                             {demos.map((demo, index) => (
                                 <motion.li
                                     key={demo.href}
@@ -63,7 +63,7 @@ const DemosPage = () => {
                                 >
                                     <button
                                         onClick={() => navigateTo(demo.href)}
-                                        className="relative flex items-center justify-center gap-2 underline"
+                                        className="relative flex items-center justify-center gap-3 underline"
                                     >
                                         {demo.new && (
                                             <TextRipple className="absolute -left-11 text-sm font-bold text-blue-500">
