@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import olympicsSVG from "./assets/olympics.svg"
+import olympicsSVG from "@/public/assets/demos/olympic-medals/olympics.svg"
 import { Progress } from "@/components/ui/progress"
 import { motion } from "framer-motion"
 import CountryCard from "./CountryCard"

@@ -1,7 +1,7 @@
-import aus from "./assets/aus.png"
-import chn from "./assets/chn.png"
-import jpn from "./assets/jpn.png"
-import usa from "./assets/usa.png"
+import aus from "@/public/assets/demos/olympic-medals/aus.png"
+import chn from "@/public/assets/demos/olympic-medals/chn.png"
+import jpn from "@/public/assets/demos/olympic-medals/jpn.png"
+import usa from "@/public/assets/demos/olympic-medals/usa.png"
 
 export const data = [
     {
