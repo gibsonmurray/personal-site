@@ -3,7 +3,7 @@
 import { data } from "./data"
 import { AnimatePresence, motion } from "framer-motion"
 import Image from "next/image"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const FunText = () => {
     const [hoveredText, setHoveredText] = useState<string | null>(null)
@@ -12,6 +12,29 @@ const FunText = () => {
         const text = e.currentTarget.dataset.text!
         setHoveredText(text)
     }
+
+    const [normalizedMousePosition, setNormalizedMousePosition] = useState({
+        x: 0,
+        y: 0,
+    })
+
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            const normalizer = 4
+
+            setNormalizedMousePosition({
+                x: (e.clientX - window.innerWidth / 2) / normalizer,
+                y: (e.clientY - window.innerHeight / 2) / normalizer,
+            })
+        }
+
+        window.addEventListener("mousemove", handleMouseMove)
+        return () => window.removeEventListener("mousemove", handleMouseMove)
+    }, [])
+
+    useEffect(() => {
+        console.log(normalizedMousePosition)
+    }, [normalizedMousePosition])
 
     return (
         <div className="relative flex h-svh w-screen flex-col items-center justify-center">
@@ -78,11 +101,21 @@ const FunText = () => {
                             animate={{
                                 scale: 1,
                                 opacity: 1,
-                                x: item.offsetX,
-                                y: item.offsetY,
+                                x:
+                                    item.offsetX +
+                                    (index === 1
+                                        ? normalizedMousePosition.x / 2
+                                        : normalizedMousePosition.x),
+                                y: item.offsetY + normalizedMousePosition.y,
                                 rotate: item.rotate,
                             }}
                             exit={{ scale: 0, opacity: 0 }}
+                            transition={{
+                                type: "spring",
+                                stiffness: 200,
+                                damping: 10,
+                                mass: 0.6,
+                            }}
                         >
                             <Image
                                 src={item.src}

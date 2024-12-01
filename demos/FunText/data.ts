@@ -113,7 +113,7 @@ export const data: Record<string, FunTextDataEntry[]> = {
         {
             src: inception2,
             offsetX: -100,
-            offsetY: 0,
+            offsetY: -20,
             rotate: -3,
         },
         {
