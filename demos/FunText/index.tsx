@@ -3,82 +3,20 @@
 import { data } from "./data"
 import { AnimatePresence, motion } from "framer-motion"
 import Image from "next/image"
-import { RefObject, useEffect, useRef, useState } from "react"
-import { getRandomInt } from "./utils"
+import { useState } from "react"
 
 const FunText = () => {
     const [hoveredText, setHoveredText] = useState<string | null>(null)
-    const [centerRect, setCenterRect] = useState({
-        x: 0,
-        y: 0,
-    })
-    const [cursorPoint, setCursorPoint] = useState({
-        x: 0,
-        y: 0,
-    })
-    const [shiftPoint, setShiftPoint] = useState({
-        x: 0,
-        y: 0,
-    })
-
-    const interstellarRef = useRef<HTMLDivElement>(null)
-    const prestigeRef = useRef<HTMLDivElement>(null)
-    const oppenheimerRef = useRef<HTMLDivElement>(null)
-    const darkKnightRef = useRef<HTMLDivElement>(null)
-    const inceptionRef = useRef<HTMLDivElement>(null)
-
-    useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-            setCursorPoint({ x: e.clientX, y: e.clientY })
-        }
-        window.addEventListener("mousemove", handleMouseMove)
-        return () => window.removeEventListener("mousemove", handleMouseMove)
-    }, [])
 
     const handleHoverOverText = (e: React.MouseEvent<HTMLSpanElement>) => {
         const text = e.currentTarget.dataset.text!
         setHoveredText(text)
-        let ref: RefObject<HTMLDivElement | null>
-        switch (text) {
-            case "interstellar":
-                ref = interstellarRef
-                break
-            case "prestige":
-                ref = prestigeRef
-                break
-            case "oppenheimer":
-                ref = oppenheimerRef
-                break
-            case "dark-knight":
-                ref = darkKnightRef
-                break
-            default:
-                ref = inceptionRef
-                break
-        }
-        const rect = ref.current!.getBoundingClientRect()
-        setCenterRect({
-            x: rect.x + rect.width / 2,
-            y: rect.y + rect.height / 2,
-        })
-        setShiftPoint({
-            x: (cursorPoint.x - centerRect.x) / 6,
-            y: (cursorPoint.y - centerRect.y) / 6,
-        })
-
-        // data[text] = data[text].map((item) => ({
-        //     ...item,
-        //     offsetX: getRandomInt(-500, 500),
-        //     offsetY: getRandomInt(-300, 300),
-        //     rotate: getRandomInt(-10, 10),
-        // }))
     }
 
     return (
         <div className="relative flex h-svh w-screen flex-col items-center justify-center">
             <div className="flex flex-col items-center justify-center text-7xl font-black uppercase text-zinc-300 *:cursor-default">
                 <span
-                    ref={interstellarRef}
                     data-text="interstellar"
                     className="transition-all duration-300 hover:text-zinc-500 hover:scale-105"
                     onMouseEnter={handleHoverOverText}
@@ -88,7 +26,6 @@ const FunText = () => {
                     interstellar
                 </span>
                 <span
-                    ref={prestigeRef}
                     data-text="prestige"
                     className="transition-all duration-300 hover:text-zinc-500 hover:scale-105"
                     onMouseEnter={handleHoverOverText}
@@ -98,7 +35,6 @@ const FunText = () => {
                     the prestige
                 </span>
                 <span
-                    ref={oppenheimerRef}
                     data-text="oppenheimer"
                     className="transition-all duration-300 hover:text-zinc-500 hover:scale-105"
                     onMouseEnter={handleHoverOverText}
@@ -108,7 +44,6 @@ const FunText = () => {
                     oppenheimer
                 </span>
                 <span
-                    ref={darkKnightRef}
                     data-text="darkKnight"
                     className="transition-all duration-300 hover:text-zinc-500 hover:scale-105"
                     onMouseEnter={handleHoverOverText}
@@ -118,7 +53,6 @@ const FunText = () => {
                     the dark knight
                 </span>
                 <span
-                    ref={inceptionRef}
                     data-text="inception"
                     className="transition-all duration-300 hover:text-zinc-500 hover:scale-105"
                     onMouseEnter={handleHoverOverText}
@@ -133,31 +67,29 @@ const FunText = () => {
                     data[hoveredText].map((item, index) => (
                         <motion.div
                             key={index}
-                            className="absolute flex aspect-[3/2] w-64 items-center justify-center overflow-hidden rounded-xl"
+                            className="absolute flex aspect-[3/2] w-64 items-center justify-center overflow-hidden rounded-xl shadow-xl"
                             initial={{
+                                scale: 0,
                                 opacity: 0,
-                                rotate: item.rotate,
                                 x: item.offsetX,
                                 y: item.offsetY,
+                                rotate: item.rotate,
                             }}
                             animate={{
+                                scale: 1,
                                 opacity: 1,
+                                x: item.offsetX,
+                                y: item.offsetY,
                                 rotate: item.rotate,
-                                x: shiftPoint.x + item.offsetX,
-                                y: shiftPoint.y + item.offsetY,
-                                transition: {
-                                    type: "spring",
-                                    bounce: 0.4,
-                                    duration: 1,
-                                },
                             }}
-                            exit={{ opacity: 0 }}
+                            exit={{ scale: 0, opacity: 0 }}
                         >
                             <Image
                                 src={item.src}
                                 alt={hoveredText}
                                 className="object-cover"
                                 fill
+                                unoptimized
                             />
                         </motion.div>
                     ))}
