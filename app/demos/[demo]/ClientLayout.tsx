@@ -2,6 +2,7 @@
 
 import Logo from "@/components/Logo"
 import SplitText from "@/components/SplitText"
+import { Toaster } from "@/components/ui/sonner"
 import useNavigate from "@/hooks/useNavigate"
 import { capitalize } from "@/utils"
 import { AnimatePresence, motion } from "framer-motion"
@@ -95,6 +96,7 @@ const ClientLayout: FC<DemoLayoutWrapperProps> = ({ children }) => {
                     {!isNavigating && children}
                 </motion.div>
             </AnimatePresence>
+            <Toaster richColors position="top-center" />
         </>
     )
 }

@@ -4,6 +4,7 @@ import { data } from "./data"
 import { AnimatePresence, motion } from "framer-motion"
 import Image from "next/image"
 import { useEffect, useState } from "react"
+import { toast } from "sonner"
 
 const HoverPreviewText = () => {
     const [hoveredText, setHoveredText] = useState<string | null>(null)
@@ -33,8 +34,18 @@ const HoverPreviewText = () => {
     }, [])
 
     useEffect(() => {
-        console.log(normalizedMousePosition)
-    }, [normalizedMousePosition])
+        const mobileToast = () => {
+            if (window.innerWidth < 768) {
+                toast.warning(
+                    "The demo may not work as expected on smaller screens.",
+                )
+            }
+        }
+        setTimeout(mobileToast, 1000)
+
+        window.addEventListener("resize", mobileToast)
+        return () => window.removeEventListener("resize", mobileToast)
+    }, [])
 
     const initialScaleY = 1.15
     const hoverScaleY = 1.3
