@@ -18,6 +18,8 @@ export async function GET(request: NextRequest) {
             process.cwd(),
             "public",
             "assets",
+            "demos",
+            "music-widget",
             "audio",
             `${id}.mp3`,
         )

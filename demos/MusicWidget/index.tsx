@@ -4,7 +4,6 @@ import { useState } from "react"
 import { songs } from "./songs"
 import SongWidget from "./SongWidget"
 import VolumeBar from "./VolumeBar"
-import { motion } from "framer-motion"
 
 export type Lean = "left" | "right" | null
 
@@ -32,12 +31,7 @@ const MusicWidget = () => {
     }
 
     return (
-        <motion.div
-            className="relative flex items-center justify-center -translate-x-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { delay: 0.8 } }}
-            exit={{ opacity: 0, transition: { delay: 0 } }}
-        >
+        <div className="relative flex items-center justify-center -translate-x-8">
             {songs.map((song) => (
                 <SongWidget
                     key={song.id}
@@ -57,7 +51,7 @@ const MusicWidget = () => {
                 muted={muted}
                 setMuted={setMuted}
             />
-        </motion.div>
+        </div>
     )
 }
 

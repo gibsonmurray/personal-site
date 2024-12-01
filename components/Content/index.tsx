@@ -27,7 +27,7 @@ const Content: FC<ContentProps> = ({ navigateTo }) => {
             initial="initial"
             animate="animate"
             exit="exit"
-            className="content flex flex-col items-center justify-center gap-4 px-4 text-xl font-semibold *:opacity-0 *:translate-y-3"
+            className="container flex flex-col items-center justify-center gap-4 px-12 text-xl font-semibold *:opacity-0 *:translate-y-3 sm:px-4"
         >
             <motion.span variants={children} className="w-full">
                 i am a design engineer which means i css good and build cool
@@ -104,9 +104,7 @@ const Content: FC<ContentProps> = ({ navigateTo }) => {
                     </TextRipple>
                     <BlocksIcon />
                     <span className="underline">demos</span>
-                    <span className="text-zinc-500">
-                        micro-projects for the web
-                    </span>
+                    <span className="text-zinc-500">micro web projects</span>
                 </a>
                 <Link
                     href="https://github.com/gibsonmurray/react-hooks"
@@ -115,7 +113,7 @@ const Content: FC<ContentProps> = ({ navigateTo }) => {
                 >
                     <LightbulbIcon />
                     <span className="underline">react-hooks</span>
-                    <span className="text-zinc-500">handy react hooks</span>
+                    <span className="text-zinc-500">handy hooks</span>
                 </Link>
                 <Link
                     href="https://github.com/gibsonmurray/ghooks-cli"
@@ -124,9 +122,7 @@ const Content: FC<ContentProps> = ({ navigateTo }) => {
                 >
                     <SquareTerminalIcon />
                     <span className="underline">ghooks-cli</span>
-                    <span className="text-zinc-500">
-                        install those react hooks
-                    </span>
+                    <span className="text-zinc-500">grab hooks quick</span>
                 </Link>
             </motion.div>
 
