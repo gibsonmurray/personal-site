@@ -2,7 +2,7 @@ import { ReactNode } from "react"
 import OlympicMedals from "@/demos/OlympicMedals"
 import MusicWidget from "@/demos/MusicWidget"
 import { CaseSensitiveIcon, MedalIcon, MusicIcon } from "lucide-react"
-import FunText from "@/demos/FunText"
+import HoverPreviewText from "@/demos/HoverPreviewText"
 
 type Demo = {
     title: string
@@ -29,9 +29,9 @@ export const demos: Demo[] = [
         icon: <MusicIcon className={ICON_CLASS} />,
     },
     {
-        title: "fun text",
-        href: `${DEMOS_PATH}/fun-text`,
-        component: <FunText />,
+        title: "hover preview text",
+        href: `${DEMOS_PATH}/hover-preview-text`,
+        component: <HoverPreviewText />,
         icon: <CaseSensitiveIcon className={ICON_CLASS} />,
         new: true,
     },

@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 
-const FunText = () => {
+const HoverPreviewText = () => {
     const [hoveredText, setHoveredText] = useState<string | null>(null)
 
     const handleHoverOverText = (e: React.MouseEvent<HTMLSpanElement>) => {
@@ -36,54 +36,98 @@ const FunText = () => {
         console.log(normalizedMousePosition)
     }, [normalizedMousePosition])
 
+    const initialScaleY = 1.15
+    const hoverScaleY = 1.3
+    const transition = {
+        type: "spring",
+        stiffness: 300,
+        damping: 10,
+        mass: 0.8,
+    }
+
     return (
-        <div className="relative flex h-svh w-screen flex-col items-center justify-center">
-            <div className="flex flex-col items-center justify-center text-7xl font-black uppercase text-zinc-300 *:cursor-default">
-                <span
+        <div className="relative flex w-screen flex-col items-center justify-center">
+            <div className="flex flex-col items-center justify-center gap-1 text-nowrap text-5xl font-black uppercase text-zinc-300 *:cursor-default md:text-7xl">
+                <motion.span
                     data-text="interstellar"
-                    className="transition-all duration-300 hover:text-zinc-500 hover:scale-105"
+                    className="transition-colors duration-300 hover:text-zinc-500"
+                    animate={{
+                        scaleY: initialScaleY,
+                    }}
+                    whileHover={{
+                        scaleY: hoverScaleY,
+                    }}
+                    transition={transition}
                     onMouseEnter={handleHoverOverText}
                     onMouseMove={handleHoverOverText}
                     onMouseLeave={() => setHoveredText(null)}
                 >
                     interstellar
-                </span>
-                <span
+                </motion.span>
+                <motion.span
                     data-text="prestige"
-                    className="transition-all duration-300 hover:text-zinc-500 hover:scale-105"
+                    className="transition-colors duration-300 hover:text-zinc-500"
+                    animate={{
+                        scaleY: initialScaleY,
+                    }}
+                    whileHover={{
+                        scaleY: hoverScaleY,
+                    }}
+                    transition={transition}
                     onMouseEnter={handleHoverOverText}
                     onMouseMove={handleHoverOverText}
                     onMouseLeave={() => setHoveredText(null)}
                 >
                     the prestige
-                </span>
-                <span
+                </motion.span>
+                <motion.span
                     data-text="oppenheimer"
-                    className="transition-all duration-300 hover:text-zinc-500 hover:scale-105"
+                    className="transition-colors duration-300 hover:text-zinc-500"
+                    animate={{
+                        scaleY: initialScaleY,
+                    }}
+                    whileHover={{
+                        scaleY: hoverScaleY,
+                    }}
+                    transition={transition}
                     onMouseEnter={handleHoverOverText}
                     onMouseMove={handleHoverOverText}
                     onMouseLeave={() => setHoveredText(null)}
                 >
                     oppenheimer
-                </span>
-                <span
+                </motion.span>
+                <motion.span
                     data-text="darkKnight"
-                    className="transition-all duration-300 hover:text-zinc-500 hover:scale-105"
+                    className="transition-colors duration-300 hover:text-zinc-500"
+                    animate={{
+                        scaleY: initialScaleY,
+                    }}
+                    whileHover={{
+                        scaleY: hoverScaleY,
+                    }}
+                    transition={transition}
                     onMouseEnter={handleHoverOverText}
                     onMouseMove={handleHoverOverText}
                     onMouseLeave={() => setHoveredText(null)}
                 >
                     the dark knight
-                </span>
-                <span
+                </motion.span>
+                <motion.span
                     data-text="inception"
-                    className="transition-all duration-300 hover:text-zinc-500 hover:scale-105"
+                    className="transition-colors duration-300 hover:text-zinc-500"
+                    animate={{
+                        scaleY: initialScaleY,
+                    }}
+                    whileHover={{
+                        scaleY: hoverScaleY,
+                    }}
+                    transition={transition}
                     onMouseEnter={handleHoverOverText}
                     onMouseMove={handleHoverOverText}
                     onMouseLeave={() => setHoveredText(null)}
                 >
                     inception
-                </span>
+                </motion.span>
             </div>
             <AnimatePresence>
                 {hoveredText &&
@@ -131,4 +175,4 @@ const FunText = () => {
     )
 }
 
-export default FunText
+export default HoverPreviewText
