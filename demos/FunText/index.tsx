@@ -1,40 +1,77 @@
 "use client"
 
 import { data } from "./data"
-import { AnimatePresence, motion, useMotionValue } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import Image from "next/image"
-import { useEffect, useRef, useState } from "react"
+import { RefObject, useEffect, useRef, useState } from "react"
+import { getRandomInt } from "./utils"
 
 const FunText = () => {
     const [hoveredText, setHoveredText] = useState<string | null>(null)
-    const [cursorPos, setCursorPos] = useState<{ x: number; y: number }>({
+    const [centerRect, setCenterRect] = useState({
+        x: 0,
+        y: 0,
+    })
+    const [cursorPoint, setCursorPoint] = useState({
+        x: 0,
+        y: 0,
+    })
+    const [shiftPoint, setShiftPoint] = useState({
         x: 0,
         y: 0,
     })
 
-    const shiftX = useMotionValue(0)
-    const shiftY = useMotionValue(0)
-
     const interstellarRef = useRef<HTMLDivElement>(null)
+    const prestigeRef = useRef<HTMLDivElement>(null)
+    const oppenheimerRef = useRef<HTMLDivElement>(null)
+    const darkKnightRef = useRef<HTMLDivElement>(null)
+    const inceptionRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
-            setCursorPos({ x: e.clientX, y: e.clientY })
+            setCursorPoint({ x: e.clientX, y: e.clientY })
         }
         window.addEventListener("mousemove", handleMouseMove)
         return () => window.removeEventListener("mousemove", handleMouseMove)
     }, [])
 
     const handleHoverOverText = (e: React.MouseEvent<HTMLSpanElement>) => {
-        if (!interstellarRef.current) return
-        setHoveredText(e.currentTarget.textContent!)
-        const rect = interstellarRef.current.getBoundingClientRect()
-        const centerRect = {
+        const text = e.currentTarget.dataset.text!
+        setHoveredText(text)
+        let ref: RefObject<HTMLDivElement | null>
+        switch (text) {
+            case "interstellar":
+                ref = interstellarRef
+                break
+            case "prestige":
+                ref = prestigeRef
+                break
+            case "oppenheimer":
+                ref = oppenheimerRef
+                break
+            case "dark-knight":
+                ref = darkKnightRef
+                break
+            default:
+                ref = inceptionRef
+                break
+        }
+        const rect = ref.current!.getBoundingClientRect()
+        setCenterRect({
             x: rect.x + rect.width / 2,
             y: rect.y + rect.height / 2,
-        }
-        shiftX.set((cursorPos.x - centerRect.x) / 5)
-        shiftY.set((cursorPos.y - centerRect.y) / 5)
+        })
+        setShiftPoint({
+            x: (cursorPoint.x - centerRect.x) / 6,
+            y: (cursorPoint.y - centerRect.y) / 6,
+        })
+
+        // data[text] = data[text].map((item) => ({
+        //     ...item,
+        //     offsetX: getRandomInt(-500, 500),
+        //     offsetY: getRandomInt(-300, 300),
+        //     rotate: getRandomInt(-10, 10),
+        // }))
     }
 
     return (
@@ -42,6 +79,7 @@ const FunText = () => {
             <div className="flex flex-col items-center justify-center text-7xl font-black uppercase text-zinc-300 *:cursor-default">
                 <span
                     ref={interstellarRef}
+                    data-text="interstellar"
                     className="transition-all duration-300 hover:text-zinc-500 hover:scale-105"
                     onMouseEnter={handleHoverOverText}
                     onMouseMove={handleHoverOverText}
@@ -49,16 +87,44 @@ const FunText = () => {
                 >
                     interstellar
                 </span>
-                <span className="transition-all duration-300 hover:text-zinc-500 hover:scale-105">
+                <span
+                    ref={prestigeRef}
+                    data-text="prestige"
+                    className="transition-all duration-300 hover:text-zinc-500 hover:scale-105"
+                    onMouseEnter={handleHoverOverText}
+                    onMouseMove={handleHoverOverText}
+                    onMouseLeave={() => setHoveredText(null)}
+                >
                     the prestige
                 </span>
-                <span className="transition-all duration-300 hover:text-zinc-500 hover:scale-105">
+                <span
+                    ref={oppenheimerRef}
+                    data-text="oppenheimer"
+                    className="transition-all duration-300 hover:text-zinc-500 hover:scale-105"
+                    onMouseEnter={handleHoverOverText}
+                    onMouseMove={handleHoverOverText}
+                    onMouseLeave={() => setHoveredText(null)}
+                >
                     oppenheimer
                 </span>
-                <span className="transition-all duration-300 hover:text-zinc-500 hover:scale-105">
+                <span
+                    ref={darkKnightRef}
+                    data-text="darkKnight"
+                    className="transition-all duration-300 hover:text-zinc-500 hover:scale-105"
+                    onMouseEnter={handleHoverOverText}
+                    onMouseMove={handleHoverOverText}
+                    onMouseLeave={() => setHoveredText(null)}
+                >
                     the dark knight
                 </span>
-                <span className="transition-all duration-300 hover:text-zinc-500 hover:scale-105">
+                <span
+                    ref={inceptionRef}
+                    data-text="inception"
+                    className="transition-all duration-300 hover:text-zinc-500 hover:scale-105"
+                    onMouseEnter={handleHoverOverText}
+                    onMouseMove={handleHoverOverText}
+                    onMouseLeave={() => setHoveredText(null)}
+                >
                     inception
                 </span>
             </div>
@@ -68,17 +134,23 @@ const FunText = () => {
                         <motion.div
                             key={index}
                             className="absolute flex aspect-[3/2] w-64 items-center justify-center overflow-hidden rounded-xl"
-                            style={{
-                                translateX:
-                                    shiftX.get() / (index === 1 ? 2 : 1) +
-                                    item.offsetX,
-                                translateY:
-                                    shiftY.get() / (index === 1 ? 2 : 1) +
-                                    item.offsetY,
+                            initial={{
+                                opacity: 0,
                                 rotate: item.rotate,
+                                x: item.offsetX,
+                                y: item.offsetY,
                             }}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
+                            animate={{
+                                opacity: 1,
+                                rotate: item.rotate,
+                                x: shiftPoint.x + item.offsetX,
+                                y: shiftPoint.y + item.offsetY,
+                                transition: {
+                                    type: "spring",
+                                    bounce: 0.4,
+                                    duration: 1,
+                                },
+                            }}
                             exit={{ opacity: 0 }}
                         >
                             <Image
