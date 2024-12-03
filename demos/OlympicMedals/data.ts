@@ -1,8 +1,3 @@
-import aus from "@/public/assets/demos/olympic-medals/aus.png"
-import chn from "@/public/assets/demos/olympic-medals/chn.png"
-import jpn from "@/public/assets/demos/olympic-medals/jpn.png"
-import usa from "@/public/assets/demos/olympic-medals/usa.png"
-
 export const data = [
     {
         country: "USA",
@@ -10,7 +5,7 @@ export const data = [
         gold: 40,
         silver: 44,
         bronze: 42,
-        img: usa,
+        img: "https://ywczzzgqahgnnxdtodap.supabase.co/storage/v1/object/public/assets/demos/olympic-medals/usa.png",
     },
     {
         country: "China",
@@ -18,7 +13,7 @@ export const data = [
         gold: 40,
         silver: 27,
         bronze: 24,
-        img: chn,
+        img: "https://ywczzzgqahgnnxdtodap.supabase.co/storage/v1/object/public/assets/demos/olympic-medals/chn.png",
     },
     {
         country: "Japan",
@@ -26,7 +21,7 @@ export const data = [
         gold: 20,
         silver: 12,
         bronze: 13,
-        img: jpn,
+        img: "https://ywczzzgqahgnnxdtodap.supabase.co/storage/v1/object/public/assets/demos/olympic-medals/jpn.png",
     },
     {
         country: "Austrailia",
@@ -34,6 +29,6 @@ export const data = [
         gold: 18,
         silver: 19,
         bronze: 16,
-        img: aus,
+        img: "https://ywczzzgqahgnnxdtodap.supabase.co/storage/v1/object/public/assets/demos/olympic-medals/aus.png",
     },
 ]

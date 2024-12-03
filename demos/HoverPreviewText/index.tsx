@@ -1,6 +1,6 @@
 "use client"
 
-import { data } from "./data"
+import { data, IMAGE_PATH } from "./data"
 import { AnimatePresence, motion } from "framer-motion"
 import Image from "next/image"
 import { useEffect, useState } from "react"
@@ -173,11 +173,12 @@ const HoverPreviewText = () => {
                             }}
                         >
                             <Image
-                                src={item.src}
+                                src={`${IMAGE_PATH}/${item.src}`}
                                 alt={hoveredText}
                                 className="object-cover"
                                 fill
                                 unoptimized
+                                priority
                             />
                         </motion.div>
                     ))}

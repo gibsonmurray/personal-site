@@ -8,6 +8,8 @@ function CountryCard(props: { country: any; activeCountryIdx: number }) {
         <div className="relative flex translate-y-5 flex-col items-center justify-center cursor-grab active:cursor-grabbing">
             <Image
                 src={props.country.img}
+                width={100}
+                height={100}
                 alt="Country Flag"
                 className="absolute -top-4 w-14 rounded-lg border-4 border-zinc-100 bg-zinc-100 object-contain saturate-150 filter"
             />

@@ -6,9 +6,9 @@ import {
     GithubIcon,
     LinkedinIcon,
     TwitterIcon,
-    SquareTerminalIcon,
     BlocksIcon,
     LightbulbIcon,
+    PuzzleIcon,
 } from "lucide-react"
 import { container, children } from "./animations"
 import { motion } from "framer-motion"
@@ -30,16 +30,53 @@ const Content: FC<ContentProps> = ({ navigateTo }) => {
             className="container flex flex-col items-center justify-center gap-4 px-12 text-xl font-semibold *:opacity-0 *:translate-y-3 sm:px-4"
         >
             <motion.span variants={children} className="w-full">
-                i am a design engineer which means i css good and build cool
-                stuff
+                i am a design engineer with a b.s. in computer science.
             </motion.span>
             <motion.span variants={children} className="w-full">
                 my speciality is interaction design with react, tailwind, gsap,
                 and framer motion.
             </motion.span>
+
             <motion.span variants={children} className="w-full">
-                believe it or not, i also have cs degree.
+                on the side i build libraries and demos:
             </motion.span>
+
+            <motion.div
+                variants={children}
+                className="flex flex-col items-start justify-start gap-3 py-2 text-lg text-zinc-700 *:flex *:items-center *:gap-3"
+            >
+                <a
+                    className="relative cursor-pointer"
+                    onClick={() => navigateTo("/gui")}
+                >
+                    <TextRipple className="absolute -left-11 text-sm font-bold text-blue-500">
+                        NEW
+                    </TextRipple>
+                    <PuzzleIcon />
+                    <span className="underline">gui</span>
+                    <span className="text-zinc-500">custom ui components</span>
+                </a>
+
+                <a
+                    className="relative cursor-pointer"
+                    onClick={() => navigateTo("/demos")}
+                >
+                    <BlocksIcon />
+                    <span className="underline">demos</span>
+                    <span className="text-zinc-500">micro web projects</span>
+                </a>
+
+                <Link
+                    href="https://github.com/gibsonmurray/react-hooks"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <LightbulbIcon />
+                    <span className="underline">react-hooks</span>
+                    <span className="text-zinc-500">handy hooks</span>
+                </Link>
+            </motion.div>
+
             <motion.span variants={children} className="w-full">
                 here&apos;s some more info:
             </motion.span>
@@ -86,49 +123,6 @@ const Content: FC<ContentProps> = ({ navigateTo }) => {
                     <LinkedinIcon /> linkedin
                 </Link>
             </motion.div>
-
-            <motion.span variants={children} className="w-full">
-                on the side i build libraries and demos:
-            </motion.span>
-
-            <motion.div
-                variants={children}
-                className="flex flex-col items-start justify-start gap-3 py-2 text-lg text-zinc-700 *:flex *:items-center *:gap-3"
-            >
-                <a
-                    className="relative cursor-pointer"
-                    onClick={() => navigateTo("/demos")}
-                >
-                    <TextRipple className="absolute -left-11 text-sm font-bold text-blue-500">
-                        NEW
-                    </TextRipple>
-                    <BlocksIcon />
-                    <span className="underline">demos</span>
-                    <span className="text-zinc-500">micro web projects</span>
-                </a>
-                <Link
-                    href="https://github.com/gibsonmurray/react-hooks"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <LightbulbIcon />
-                    <span className="underline">react-hooks</span>
-                    <span className="text-zinc-500">handy hooks</span>
-                </Link>
-                <Link
-                    href="https://github.com/gibsonmurray/ghooks-cli"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <SquareTerminalIcon />
-                    <span className="underline">ghooks-cli</span>
-                    <span className="text-zinc-500">grab hooks quick</span>
-                </Link>
-            </motion.div>
-
-            <motion.span variants={children} className="w-full">
-                thanks for checking me out, cheers!
-            </motion.span>
         </motion.div>
     )
 }

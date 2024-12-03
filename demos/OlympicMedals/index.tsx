@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import olympicsSVG from "@/public/assets/demos/olympic-medals/olympics.svg"
 import { Progress } from "@/components/ui/progress"
 import { motion } from "framer-motion"
 import CountryCard from "./CountryCard"
@@ -47,7 +46,9 @@ function OlympicMedals() {
     return (
         <main className="relative flex aspect-square h-[280px] select-none flex-col items-center justify-center gap-52 overflow-hidden rounded-[40px] border border-zinc-300 bg-zinc-200 font-bold tracking-widest">
             <Image
-                src={olympicsSVG}
+                src="https://ywczzzgqahgnnxdtodap.supabase.co/storage/v1/object/public/assets/demos/olympic-medals/olympics.svg"
+                width={100}
+                height={100}
                 alt="Olympic Rings"
                 className="w-20 object-contain"
             />

@@ -187,7 +187,7 @@ const SongWidget: FC<SongWidgetProps> = ({
             <audio
                 ref={audioRef}
                 className="hidden"
-                src={`/api/audio?id=${song.id}`}
+                src={song.audio}
                 muted={muted}
                 loop
             />
