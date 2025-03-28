@@ -4,15 +4,13 @@ import Logo from "@/components/Logo"
 import SplitText from "@/components/SplitText"
 import { Toaster } from "@/components/ui/sonner"
 import useNavigate from "@/hooks/useNavigate"
-import { capitalize } from "@/utils"
-import { AnimatePresence, motion } from "framer-motion"
+import { capitalize } from "lodash"
+import { AnimatePresence, motion } from "motion/react"
 import { Code2Icon } from "lucide-react"
 import { usePathname } from "next/navigation"
 import { ReactNode, FC, useState } from "react"
 
-type DemoLayoutWrapperProps = {
-    children: ReactNode
-}
+type DemoLayoutWrapperProps = { children: ReactNode }
 
 const ClientLayout: FC<DemoLayoutWrapperProps> = ({ children }) => {
     const { isNavigating, navigateTo } = useNavigate()

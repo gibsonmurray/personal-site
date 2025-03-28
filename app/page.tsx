@@ -3,7 +3,7 @@
 import Header from "@/components/Header"
 import Content from "@/components/Content"
 import Footer from "@/components/Footer"
-import { AnimatePresence } from "framer-motion"
+import { AnimatePresence } from "motion/react"
 import useNavigate from "@/hooks/useNavigate"
 
 const Home = () => {

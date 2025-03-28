@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import { container, childVariants } from "./animations"
 
 type SplitTextProps = {
@@ -8,7 +8,11 @@ type SplitTextProps = {
     delay?: number
 }
 
-const SplitText: FC<SplitTextProps> = ({ children, className, delay = 0.9 }) => {
+const SplitText: FC<SplitTextProps> = ({
+    children,
+    className,
+    delay = 0.9,
+}) => {
     const letters = children?.toString().split("")
 
     return (

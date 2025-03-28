@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import olympicsSVG from "@/public/assets/demos/olympic-medals/olympics.svg"
 import { Progress } from "@/components/ui/progress"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import CountryCard from "./CountryCard"
 import { data } from "./data"
 import {
@@ -45,7 +45,7 @@ function OlympicMedals() {
     }, [progress, api])
 
     return (
-        <main className="relative flex aspect-square h-[280px] select-none flex-col items-center justify-center gap-52 overflow-hidden rounded-[40px] border border-zinc-300 bg-zinc-200 font-bold tracking-widest">
+        <main className="relative flex aspect-square h-[280px] flex-col items-center justify-center gap-52 overflow-hidden rounded-[40px] border border-zinc-300 bg-zinc-200 font-bold tracking-widest select-none">
             <Image
                 src={olympicsSVG}
                 alt="Olympic Rings"
@@ -55,10 +55,7 @@ function OlympicMedals() {
             <Carousel
                 setApi={setApi}
                 className="absolute *:overflow-visible"
-                opts={{
-                    align: "start",
-                    loop: true,
-                }}
+                opts={{ align: "start", loop: true }}
             >
                 <CarouselContent>
                     {data.map((country, i) => (
@@ -77,9 +74,7 @@ function OlympicMedals() {
                     return (
                         <motion.div
                             key={i}
-                            animate={{
-                                width: i === activeCountryIdx ? 30 : 8,
-                            }}
+                            animate={{ width: i === activeCountryIdx ? 30 : 8 }}
                             className="h-2 w-2"
                         >
                             <Progress

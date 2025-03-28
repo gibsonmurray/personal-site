@@ -1,4 +1,4 @@
-import { Variants } from "framer-motion"
+import { Variants } from "motion/react"
 
 export const container = (delayChildren: number = 0.9) => ({
     initial: {},

@@ -1,19 +1,12 @@
-import { motion, TargetAndTransition } from "framer-motion"
+import { motion, TargetAndTransition } from "motion/react"
 import { generateWaveformAnimations } from "./animations"
 import { FC, RefObject, useEffect, useState } from "react"
 
-const hoveringAnimation = {
-    height: 2,
-    opacity: 0,
-}
+const hoveringAnimation = { height: 2, opacity: 0 }
 
-const toPauseAnimation = {
-    height: 11,
-}
+const toPauseAnimation = { height: 11 }
 
-const staticAnimation = {
-    height: 2,
-}
+const staticAnimation = { height: 2 }
 
 type WaveformProps = {
     active: boolean

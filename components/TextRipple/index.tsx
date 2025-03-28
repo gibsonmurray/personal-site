@@ -1,13 +1,10 @@
 "use client"
 
-import { cn } from "@/utils"
-import { motion, stagger, useAnimate } from "framer-motion"
+import { cn } from "@/lib/utils"
+import { motion, stagger, useAnimate } from "motion/react"
 import { FC, ReactNode, useEffect } from "react"
 
-type TextRippleProps = {
-    children: ReactNode
-    className?: string
-}
+type TextRippleProps = { children: ReactNode; className?: string }
 
 const TextRipple: FC<TextRippleProps> = ({ children, className }) => {
     const text = children?.toString() || ""
@@ -18,9 +15,7 @@ const TextRipple: FC<TextRippleProps> = ({ children, className }) => {
     useEffect(() => {
         animate(
             ".char",
-            {
-                y: [1, -4, 1],
-            },
+            { y: [1, -4, 1] },
             {
                 delay: stagger(0.07, { startDelay: 2.7 }),
                 duration: 0.5,

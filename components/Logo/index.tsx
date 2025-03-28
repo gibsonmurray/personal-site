@@ -1,12 +1,10 @@
 "use client"
 
 import { FC } from "react"
-import { cubicBezier, motion } from "framer-motion"
+import { cubicBezier, motion } from "motion/react"
 import { cn } from "@/lib/utils"
 
-type LogoProps = {
-    className?: string
-}
+type LogoProps = { className?: string }
 
 const Logo: FC<LogoProps> = ({ className }) => {
     return (

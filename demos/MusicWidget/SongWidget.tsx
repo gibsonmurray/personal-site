@@ -3,9 +3,9 @@ import RotatingText from "./RotatingText"
 import { FC, RefObject, useEffect, useRef, useState } from "react"
 import { Song } from "./songs"
 import Image from "next/image"
-import { motion, animate } from "framer-motion"
-import { PanInfo } from "framer-motion"
-import { useMotionValue, useTransform } from "framer-motion"
+import { motion, animate } from "motion/react"
+import { PanInfo } from "motion/react"
+import { useMotionValue, useTransform } from "motion/react"
 import { Lean } from "./index"
 import { cn } from "@/lib/utils"
 
@@ -144,12 +144,7 @@ const SongWidget: FC<SongWidgetProps> = ({
             className="absolute flex size-48 cursor-grab items-center justify-center overflow-hidden rounded-[42px] active:cursor-grabbing"
             drag="x"
             dragMomentum
-            dragConstraints={{
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-            }}
+            dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}
             onDragEnd={handleDragEnd}
             onDrag={handleDrag}
             style={{
@@ -157,7 +152,7 @@ const SongWidget: FC<SongWidgetProps> = ({
                 zIndex: rank,
             }}
         >
-            <div className="absolute left-0 top-0 -z-10 h-full w-full bg-zinc-300"></div>
+            <div className="absolute top-0 left-0 -z-10 h-full w-full bg-zinc-300"></div>
             <Image
                 src={song.image}
                 alt={`${song.title} by ${song.artist}`}
@@ -176,7 +171,7 @@ const SongWidget: FC<SongWidgetProps> = ({
                     paused={paused}
                     setPaused={setPaused}
                 />
-                <div className="relative flex w-full flex-col items-start justify-center pr-5 -translate-x-2">
+                <div className="relative flex w-full -translate-x-2 flex-col items-start justify-center pr-5">
                     <RotatingText text={song.title} />
                     <RotatingText
                         text={song.artist}
