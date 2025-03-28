@@ -5,7 +5,7 @@ const randomBetween = (min: number, max: number) =>
     Math.floor(Math.random() * (max - min + 1)) + min
 
 const generateUniqueArray = (length: number, min: number, max: number) => {
-    const array = []
+    const array: number[] = []
     let lastValue = null
 
     for (let i = 0; i < length; i++) {
