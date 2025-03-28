@@ -14,6 +14,7 @@
         "@radix-ui/react-slider": "^1.2.3",
         "@radix-ui/react-slot": "^1.1.2",
         "@tailwindcss/postcss": "^4.0.17",
+        "babel-plugin-react-compiler": "^19.0.0-beta-aeaed83-20250323",
         "class-variance-authority": "^0.7.1",
         "embla-carousel-react": "^8.5.2",
         "lodash": "^4.17.21",
@@ -28,6 +29,7 @@
         "tw-animate-css": "^1.2.5"
     },
     "devDependencies": {
+        "@svgr/webpack": "^8.1.0",
         "@tailwindcss/typography": "^0.5.16",
         "@types/lodash": "^4.17.16",
         "@types/node": "^22.13.14",

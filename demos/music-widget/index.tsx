@@ -31,7 +31,7 @@ const MusicWidget = () => {
     }
 
     return (
-        <div className="relative flex items-center justify-center -translate-x-8">
+        <div className="relative flex -translate-x-8 items-center justify-center">
             {songs.map((song) => (
                 <SongWidget
                     key={song.id}

@@ -1,3 +1,5 @@
+"use client"
+
 import Waveform from "./Waveform"
 import RotatingText from "./RotatingText"
 import { FC, RefObject, useEffect, useRef, useState } from "react"

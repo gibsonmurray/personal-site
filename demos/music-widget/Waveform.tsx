@@ -1,3 +1,5 @@
+"use client"
+
 import { motion, TargetAndTransition } from "motion/react"
 import { generateWaveformAnimations } from "./animations"
 import { FC, RefObject, useEffect, useState } from "react"
