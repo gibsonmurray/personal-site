@@ -1,3 +1,5 @@
+"use client"
+
 import Cylinder from "./Cylinder"
 import { motion } from "motion/react"
 import Image from "next/image"
@@ -5,7 +7,7 @@ import Image from "next/image"
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function CountryCard(props: { country: any; activeCountryIdx: number }) {
     return (
-        <div className="relative flex translate-y-5 flex-col items-center justify-center cursor-grab active:cursor-grabbing">
+        <div className="relative flex translate-y-5 cursor-grab flex-col items-center justify-center active:cursor-grabbing">
             <Image
                 src={props.country.img}
                 alt="Country Flag"

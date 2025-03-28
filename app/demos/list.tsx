@@ -1,8 +1,8 @@
 import { ReactNode } from "react"
-import OlympicMedals from "@/demos/OlympicMedals"
-import MusicWidget from "@/demos/MusicWidget"
+import OlympicMedals from "@/demos/olympic-medals"
+import MusicWidget from "@/demos/music-widget"
 import { CaseSensitiveIcon, MedalIcon, MusicIcon } from "lucide-react"
-import HoverPreviewText from "@/demos/HoverPreviewText"
+import HoverPreviewText from "@/demos/hover-preview-text"
 
 type Demo = {
     title: string

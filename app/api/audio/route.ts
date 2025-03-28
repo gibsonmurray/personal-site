@@ -1,4 +1,4 @@
-import { songs } from "@/demos/MusicWidget/songs"
+import { songs } from "@/demos/music-widget/songs"
 import { NextRequest } from "next/server"
 import { promises as fs } from "fs"
 import path from "path"

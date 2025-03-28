@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import olympicsSVG from "@/public/assets/demos/olympic-medals/olympics.svg"
+import OlympicRings from "@/public/assets/demos/olympic-medals/olympics.svg"
 import { Progress } from "@/components/ui/progress"
 import { motion } from "motion/react"
 import CountryCard from "./CountryCard"
@@ -12,7 +12,6 @@ import {
     CarouselItem,
 } from "@/components/ui/carousel"
 import { type CarouselApi } from "@/components/ui/carousel"
-import Image from "next/image"
 
 function OlympicMedals() {
     const [activeCountryIdx, setActiveCountryIdx] = useState(0)
@@ -46,11 +45,7 @@ function OlympicMedals() {
 
     return (
         <main className="relative flex aspect-square h-[280px] flex-col items-center justify-center gap-52 overflow-hidden rounded-[40px] border border-zinc-300 bg-zinc-200 font-bold tracking-widest select-none">
-            <Image
-                src={olympicsSVG}
-                alt="Olympic Rings"
-                className="w-20 object-contain"
-            />
+            <OlympicRings className="h-8" />
 
             <Carousel
                 setApi={setApi}

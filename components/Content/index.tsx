@@ -102,8 +102,8 @@ const Content: FC<ContentProps> = ({ navigateTo }) => {
                 </a>
             </motion.div>
 
-            <motion.span variants={children} className="w-full">
-                thanks for checking me out, cheers!
+            <motion.span variants={children} className="w-full text-right">
+                cheers!
             </motion.span>
         </motion.div>
     )
