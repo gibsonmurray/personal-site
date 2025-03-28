@@ -3,7 +3,6 @@ import {
     FileTextIcon,
     GithubIcon,
     LinkedinIcon,
-    TwitterIcon,
     BlocksIcon,
 } from "lucide-react"
 import { container, children } from "./animations"
