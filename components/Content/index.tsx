@@ -82,7 +82,7 @@ const Content: FC<ContentProps> = ({ navigateTo }) => {
             </motion.div>
 
             <motion.span variants={children} className="w-full">
-                you're probably here for the demos:
+                you&apos;re probably here for the demos:
             </motion.span>
 
             <motion.div
