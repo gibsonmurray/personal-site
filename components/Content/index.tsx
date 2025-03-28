@@ -1,5 +1,3 @@
-"use client"
-
 import {
     CodepenIcon,
     FileTextIcon,
@@ -11,14 +9,12 @@ import {
     LightbulbIcon,
 } from "lucide-react"
 import { container, children } from "./animations"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import Link from "next/link"
 import { FC } from "react"
 import TextRipple from "@/components/TextRipple"
 
-type ContentProps = {
-    navigateTo: (href: string) => void
-}
+type ContentProps = { navigateTo: (href: string) => void }
 
 const Content: FC<ContentProps> = ({ navigateTo }) => {
     return (
@@ -27,7 +23,7 @@ const Content: FC<ContentProps> = ({ navigateTo }) => {
             initial="initial"
             animate="animate"
             exit="exit"
-            className="container flex flex-col items-center justify-center gap-4 px-12 text-xl font-semibold *:opacity-0 *:translate-y-3 sm:px-4"
+            className="container flex flex-col items-center justify-center gap-4 px-12 text-xl font-semibold *:translate-y-3 *:opacity-0 sm:px-4"
         >
             <motion.span variants={children} className="w-full">
                 i am a design engineer which means i css good and build cool

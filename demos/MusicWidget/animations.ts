@@ -1,4 +1,4 @@
-import { TargetAndTransition } from "framer-motion"
+import { TargetAndTransition } from "motion/react"
 
 // Utility functions
 const randomBetween = (min: number, max: number) =>
@@ -40,9 +40,6 @@ export const generateWaveformAnimations = (
 
     return Array.from({ length: count }, (_, index) => ({
         height: generateUniqueArray(6, MIN_HEIGHT, MAX_HEIGHT),
-        transition: {
-            ...transition,
-            duration: durations[index],
-        },
+        transition: { ...transition, duration: durations[index] },
     }))
 }

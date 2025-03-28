@@ -1,7 +1,7 @@
 "use client"
 
 import { data } from "./data"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, motion } from "motion/react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import { toast } from "sonner"
@@ -58,16 +58,12 @@ const HoverPreviewText = () => {
 
     return (
         <div className="relative flex w-screen flex-col items-center justify-center">
-            <div className="flex flex-col items-center justify-center gap-1 text-nowrap text-5xl font-black uppercase text-zinc-300 *:cursor-default md:text-7xl">
+            <div className="flex flex-col items-center justify-center gap-1 text-5xl font-black text-nowrap text-zinc-300 uppercase *:cursor-default md:text-7xl">
                 <motion.span
                     data-text="interstellar"
                     className="transition-colors duration-300 hover:text-zinc-500"
-                    animate={{
-                        scaleY: initialScaleY,
-                    }}
-                    whileHover={{
-                        scaleY: hoverScaleY,
-                    }}
+                    animate={{ scaleY: initialScaleY }}
+                    whileHover={{ scaleY: hoverScaleY }}
                     transition={transition}
                     onMouseEnter={handleHoverOverText}
                     onMouseMove={handleHoverOverText}
@@ -78,12 +74,8 @@ const HoverPreviewText = () => {
                 <motion.span
                     data-text="prestige"
                     className="transition-colors duration-300 hover:text-zinc-500"
-                    animate={{
-                        scaleY: initialScaleY,
-                    }}
-                    whileHover={{
-                        scaleY: hoverScaleY,
-                    }}
+                    animate={{ scaleY: initialScaleY }}
+                    whileHover={{ scaleY: hoverScaleY }}
                     transition={transition}
                     onMouseEnter={handleHoverOverText}
                     onMouseMove={handleHoverOverText}
@@ -94,12 +86,8 @@ const HoverPreviewText = () => {
                 <motion.span
                     data-text="oppenheimer"
                     className="transition-colors duration-300 hover:text-zinc-500"
-                    animate={{
-                        scaleY: initialScaleY,
-                    }}
-                    whileHover={{
-                        scaleY: hoverScaleY,
-                    }}
+                    animate={{ scaleY: initialScaleY }}
+                    whileHover={{ scaleY: hoverScaleY }}
                     transition={transition}
                     onMouseEnter={handleHoverOverText}
                     onMouseMove={handleHoverOverText}
@@ -110,12 +98,8 @@ const HoverPreviewText = () => {
                 <motion.span
                     data-text="darkKnight"
                     className="transition-colors duration-300 hover:text-zinc-500"
-                    animate={{
-                        scaleY: initialScaleY,
-                    }}
-                    whileHover={{
-                        scaleY: hoverScaleY,
-                    }}
+                    animate={{ scaleY: initialScaleY }}
+                    whileHover={{ scaleY: hoverScaleY }}
                     transition={transition}
                     onMouseEnter={handleHoverOverText}
                     onMouseMove={handleHoverOverText}
@@ -126,12 +110,8 @@ const HoverPreviewText = () => {
                 <motion.span
                     data-text="inception"
                     className="transition-colors duration-300 hover:text-zinc-500"
-                    animate={{
-                        scaleY: initialScaleY,
-                    }}
-                    whileHover={{
-                        scaleY: hoverScaleY,
-                    }}
+                    animate={{ scaleY: initialScaleY }}
+                    whileHover={{ scaleY: hoverScaleY }}
                     transition={transition}
                     onMouseEnter={handleHoverOverText}
                     onMouseMove={handleHoverOverText}

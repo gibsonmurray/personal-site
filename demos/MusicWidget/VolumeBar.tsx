@@ -1,5 +1,5 @@
 import { FC, useEffect, useRef, useState } from "react"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import {
     Volume1Icon,
     Volume2Icon,
@@ -54,7 +54,7 @@ const VolumeBar: FC<VolumeBarProps> = ({
     }
 
     return (
-        <div className="flex flex-col items-center justify-center gap-2 overflow-hidden translate-x-36">
+        <div className="flex translate-x-36 flex-col items-center justify-center gap-2 overflow-hidden">
             <div
                 ref={range}
                 className="flex h-40 w-5 items-end overflow-hidden rounded-full bg-zinc-300"
@@ -64,7 +64,7 @@ const VolumeBar: FC<VolumeBarProps> = ({
                     style={{ height: `${volume * 100}%` }}
                 >
                     <motion.div
-                        className="absolute left-0 top-1/2 h-full w-full cursor-grab rounded-full -translate-y-1/2 active:cursor-grabbing"
+                        className="absolute top-1/2 left-0 h-full w-full -translate-y-1/2 cursor-grab rounded-full active:cursor-grabbing"
                         drag="y"
                         dragConstraints={range}
                         dragElastic={0}

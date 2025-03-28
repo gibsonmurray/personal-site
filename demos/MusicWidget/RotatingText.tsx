@@ -1,11 +1,8 @@
 import { useEffect, useRef, useState } from "react"
 import Marquee from "react-fast-marquee"
-import { cn } from "../../utils"
+import { cn } from "@/lib/utils"
 
-type RotatingTextProps = {
-    text: string
-    className?: string
-}
+type RotatingTextProps = { text: string; className?: string }
 
 const RotatingText = ({ text, className }: RotatingTextProps) => {
     const [isPlaying, setIsPlaying] = useState(false)

@@ -1,6 +1,6 @@
 "use client"
 
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, motion } from "motion/react"
 import { ChevronLeftIcon } from "lucide-react"
 import { backArrow } from "./animations"
 import useNavigate from "@/hooks/useNavigate"
@@ -63,7 +63,7 @@ const DemosPage = () => {
                                 >
                                     <button
                                         onClick={() => navigateTo(demo.href)}
-                                        className="relative flex items-center justify-center gap-3 underline"
+                                        className="relative flex cursor-pointer items-center justify-center gap-3 underline"
                                     >
                                         {demo.new && (
                                             <TextRipple className="absolute -left-11 text-sm font-bold text-blue-500">
