@@ -4,9 +4,7 @@ import {
     GithubIcon,
     LinkedinIcon,
     TwitterIcon,
-    SquareTerminalIcon,
     BlocksIcon,
-    LightbulbIcon,
 } from "lucide-react"
 import { container, children } from "./animations"
 import { motion } from "motion/react"
@@ -26,12 +24,11 @@ const Content: FC<ContentProps> = ({ navigateTo }) => {
             className="container flex flex-col items-center justify-center gap-4 px-12 text-xl font-semibold *:translate-y-3 *:opacity-0 sm:px-4"
         >
             <motion.span variants={children} className="w-full">
-                i am a design engineer which means i css good and build cool
-                stuff
+                i am a design engineer which means i cody nice and css good
             </motion.span>
             <motion.span variants={children} className="w-full">
-                my speciality is interaction design with react, tailwind, gsap,
-                and framer motion.
+                my speciality is interaction design with react, tailwind, and
+                motion.
             </motion.span>
             <motion.span variants={children} className="w-full">
                 believe it or not, i also have cs degree.
@@ -56,8 +53,10 @@ const Content: FC<ContentProps> = ({ navigateTo }) => {
                     href="https://x.com/gibsonsmurray"
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="!no-underline"
                 >
-                    <TwitterIcon /> twitter/x
+                    <span className="ml-1 text-2xl">𝕏</span>
+                    <span className="underline">x/twitter</span>
                 </Link>
 
                 <Link
@@ -84,7 +83,7 @@ const Content: FC<ContentProps> = ({ navigateTo }) => {
             </motion.div>
 
             <motion.span variants={children} className="w-full">
-                on the side i build libraries and demos:
+                you're probably here for the demos:
             </motion.span>
 
             <motion.div
@@ -102,24 +101,6 @@ const Content: FC<ContentProps> = ({ navigateTo }) => {
                     <span className="underline">demos</span>
                     <span className="text-zinc-500">micro web projects</span>
                 </a>
-                <Link
-                    href="https://github.com/gibsonmurray/react-hooks"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <LightbulbIcon />
-                    <span className="underline">react-hooks</span>
-                    <span className="text-zinc-500">handy hooks</span>
-                </Link>
-                <Link
-                    href="https://github.com/gibsonmurray/ghooks-cli"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <SquareTerminalIcon />
-                    <span className="underline">ghooks-cli</span>
-                    <span className="text-zinc-500">grab hooks quick</span>
-                </Link>
             </motion.div>
 
             <motion.span variants={children} className="w-full">
